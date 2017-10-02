@@ -1,0 +1,66 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .panel {
+    display: block;
+    margin: 7px;
+    border-radius: 3px;
+    border: 1px solid white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .header {
+    height: 50px;
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .content-left {
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 1;
+    min-width: 230px;
+    flex-basis: 100px;
+  }
+
+  .content-right {
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 250px;
+  }
+
+  .content-middle {
+    display: flex;
+    flex-grow: 2;
+    flex-direction: column;
+    min-width: 450px;
+  }
+
+  .content-middle-top {
+    flex-grow: 1;
+  }
+
+  .content-middle-bottom {
+    flex-grow: 3;
+  }
+
+  .footer {
+    height: 40px;
+  }
+
+  .panel-shadow {
+    //border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  }
+}
