@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
+import Header from '../../containers/Header/index.js'
+
 import styles from './style.less';
 
 class Layout extends Component {
 
   get header() {
     return (
-      <div className="header panel">
-        Header
+      <div className="header">
+        <Header/>
       </div>
     );
   }

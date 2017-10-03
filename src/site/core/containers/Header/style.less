@@ -2,51 +2,15 @@
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
-  height: 125px;
-  width: 100%;
-  //border-bottom: 1px solid @mid-grey;
+  display: flex;
+  flex-direction: row;
+  height: inherit;
 
-  :local(.title) {
-    padding-top: 20px;
+  .header-logo-img {
+    height: 50px;
   }
 
-  :local(.footer) {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 12px;
-    font-family: 'apercu-regular';
-    font-size: 12px;
-
-    :local(.welcome) {
-      padding-left: 30px;
-      max-width: 60%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    :local(.nav) {
-      flex: 1;
-      max-width: 125px;
-
-      a {
-        color: black;
-        opacity: 0.65;
-
-        &:hover {
-          color: #108ee9;
-        }
-      }
-
-      i {
-        font-size: 16px;
-        line-height: 20px;
-        margin: 0 8px;
-      }
-    }
+  .header-content {
+    flex-grow: 1;
   }
-}
-
-.fa-briefcase {
-  line-height: 10px;
 }
