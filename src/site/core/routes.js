@@ -1,10 +1,26 @@
 module.exports = function(store) {
   return [
     {
-      path: '/',
+      path: 'home',
       getComponent(nextState, callback) {
         require.ensure([], (require) => {
-          callback(null, require('./components/Home').default);
+          callback(null, require('./containers/Exchange').default);
+        });
+      },
+    },
+    {
+      path: 'filter/:sport',
+      getComponent(nextState, callback) {
+        require.ensure([], (require) => {
+          callback(null, require('./containers/Exchange').default);
+        });
+      },
+    },
+    {
+      path: 'filter/:sport/:league',
+      getComponent(nextState, callback) {
+        require.ensure([], (require) => {
+          callback(null, require('./containers/Exchange').default);
         });
       }
     }
