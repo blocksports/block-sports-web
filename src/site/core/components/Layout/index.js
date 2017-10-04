@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-
+import { Link } from 'react-router'
 import Header from '../../containers/Header/index.js'
 
 import styles from './style.less';
