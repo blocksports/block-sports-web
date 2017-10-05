@@ -1,4 +1,5 @@
 import { createImmutableSelector } from '../../../lib/selector';
+import { getNestedMarketsArray } from '../../../lib/utils';
 import Immutable from 'immutable';
 
 const getExchangeMarkets = (state) => {
@@ -17,20 +18,7 @@ export const selectMarketItems = createImmutableSelector(
   getExchangeMarkets,
   getParams,
   (markets, params) => {
-    const { sport, entity, entityID } = params;
-    var nestArray = []
-
-    if (sport) {
-      nestArray.push(sport);
-      if (entity) {
-        nestArray.push(entity);
-        if (entityID) {
-          nestArray.push(entityID);
-        }
-      }
-    }
-    nestArray.push('items');
-
-    return markets.getIn(nestArray, Immutable.List());
+    const nestedArray = getNestedMarketsArray(params)
+    return markets.getIn(nestedArray, Immutable.List());
   }
 );
