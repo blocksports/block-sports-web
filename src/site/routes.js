@@ -10,6 +10,11 @@ const createRoutes = (store) => {
             callback(null, require('./core/containers/Root').default);
           });
         },
+        getIndexRoute(location, callback) {
+          callback(null, {
+            onEnter: (nextState, replace) => replace('/home')
+          });
+        },
         getChildRoutes(location, callback) {
           require.ensure([], function(require) {
             callback(null, [

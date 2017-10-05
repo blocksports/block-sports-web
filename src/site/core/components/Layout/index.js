@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+<<<<<<< HEAD
 
+=======
+import { Link } from 'react-router'
+>>>>>>> c6208fdcdc33101008c9c379b942d9e5891bd7f7
 import Header from '../../containers/Header/index.js'
 
 import styles from './style.less';
