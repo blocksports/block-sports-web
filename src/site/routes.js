@@ -12,7 +12,7 @@ const createRoutes = (store) => {
         },
         getIndexRoute(location, callback) {
           callback(null, {
-            onEnter: (nextState, replace) => replace('/home')
+            onEnter: (nextState, replace) => replace('/exchange')
           });
         },
         getChildRoutes(location, callback) {
