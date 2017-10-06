@@ -1,3 +1,5 @@
+jest.mock('../../containers/Header', () => 'Header');
+
 import React from 'react';
 import Immutable from 'immutable';
 
