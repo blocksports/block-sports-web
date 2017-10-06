@@ -36,5 +36,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm run test && codecov
+      - run: npm run test
       - run: bash <(curl -s https://codecov.io/bash)
