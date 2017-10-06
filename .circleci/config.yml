@@ -28,7 +28,7 @@ jobs:
 
       - run: npm install
       - run: sudo npm install -g codecov
-      #- run: codecov --token=$CODECOV_TOKEN
+      - run: codecov --token=$CODECOV_TOKEN
 
       - save_cache:
           paths:
@@ -36,9 +36,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm run test
-      #- run: codecov
-
-    test:
-      post:
-        - bash <(curl -s https://codecov.io/bash)
+      - run: npm run test && codecov
+      - run: bash <(curl -s https://codecov.io/bash)
