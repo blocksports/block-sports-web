@@ -27,8 +27,6 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
-      - run: sudo npm install -g codecov
-      - run: codecov --token=$CODECOV_TOKEN
 
       - save_cache:
           paths:
