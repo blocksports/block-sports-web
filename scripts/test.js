@@ -23,5 +23,5 @@ const argv = process.argv.slice(2);
 //   argv.push('--watch');
 // }
 
-
+argv.push('--watch');
 jest.run(argv);
