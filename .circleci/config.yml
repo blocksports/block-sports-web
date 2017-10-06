@@ -27,6 +27,7 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
+      - run: npm install -g codecov
       - run: codecov --token=$CODECOV_TOKEN
 
       - save_cache:
@@ -37,3 +38,7 @@ jobs:
       # run tests!
       - run: npm run test
       - run: codecov
+
+      test:
+        post:
+          - bash <(curl -s https://codecov.io/bash)
