@@ -59,6 +59,7 @@ export const mockNavigation = [
         id: '213',
         name: 'C Test',
         type: 'competition',
+        sport: 'cricket',
         marketCount: 5
       },
     ],

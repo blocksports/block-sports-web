@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import { Link, IndexLink } from 'react-router';
+import { categoryFilters } from '../../../../lib/constants';
 
 import styles from './style.less';
 
@@ -19,8 +20,12 @@ class NavList extends Component {
 
   }
 
+  get filterExists() {
+    return categoryFilters.includes(this.props.filter);
+  }
+
   get header() {
-    if (!this.props.filter) {
+    if (!this.filterExists) {
       return (
         <div className="navigation-header">
           All Markets
@@ -40,13 +45,13 @@ class NavList extends Component {
   get renderItems() {
     let items = this.props.items;
 
-    if (this.props.filter) {
+    if (this.filterExists) {
       const category = this.props.items.find((item) => item.get('id') == this.props.filter);
       items = category ? category.get('items') : items;
     }
 
     return items.map((item, idx) => {
-      const link = this.props.filter ?
+      const link = this.filterExists ?
         `/exchange/${item.get('sport')}/${item.get('type')}/${item.get('id')}` :
         `/exchange/${item.get('id')}`;
 
