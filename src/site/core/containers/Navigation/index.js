@@ -7,6 +7,8 @@ import { fetchNavigation } from '../../reducers/navigation';
 import classNames from 'classnames';
 import { t } from 'i18next';
 
+import NavList from '../../components/NavList';
+
 import styles from './style.less';
 
 class Navigation extends Component {
@@ -19,16 +21,20 @@ class Navigation extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className={styles.root}>
+        <NavList
+          items={this.props.items}
+          filter={this.props.sport}
+          />
       </div>
     );
   }
 }
 
 Navigation.propTypes = {
-  items: PropTypes.instanceOf(Immutable.List).isRequired
+  items: PropTypes.instanceOf(Immutable.List).isRequired,
+  sport: PropTypes.string
 };
 
 const mapStateToProps = (state) => {

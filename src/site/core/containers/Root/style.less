@@ -4,7 +4,15 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: @site-background;
+}
+
+body {
+  background-color: @site-bg;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 :local(.root) {
@@ -12,7 +20,6 @@
   height: ~"calc(100vh - 20px)";
   min-width: 1000px;
   padding: 10px 10px;
-
   font-family: 'brandon-grotesque-light';
   font-size: 14px;
   color: @site-text;

@@ -1,0 +1,45 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .exchange-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .exchange-content-left {
+    flex-shrink: 0;
+    width: 225px;
+  }
+
+  .exchange-content-right {
+    flex-shrink: 0;
+    width: 325px;
+  }
+
+  .exchange-content-middle {
+    display: flex;
+    flex-grow: 2;
+    flex-direction: column;
+    min-width: 400px;
+  }
+
+  .exchange-content-middle-top {
+    flex-grow: 1;
+  }
+
+  .exchange-content-middle-bottom {
+    flex-grow: 3;
+  }
+
+  .exchange-footer {
+    height: 40px;
+    min-width: 966px;
+  }
+}

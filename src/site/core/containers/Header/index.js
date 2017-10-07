@@ -26,7 +26,6 @@ class Header extends Component {
   get content() {
     return (
       <div className="header-content panel">
-        Header
       </div>
     );
   }

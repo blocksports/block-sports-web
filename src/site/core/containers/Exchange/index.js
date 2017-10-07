@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 import { fetchMarkets } from '../../reducers/exchange';
 import { selectMarketItems } from '../../selectors/exchange';
+import ExchangeLayout from '../../components/ExchangeLayout'
 import _ from 'lodash';
 
 import styles from './style.less';
@@ -33,6 +34,10 @@ class Exchange extends Component {
   render() {
     return (
       <div className={styles.root}>
+        <ExchangeLayout
+          params={this.props.params}
+          query={this.props.location.query}
+          />
       </div>
     );
   }

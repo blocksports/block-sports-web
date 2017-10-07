@@ -1,1 +1,10 @@
-{}
+{
+  "categories": {
+    "soccer": "Soccer",
+    "mma": "Mixed Martial Arts",
+    "cricket": "Cricket"
+  },
+  "navigation": {
+    "header-all": "All Markets"
+  }
+}

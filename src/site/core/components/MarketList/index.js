@@ -5,7 +5,7 @@ import { t } from 'i18next';
 
 import styles from './style.less';
 
-class {{ properCase name }} extends Component {
+class MarketList extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -27,7 +27,7 @@ class {{ properCase name }} extends Component {
   }
 }
 
-{{ properCase name }}.propTypes = {
+MarketList.propTypes = {
 };
 
-export default {{ properCase name }};
+export default MarketList;
