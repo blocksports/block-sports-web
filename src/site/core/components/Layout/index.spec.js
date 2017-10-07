@@ -7,12 +7,9 @@ import { mount } from 'enzyme';
 
 import Layout from './';
 
-const minProps = {
-
-};
-
 describe('<Layout />', () => {
-  it('Should', () => {
+  it('Should render', () => {
     const root = mount(<Layout />);
+    expect(root.length).toBe(1);
   });
 });

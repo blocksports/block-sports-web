@@ -31,7 +31,6 @@ class Exchange extends Component {
   }
 
   render() {
-    console.log(this.props.items)
     return (
       <div className={styles.root}>
       </div>

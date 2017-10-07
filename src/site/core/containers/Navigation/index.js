@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import { Link, IndexLink } from 'react-router';
+import { fetchNavigation } from '../../reducers/navigation';
 import classNames from 'classnames';
 import { t } from 'i18next';
 
@@ -13,7 +14,12 @@ class Navigation extends Component {
     super(props, context);
   }
 
+  componentWillMount() {
+    this.props.fetchNavigation();
+  }
+
   render() {
+    console.log(this.props);
     return (
       <div className={styles.root}>
       </div>
@@ -22,19 +28,21 @@ class Navigation extends Component {
 }
 
 Navigation.propTypes = {
-  path: PropTypes.string.isRequired,
-  user: PropTypes.instanceOf(Immutable.Map)
+  items: PropTypes.instanceOf(Immutable.List).isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    'isLoggedIn': state.getIn(['core', 'user', 'isLoggedIn']),
+    'items': state.getIn(['core', 'navigation', 'navigation']),
     'path': state.getIn(['core', 'router', 'locationBeforeTransitions', 'pathname'])
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchNavigation: (...args) => {
+      return dispatch(fetchNavigation(...args));
+    },
   };
 };
 

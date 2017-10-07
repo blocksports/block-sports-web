@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import { Link } from 'react-router'
-import Header from '../../containers/Header/index.js'
+import { Link } from 'react-router';
+import Header from '../../containers/Header/index.js';
+import Navigation from '../../containers/Navigation/index.js';
 
 import styles from './style.less';
 
@@ -19,7 +20,7 @@ class Layout extends Component {
   get contentLeft() {
     return (
       <div className="content-left panel">
-        Left
+        <Navigation />
       </div>
     );
   }
