@@ -119,7 +119,8 @@
       "json",
       "web.jsx",
       "jsx"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/jest/setupTestFramework.js"
   },
   "eslintConfig": {
     "extends": "react-app"

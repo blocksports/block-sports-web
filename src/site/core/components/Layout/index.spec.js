@@ -3,10 +3,7 @@ jest.mock('../../containers/Header', () => 'Header');
 import React from 'react';
 import Immutable from 'immutable';
 
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { mount } from 'enzyme';
 
 import Layout from './';
 
