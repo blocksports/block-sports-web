@@ -27,13 +27,13 @@
 
     .navigation-item {
       display: flex;
-      width: 100%;
+      max-width: 100%;
       margin: 4px 0 4px 0;
-      padding: 2px 0 2px 0;
+      padding: 2px 5px 2px 5px;
       border-radius: 3px;
 
       &:hover {
-        background-color: rgba(106, 105, 108, 0.15);
+        background-color: @nav-item-hover;
       }
     }
 
@@ -58,14 +58,13 @@
 }
 
 :local(.active) {
-  background-color: rgba(106, 105, 108, 0.11);
+  background-color: @nav-item-active;
 
   .navigation-item-count {
-    border-color: @nav-active-text !important;
-    color: @nav-active-text;
+    border-color: @nav-text-active !important;
   }
 
   .navigation-item-caret {
-    color: @nav-active-text;
+    color: @nav-text-active;
   }
 }

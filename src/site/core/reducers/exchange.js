@@ -29,7 +29,7 @@ const exchangeReducer = createReducer({
     const newMarkets = oldMarkets.updateIn(nestedArray, (val = Immutable.fromJS(resp)) => val);
 
     return state.merge({
-      isLoading: true,
+      isLoading: false,
       markets: newMarkets
     });
   }
