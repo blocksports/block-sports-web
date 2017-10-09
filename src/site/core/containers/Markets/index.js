@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
 
+import MarketList from '../../components/MarketList';
+
 import styles from './style.less';
 
 export class Markets extends Component {
@@ -12,7 +14,7 @@ export class Markets extends Component {
     super(props, context);
 
     this.state = {
-      activeTab: 'time'
+      activeOrder: 'time'
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -26,26 +28,24 @@ export class Markets extends Component {
 
   }
 
-
-
   get tabs() {
     return (
       <div className="market-header">
         <ul className="tabs">
-          <li className={this.tabClass('time')}><a className="tab" onClick={this.handleTabClick('time')}>Starting Soon</a></li>
-          <li className={this.tabClass('popular')}><a className="tab" onClick={this.handleTabClick('popular')}>Popular</a></li>
+          <li className={this.tabClass('time')}><a className="tab-link" onClick={this.handleTabClick('time')}>{t('core:markets.header-time')}</a></li>
+          <li className={this.tabClass('popular')}><a className="tab-link" onClick={this.handleTabClick('popular')}>{t('core:markets.header-popular')}</a></li>
         </ul>
       </div>
     );
   }
 
   tabClass(tab) {
-    return classNames(['tab-item', {'is-active': tab == this.state.activeTab}]);
+    return classNames(['tab-item', {'is-active': tab == this.state.activeOrder}]);
   }
 
   handleTabClick(tab) {
     return () => {
-      this.setState({activeTab: tab});
+      this.setState({activeOrder: tab});
     }
   }
 
@@ -53,6 +53,12 @@ export class Markets extends Component {
     return (
       <div className={styles.root}>
         {this.tabs}
+        <div className="market-body">
+          <MarketList
+            order={this.state.activeOrder}
+            items={this.props.items}
+            />
+        </div>
       </div>
     );
   }

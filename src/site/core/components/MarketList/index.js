@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 
+import MarketListItem from './item';
+
 import styles from './style.less';
 
 class MarketList extends Component {
@@ -18,10 +20,23 @@ class MarketList extends Component {
 
   }
 
+  get renderItems() {
+    let items = this.props.items;
+
+    return items.map((item, idx) => {
+      return (
+        <MarketListItem
+          key={idx}
+          item={item}
+          />
+      );
+    });
+  }
+
   render() {
     return (
       <div className={styles.root}>
-
+        {this.renderItems}
       </div>
     );
   }

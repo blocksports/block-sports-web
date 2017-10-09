@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
 import { getNestedMarketsArray } from '../../../lib/utils';
+import { mockMarkets } from './__mockData';
 
 const fetchMarketsRequest = createAction('FETCH_MARKETS_REQUEST');
 const fetchMarketsSuccess = createAction('FETCH_MARKETS_SUCCESS', (data, resp) => [data, resp]);
@@ -8,7 +9,7 @@ const fetchMarketsSuccess = createAction('FETCH_MARKETS_SUCCESS', (data, resp) =
 export function fetchMarkets(data) {
   return (dispatch) => {
     dispatch(fetchMarketsRequest());
-    dispatch(fetchMarketsSuccess(data, ['a', 'b', 'c']));
+    dispatch(fetchMarketsSuccess(data, mockMarkets));
   }
 }
 

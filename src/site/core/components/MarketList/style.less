@@ -2,4 +2,42 @@
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
+  padding: 0 24px 0 12px;
+  margin-top: 12px;
+}
+
+:local(.itemRoot) {
+  display: flex;
+  border: 1px solid @market-item-border;
+  border-radius: 3px;
+
+  .market-item-side {
+    width: 80px;
+  }
+
+  .market-item-middle {
+    display: flex;
+    border-right: 1px solid @market-item-border;
+    border-left: 1px solid @market-item-border;
+    flex-grow: 1;
+    flex-direction: column;
+
+    .market-item-middle-row {
+      height: 35px;
+      border-bottom: 1px solid @market-item-border;
+      display: flex;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .market-item-runner {
+        flex-grow: 1;
+      }
+
+      .market-item-actions {
+
+      }
+    }
+  }
 }

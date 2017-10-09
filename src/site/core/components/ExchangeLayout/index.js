@@ -44,7 +44,9 @@ class ExchangeLayout extends Component {
         <div className="exchange-content-middle-top panel">
         </div>
         <div className="exchange-content-middle-bottom panel">
-          <Markets/>
+          <Markets
+            items={this.props.items}
+            />
         </div>
       </div>
     );
@@ -79,7 +81,7 @@ class ExchangeLayout extends Component {
 
 ExchangeLayout.propTypes = {
   params: PropTypes.object,
-  queryn: PropTypes.string
+  query: PropTypes.string
 };
 
 export default ExchangeLayout;

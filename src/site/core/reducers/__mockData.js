@@ -108,3 +108,83 @@ export const mockNavigation = [
     ],
   },
 ];
+
+export const mockMarkets = [
+  {
+    id: '1',
+    name: 'Tsering vs Sergej',
+    sport: 'soccer',
+    entity: 'competition',
+    entity_id: '111',
+    entity_name: 'A League',
+    total_matched: 313.59,
+    date: '1507514242',
+    runner_a:
+    {
+      type: 'runner',
+      runner_id: '1111',
+      name: 'Tsering',
+      back: [
+        {
+          odds: 3.2,
+          matched: 21.19
+        },
+        {
+          odds: 3.1,
+          matched: 15.19
+        },
+        {
+          odds: 3.0,
+          matched: 11.19
+        }
+      ],
+      lay: [
+        {
+          odds: 3.4,
+          matched: 21.19
+        },
+        {
+          odds: 3.5,
+          matched: 15.19
+        },
+        {
+          odds: 3.6,
+          matched: 11.19
+        }
+      ]
+    },
+    runner_b: {
+      type: 'runner',
+      runner_id: '1112',
+      name: 'Sergej',
+      back: [
+        {
+          odds: 1.3,
+          matched: 21.19
+        },
+        {
+          odds: 1.4,
+          matched: 15.19
+        },
+        {
+          odds: 1.5,
+          matched: 11.19
+        }
+      ],
+      lay: [
+        {
+          odds: 1.8,
+          matched: 21.19
+        },
+        {
+          odds: 1.9,
+          matched: 15.19
+        },
+        {
+          odds: 2.0,
+          matched: 11.19
+        }
+      ]
+    }
+  }
+];

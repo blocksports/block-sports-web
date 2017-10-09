@@ -37,6 +37,7 @@ class Exchange extends Component {
         <ExchangeLayout
           params={this.props.params}
           query={this.props.location.query}
+          items={this.props.items}
           />
       </div>
     );
