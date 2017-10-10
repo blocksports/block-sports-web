@@ -46,6 +46,14 @@ class MarketListItem extends Component {
             {this.props.item.getIn(['runner_a', 'name'])}
           </div>
           <div className="market-item-actions">
+              <BetBlock
+                odds={3.2}
+                matched={21.19}
+                />
+              <BetBlock
+                odds={2.2}
+                matched={263.19}
+                />
           </div>
         </div>
         {this.contentBetRow('a')}
@@ -90,7 +98,6 @@ class MarketListItem extends Component {
     );
   }
 
-
   render() {
     console.log(this.props.item)
     return (
@@ -106,5 +113,20 @@ class MarketListItem extends Component {
 MarketListItem.propTypes = {
   item: PropTypes.instanceOf(Immutable.Map).isRequired
 };
+
+class BetBlock extends Component {
+  render() {
+    return (
+      <div className={styles.blockRoot}>
+        <div className="odds">
+          {this.props.odds}
+        </div>
+        <div className="matched">
+          {this.props.matched} GAS
+        </div>
+      </div>
+    );
+  }
+}
 
 export default MarketListItem;

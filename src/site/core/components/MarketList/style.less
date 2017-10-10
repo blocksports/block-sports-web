@@ -36,8 +36,41 @@
       }
 
       .market-item-actions {
-
+        display: flex;
+        padding: 5px;
       }
     }
+  }
+}
+
+:local(.blockRoot) {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid @shamrock;
+  border-radius: 3px;
+  align-items: center;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: 'brandon-grotesque-medium';
+  letter-spacing: 0.4px;
+
+  width: 60px;
+  height: 25px;
+  margin-right: 5px;
+  color: @shamrock;
+
+  &:last-child {
+    margin: 0;
+  }
+
+  .odds {
+    display: block;
+    line-height: 16px;
+  }
+
+  .matched {
+    display: block;
+    font-size: 7.5px;
+    line-height: 5px;
   }
 }
