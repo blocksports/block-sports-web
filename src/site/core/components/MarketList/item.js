@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
-
+import classNames from 'classnames';
+import Button from '../Button';
 import styles from './style.less';
 
 class MarketListItem extends Component {
@@ -10,16 +11,11 @@ class MarketListItem extends Component {
     super(props, context);
 
     this.state = {
-      showBet: undefined
+      activeOption: null,
+      activeOdds: null,
+      activeLimit: null,
+      activeStake: 0
     };
-  }
-
-  componentWillMount() {
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-
   }
 
   get contentLeft() {
@@ -41,45 +37,9 @@ class MarketListItem extends Component {
   get contentMiddle() {
     return (
       <div className="market-item-middle">
-        <div className="market-item-middle-row">
-          <div className="market-item-runner">
-            {this.props.item.getIn(['runner_a', 'name'])}
-          </div>
-          <div className="market-item-actions">
-              <BetBlock
-                odds={3.2}
-                matched={21.19}
-                />
-              <BetBlock
-                odds={2.2}
-                matched={263.19}
-                />
-          </div>
-        </div>
-        {this.contentBetRow('a')}
-        {this.contentDrawRow}
-        {this.contentBetRow('draw')}
-        <div className="market-item-middle-row">
-          <div className="market-item-runner">
-            {this.props.item.getIn(['runner_b', 'name'])}
-          </div>
-        </div>
-        {this.contentBetRow('b')}
-      </div>
-    );
-  }
-
-  get contentRow() {
-    return (
-      <div></div>
-    );
-  }
-
-  get contentDrawRow() {
-    if (!this.showDraw) return null;
-
-    return (
-      <div className="market-item-middle-row">
+        {this.renderRunnerRows(this.props.item.get('runner_a'))}
+        {this.renderRunnerRows(this.props.item.get('runner_b'))}
+        {this.showDraw ? this.renderRunnerRows(this.props.item.get('draw')) : null}
       </div>
     );
   }
@@ -88,18 +48,65 @@ class MarketListItem extends Component {
     return false;
   }
 
-  contentBetRow(bet) {
-    if (this.state.showBet != bet) return null;
+  handleOddsClick(option, bet) {
+    return () => {
+      this.setState({
+        activeOption: option,
+        activeOdds: bet.get('odds'),
+        activeLimit: bet.get('matched'),
+        activeStake: 0
+      });
+    };
+  }
 
+  renderRunnerRows(runner) {
     return (
-      <div className="market-item-middle-row">
-        Bet Row
+      <div className="runner">
+        <div className="market-item-row">
+          <div className="market-item-row-detail">
+            {runner.get('name')}
+          </div>
+          <div className="market-item-row-actions">
+            {this.renderBetButton(runner.get('option'), runner.getIn(['back', 0]), 'back')}
+            {this.renderBetButton(runner.get('option'), runner.getIn(['lay', 0]), 'lay')}
+          </div>
+        </div>
+        {this.renderBetRow(runner)}
       </div>
     );
   }
 
+  renderBetRow(runner) {
+    if (this.state.activeOption !== runner.get('option')) return null;
+
+    return (
+      <div className="market-item-row bet">
+        <div className="market-item-row-detail">
+          {t('core:markets.item.bet-for')}
+        </div>
+        <div className="market-item-row-actions">
+        </div>
+      </div>
+    );
+  }
+
+  renderBetButton(option, bet, type) {
+    return (
+      <Button
+        className={classNames([styles.oddsButton, `btn-${type}`])}
+        onClick={this.handleOddsClick(option, bet)}
+        >
+        <div className="odds">
+          {bet.get('odds')}
+        </div>
+        <div className="matched">
+          {bet.get('matched')} {t('core:currency.gas')}
+        </div>
+      </Button>
+    );
+  }
+
   render() {
-    console.log(this.props.item)
     return (
       <div className={styles.itemRoot}>
         {this.contentLeft}
@@ -111,20 +118,20 @@ class MarketListItem extends Component {
 }
 
 MarketListItem.propTypes = {
-  item: PropTypes.instanceOf(Immutable.Map).isRequired
+  item: PropTypes.instanceOf(Immutable.Map).isRequired,
+  isList: PropTypes.bool.isRequired
 };
+
+MarketListItem.defaultProps = {
+  isList: true
+}
 
 class BetBlock extends Component {
   render() {
     return (
-      <div className={styles.blockRoot}>
-        <div className="odds">
-          {this.props.odds}
-        </div>
-        <div className="matched">
-          {this.props.matched} GAS
-        </div>
-      </div>
+      <a className={styles.blockRoot}>
+
+      </a>
     );
   }
 }

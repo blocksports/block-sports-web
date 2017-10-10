@@ -1,4 +1,9 @@
 {
+  "currency": {
+    "gas": "GAS",
+    "usd": "USD",
+    "neo": "NEO"
+  },
   "categories": {
     "soccer": "Soccer",
     "mma": "Mixed Martial Arts",
@@ -9,6 +14,13 @@
   },
   "markets": {
     "header-time": "Starting Soon",
-    "header-popular": "Popular"
+    "header-popular": "Popular",
+    "item": {
+      "bet-for": "BET FOR",
+      "odds": "ODDS",
+      "bet": "BET",
+      "profit": "PROFIT",
+      "confirm": "CONFIRM BET"
+    }
   }
 }

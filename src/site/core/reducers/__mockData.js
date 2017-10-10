@@ -123,7 +123,8 @@ export const mockMarkets = [
     {
       type: 'runner',
       runner_id: '1111',
-      name: 'Tsering',
+      name: 'Tsering Redmond Jones',
+      option: 'a',
       back: [
         {
           odds: 3.2,
@@ -156,7 +157,8 @@ export const mockMarkets = [
     runner_b: {
       type: 'runner',
       runner_id: '1112',
-      name: 'Sergej',
+      name: 'Sergej Stojanovski',
+      option: 'b',
       back: [
         {
           odds: 1.3,

@@ -22,42 +22,43 @@
     flex-grow: 1;
     flex-direction: column;
 
-    .market-item-middle-row {
-      height: 35px;
-      border-bottom: 1px solid @market-item-border;
-      display: flex;
+    .runner {
+
+      .market-item-row {
+        height: 35px;
+        border-bottom: 1px solid @market-item-border;
+        display: flex;
+        align-items: center;
+
+        &-detail {
+          flex-grow: 1;
+          padding-left: 10px;
+        }
+
+        &-actions {
+          display: flex;
+          padding: 5px;
+        }
+      }
 
       &:last-child {
-        border-bottom: none;
+        .market-item-row:last-child {
+          border-bottom: none;
+        }
       }
 
-      .market-item-runner {
-        flex-grow: 1;
-      }
-
-      .market-item-actions {
-        display: flex;
-        padding: 5px;
+      .bet {
+        font-size: 9.5px;
       }
     }
   }
 }
 
-:local(.blockRoot) {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid @shamrock;
-  border-radius: 3px;
-  align-items: center;
-  font-size: 11px;
-  cursor: pointer;
-  font-family: 'brandon-grotesque-medium';
-  letter-spacing: 0.4px;
-
+:local(.oddsButton) {
   width: 60px;
   height: 25px;
   margin-right: 5px;
-  color: @shamrock;
+  padding: 0;
 
   &:last-child {
     margin: 0;
