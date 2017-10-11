@@ -32,8 +32,8 @@ export class Markets extends Component {
     return (
       <div className="market-header">
         <ul className="tabs">
-          <li className={this.tabClass('time')}><a className="tab-link" onClick={this.handleTabClick('time')}>{t('core:markets.header-time')}</a></li>
-          <li className={this.tabClass('popular')}><a className="tab-link" onClick={this.handleTabClick('popular')}>{t('core:markets.header-popular')}</a></li>
+          <li className={this.tabClass('time')}><a className="tab-link" onClick={this.handleTabClick('time')}><i className="fa fa-clock-o" aria-hidden="true"/>{t('core:markets.header-time')}</a></li>
+          <li className={this.tabClass('popular')}><a className="tab-link" onClick={this.handleTabClick('popular')}><i className="fa fa-star-o" aria-hidden="true"/>{t('core:markets.header-popular')}</a></li>
         </ul>
       </div>
     );

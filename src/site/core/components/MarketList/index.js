@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
-
+import { getMarketOrder } from '../../../../lib/utils';
+import { dateTime, dateTypes } from '../../../../lib/dateTime';
+import moment from 'moment';
 import MarketListItem from './item';
 
 import styles from './style.less';
@@ -23,8 +25,19 @@ class MarketList extends Component {
   get renderItems() {
     let items = this.props.items;
 
-    return items.map((item, idx) => {
-      return (
+    items = items.sort(getMarketOrder(this.props.order));
+
+    let itemArray = [];
+    let lastDate = '';
+
+    items.forEach((item, idx) => {
+      const date = moment.unix(item.get('date')).format('D');
+      if (date != lastDate) {
+        lastDate = date;
+        itemArray.push(this.renderDateRow(item.get('date'), idx));
+      }
+
+      itemArray.push(
         <MarketListItem
           key={idx}
           item={item}
@@ -32,6 +45,16 @@ class MarketList extends Component {
           />
       );
     });
+
+    return itemArray;
+  }
+
+  renderDateRow(date, key) {
+    return (
+      <div className="date-row" key={`date-${key}`}>
+        {dateTime(date, dateTypes.dayMonthDate)}
+      </div>
+    );
   }
 
   render() {
@@ -44,7 +67,8 @@ class MarketList extends Component {
 }
 
 MarketList.propTypes = {
-  onConfirmBet: PropTypes.func.isRequired
+  onConfirmBet: PropTypes.func.isRequired,
+  order: PropTypes.string.isRequired
 };
 
 export default MarketList;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
+import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
@@ -24,10 +25,30 @@ class MarketListItem extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.item.get('id') != nextProps.item.get('id')) {
+      this.setState({
+        activeOption: "",
+        odds: "",
+        limit: "",
+        stake: ""
+      });
+    }
+  }
+
   get contentLeft() {
+    const date = this.props.item.get('date');
+
     return (
       <div className="market-item-side">
-        Left
+        <div className="side-content">
+          <span className="day">
+            {dateTime(date, dateTypes.calendarDay)}
+          </span>
+          <span className="time">
+            {dateTime(date, dateTypes.time)}
+          </span>
+        </div>
       </div>
     );
   }
@@ -35,7 +56,17 @@ class MarketListItem extends Component {
   get contentRight() {
     return (
       <div className="market-item-side">
-        Right
+        <div className="side-content">
+          <span className="matched">
+            {t('core:markets.item.matched')}
+          </span>
+          <span className="pool">
+            {this.props.item.get('total_matched')}&nbsp;{t('core:currency.gas')}
+          </span>
+          <span className="rules">
+            {t('core:markets.item.rules')}&nbsp;>
+          </span>
+        </div>
       </div>
     );
   }

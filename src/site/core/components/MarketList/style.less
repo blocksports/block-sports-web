@@ -3,6 +3,19 @@
 
 :local(.root) {
   padding-right: 12px;
+
+  .date-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 25px;
+    background-color: @site-panel-bg-light;
+    border-radius: 3px;
+    letter-spacing: 0.2px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
 }
 
 :local(.itemRoot) {
@@ -13,7 +26,42 @@
   margin-bottom: 10px;
 
   .market-item-side {
+    display: flex;
     width: 80px;
+
+    .side-content {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      font-family: 'brandon-grotesque-medium';
+      letter-spacing: 0.3px;
+
+      .day {
+        font-size: 10px;
+        color: @gull-gray;
+      }
+
+      .time {
+        font-size: 9px;
+      }
+
+      .matched {
+        font-size: 8px;
+        color: @gull-gray;
+      }
+
+      .pool {
+        font-size: 10.5px;
+      }
+
+      .rules {
+        margin-top: 4px;
+        font-size: 7px;
+        color: @gull-gray;
+      }
+    }
   }
 
   .market-item-middle {
