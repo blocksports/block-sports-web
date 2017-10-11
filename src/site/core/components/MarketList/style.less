@@ -2,14 +2,15 @@
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
-  padding: 0 24px 0 12px;
-  margin-top: 12px;
+  padding-right: 12px;
 }
 
 :local(.itemRoot) {
   display: flex;
   border: 1px solid @market-item-border;
   border-radius: 3px;
+  font-size: 13px;
+  margin-bottom: 10px;
 
   .market-item-side {
     width: 80px;
@@ -22,35 +23,10 @@
     flex-grow: 1;
     flex-direction: column;
 
-    .runner {
+  }
 
-      .market-item-row {
-        height: 35px;
-        border-bottom: 1px solid @market-item-border;
-        display: flex;
-        align-items: center;
-
-        &-detail {
-          flex-grow: 1;
-          padding-left: 10px;
-        }
-
-        &-actions {
-          display: flex;
-          padding: 5px;
-        }
-      }
-
-      &:last-child {
-        .market-item-row:last-child {
-          border-bottom: none;
-        }
-      }
-
-      .bet {
-        font-size: 9.5px;
-      }
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -66,12 +42,69 @@
 
   .odds {
     display: block;
-    line-height: 16px;
+    line-height: 10px;
   }
 
   .matched {
     display: block;
     font-size: 7.5px;
-    line-height: 5px;
+    line-height: 8px;
   }
+}
+
+:local(.runnerRow) {
+  .market-item-row {
+    height: 35px;
+    border-bottom: 1px solid @market-item-border;
+    display: flex;
+    align-items: center;
+
+    &-detail {
+      flex-grow: 1;
+      padding-left: 10px;
+    }
+
+    &-actions {
+      display: flex;
+      padding: 5px;
+
+      .action {
+        display: flex;
+        align-items: center;
+
+        &-profit {
+          &-amount {
+            min-width: 35px;
+            padding-bottom: 1px;
+            margin-left: 5px;
+            font-family: 'brandon-grotesque-medium';
+            text-align: center;
+            font-size: 11px;
+            color: @shamrock;
+          }
+        }
+
+        &-confirm {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  &:last-child {
+    .market-item-row:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .bet {
+    font-size: 9.5px;
+  }
+}
+
+:local(.confirmButton) {
+  background-color: @site-panel-bg-light;
+  height: 16px;
+  width: 70px;
+  font-size: 6px;
 }

@@ -28,6 +28,7 @@ class MarketList extends Component {
         <MarketListItem
           key={idx}
           item={item}
+          onConfirmBet={this.props.onConfirmBet}
           />
       );
     });
@@ -43,6 +44,7 @@ class MarketList extends Component {
 }
 
 MarketList.propTypes = {
+  onConfirmBet: PropTypes.func.isRequired
 };
 
 export default MarketList;

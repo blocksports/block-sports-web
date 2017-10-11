@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
-
+import { placeBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
 
 import styles from './style.less';
@@ -57,6 +57,7 @@ export class Markets extends Component {
           <MarketList
             order={this.state.activeOrder}
             items={this.props.items}
+            onConfirmBet={this.props.placeBet}
             />
         </div>
       </div>
@@ -65,7 +66,6 @@ export class Markets extends Component {
 }
 
 Markets.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -76,7 +76,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatch,
+    placeBet: (...args) => {
+      return dispatch(placeBet(...args));
+    }
   };
 }
 

@@ -1,5 +1,28 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
 
+
 :local(.root) {
+  display: flex;
+  width: 30px;
+  margin: 0 8px 0 8px;
+
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input {
+    border-bottom: 1px solid @gull-gray;
+    width: inherit;
+    padding-bottom: 1px;
+    height: 12px;
+    font-family: 'brandon-grotesque-light';
+    font-size: 11px;
+    color: @site-text;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }

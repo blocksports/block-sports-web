@@ -8,21 +8,21 @@ import styles from './style.less';
 class Button extends Component {
   constructor(props, context) {
     super(props, context);
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillMount() {
+  handleClick() {
+    if (this.props.isDisabled) return;
 
-  }
-
-  componentWillReceiveProps(nextProps) {
-
+    this.props.onClick();
   }
 
   render() {
     return (
       <a
-        className={classNames(['btn', this.props.className])}
-        onClick={this.props.onClick}
+        className={classNames(['btn', this.props.className, {"btn-disabled": this.props.isDisabled}])}
+        onClick={this.handleClick}
         type="button"
         >
         {this.props.children}
@@ -34,7 +34,13 @@ class Button extends Component {
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool,
   classNames: PropTypes.string
 };
+
+Button.defaultProps = {
+  isDisabled: false
+}
+
 
 export default Button;

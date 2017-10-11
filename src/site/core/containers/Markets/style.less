@@ -1,10 +1,26 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  background-color: @site-panel-bg-light;
+  border-radius: 4px;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: @gull-gray;
+  box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 :local(.root) {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
   .market-header {
     display: flex;
-    height: 32px;
+    min-height: 32px;
     background-color: @market-header;
     font-family: 'brandon-grotesque-medium';
     font-size: 13px;
@@ -29,5 +45,10 @@
         background-color: @site-panel-bg;
       }
     }
+  }
+
+  .market-body {
+    overflow: auto;
+    margin: 10px;
   }
 }

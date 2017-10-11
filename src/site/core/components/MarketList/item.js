@@ -3,19 +3,25 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
+import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
+
 
 class MarketListItem extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      activeOption: null,
-      activeOdds: null,
-      activeLimit: null,
-      activeStake: 0
+      activeOption: "",
+      odds: "",
+      limit: "",
+      stake: ""
     };
+
+    this.handleOddsClick = this.handleOddsClick.bind(this);
+    this.handleConfirmClick = this.handleConfirmClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   get contentLeft() {
@@ -52,16 +58,34 @@ class MarketListItem extends Component {
     return () => {
       this.setState({
         activeOption: option,
-        activeOdds: bet.get('odds'),
-        activeLimit: bet.get('matched'),
-        activeStake: 0
+        odds: bet.get('odds'),
+        limit: bet.get('matched'),
+        stake: ""
       });
     };
   }
 
+  handleConfirmClick(runner) {
+    return () => {
+      this.props.onConfirmBet(runner);
+    }
+  }
+
+  handleInputChange(type) {
+    return (value) => {
+      this.setState({
+        [type]: value
+      });
+    };
+  }
+
+  getProfit(odds, stake) {
+    return Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0;
+  }
+
   renderRunnerRows(runner) {
     return (
-      <div className="runner">
+      <div className={styles.runnerRow}>
         <div className="market-item-row">
           <div className="market-item-row-detail">
             {runner.get('name')}
@@ -85,7 +109,35 @@ class MarketListItem extends Component {
           {t('core:markets.item.bet-for')}
         </div>
         <div className="market-item-row-actions">
-        </div>
+          <div className="action action-odds">
+            {t('core:markets.item.odds')}:
+            <SpinBox
+              value={this.state.odds}
+              onChange={this.handleInputChange('odds')}
+            />
+          </div>
+          <div className="action action-bet">
+            {t('core:markets.item.bet')}:
+            <SpinBox
+              value={this.state.stake}
+              onChange={this.handleInputChange('stake')}
+              maximum={this.state.limit}
+            />
+          </div>
+          <div className="action action-profit">
+            {t('core:markets.item.profit')}:
+            <span className="action-profit-amount">{this.getProfit(this.state.odds, this.state.stake)}</span>
+          </div>
+          <div className="action action-confirm">
+            <Button
+              className={styles.confirmButton}
+              onClick={this.handleConfirmClick(runner)}
+              isDisabled={!this.state.stake}
+              >
+              {t('core:markets.item.confirm')}
+            </Button>
+          </div>
+      </div>
       </div>
     );
   }
@@ -119,7 +171,8 @@ class MarketListItem extends Component {
 
 MarketListItem.propTypes = {
   item: PropTypes.instanceOf(Immutable.Map).isRequired,
-  isList: PropTypes.bool.isRequired
+  isList: PropTypes.bool.isRequired,
+  onConfirmBet: PropTypes.func.isRequired
 };
 
 MarketListItem.defaultProps = {
