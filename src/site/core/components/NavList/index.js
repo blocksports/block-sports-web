@@ -59,8 +59,10 @@ class NavList extends Component {
         <div className="navigation-row" key={idx}>
           <Link to={link} className="navigation-item" activeClassName={styles.active}>
             <span className="navigation-item-name">{item.get('name')}</span>
-            <div className="navigation-item-count">{item.get('marketCount')}</div>
-            <span className="navigation-item-caret">></span>
+            <div className="navigation-item-count">
+              <span className="block-number">{item.get('marketCount')}</span>
+            </div>
+            <span className="navigation-item-caret"><i className="fa fa-caret-right caret-icon" aria-hidden="true"/></span>
           </Link>
         </div>
       );

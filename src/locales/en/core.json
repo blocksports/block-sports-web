@@ -1,8 +1,13 @@
 {
   "currency": {
-    "gas": "GAS",
-    "usd": "USD",
-    "neo": "NEO"
+    "GAS": "GAS",
+    "USD": "USD",
+    "NEO": "NEO"
+  },
+  "header": {
+    "search-placeholder": "Search for Sports, Matches, Players",
+    "balance": "BALANCE",
+    "new-account": "NEW ACCOUNT"
   },
   "categories": {
     "soccer": "Soccer",

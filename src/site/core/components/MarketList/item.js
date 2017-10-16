@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
+import { round } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
@@ -61,7 +62,7 @@ class MarketListItem extends Component {
             {t('core:markets.item.matched')}
           </span>
           <span className="pool">
-            {this.props.item.get('total_matched')}&nbsp;{t('core:currency.gas')}
+            {round(this.props.item.get('total_matched') * this.props.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
           </span>
           <span className="rules">
             {t('core:markets.item.rules')}&nbsp;>
@@ -152,7 +153,7 @@ class MarketListItem extends Component {
             <SpinBox
               value={this.state.stake}
               onChange={this.handleInputChange('stake')}
-              maximum={this.state.limit}
+              maximum={this.state.limit * this.props.exchangeRate}
             />
           </div>
           <div className="action action-profit">
@@ -183,7 +184,7 @@ class MarketListItem extends Component {
           {bet.get('odds')}
         </div>
         <div className="matched">
-          {bet.get('matched')} {t('core:currency.gas')}
+          {round(bet.get('matched') * this.props.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
         </div>
       </Button>
     );
@@ -203,21 +204,15 @@ class MarketListItem extends Component {
 MarketListItem.propTypes = {
   item: PropTypes.instanceOf(Immutable.Map).isRequired,
   isList: PropTypes.bool.isRequired,
-  onConfirmBet: PropTypes.func.isRequired
+  onConfirmBet: PropTypes.func.isRequired,
+  exchangeRate: PropTypes.number.isRequired,
+  currency: PropTypes.string.isRequired
 };
 
 MarketListItem.defaultProps = {
-  isList: true
-}
-
-class BetBlock extends Component {
-  render() {
-    return (
-      <a className={styles.blockRoot}>
-
-      </a>
-    );
-  }
+  isList: true,
+  exchangeRate: 1,
+  currency: 'GAS'
 }
 
 export default MarketListItem;

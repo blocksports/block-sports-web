@@ -22,7 +22,6 @@
     display: flex;
     min-height: 32px;
     background-color: @market-header;
-    font-family: 'brandon-grotesque-medium';
     font-size: 13px;
 
     .tabs {
@@ -35,8 +34,10 @@
         text-align: center;
 
         .tab-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 100%;
-          padding-top: 5px;
           cursor: pointer;
 
           i {

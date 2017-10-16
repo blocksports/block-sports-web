@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
+import { selectExchangeRate } from '../../selectors/currency';
 import { placeBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
 
@@ -57,6 +58,8 @@ export class Markets extends Component {
           <MarketList
             order={this.state.activeOrder}
             items={this.props.items}
+            currency={this.props.activeCurrency}
+            exchangeRate={this.props.exchangeRate}
             onConfirmBet={this.props.placeBet}
             />
         </div>
@@ -70,7 +73,8 @@ Markets.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-
+    'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
+    'exchangeRate': selectExchangeRate(state)
   };
 };
 

@@ -33,3 +33,7 @@ export const getMarketOrder = (order) => {
       return (a, b) => {return 0;};
   }
 }
+
+export const round = (value, decimals) => {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}

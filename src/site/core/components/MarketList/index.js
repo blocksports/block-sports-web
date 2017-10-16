@@ -42,6 +42,8 @@ class MarketList extends Component {
           key={idx}
           item={item}
           onConfirmBet={this.props.onConfirmBet}
+          currency={this.props.currency}
+          exchangeRate={this.props.exchangeRate}
           />
       );
     });
@@ -68,7 +70,9 @@ class MarketList extends Component {
 
 MarketList.propTypes = {
   onConfirmBet: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired
+  order: PropTypes.string.isRequired,
+  exchangeRate: PropTypes.number.isRequired,
+  currency: PropTypes.string.isRequired
 };
 
 export default MarketList;

@@ -1,0 +1,30 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  display: flex;
+  width: 215px;
+  border-radius: 10px;
+  border: 1px solid @gull-gray;
+  height: 25px;
+
+  padding: 0 10px 0 10px;
+
+  .search-icon {
+    position: relative;
+    height: 10px;
+    top: 8px;
+    font-size: 9px;
+  }
+
+  .search {
+      padding-left: 8px;
+      color: @site-text;
+      width: 215px;
+      &:focus {
+        outline: none;
+      }
+  }
+
+
+}

@@ -11,6 +11,112 @@
   }
 
   .header-content {
+    display: flex !important;
     flex-grow: 1;
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10px;
+      flex-grow: 1;
+    }
+
+    .header-right {
+      display: flex;
+
+      .header-content {
+        margin-right: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .settings {
+        &-icon {
+          font-size: 25px;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .account {
+        &-icon {
+          font-size: 25px;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .currencies {
+        font-family: 'brandon-grotesque-regular';
+        font-size: 7px;
+
+        .price {
+          margin-bottom: 4px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .currency {
+            display: inline-block;
+            width: 20px;
+          }
+
+          &-block {
+            display: inline-block;
+            padding: 1px 8px 1px 8px;
+            background-color: @site-panel-bg-light;
+            border-radius: 4px;
+
+            &-amount {
+              display: inline-block;
+              min-width: 22px;
+              font-family: 'brandon-grotesque-medium';
+              font-size: 9px;
+            }
+
+            &-currency {
+              font-size: 5px;
+            }
+          }
+        }
+      }
+
+      .balance {
+        font-size: 11px;
+
+        &-text {
+          position: relative;
+          bottom: -2px;
+        }
+
+        &-amount {
+          position: relative;
+          top: -1px;
+          color: @shamrock;
+          font-family: 'brandon-grotesque-medium';
+
+          .price {
+            font-size: 15px;
+          }
+
+          .currency {
+            font-size: 12px;
+            font-family: 'brandon-grotesque-regular';
+          }
+        }
+      }
+    }
   }
+}
+
+:local(.newAccountButton) {
+  height: 18px;
+  width: 85px;
 }
