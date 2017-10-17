@@ -1,0 +1,30 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  display: flex;
+  height: 20px;
+  width: 70px;
+  border: 1px solid @gull-gray;
+  border-radius: 3px;
+  font-size: 9.5px;
+  font-family: 'brandon-grotesque-regular';
+
+  .toggle-option {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:last-child {
+      border-left: 1px solid @gull-gray;
+    }
+  }
+
+  .is-active {
+    background-color: @gull-gray;
+    color: @site-panel-bg;
+    cursor: default;
+  }
+}

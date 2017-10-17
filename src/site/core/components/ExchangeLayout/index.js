@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 
-import Navigation from '../../containers/Navigation/index.js';
-import Markets from '../../containers/Markets/index.js';
-
+import Navigation from '../../containers/Navigation';
+import Markets from '../../containers/Markets';
+import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
 class ExchangeLayout extends Component {
@@ -61,19 +61,12 @@ class ExchangeLayout extends Component {
       </div>
     );
   }
-
-  get footer() {
-    return (
-      <div className="exchange-footer panel">
-      </div>
-    );
-  }
-
+  
   render() {
     return (
       <div className={styles.root}>
         {this.content}
-        {this.footer}
+        <ExchangeFooter className="exchange-footer panel"/>
       </div>
     );
   }
