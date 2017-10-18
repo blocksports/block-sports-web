@@ -37,3 +37,9 @@ export const getMarketOrder = (order) => {
 export const round = (value, decimals) => {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
+
+export const roundByMagnitude = (value) => {
+  const order = Math.floor(Math.log(value) / Math.LN10 + 0.000000001);
+  const magnitude = Math.pow(10, order);
+  return Math.round(value / magnitude + 0.000000001) * magnitude || 0;
+}

@@ -62,7 +62,7 @@ class MarketListItem extends Component {
             {t('core:markets.item.matched')}
           </span>
           <span className="pool">
-            {round(this.props.item.get('total_matched') * this.props.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
+            {round(this.props.item.get('total_matched') * this.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
           </span>
           <span className="rules">
             {t('core:markets.item.rules')}&nbsp;>
@@ -80,6 +80,10 @@ class MarketListItem extends Component {
         {this.showDraw ? this.renderRunnerRows(this.props.item.get('draw')) : null}
       </div>
     );
+  }
+
+  get exchangeRate() {
+    return this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
   }
 
   get showDraw() {
@@ -153,7 +157,7 @@ class MarketListItem extends Component {
             <SpinBox
               value={this.state.stake}
               onChange={this.handleInputChange('stake')}
-              maximum={this.state.limit * this.props.exchangeRate}
+              maximum={this.state.limit * this.exchangeRate}
             />
           </div>
           <div className="action action-profit">
@@ -184,7 +188,7 @@ class MarketListItem extends Component {
           {bet.get('odds')}
         </div>
         <div className="matched">
-          {round(bet.get('matched') * this.props.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
+          {round(bet.get('matched') * this.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
         </div>
       </Button>
     );

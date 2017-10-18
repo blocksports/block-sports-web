@@ -1,0 +1,58 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  display: flex;
+  align-items: center;
+
+  .slider-value {
+    color: @shamrock;
+
+    .price {
+      font-size: 15px;
+      font-family: 'brandon-grotesque-medium';
+    }
+
+    .currency {
+      font-size: 12px;
+      font-family: 'brandon-grotesque-regular';
+    }
+  }
+}
+
+// Yucky and inefficient but quicker than retheming :~(
+:local(.slider) {
+  width: 160px;
+  // .container
+  ._-dLk {
+    padding-left: 7px;
+  }
+
+  // .progress
+  ._2R4jW {
+    left: 20px !important;
+    width: 100% !important;
+  }
+
+  // .innerknob
+  ._8VjZ5 {
+    height: 10px !important;
+    width: 10px !important;
+    background-color: @white !important;
+  }
+
+  // .snaps
+  ._2x5j_ {
+    display: none;
+  }
+
+  // .innerprogress
+  ._3p0mR {
+    background-color: @gull-gray;
+  }
+
+  // .value ()
+  .I0PhY {
+    background-color: @shamrock;
+  }
+}

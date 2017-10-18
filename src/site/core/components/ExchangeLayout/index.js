@@ -61,7 +61,7 @@ class ExchangeLayout extends Component {
       </div>
     );
   }
-  
+
   render() {
     return (
       <div className={styles.root}>

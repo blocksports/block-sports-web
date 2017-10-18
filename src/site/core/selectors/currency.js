@@ -5,14 +5,14 @@ const getPrices = (state) => {
   return state.getIn(['core', 'currency', 'price'], Immutable.Map());
 };
 
-const getActiveCurrency = (state) => {
-  return state.getIn(['core', 'currency', 'activeCurrency']);
+const getActiveExchangeCurrency = (state) => {
+  return state.getIn(['core', 'currency', 'activeExchangeCurrency']);
 };
 
 export const selectExchangeRate = createImmutableSelector(
   getPrices,
-  getActiveCurrency,
-  (prices, currency) => {
-    return prices.getIn(['GAS', currency], 1);
+  getActiveExchangeCurrency,
+  (prices, exchangeCurrency) => {
+    return prices.getIn(['GAS', exchangeCurrency], 1);
   }
 );

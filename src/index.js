@@ -5,6 +5,9 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { LocaleProvider } from 'antd';
+import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import theme from './assets/react-toolbox/theme';
+import themeSS from './assets/react-toolbox/theme.css';
 import enUS from 'antd/lib/locale-provider/en_US';
 import configureStore from './site/store';
 import createRoutes from './site/routes';
@@ -28,9 +31,11 @@ initLocale();
 ReactDOM.render(
   <div>
     <LocaleProvider locale={enUS}>
-      <Provider store={store}>
-        <Router history={history} routes={routes}/>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Router history={history} routes={routes}/>
+        </Provider>
+      </ThemeProvider>
     </LocaleProvider>
   </div>,
   document.getElementById('root')
