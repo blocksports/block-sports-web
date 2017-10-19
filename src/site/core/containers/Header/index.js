@@ -5,7 +5,9 @@ import Immutable from 'immutable';
 import { Link, IndexLink } from 'react-router';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import { selectExchangeRate } from '../../selectors/currency';
 import { fetchPrice } from '../../reducers/currency';
+import { fetchUser } from '../../reducers/user';
 import Button from '../../components/Button';
 import Search from '../../components/Search';
 import styles from './style.less';
@@ -21,6 +23,7 @@ class Header extends Component {
 
   componentWillMount() {
     this.props.fetchPrice();
+    this.props.fetchUser();
   }
 
   get logo() {
@@ -45,7 +48,7 @@ class Header extends Component {
       <div className="header-content balance">
         <div className="balance-text">{t('core:header.balance')}</div>
         <div className="balance-amount">
-          <span className="price">23.31</span>&nbsp;<span className="currency">GAS</span>
+          <span className="price">{this.convert(this.props.balance)}</span>&nbsp;<span className="currency">{t(`core:currency.${this.props.currency}`)}</span>
         </div>
       </div>
     );
@@ -96,12 +99,17 @@ class Header extends Component {
     );
   }
 
+  convert(amount) {
+    const rate = this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
+    return (rate * amount).toFixed(2);
+  }
+
   handleNewAccountClick() {
     return;
   }
 
   renderCurrency(currency) {
-    const exchangeCurrency = this.props.activeExchangeCurrency;
+    const exchangeCurrency = this.props.exchangeCurrency;
     if (!this.props.price.getIn([currency, exchangeCurrency])) return null;
 
     return (
@@ -135,7 +143,10 @@ const mapStateToProps = (state) => {
     'isLoggedIn': state.getIn(['core', 'user', 'isLoggedIn']),
     'path': state.getIn(['core', 'router', 'locationBeforeTransitions', 'pathname']),
     'price': state.getIn(['core', 'currency', 'price']),
-    'activeExchangeCurrency': state.getIn(['core', 'currency', 'activeExchangeCurrency'])
+    'currency': state.getIn(['core', 'currency', 'activeCurrency']),
+    'exchangeCurrency': state.getIn(['core', 'currency', 'activeExchangeCurrency']),
+    'exchangeRate': selectExchangeRate(state),
+    'balance': state.getIn(['core', 'user', 'user', 'balance'])
   };
 };
 
@@ -143,6 +154,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPrice: (...args) => {
       return dispatch(fetchPrice(...args));
+    },
+    fetchUser: (...args) => {
+      return dispatch(fetchUser(...args));
     }
   };
 };

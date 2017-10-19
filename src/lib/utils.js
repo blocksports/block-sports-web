@@ -34,6 +34,42 @@ export const getMarketOrder = (order) => {
   }
 }
 
+export const calculateMatchPools = (matches) => {
+  matches.forEach((match, index) => {
+    let pool = 0;
+    let backA = match.runner_a.back;
+    Object.keys(backA).sort((a, b) => {return b - a}).forEach((key) => {
+      pool += backA[key]['available'];
+      backA[key].total_available = pool;
+      backA[key].odds = key
+    });
+
+    pool = 0;
+    let layA = match.runner_a.lay;
+    Object.keys(layA).sort().forEach((key) => {
+      pool += layA[key]['available'];
+      layA[key].total_available = pool;
+      layA[key].odds = key
+    });
+
+    pool = 0;
+    let backB = match.runner_b.back;
+    Object.keys(backB).sort((a, b) => {return b - a}).forEach((key) => {
+      pool += backB[key]['available'];
+      backB[key].total_available = pool;
+      backB[key].odds = key;
+    });
+
+    pool = 0;
+    let layB = match.runner_b.lay;
+    Object.keys(layB).sort(-1).forEach((key) => {
+      pool += layB[key]['available'];
+      layB[key].total_available = pool;
+      layB[key].odds = key;
+    });
+  });
+};
+
 export const round = (value, decimals) => {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }

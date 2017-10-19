@@ -79,7 +79,7 @@
 :local(.oddsButton) {
   width: 60px;
   height: 25px;
-  margin-right: 5px;
+
   padding: 0;
 
   &:last-child {
@@ -113,6 +113,14 @@
     &-actions {
       display: flex;
       padding: 5px;
+
+      .bet-button {
+        margin-right: 5px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
 
       .action {
         display: flex;

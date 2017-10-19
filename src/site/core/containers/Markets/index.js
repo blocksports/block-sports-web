@@ -61,6 +61,7 @@ export class Markets extends Component {
             currency={this.props.activeCurrency}
             exchangeRate={this.props.exchangeRate}
             onConfirmBet={this.props.placeBet}
+            minimumBet={this.props.minimumBet}
             />
         </div>
       </div>
@@ -74,7 +75,8 @@ Markets.propTypes = {
 const mapStateToProps = (state) => {
   return {
     'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
-    'exchangeRate': selectExchangeRate(state)
+    'exchangeRate': selectExchangeRate(state),
+    'minimumBet': state.getIn(['core', 'exchange', 'minimumBet'])
   };
 };
 

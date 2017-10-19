@@ -44,6 +44,7 @@ class MarketList extends Component {
           onConfirmBet={this.props.onConfirmBet}
           currency={this.props.currency}
           exchangeRate={this.props.exchangeRate}
+          minimumBet={this.props.minimumBet}
           />
       );
     });
@@ -72,7 +73,8 @@ MarketList.propTypes = {
   onConfirmBet: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   exchangeRate: PropTypes.number.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
+  minimumBet: PropTypes.number.isRequired
 };
 
 export default MarketList;

@@ -7,7 +7,9 @@ const fetchUserSuccess = createAction('FETCH_USER_SUCCESS');
 export function fetchUser() {
   return (dispatch) => {
     dispatch(fetchUserRequest());
-    dispatch(fetchUserSuccess());
+    dispatch(fetchUserSuccess({
+      balance: 28.81
+    }));
   }
 }
 
@@ -18,14 +20,15 @@ const initialState = Immutable.Map({
 });
 
 const userReducer = createReducer({
-  [fetchUserRequest]: (state, payload) => {
+  [fetchUserRequest]: (state, resp) => {
     return state.merge({
       isLoading: true
     });
   },
-  [fetchUserSuccess]: (state, payload) => {
+  [fetchUserSuccess]: (state, resp) => {
     return state.merge({
-      isLoading: false
+      isLoading: false,
+      user: Immutable.fromJS(resp)
     });
   }
 }, initialState);

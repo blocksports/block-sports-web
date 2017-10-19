@@ -126,34 +126,40 @@ export const mockMarkets = [
       market_id: '1',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.49
+      back: {
+        3.0: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.79
+        3.1: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.09
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.99
+      },
+      lay: {
+        3.7: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.31
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.19
+        3.6: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -161,34 +167,40 @@ export const mockMarkets = [
       market_id: '2',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.66
+      back: {
+        2.8: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.00
+        3.3: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.09
+        2.6: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.14
+      },
+      lay: {
+        3.4: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.69
+        3.5: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.19
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   },
   {
@@ -207,34 +219,40 @@ export const mockMarkets = [
       market_id: '2',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.91
+      back: {
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.21
+        3.: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.77
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.66
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.14
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.49
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -242,34 +260,40 @@ export const mockMarkets = [
       market_id: '2',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.53
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.78
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.71
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.36
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.26
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.15
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   },
   {
@@ -288,34 +312,40 @@ export const mockMarkets = [
       market_id: '3',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.44
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.33
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.11
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.93
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.83
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.79
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -323,34 +353,40 @@ export const mockMarkets = [
       market_id: '3',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.27
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.69
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.37
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.14
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.12
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.11
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   },
   {
@@ -369,34 +405,40 @@ export const mockMarkets = [
       market_id: '4',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.19
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.19
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.19
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.15
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.19
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.61
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -404,34 +446,40 @@ export const mockMarkets = [
       market_id: '4',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.69
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.48
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.42
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.61
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.51
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.96
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   },
   {
@@ -450,34 +498,40 @@ export const mockMarkets = [
       market_id: '5',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.83
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.10
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.57
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.49
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.53
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.87
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -485,34 +539,40 @@ export const mockMarkets = [
       market_id: '5',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.19
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.19
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.19
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.19
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.10
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.19
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   },
   {
@@ -531,34 +591,40 @@ export const mockMarkets = [
       market_id: '6',
       name: 'Mirren King-Smith',
       option: 'a',
-      back: [
-        {
-          odds: 3.2,
-          matched: 21.19
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.1,
-          matched: 15.19
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.0,
-          matched: 11.19
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 3.4,
-          matched: 21.19
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.5,
-          matched: 15.19
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 3.6,
-          matched: 11.19
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     },
     runner_b: {
       type: 'runner',
@@ -566,34 +632,40 @@ export const mockMarkets = [
       market_id: '6',
       name: 'Sergej Stojanovski',
       option: 'b',
-      back: [
-        {
-          odds: 1.3,
-          matched: 21.19
+      back: {
+        3.2: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.4,
-          matched: 15.19
+        3.1: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.5,
-          matched: 11.19
+        3.0: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ],
-      lay: [
-        {
-          odds: 1.8,
-          matched: 21.19
+      },
+      lay: {
+        3.4: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 1.9,
-          matched: 15.19
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         },
-        {
-          odds: 2.0,
-          matched: 11.19
+        3.6: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
         }
-      ]
+      }
     }
   }
 ];

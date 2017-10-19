@@ -9,7 +9,6 @@ import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
 
-
 class MarketListItem extends Component {
   constructor(props, context) {
     super(props, context);
@@ -90,6 +89,35 @@ class MarketListItem extends Component {
     return false;
   }
 
+  getFilteredBets(type, bets) {
+    const order = {'back': -1, 'lay': 1};
+    const limit = this.props.isList ? 1 : 3;
+    const orderedBets = bets.sortBy((_, key) => key * order[type]);
+
+    let oddsArray = [];
+    let temp = 0;
+    let tempKey = undefined;
+
+    orderedBets.forEach((odd, key) => {
+      const matched = odd.get('available');
+      if (matched  > temp) {
+        temp = matched;
+        tempKey = key;
+      }
+
+      if (matched < (this.props.minimumBet / this.exchangeRate) || oddsArray.length >= limit) return;
+      oddsArray.push(odd);
+    });
+
+    if (oddsArray.length < 1) oddsArray.push(orderedBets.get(tempKey));
+
+    return oddsArray;
+  };
+
+  getProfit(odds, stake) {
+    return Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0;
+  }
+
   handleOddsClick(option, bet) {
     return () => {
       this.setState({
@@ -115,10 +143,6 @@ class MarketListItem extends Component {
     };
   }
 
-  getProfit(odds, stake) {
-    return Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0;
-  }
-
   renderRunnerRows(runner) {
     return (
       <div className={styles.runnerRow}>
@@ -127,8 +151,8 @@ class MarketListItem extends Component {
             {runner.get('name')}
           </div>
           <div className="market-item-row-actions">
-            {this.renderBetButton(runner.get('option'), runner.getIn(['back', 0]), 'back')}
-            {this.renderBetButton(runner.get('option'), runner.getIn(['lay', 0]), 'lay')}
+            {this.renderBetButtons(runner, 'back')}
+            {this.renderBetButtons(runner, 'lay')}
           </div>
         </div>
         {this.renderBetRow(runner)}
@@ -178,6 +202,18 @@ class MarketListItem extends Component {
     );
   }
 
+  renderBetButtons(runner, type) {
+    const bets = this.getFilteredBets(type, runner.get(type));
+
+    return bets.map((bet, idx) => {
+      return (
+        <div className="bet-button" key={idx}>
+          {this.renderBetButton(runner.get('option'), bet, type)}
+        </div>
+      );
+    });
+  }
+
   renderBetButton(option, bet, type) {
     return (
       <Button
@@ -188,13 +224,14 @@ class MarketListItem extends Component {
           {bet.get('odds')}
         </div>
         <div className="matched">
-          {round(bet.get('matched') * this.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
+          {round(bet.get('available') * this.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
         </div>
       </Button>
     );
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className={styles.itemRoot}>
         {this.contentLeft}
@@ -210,7 +247,8 @@ MarketListItem.propTypes = {
   isList: PropTypes.bool.isRequired,
   onConfirmBet: PropTypes.func.isRequired,
   exchangeRate: PropTypes.number.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
+  minimumBet: PropTypes.number.isRequired
 };
 
 MarketListItem.defaultProps = {

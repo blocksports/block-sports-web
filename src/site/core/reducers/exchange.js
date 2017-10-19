@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
-import { getNestedMarketsArray } from '../../../lib/utils';
+import { getNestedMarketsArray, calculateMatchPools } from '../../../lib/utils';
 import { mockMarkets } from './__mockData';
 
 const fetchMarketsRequest = createAction('FETCH_MARKETS_REQUEST');
@@ -36,7 +36,12 @@ const exchangeReducer = createReducer({
   [fetchMarketsSuccess]: (state, [data, resp]) => {
     const nestedArray = getNestedMarketsArray(data);
     const oldMarkets = state.get('markets');
-    const newMarkets = oldMarkets.updateIn(nestedArray, (val = Immutable.fromJS(resp)) => val);
+
+    calculateMatchPools(resp);
+
+    const matches = Immutable.fromJS(resp);
+
+    const newMarkets = oldMarkets.updateIn(nestedArray, (val = matches) => val);
 
     return state.merge({
       isLoading: false,
