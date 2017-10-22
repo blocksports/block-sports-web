@@ -2,5 +2,25 @@
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
+  display: flex;
 
+  .footer-content {
+    margin-left: 5px;
+    padding-right: 5px;
+  }
+
+  .block-info {
+    flex-grow: 1
+  }
+
+  .bet-view {
+    display: flex;
+    align-items: center;
+
+    &-text {
+      position: relative;
+      left: 8px;
+      font-size: 10px;
+    }
+  }
 }

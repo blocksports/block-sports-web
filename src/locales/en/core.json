@@ -29,5 +29,8 @@
       "matched": "MATCHED",
       "rules": "RULES"
     }
+  },
+  "footer": {
+    "bet-view": "Bet View"
   }
 }
