@@ -47,7 +47,7 @@ export class Markets extends Component {
   handleTabClick(tab) {
     return () => {
       this.setState({activeOrder: tab});
-    }
+    };
   }
 
   render() {

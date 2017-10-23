@@ -6,7 +6,7 @@ import { t } from 'i18next';
 
 import styles from './style.less';
 
-class {{ properCase name }} extends Component {
+class BetSlipList extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -28,8 +28,8 @@ class {{ properCase name }} extends Component {
   }
 }
 
-{{ properCase name }}.propTypes = {
+BetSlipList.propTypes = {
   className: PropTypes.string
 };
 
-export default {{ properCase name }};
+export default BetSlipList;

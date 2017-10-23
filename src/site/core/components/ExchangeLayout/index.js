@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 
+import Bets from '../Bets';
 import Navigation from '../../containers/Navigation';
 import Markets from '../../containers/Markets';
 import ExchangeFooter from '../../containers/ExchangeFooter';
@@ -33,7 +34,13 @@ class ExchangeLayout extends Component {
 
   get contentRight() {
     return (
-      <div className="exchange-content-right panel">
+      <div className="exchange-content-right">
+        <div className="exchange-content-right-top panel">
+          <Bets/>
+        </div>
+        <div className="exchange-content-right-bottom panel">
+
+        </div>
       </div>
     );
   }

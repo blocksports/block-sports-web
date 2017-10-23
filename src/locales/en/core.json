@@ -30,6 +30,23 @@
       "rules": "RULES"
     }
   },
+  "bets": {
+    "bet-slip-tab": "Bet Slip",
+    "active-tab": "Active Bets",
+    "active": {
+      "is-empty": "You have no active bets",
+      "runner": "RUNNER",
+      "odds": "ODDS",
+      "remaining": "REMAINING",
+      "status": "STATUS",
+      "pending": "PENDING",
+      "active": "ACTIVE",
+      "filled": "FILLED"
+    },
+    "bet-slip": {
+      "is-empty": "No bets selected"
+    }
+  },
   "footer": {
     "bet-view": "Bet View"
   }

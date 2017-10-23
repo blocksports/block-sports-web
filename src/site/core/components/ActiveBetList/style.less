@@ -1,0 +1,94 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+  padding-top: 5px;
+  text-align: center;
+  color: @gull-gray;
+
+  .active-bet-header {
+    display: flex;
+    font-size: 9px;
+    margin: 0 5px 10px 0;
+  }
+
+  .active-bet-items {
+    margin-right: 5px;
+  }
+
+  .active-bet-row {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 3px;
+    background-color: @charade-light;
+    margin-bottom: 5px;
+    font-size: 13px;
+
+    .type-icon {
+      position: relative;
+      padding-right: 4px;
+      top: -1px;
+      font-size: 8px;
+
+      &-back {
+        color: @shamrock;
+      }
+
+      &-lay {
+        color: @roman;
+      }
+    }
+
+    .runner {
+      color: @site-text;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 5px 0 5px;
+  }
+
+  .runner {
+    width: 55%;
+  }
+
+  .odds {
+    width: 20%;
+  }
+
+  .remaining {
+    width: 25%;
+  }
+
+  .status {
+    width: 25%;
+
+    .status-block {
+      display: inline-flex;
+      padding: 3px 6px 3px 6px;
+      background-color: @gunpowder;
+      border-radius: 3px;
+      font-size: 8px;
+
+      &-pending {
+        color: #e4da72;
+      }
+
+      &-active {
+        color: @shamrock;
+      }
+
+      &-filled {
+        color: @white;
+      }
+    }
+  }
+}

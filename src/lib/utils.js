@@ -15,14 +15,18 @@ export const getNestedMarketsArray = (params) => {
   return nestArray;
 }
 
+export const orderByDate = (field, order = 1) => {
+  return (a, b) => {
+    if (a.get(field) < b.get(field)) return -1 * order;
+    if (a.get(field) > b.get(field)) return 1 * order;
+    if (a.get(field) === b.get(field)) return 0;
+  };
+}
+
 export const getMarketOrder = (order) => {
   switch (order) {
     case 'time':
-      return (a, b) => {
-        if (a.get('date') < b.get('date')) return -1;
-        if (a.get('date') > b.get('date')) return 1;
-        if (a.get('date') === b.get('date')) return 0;
-      };
+      return orderByDate('time');
     case 'popular':
       return (a, b) => {
         if (a.get('total_matched') > b.get('total_matched')) return -1;

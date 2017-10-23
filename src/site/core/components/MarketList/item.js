@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
+import uuid from 'uuid/v4'
+import moment from 'moment';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import { round } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
@@ -17,22 +19,19 @@ class MarketListItem extends Component {
       activeOption: "",
       odds: "",
       limit: "",
-      stake: ""
+      stake: "",
+      type: ""
     };
 
     this.handleOddsClick = this.handleOddsClick.bind(this);
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.item.get('id') != nextProps.item.get('id')) {
-      this.setState({
-        activeOption: "",
-        odds: "",
-        limit: "",
-        stake: ""
-      });
+      this.resetState();
     }
   }
 
@@ -118,20 +117,39 @@ class MarketListItem extends Component {
     return Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0;
   }
 
-  handleOddsClick(option, bet) {
+  handleOddsClick(option, bet, type) {
     return () => {
       this.setState({
         activeOption: option,
         odds: bet.get('odds'),
         limit: bet.get('matched'),
-        stake: ""
+        stake: "",
+        type: type
       });
     };
   }
 
   handleConfirmClick(runner) {
     return () => {
-      this.props.onConfirmBet(runner);
+
+      // data wouldn't normally be generated here
+      this.props.onConfirmBet({
+        id: uuid(),
+        type: this.state.type,
+        market_id: runner.get('market_id'),
+        market_name: this.props.item.get('name'),
+        entity: this.props.item.get('entity'),
+        entity_id: this.props.item.get('entity_id'),
+        entity_name: this.props.item.get('entity_name'),
+        runner_id: runner.get('runner_id'),
+        runner_name: runner.get('name'),
+        odds: this.state.odds,
+        stake: this.state.stake,
+        status: 'pending',
+        date_created: moment().unix()
+      });
+
+      this.resetState();
     }
   }
 
@@ -161,7 +179,7 @@ class MarketListItem extends Component {
   }
 
   renderBetRow(runner) {
-    if (this.state.activeOption !== runner.get('option')) return null;
+    if (this.state.activeOption !== runner.get('runner_id')) return null;
 
     return (
       <div className="market-item-row bet">
@@ -208,7 +226,7 @@ class MarketListItem extends Component {
     return bets.map((bet, idx) => {
       return (
         <div className="bet-button" key={idx}>
-          {this.renderBetButton(runner.get('option'), bet, type)}
+          {this.renderBetButton(runner.get('runner_id'), bet, type)}
         </div>
       );
     });
@@ -218,7 +236,7 @@ class MarketListItem extends Component {
     return (
       <Button
         className={classNames([styles.oddsButton, `btn-${type}`])}
-        onClick={this.handleOddsClick(option, bet)}
+        onClick={this.handleOddsClick(option, bet, type)}
         >
         <div className="odds">
           {bet.get('odds')}
@@ -230,8 +248,17 @@ class MarketListItem extends Component {
     );
   }
 
+  resetState() {
+    this.setState({
+      activeOption: "",
+      odds: "",
+      limit: "",
+      stake: "",
+      type: ""
+    });
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div className={styles.itemRoot}>
         {this.contentLeft}
