@@ -15,7 +15,6 @@ class ExchangeLayout extends Component {
   }
 
   componentWillMount() {
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,7 +80,7 @@ class ExchangeLayout extends Component {
 
 ExchangeLayout.propTypes = {
   params: PropTypes.object,
-  query: PropTypes.string
+  query: PropTypes.object
 };
 
 export default ExchangeLayout;

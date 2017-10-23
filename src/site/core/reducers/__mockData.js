@@ -112,7 +112,7 @@ export const mockNavigation = [
 export const mockMarkets = [
   {
     id: '1',
-    name: 'Tsering vs Sergej',
+    name: 'Tsering Redmond Jones vs Sergej Stojanovski',
     sport: 'soccer',
     entity: 'competition',
     entity_id: '111',
@@ -205,7 +205,7 @@ export const mockMarkets = [
   },
   {
     id: '2',
-    name: 'Tsering vs Sergej',
+    name: 'Tsering Redmond Jones vs Sergej Stojanovski',
     sport: 'soccer',
     entity: 'competition',
     entity_id: '111',
@@ -298,7 +298,7 @@ export const mockMarkets = [
   },
   {
     id: '3',
-    name: 'Tsering vs Sergej',
+    name: 'Tsering Redmond Jones vs Sergej Stojanovski',
     sport: 'soccer',
     entity: 'competition',
     entity_id: '111',
@@ -484,7 +484,7 @@ export const mockMarkets = [
   },
   {
     id: '5',
-    name: 'Tsering vs Sergej',
+    name: 'Tsering Redmond Jones vs Sergej Stojanovski',
     sport: 'soccer',
     entity: 'competition',
     entity_id: '111',
@@ -577,7 +577,7 @@ export const mockMarkets = [
   },
   {
     id: '6',
-    name: 'Tsering vs Sergej',
+    name: 'Tsering Redmond Jones vs Sergej Stojanovski',
     sport: 'soccer',
     entity: 'competition',
     entity_id: '111',

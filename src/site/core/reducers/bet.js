@@ -18,8 +18,10 @@ const mockActiveBets = [
     "entity_name":"A League",
     "runner_id":"1111",
     "runner_name":"Tsering Redmond Jones",
-    "odds":"1.5",
-    "stake":"1",
+    "odds": 1.5,
+    "stake": 5.3,
+    "pool_total": 1.5 * 5.3 - 5.3,
+    "pool_filled": 1,
     "status":"active",
     "date_created":1508662589
   },
@@ -33,8 +35,10 @@ const mockActiveBets = [
     "entity_name":"A League",
     "runner_id":"1111",
     "runner_name":"Mirren King-Smith",
-    "odds":"1.8",
-    "stake":"20",
+    "odds": 1.8,
+    "stake": 20,
+    "pool_total": 1.8 * 20 - 20,
+    "pool_filled": 1.8 * 20 - 20,
     "status":"filled",
     "date_created":1508663589
   }

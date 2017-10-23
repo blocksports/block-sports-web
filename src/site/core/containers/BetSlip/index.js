@@ -23,7 +23,7 @@ export class BetSlip extends Component {
   render() {
     return (
       <div className={classNames([styles.root, this.props.className])}>
-        Bet Slip
+        {t('core:bets.bet-slip.is-empty')}
       </div>
     );
   }

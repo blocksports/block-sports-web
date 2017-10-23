@@ -37,11 +37,12 @@
       "is-empty": "You have no active bets",
       "runner": "RUNNER",
       "odds": "ODDS",
-      "remaining": "REMAINING",
+      "matched": "MATCHED",
       "status": "STATUS",
       "pending": "PENDING",
       "active": "ACTIVE",
-      "filled": "FILLED"
+      "filled": "FILLED",
+      "pending-info": "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
     },
     "bet-slip": {
       "is-empty": "No bets selected"

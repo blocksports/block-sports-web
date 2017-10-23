@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
-
+import { selectExchangeRate } from '../../selectors/currency';
 import { fetchActiveBets } from '../../reducers/bet';
 import ActiveBetList from '../../components/ActiveBetList';
 import styles from './style.less';
@@ -34,6 +34,8 @@ export class ActiveBets extends Component {
     return (
       <ActiveBetList
         items={this.props.items}
+        currency={this.props.activeCurrency}
+        exchangeRate={this.props.exchangeRate}
         />
     );
   }
@@ -48,17 +50,20 @@ export class ActiveBets extends Component {
 }
 
 ActiveBets.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   focusTab: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
   className: PropTypes.string,
-  items: PropTypes.instanceOf(Immutable.List).isRequired
+  items: PropTypes.instanceOf(Immutable.List).isRequired,
+  exchangeRate: PropTypes.number.isRequired,
+  activeCurrency: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     'items': state.getIn(['core', 'bet', 'activeBets']),
-    'isLoading': state.getIn(['core', 'bet', 'isLoading'])
+    'isLoading': state.getIn(['core', 'bet', 'isLoading']),
+    'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
+    'exchangeRate': selectExchangeRate(state),
   };
 };
 

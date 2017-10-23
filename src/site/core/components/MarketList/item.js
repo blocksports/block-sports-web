@@ -145,6 +145,8 @@ class MarketListItem extends Component {
         runner_name: runner.get('name'),
         odds: this.state.odds,
         stake: this.state.stake,
+        pool_total: (this.state.odds - 1) * this.state.stake,
+        pool_filled: 0,
         status: 'pending',
         date_created: moment().unix()
       });
