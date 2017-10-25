@@ -1,6 +1,8 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
 
+const addToBetSlip = createAction('ADD_TO_BET_SLIP');
+
 const placeBetRequest = createAction('PLACE_BET_REQUEST');
 const placeBetSuccess = createAction('PLACE_BET_SUCCESS', (data, resp) => [data, resp]);
 
@@ -44,6 +46,12 @@ const mockActiveBets = [
   }
 ];
 
+export function addBet(data) {
+  return (dispatch) => {
+    dispatch(addToBetSlip(data));
+  }
+}
+
 export function placeBet(data) {
   return (dispatch) => {
     dispatch(placeBetRequest());
@@ -66,6 +74,11 @@ const initialState = Immutable.Map({
 });
 
 const betReducer = createReducer({
+  [addToBetSlip]: (state, data) => {
+    return state.merge({
+      betSlip: state.get('betSlip').push(Immutable.fromJS(data))
+    });
+  },
   [placeBetRequest]: (state) => {
     return state.merge({
       isBetting: true

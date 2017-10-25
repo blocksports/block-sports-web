@@ -6,6 +6,7 @@ import { t } from 'i18next';
 import Bets from '../Bets';
 import Navigation from '../../containers/Navigation';
 import Markets from '../../containers/Markets';
+import MarketDetail from '../../containers/MarketDetail';
 import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
@@ -50,11 +51,25 @@ class ExchangeLayout extends Component {
         <div className="exchange-content-middle-top panel">
         </div>
         <div className="exchange-content-middle-bottom panel">
-          <Markets
-            items={this.props.items}
-            />
+          {this.marketView}
         </div>
       </div>
+    );
+  }
+
+  get marketView() {
+    if (this.props.params.entity === 'market') {
+      return (
+        <MarketDetail
+          params={this.props.params}
+          />
+      );
+    }
+
+    return (
+      <Markets
+        items={this.props.items}
+        />
     );
   }
 
@@ -80,7 +95,8 @@ class ExchangeLayout extends Component {
 
 ExchangeLayout.propTypes = {
   params: PropTypes.object,
-  query: PropTypes.object
+  query: PropTypes.object,
+  items: PropTypes.instanceOf(Immutable.List).isRequired
 };
 
 export default ExchangeLayout;

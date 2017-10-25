@@ -38,6 +38,7 @@ export const getMarketOrder = (order) => {
   }
 }
 
+// TODO: Make nicer
 export const calculateMatchPools = (matches) => {
   matches.forEach((match, index) => {
     let pool = 0;
@@ -70,6 +71,24 @@ export const calculateMatchPools = (matches) => {
       pool += layB[key]['available'];
       layB[key].total_available = pool;
       layB[key].odds = key;
+    });
+
+    if (!match.draw) return;
+    
+    pool = 0;
+    let backDraw = match.draw.back;
+    Object.keys(backDraw).sort((a, b) => {return b - a}).forEach((key) => {
+      pool += backDraw[key]['available'];
+      backDraw[key].total_available = pool;
+      backDraw[key].odds = key
+    });
+
+    pool = 0;
+    let layDraw = match.draw.lay;
+    Object.keys(layDraw).sort().forEach((key) => {
+      pool += layDraw[key]['available'];
+      layDraw[key].total_available = pool;
+      layDraw[key].odds = key
     });
   });
 };

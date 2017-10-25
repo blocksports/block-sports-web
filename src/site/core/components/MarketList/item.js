@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import classNames from 'classnames';
 import uuid from 'uuid/v4'
 import moment from 'moment';
+import { browserHistory } from 'react-router';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import { round } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
@@ -25,6 +26,7 @@ class MarketListItem extends Component {
 
     this.handleOddsClick = this.handleOddsClick.bind(this);
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
+    this.handleMarketClick = this.handleMarketClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.resetState = this.resetState.bind(this);
   }
@@ -74,10 +76,17 @@ class MarketListItem extends Component {
     return (
       <div className="market-item-middle">
         {this.renderRunnerRows(this.props.item.get('runner_a'))}
+        {this.drawRow}
         {this.renderRunnerRows(this.props.item.get('runner_b'))}
         {this.showDraw ? this.renderRunnerRows(this.props.item.get('draw')) : null}
       </div>
     );
+  }
+
+  get drawRow() {
+    if (!this.props.showDetail) return null;
+
+    return this.renderRunnerRows(this.props.item.get('draw'));
   }
 
   get exchangeRate() {
@@ -90,7 +99,7 @@ class MarketListItem extends Component {
 
   getFilteredBets(type, bets) {
     const order = {'back': -1, 'lay': 1};
-    const limit = this.props.isList ? 1 : 3;
+    const limit = !this.props.showDetail ? 1 : 3;
     const orderedBets = bets.sortBy((_, key) => key * order[type]);
 
     let oddsArray = [];
@@ -118,7 +127,15 @@ class MarketListItem extends Component {
   }
 
   handleOddsClick(option, bet, type) {
-    return () => {
+    return (event) => {
+      event.stopPropagation();
+
+      if (this.props.showDetail) {
+        return this.props.onOddsClick({
+          item: this.props.item,
+        });
+      };
+
       this.setState({
         activeOption: option,
         odds: bet.get('odds'),
@@ -155,6 +172,12 @@ class MarketListItem extends Component {
     }
   }
 
+  handleMarketClick() {
+    const link = `/exchange/${this.props.item.get('sport')}/market/${this.props.item.get('id')}`;
+
+    browserHistory.push(link);
+  }
+
   handleInputChange(type) {
     return (value) => {
       this.setState({
@@ -171,8 +194,8 @@ class MarketListItem extends Component {
             {runner.get('name')}
           </div>
           <div className="market-item-row-actions">
-            {this.renderBetButtons(runner, 'back')}
-            {this.renderBetButtons(runner, 'lay')}
+            <div className="bet-buttons">{this.renderBetButtons(runner, 'back')}</div>
+            <div className="bet-buttons">{this.renderBetButtons(runner, 'lay')}</div>
           </div>
         </div>
         {this.renderBetRow(runner)}
@@ -223,15 +246,32 @@ class MarketListItem extends Component {
   }
 
   renderBetButtons(runner, type) {
-    const bets = this.getFilteredBets(type, runner.get(type));
+    let bets = this.getFilteredBets(type, runner.get(type));
 
-    return bets.map((bet, idx) => {
-      return (
-        <div className="bet-button" key={idx}>
+    let betArray = [];
+
+    bets.forEach((bet, idx) => {
+      betArray.push(
+        <div className={`bet-button bet-button-${type}`} key={idx}>
           {this.renderBetButton(runner.get('runner_id'), bet, type)}
         </div>
       );
     });
+
+    while (this.props.showDetail && betArray.length < 3) {
+      betArray.push(
+        <div className="bet-button bet-button-empty" key={betArray.length}>
+          <Button
+            className={classNames([styles.oddsButton, 'btn-empty'])}
+            onClick={() => {return}}
+            />
+        </div>
+      );
+    }
+
+    if (type === 'back') betArray.reverse();
+
+    return betArray;
   }
 
   renderBetButton(option, bet, type) {
@@ -261,8 +301,10 @@ class MarketListItem extends Component {
   }
 
   render() {
+    if (this.props.item.isEmpty()) return null;
+
     return (
-      <div className={styles.itemRoot}>
+      <div className={styles.itemRoot} onClick={this.handleMarketClick}>
         {this.contentLeft}
         {this.contentMiddle}
         {this.contentRight}
@@ -273,15 +315,16 @@ class MarketListItem extends Component {
 
 MarketListItem.propTypes = {
   item: PropTypes.instanceOf(Immutable.Map).isRequired,
-  isList: PropTypes.bool.isRequired,
+  showDetail: PropTypes.bool.isRequired,
   onConfirmBet: PropTypes.func.isRequired,
   exchangeRate: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired,
-  minimumBet: PropTypes.number.isRequired
+  minimumBet: PropTypes.number.isRequired,
+  onOddsClick: PropTypes.func
 };
 
 MarketListItem.defaultProps = {
-  isList: true,
+  showDetail: false,
   exchangeRate: 1,
   currency: 'GAS'
 }

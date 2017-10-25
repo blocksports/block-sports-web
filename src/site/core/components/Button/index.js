@@ -12,10 +12,10 @@ class Button extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(event) {
     if (this.props.isDisabled) return;
 
-    this.props.onClick();
+    this.props.onClick(event);
   }
 
   render() {

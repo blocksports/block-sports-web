@@ -186,8 +186,8 @@ export const mockMarkets = [
       },
       lay: {
         3.4: {
-          matched: 21.19 * 3,
-          available: 15.2 * 3,
+          matched: 21.19,
+          available: 15.2,
           bets: {}
         },
         3.5: {
@@ -196,8 +196,59 @@ export const mockMarkets = [
           bets: {}
         },
         3.6: {
+          matched: 21.19 * 3,
+          available: 15.2 * 4,
+          bets: {}
+        },
+        3.7: {
+          matched: 21.19 * 4,
+          available: 15.2 * 4,
+          bets: {}
+        },
+      }
+    },
+    draw: {
+      type: 'runner',
+      runner_id: '1111',
+      market_id: '1',
+      name: 'Draw',
+      option: 'draw',
+      back: {
+        2.9: {
+          matched: 21.19 * 4,
+          available: 15.2 * 4,
+          bets: {}
+        },
+        3.0: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
+        },
+        3.1: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
+          bets: {}
+        },
+        3.2: {
           matched: 21.19,
           available: 15.2,
+          bets: {}
+        }
+      },
+      lay: {
+        3.7: {
+          matched: 21.19 * 3,
+          available: 15.2 * 3,
+          bets: {}
+        },
+        3.5: {
+          matched: 21.19,
+          available: 15.2,
+          bets: {}
+        },
+        3.6: {
+          matched: 21.19 * 2,
+          available: 15.2 * 2,
           bets: {}
         }
       }

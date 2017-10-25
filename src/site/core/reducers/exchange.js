@@ -6,12 +6,22 @@ import { mockMarkets } from './__mockData';
 const fetchMarketsRequest = createAction('FETCH_MARKETS_REQUEST');
 const fetchMarketsSuccess = createAction('FETCH_MARKETS_SUCCESS', (data, resp) => [data, resp]);
 
+const fetchMarketRequest = createAction('FETCH_MARKET_REQUEST');
+const fetchMarketSuccess = createAction('FETCH_MARKET_SUCCESS', (data, resp) => [data, resp]);
+
 const updateMinimum = createAction('UPDATE_MINIMUM_BET');
 
 export function fetchMarkets(data) {
   return (dispatch) => {
     dispatch(fetchMarketsRequest());
     dispatch(fetchMarketsSuccess(data, mockMarkets));
+  };
+}
+
+export function fetchMarket(data) {
+  return (dispatch) => {
+    dispatch(fetchMarketRequest());
+    dispatch(fetchMarketSuccess(data, mockMarkets[0]));
   };
 }
 
@@ -24,7 +34,8 @@ export function updateMinimumBet(data) {
 const initialState = Immutable.Map({
   isLoading: false,
   minimumBet: 0,
-  markets: Immutable.Map()
+  markets: Immutable.Map(),
+  activeMarket: Immutable.Map()
 });
 
 const exchangeReducer = createReducer({
@@ -46,6 +57,17 @@ const exchangeReducer = createReducer({
     return state.merge({
       isLoading: false,
       markets: newMarkets
+    });
+  },
+  [fetchMarketRequest]: (state) => {
+    return state.merge({
+      isLoading: true
+    });
+  },
+  [fetchMarketSuccess]: (state, [data, resp]) => {
+    return state.merge({
+      isLoading: false,
+      activeMarket: Immutable.fromJS(resp)
     });
   },
   [updateMinimum]: (state, data) => {

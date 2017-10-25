@@ -23,6 +23,7 @@
   border-radius: 3px;
   font-size: 12px;
   margin-bottom: 10px;
+  cursor: pointer;
 
   .market-item-side {
     display: flex;
@@ -114,11 +115,52 @@
       display: flex;
       padding: 5px;
 
-      .bet-button {
-        margin-right: 5px;
+      .bet-buttons {
+        display: flex;
 
         &:last-child {
-          margin-right: 0;
+          margin-right: -5px;
+        }
+
+        .bet-button {
+          margin-right: 5px;
+
+          &-back {
+
+            .btn-back {
+              opacity: 0.5;
+            }
+
+            &:last-child {
+              .btn-back {
+                opacity: 1;
+                border-color: @shamrock;
+                color: @shamrock;
+              }
+            }
+          }
+
+          &-lay {
+
+            .btn-lay {
+              opacity: 0.5;
+            }
+
+            &:first-child {
+              .btn-lay {
+                opacity: 1;
+                border-color: @roman;
+                color: @roman;
+              }
+            }
+          }
+
+          &-empty {
+            .btn-empty {
+              opacity: 0.5;
+              cursor: default;
+            }
+          }
         }
       }
 
