@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
 import { selectExchangeRate } from '../../selectors/currency';
+import { addBet } from '../../reducers/bet';
 import { fetchMarket } from '../../reducers/exchange';
 import MarketList from '../../components/MarketList';
 import styles from './style.less';
@@ -30,6 +31,7 @@ export class MarketDetail extends Component {
           currency={this.props.activeCurrency}
           exchangeRate={this.props.exchangeRate}
           minimumBet={this.props.minimumBet}
+          onOddsClick={this.props.addBet}
           />
       </div>
     );
@@ -56,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchMarket: (...args) => {
       return dispatch(fetchMarket(...args));
     },
+    addBet: (...args) => {
+      return dispatch(addBet(...args));
+    }
   };
 }
 

@@ -22,3 +22,14 @@
   }
 
 }
+
+.multilineTruncate(@height, @line-height, @lines) {
+  display: -webkit-box;
+  height: @height;
+  line-height: @line-height;
+  -webkit-line-clamp: @lines;
+  overflow: hidden;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+}

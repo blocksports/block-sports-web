@@ -23,7 +23,6 @@
   border-radius: 3px;
   font-size: 12px;
   margin-bottom: 10px;
-  cursor: pointer;
 
   .market-item-side {
     display: flex;
@@ -61,6 +60,10 @@
         color: @gull-gray;
       }
     }
+  }
+
+  .left {
+    cursor: pointer;
   }
 
   .market-item-middle {
@@ -105,6 +108,7 @@
     border-bottom: 1px solid @market-item-border;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     &-detail {
       flex-grow: 1;
@@ -158,7 +162,6 @@
           &-empty {
             .btn-empty {
               opacity: 0.5;
-              cursor: default;
             }
           }
         }
@@ -195,6 +198,7 @@
 
   .bet {
     font-size: 9.5px;
+    cursor: default;
   }
 }
 

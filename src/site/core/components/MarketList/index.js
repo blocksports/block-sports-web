@@ -46,6 +46,7 @@ class MarketList extends Component {
           exchangeRate={this.props.exchangeRate}
           minimumBet={this.props.minimumBet}
           showDetail={this.props.showDetail}
+          onOddsClick={this.props.onOddsClick}
           />
       );
     });
@@ -73,13 +74,14 @@ class MarketList extends Component {
 }
 
 MarketList.propTypes = {
-  onConfirmBet: PropTypes.func.isRequired,
+  onConfirmBet: PropTypes.func,
   order: PropTypes.string,
   exchangeRate: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired,
   minimumBet: PropTypes.number.isRequired,
   items: PropTypes.instanceOf(Immutable.List),
-  showDetail: PropTypes.bool
+  showDetail: PropTypes.bool,
+  onOddsClick: PropTypes.func
 };
 
 MarketList.defaultProps = {

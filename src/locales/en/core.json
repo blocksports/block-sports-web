@@ -45,7 +45,16 @@
       "pending-info": "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
     },
     "bet-slip": {
-      "is-empty": "No bets selected"
+      "is-empty": "No bets selected",
+      "runner-back": "BET FOR",
+      "runner-lay": "BET AGAINST",
+      "odds": "ODDS",
+      "stake": "BET",
+      "profit-back": "PROFIT",
+      "profit-lay": "LIABILITY",
+      "button-back": "BACK",
+      "button-lay": "LAY",
+      "remove-all": "Remove All"
     }
   },
   "footer": {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
-import ToolTip from 'react-portal-tooltip';
 import ReactTooltip from 'react-tooltip';
 import { orderByDate } from '../../../../lib/utils';
 import styles from './style.less';
@@ -27,6 +26,7 @@ class ActiveBetList extends Component {
         <div className="runner column"></div>
         <div className="odds column">{t('core:bets.active.odds')}</div>
         <div className="matched column">{t('core:bets.active.matched')}</div>
+        <div className="profit column">PROFIT</div>
         <div className="status column">{t('core:bets.active.status')}</div>
       </div>
     );
@@ -39,18 +39,29 @@ class ActiveBetList extends Component {
 
     return items.map((bet, index) => {
       const matched = (bet.get('pool_filled')* this.exchangeRate).toFixed(1);
-      const percentMatched = Math.round(((matched / (bet.get('pool_total') * this.exchangeRate))*100));
+      const totalMatched = (bet.get('pool_total') * this.exchangeRate).toFixed(1);
+      const profit = ((parseInt(bet.get('pool_total')) + parseInt(bet.get('stake')) + parseInt(bet.get('liability'))) * this.exchangeRate).toFixed(1);
 
       return (
-        <div key={index} className="active-bet-row">
-          <div className="runner column" data-tip data-for={bet.get('id')}><i className={`fa fa-circle-o type-icon type-icon-${bet.get('type')}`} aria-hidden="true"/>{bet.get('runner_name')}</div>
+        <div key={index} className={`active-bet-row active-bet-row-${bet.get('type')}`}>
+          <div className="runner column" data-tip data-for={bet.get('id')}>
+            <div className="runner-name">{bet.get('runner_name')}</div>
+            <div className="runner-market">{bet.get('market_name')}</div>
+          </div>
           {this.renderRunnerTooltip(bet)}
           <div className="odds column">{bet.get('odds')}</div>
-          <div className="matched column"><span className="matched-amount">{matched}</span><span className="matched-percent">{percentMatched}%</span></div>
+          <div className="matched column">
+            <span className="matched-numerator">{matched}</span>
+            <span className="matched-denominator">{totalMatched}</span>
+          </div>
+          <div className="profit column column-currency">
+            <div className="profit-amount">{profit}</div>
+            <div className="currency">{t(`core:currency.${this.props.currency}`)}</div>
+          </div>
           <div className="status column" data-tip data-for={`${bet.get('id')}-status`}>{this.renderStatus(bet.get('status'))}</div>
           {this.renderStatusTooltip(bet)}
         </div>
-        );
+      );
     });
   }
 
