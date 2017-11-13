@@ -5,6 +5,7 @@
 
 Built on react/redux
 
+`npm install`
 `npm run start`
 
 Build production with:
