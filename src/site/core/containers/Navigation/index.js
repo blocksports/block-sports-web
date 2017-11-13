@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 
 import NavList from '../../components/NavList';
-
 import styles from './style.less';
 
 class Navigation extends Component {

@@ -56,7 +56,7 @@ BetSlip.propTypes = {
   focusTab: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
   className: PropTypes.string,
-  items: PropTypes.instanceOf(Immutable.List).isRequired,
+  items: PropTypes.instanceOf(Immutable.Map).isRequired,
   exchangeRate: PropTypes.number.isRequired,
   activeCurrency: PropTypes.string.isRequired,
   placeBet: PropTypes.func.isRequired,

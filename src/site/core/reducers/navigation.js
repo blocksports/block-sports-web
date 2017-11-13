@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import axios from '../../../lib/request';
 import { createAction, createReducer } from 'redux-act';
 import { getNestedMarketsArray } from '../../../lib/utils';
 
@@ -10,7 +11,15 @@ const fetchNavigationSuccess = createAction('FETCH_NAVIGATION_SUCCESS');
 export function fetchNavigation(data) {
   return (dispatch) => {
     dispatch(fetchNavigationRequest());
-    dispatch(fetchNavigationSuccess(mockNavigation));
+
+    axios({
+      method: 'get',
+      url: '/v1/navigation'
+    }).then((resp) => {
+      dispatch(fetchNavigationSuccess(resp.data));
+    }).catch((err) => {
+      dispatch(fetchNavigationSuccess({data: mockNavigation}));
+    });
   }
 }
 
@@ -26,9 +35,11 @@ const navigationReducer = createReducer({
     });
   },
   [fetchNavigationSuccess]: (state, resp) => {
+    console.log(resp.data)
+    console.log(mockNavigation)
     return state.merge({
       isLoading: true,
-      navigation: Immutable.fromJS(resp)
+      navigation: Immutable.fromJS(resp.data)
     });
   }
 }, initialState);

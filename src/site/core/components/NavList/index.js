@@ -20,12 +20,12 @@ class NavList extends Component {
 
   }
 
-  get filterExists() {
-    return categoryFilters.includes(this.props.filter);
+  get category() {
+    return this.props.items.find((item) => item.get('id') == this.props.filter);
   }
 
   get header() {
-    if (!this.filterExists) {
+    if (!this.props.filter) {
       return (
         <div className="navigation-header">
           All Markets
@@ -33,26 +33,25 @@ class NavList extends Component {
       );
     }
 
+    const category = this.category;
+    const name = category ? category.get('name') : '';
+
     return (
       <div className="navigation-header">
         <span className="navigation-market-link"><Link to="/exchange">{t('core:navigation.header-all')}</Link></span>
         <span className="navigation-caret">></span>
-        <span className="navigation-category">{t(`core:categories.${this.props.filter}`)}</span>
+        <span className="navigation-category">{name}</span>
       </div>
     );
   }
 
   get renderItems() {
-    let items = this.props.items;
-
-    if (this.filterExists) {
-      const category = this.props.items.find((item) => item.get('id') == this.props.filter);
-      items = category ? category.get('items') : items;
-    }
+    const category = this.category;
+    const items = category ? category.get('competitions') : this.props.items;
 
     return items.map((item, idx) => {
-      const link = this.filterExists ?
-        `/exchange/${item.get('sport')}/${item.get('type')}/${item.get('id')}` :
+      const link = this.props.filter ?
+        `/exchange/${category.get('id')}/${item.get('id')}` :
         `/exchange/${item.get('id')}`;
 
       return (
@@ -60,7 +59,7 @@ class NavList extends Component {
           <Link to={link} className="navigation-item" activeClassName={styles.active}>
             <span className="navigation-item-name">{item.get('name')}</span>
             <div className="navigation-item-count">
-              <span className="block-number">{item.get('marketCount')}</span>
+              <span className="block-number">{item.get('count')}</span>
             </div>
             <span className="navigation-item-caret"><i className="fa fa-caret-right caret-icon" aria-hidden="true"/></span>
           </Link>
