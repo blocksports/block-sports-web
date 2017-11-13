@@ -31,10 +31,11 @@ class MarketList extends Component {
     let lastDate = '';
 
     items.forEach((item, idx) => {
-      const date = moment.unix(item.get('date')).format('D');
+      const date = moment.unix(item.get('commence')).format('D');
+      // Inject date row if there is a new day
       if (date != lastDate) {
         lastDate = date;
-        itemArray.push(this.renderDateRow(item.get('date'), idx));
+        itemArray.push(this.renderDateRow(item.get('commence'), idx));
       }
 
       itemArray.push(

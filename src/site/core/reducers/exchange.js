@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import axios from '../../../lib/request';
 import { createAction, createReducer } from 'redux-act';
 import { getNestedMarketsArray, calculateMatchPools } from '../../../lib/utils';
 import { mockMarkets } from './__mockData';
@@ -14,7 +15,21 @@ const updateMinimum = createAction('UPDATE_MINIMUM_BET');
 export function fetchMarkets(data) {
   return (dispatch) => {
     dispatch(fetchMarketsRequest());
-    dispatch(fetchMarketsSuccess(data, mockMarkets));
+
+    axios({
+      method: 'get',
+      url: '/v1/exchange',
+      params: {
+        sport: data.sport,
+        competition: data.competition
+      }
+    }).then((resp) => {
+      dispatch(fetchMarketsSuccess(data, resp));
+    }).catch((err) => {
+      dispatch(fetchMarketsSuccess(data, {data: mockMarkets}));
+    });
+
+
   };
 }
 
@@ -48,9 +63,7 @@ const exchangeReducer = createReducer({
     const nestedArray = getNestedMarketsArray(data);
     const oldMarkets = state.get('markets');
 
-    calculateMatchPools(resp);
-
-    const matches = Immutable.fromJS(resp);
+    const matches = Immutable.fromJS(resp.data);
 
     const newMarkets = oldMarkets.updateIn(nestedArray, (val = matches) => val);
 

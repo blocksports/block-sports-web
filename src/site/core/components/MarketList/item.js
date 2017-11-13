@@ -39,7 +39,7 @@ class MarketListItem extends Component {
     this.state = {
       activeOption: "",
       odds: "",
-      limit: "",
+      available: "",
       stake: "",
       type: ""
     };
@@ -58,7 +58,7 @@ class MarketListItem extends Component {
   }
 
   get contentLeft() {
-    const date = this.props.item.get('date');
+    const date = this.props.item.get('commence');
 
     return (
       <div className="market-item-side left"  onClick={this.handleMarketClick}>
@@ -82,7 +82,7 @@ class MarketListItem extends Component {
             {t('core:markets.item.matched')}
           </span>
           <span className="pool">
-            {round(this.props.item.get('total_matched') * this.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
+            {round(this.props.item.get('matched') * this.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
           </span>
           <span className="rules">
             {t('core:markets.item.rules')}&nbsp;>
@@ -93,20 +93,23 @@ class MarketListItem extends Component {
   }
 
   get contentMiddle() {
-    return (
-      <div className="market-item-middle">
-        {this.renderRunnerRows(this.props.item.get('runner_a'))}
-        {this.drawRow}
-        {this.renderRunnerRows(this.props.item.get('runner_b'))}
-        {this.showDraw ? this.renderRunnerRows(this.props.item.get('draw')) : null}
-      </div>
-    );
-  }
-
-  get drawRow() {
-    if (!this.props.showDetail) return null;
-
-    return this.renderRunnerRows(this.props.item.get('draw'));
+    // Only have up to 3 outcomes at the moment
+    if (this.props.item.get('outcomes') == 2) {
+      return (
+        <div className="market-item-middle">
+          {this.renderMarketRow(0)}
+          {this.renderMarketRow(1)}
+        </div>
+      );
+    } else {
+      return (
+        <div className="market-item-middle">
+          {this.renderMarketRow(0)}
+          {this.renderMarketRow(1, true)}
+          {this.renderMarketRow(2)}
+        </div>
+      );
+    }
   }
 
   get exchangeRate() {
@@ -117,27 +120,29 @@ class MarketListItem extends Component {
     return false;
   }
 
+  // Filters bets based on the minimum available pre-matched
   getFilteredBets(type, bets) {
-    const order = {'back': -1, 'lay': 1};
+    if (!bets) return [];
+
     const limit = !this.props.showDetail ? 1 : 3;
-    const orderedBets = bets.sortBy((_, key) => key * order[type]);
 
     let oddsArray = [];
     let temp = 0;
-    let tempKey = undefined;
+    let tempIndex = undefined;
 
-    orderedBets.forEach((odd, key) => {
-      const matched = odd.get('available');
-      if (matched  > temp) {
-        temp = matched;
-        tempKey = key;
+    bets.forEach((odd, index) => {
+      const available = odd.get('available');
+      // Keep track of largest available amount incase no odds fulfil filter
+      if (available  > temp) {
+        temp = available;
+        tempIndex = index;
       }
 
-      if (matched < (this.props.minimumBet / this.exchangeRate) || oddsArray.length >= limit) return;
+      if (available < (this.props.minimumBet / this.exchangeRate) || oddsArray.length >= limit) return;
       oddsArray.push(odd);
     });
 
-    if (oddsArray.length < 1) oddsArray.push(orderedBets.get(tempKey));
+    if (oddsArray.length < 1) oddsArray.push(bets.get(tempIndex));
 
     return oddsArray;
   };
@@ -146,28 +151,28 @@ class MarketListItem extends Component {
     return Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0;
   }
 
-  getBetID(runner) {
-    return `${runner.get('market_id')}-${runner.get('runner_id')}`;
+  getBetID(outcome) {
+    return `${this.props.item.get('id')}-${outcome}`;
   }
 
-  handleOddsClick(runner, bet, type) {
+  handleOddsClick(outcome, bet, type) {
     return (event) => {
       event.stopPropagation();
 
       if (this.props.showDetail && this.props.onOddsClick) {
         return this.props.onOddsClick({
-          id: this.getBetID(runner),
+          id: this.getBetID(outcome),
           bet: bet,
-          runner: runner,
+          outcome: outcome,
           item: this.props.item,
           type: type
         });
       }
 
       this.setState({
-        activeOption: runner.get('runner_id'),
+        activeOption: outcome,
         odds: bet.get('odds'),
-        limit: bet.get('matched'),
+        available: bet.get('available'),
         stake: "",
         type: type
       });
@@ -215,25 +220,29 @@ class MarketListItem extends Component {
     };
   }
 
-  renderRunnerRows(runner) {
+  renderMarketRow(outcome, isDraw) {
+    // Account for mismatched array lengths
+    const participantIndex = outcome > 0 ? 1 : 0;
+    const name = isDraw ? "Draw" : this.props.item.getIn(['participants', participantIndex]);
+
     return (
       <div className={styles.runnerRow}>
         <div className="market-item-row"  onClick={this.handleMarketClick}>
           <div className="market-item-row-detail">
-            {runner.get('name')}
+            {name}
           </div>
           <div className="market-item-row-actions">
-            <div className="bet-buttons">{this.renderBetButtons(runner, 'back')}</div>
-            <div className="bet-buttons">{this.renderBetButtons(runner, 'lay')}</div>
+            <div className="bet-buttons">{this.renderBetButtons(outcome, 'back')}</div>
+            <div className="bet-buttons">{this.renderBetButtons(outcome, 'lay')}</div>
           </div>
         </div>
-        {this.renderBetRow(runner)}
+        {this.renderBetRow(outcome)}
       </div>
     );
   }
 
-  renderBetRow(runner) {
-    if (this.state.activeOption !== runner.get('runner_id')) return null;
+  renderBetRow(outcome) {
+    if (this.state.activeOption !== outcome) return null;
 
     return (
       <div className="market-item-row bet">
@@ -262,7 +271,7 @@ class MarketListItem extends Component {
           <div className="action action-confirm">
             <Button
               className={styles.confirmButton}
-              onClick={this.handleConfirmClick(runner)}
+              onClick={this.handleConfirmClick(outcome)}
               isDisabled={!this.state.stake}
               >
               {t('core:markets.item.confirm')}
@@ -273,15 +282,15 @@ class MarketListItem extends Component {
     );
   }
 
-  renderBetButtons(runner, type) {
-    let bets = this.getFilteredBets(type, runner.get(type));
+  renderBetButtons(outcome, type) {
+    let bets = this.getFilteredBets(type, this.props.item.getIn(['match_odds', type, outcome])) || Immutable.List();
 
     let betArray = [];
 
     bets.forEach((bet, idx) => {
       betArray.push(
         <div className={`bet-button bet-button-${type}`} key={idx}>
-          {this.renderBetButton(runner, bet, type)}
+          {this.renderBetButton(outcome, bet, type)}
         </div>
       );
     });
@@ -291,7 +300,7 @@ class MarketListItem extends Component {
         <div className="bet-button bet-button-empty" key={betArray.length}>
           <Button
             className={classNames([styles.oddsButton, 'btn-empty'])}
-            onClick={this.handleOddsClick(runner, Immutable.Map(), type)}
+            onClick={this.handleOddsClick(outcome, Immutable.Map(), type)}
             />
         </div>
       );
@@ -302,11 +311,12 @@ class MarketListItem extends Component {
     return betArray;
   }
 
-  renderBetButton(runner, bet, type) {
+  renderBetButton(outcome, bet, type) {
+    console.log(bet)
     return (
       <Button
         className={classNames([styles.oddsButton, `btn-${type}`])}
-        onClick={this.handleOddsClick(runner, bet, type)}
+        onClick={this.handleOddsClick(outcome, bet, type)}
         >
         <div className="odds">
           {bet.get('odds')}
