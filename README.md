@@ -5,9 +5,24 @@
 
 Built on react/redux
 
+### Installation
+
 `npm install`
 `npm run start`
+
+To set environment variables:
+
+`cat .env.example > .env.development.local`
 
 Build production with:
 
 `npm run build`
+
+### Generating Files
+
+To help generate components and containers:
+
+`npm run generate`
+
+
+Builds are failing automatically until tests are fixed/written :~)
