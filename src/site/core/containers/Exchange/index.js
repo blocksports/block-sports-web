@@ -7,7 +7,8 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 import { fetchMarkets } from '../../reducers/exchange';
 import { selectMarketItems } from '../../selectors/exchange';
-import ExchangeLayout from '../../components/ExchangeLayout'
+import ExchangeLayout from '../../components/ExchangeLayout';
+import { subToMarkets, unsubFromMarkets } from '../../../../lib/pusher';
 import _ from 'lodash';
 
 import styles from './style.less';
@@ -19,16 +20,22 @@ class Exchange extends Component {
 
   componentWillMount() {
     this.props.fetchMarkets(this.props.params);
+    subToMarkets(this.props.dispatch, this.props.params)
   }
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(this.props.params, nextProps.params)) {
       this.props.fetchMarkets(nextProps.params);
+      subToMarkets(this.props.dispatch, nextProps.params, this.props.params);
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return !_.isEqual(this.props.params, nextProps.params) || !_.isEqual(this.props.location.query, nextProps.location.query) || !Immutable.is(this.props.items, nextProps.items)
+  }
+
+  componentWillUnmount() {
+    unsubFromMarkets(this.props.params);
   }
 
   render() {
@@ -58,6 +65,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    dispatch,
     fetchMarkets: (...args) => {
       return dispatch(fetchMarkets(...args));
     },

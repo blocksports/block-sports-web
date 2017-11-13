@@ -39,6 +39,7 @@
     "postcss-loader": "2.0.6",
     "promise": "7.1.1",
     "prop-types": "^15.5.10",
+    "qs": "^6.5.1",
     "react": "^16.0.0",
     "react-dev-utils": "^3.0.2",
     "react-dom": "^16.0.0",
@@ -130,7 +131,10 @@
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/setupTestFramework.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "pusher": true
+    }
   },
   "reactToolbox": {
     "include": [

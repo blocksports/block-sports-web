@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import axios from 'axios';
+import axios from '../../../lib/request';
 import { createAction, createReducer } from 'redux-act';
 
 const fetchPriceRequest = createAction('FETCH_PRICE_REQUEST');
@@ -13,6 +13,15 @@ export function fetchPrice(data) {
   return (dispatch) => {
     dispatch(fetchPriceRequest());
 
+    axios({
+      method: 'get',
+      url: '/v1/currency'
+    }).then((resp) => {
+      dispatch(fetchPriceSuccess(data, resp));
+    }).catch((err) => {
+      dispatch(fetchPriceSuccess(data, {data: mockPrices}));
+    });
+
     // axios({
     //   method:'get',
     //   url: 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=NEO,GAS&tsyms=USD,GAS,AUD'
@@ -20,8 +29,6 @@ export function fetchPrice(data) {
     // .then((resp) => {
     //   dispatch(fetchPriceSuccess(data, resp));
     // });
-
-    dispatch(fetchPriceSuccess(data, {data: mockPrices}));
   };
 }
 
