@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
+import ModalConfirmBet from '../../components/Modal/ModalConfirmBet'
+
 const ModalConductor = ({currentModal}) => {
 	console.log(currentModal)
 	switch (currentModal) {
   	case 'confirmBet':
-    	return <div>PLACE A BET</div>
+    	return <ModalConfirmBet />
     	break;
     default:
-      return <div>Nothing</div>
+      return null;
   }
 };
 
