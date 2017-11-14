@@ -263,7 +263,7 @@ class MarketListItem extends Component {
             <Button
               className={styles.confirmButton}
               onClick={this.handleConfirmClick(runner)}
-              isDisabled={!this.state.stake}
+              // isDisabled={!this.state.stake}
               >
               {t('core:markets.item.confirm')}
             </Button>
