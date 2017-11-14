@@ -1,5 +1,7 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
+import { setCurrentModal } from './modal'
+
 
 const addToBetSlip = createAction('ADD_TO_BET_SLIP');
 const removeFromBetSlip = createAction('REMOVE_FROM_BET_SLIP');
@@ -10,6 +12,7 @@ const placeBetSuccess = createAction('PLACE_BET_SUCCESS', (data, resp) => [data,
 
 const fetchActiveBetsRequest = createAction('FETCH_ACTIVE_BETS_REQUEST');
 const fetchActiveBetsSuccess = createAction('FETCH_ACTIVE_BETS_SUCCESS');
+
 
 const mockActiveBets = [
   // {
@@ -69,12 +72,13 @@ export function removeAllBets() {
 export function placeBet(data, slipData) {
   return (dispatch) => {
     dispatch(placeBetRequest());
+    dispatch(setCurrentModal('confirmBet'));
 
-    if (slipData) {
-      dispatch(removeBet(slipData));
-    }
+    // if (slipData) {
+    //   dispatch(removeBet(slipData));
+    // }
 
-    dispatch(placeBetSuccess(data, {}));
+    // dispatch(placeBetSuccess(data, {}));
   };
 }
 
