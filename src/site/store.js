@@ -36,5 +36,5 @@ export default function configureStore(history, initialState) {
 
   finalCreateStore = finalCreateStore(createStore);
 
-  return finalCreateStore(appReducer, initialState);
+  return finalCreateStore(appReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
