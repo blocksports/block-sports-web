@@ -8,6 +8,7 @@ const removeFromBetSlip = createAction('REMOVE_FROM_BET_SLIP');
 const removeAllFromBetSlip = createAction('REMOVE_ALL_FROM_BET_SLIP');
 
 const placeBetRequest = createAction('PLACE_BET_REQUEST');
+const placeBetConfirm = createAction('PLACE_BET_CONFIRM');
 const placeBetSuccess = createAction('PLACE_BET_SUCCESS', (data, resp) => [data, resp]);
 
 const fetchActiveBetsRequest = createAction('FETCH_ACTIVE_BETS_REQUEST');
@@ -72,7 +73,8 @@ export function removeAllBets() {
 export function placeBet(data, slipData) {
   return (dispatch) => {
     dispatch(placeBetRequest());
-    dispatch(setCurrentModal('confirmBet'));
+    dispatch(placeBetConfirm(data))
+   	dispatch(setCurrentModal('confirmBet'));
 
     // if (slipData) {
     //   dispatch(removeBet(slipData));
@@ -93,7 +95,8 @@ const initialState = Immutable.Map({
   isLoading: false,
   isBetting: false,
   activeBets: Immutable.List(),
-  betSlip: Immutable.Map()
+  betSlip: Immutable.Map(),
+  placeBetConfirm: Immutable.Map(),
 });
 
 const betReducer = createReducer({
@@ -109,6 +112,11 @@ const betReducer = createReducer({
   [placeBetRequest]: (state) => {
     return state.merge({
       isBetting: true
+    });
+  },
+  [placeBetConfirm]: (state, data) => {
+  	return state.merge({
+    	confirmingBet: Immutable.fromJS(data)
     });
   },
   [placeBetSuccess]: (state, [data, resp]) => {
