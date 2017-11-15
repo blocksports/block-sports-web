@@ -1,56 +1,31 @@
 import React from 'react';
-const PropTypes = 'react-proptypes';
+import PropTypes from 'prop-types';
+import styles from './style.less';
 
 const ModalWrapper = props => {
-  const handleBackgroundClick = e => {
-    if (e.target === e.currentTarget) props.hideModal();
-  };
-
-  const onOk = () => {
-    props.onOk();
-    props.hideModal();
-  };
-
-  const okButton = props.showOk
-    ? (
-      <button
-        onClick={onOk}
-        disabled={props.okDisabled}
-      >
-        {props.okText}
-      </button>
-    ) : null;
-
-  return (
-    <div onClick={handleBackgroundClick}>
-      <header>
-        <h1>{props.title}</h1>
-        <button onClick={props.hideModal}>Close</button>
-      </header>
-      {props.children}
-      {okButton}
-    </div>
-  );
-};
+	const handleBackgroundClick = e => e.target === e.currentTarget ? props.setCurrentModal(null) : null;
+	return (
+		<div className={styles.root} onClick={handleBackgroundClick}>
+			<article className={styles.content}>
+				<header className={styles.header}>
+			  	{props.title && <h3>{props.title}</h3>}
+			    <button onClick={() => props.setCurrentModal(null)}>Close</button>
+			  </header>
+			  <section className={styles.body}>
+			  	{props.children}
+			  </section>
+			</article>
+		</div>
+	)
+}
 
 ModalWrapper.propTypes = {
   title: PropTypes.string,
-  showOk: PropTypes.bool,
-  okText: PropTypes.string,
-  okDisabled: PropTypes.bool,
-  width: PropTypes.number,
-  children: PropTypes.element,
-  hideModal: PropTypes.func,
-  onOk: PropTypes.func,
+  children: PropTypes.node,
 };
 
 ModalWrapper.defaultProps = {
   title: '',
-  showOk: true,
-  okText: 'OK',
-  okDisabled: false,
-  width: 400,
-  onOk: () => {}
 };
 
 export default ModalWrapper;
