@@ -24,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		'currentModal': state.getIn(['core', 'modal', 'currentModal']),
 		'confirmingBet': state.getIn(['core', 'bet', 'confirmingBet'], Immutable.Map),

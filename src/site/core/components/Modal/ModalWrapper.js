@@ -7,9 +7,11 @@ const ModalWrapper = props => {
 	return (
 		<div className={styles.root} onClick={handleBackgroundClick}>
 			<article className={styles.content}>
-				<header className={styles.header}>
-			  	{props.title && <h3>{props.title}</h3>}
-			    <button onClick={() => props.setCurrentModal(null)}>Close</button>
+				<header>
+			  	{props.title && <h3 className={styles.heading}>{props.title}</h3>}
+			    <a className={styles.closeButton} onClick={() => props.setCurrentModal(null)}>
+			    	<i class="fa fa-times" aria-hidden="true"></i>
+			    </a>
 			  </header>
 			  <section className={styles.body}>
 			  	{props.children}

@@ -1,4 +1,3 @@
-
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
 @import '../../../../less/_space.less';
@@ -17,18 +16,29 @@
 }
 
 :local(.content) {
-	max-width: 400px;
+	position: relative;
+	max-width: 440px;
 	width: 100%;
-	background-color: @tuna;
+	background-color: @charade;
 	.fadeInUp();
 }
 
-:local(.header) {
-	display: flex;
-	justify-content: space-between;
-	padding: @space-s;
+:local(.heading) {
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding: @space-m 0;
+	margin: 0;
+	font-size: 1.25rem;
 }
 
-:local(.body) {
-	padding: @space-s;
+:local(.closeButton) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.5rem;
+	i {
+		color: @gull-gray;
+		font-size: 1.25rem;
+	}
 }

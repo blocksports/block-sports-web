@@ -75,12 +75,10 @@ export function placeBet(data, slipData) {
     dispatch(placeBetRequest());
     dispatch(placeBetConfirm(data))
    	dispatch(setCurrentModal('confirmBet'));
-
-    // if (slipData) {
-    //   dispatch(removeBet(slipData));
-    // }
-
-    // dispatch(placeBetSuccess(data, {}));
+    if (slipData) {
+      dispatch(removeBet(slipData));
+    }
+    dispatch(placeBetSuccess(data, {}));
   };
 }
 
