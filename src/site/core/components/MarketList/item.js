@@ -194,9 +194,9 @@ class MarketListItem extends Component {
         liability: getBetLiability(this.state),
         pool_filled: 0,
         status: 'pending',
-        date_created: moment().unix()
+        date_created: moment().unix(),
+        profit: this.getProfit(this.state.odds, this.state.stake),
       });
-
       this.resetState();
     }
   }
@@ -263,7 +263,7 @@ class MarketListItem extends Component {
             <Button
               className={styles.confirmButton}
               onClick={this.handleConfirmClick(runner)}
-              // isDisabled={!this.state.stake}
+              isDisabled={!this.state.stake}
               >
               {t('core:markets.item.confirm')}
             </Button>
