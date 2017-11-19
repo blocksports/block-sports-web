@@ -1,26 +1,26 @@
 @import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
   display: flex;
+  justify-content: space-between;
+}
 
-  .footer-content {
-    margin-left: 5px;
-    padding-right: 5px;
-  }
+:local(:left) {
 
-  .block-info {
-    flex-grow: 1
-  }
+}
 
-  .bet-view {
-    display: flex;
-    align-items: center;
+:local(.right) {
+	display: flex;
+	align-items: center;
+}
 
-    &-text {
-      position: relative;
-      left: 8px;
-      font-size: 10px;
-    }
-  }
+:local(.betView) {
+  display: flex;
+  align-items: center;
+}
+
+:local(.betViewText) {
+  .headingS();
 }

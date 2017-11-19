@@ -33,24 +33,26 @@ export class ExchangeFooter extends Component {
   render() {
     return (
       <div className={classNames([styles.root, this.props.className])}>
-        <div className="footer-content block-info">
-
+        <div className={styles.left}>
+          ...
         </div>
-        <div className="footer-content currency-toggle">
-          <CurrencyToggle
-            currency={this.props.activeCurrency}
-            exchangeCurrency={this.props.activeExchangeCurrency}
-            onToggle={this.handleToggleClick}
+        <div className={styles.right}>
+          <div className={styles.currency}>
+            <CurrencyToggle
+              currency={this.props.activeCurrency}
+              exchangeCurrency={this.props.activeExchangeCurrency}
+              onToggle={this.handleToggleClick}
+              />
+          </div>
+          <div className={styles.betView}>
+            <span className={styles.betViewText}>{t('core:footer.bet-view')}</span>
+            <ViewSlider
+              currency={this.props.activeCurrency}
+              exchangeCurrency={this.props.activeExchangeCurrency}
+              exchangeRate={this.props.exchangeRate}
+              onChange={this.props.updateMinimumBet}
             />
-        </div>
-        <div className="footer-content bet-view">
-          <div className="bet-view-text">{t('core:footer.bet-view')}</div>
-          <ViewSlider
-            currency={this.props.activeCurrency}
-            exchangeCurrency={this.props.activeExchangeCurrency}
-            exchangeRate={this.props.exchangeRate}
-            onChange={this.props.updateMinimumBet}
-            />
+          </div>
         </div>
       </div>
     );
