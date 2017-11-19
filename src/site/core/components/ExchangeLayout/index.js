@@ -24,7 +24,7 @@ class ExchangeLayout extends Component {
 
   get contentLeft() {
     return (
-      <div className="exchange-content-left panel">
+      <div className={styles.left}>
         <Navigation
           sport={this.props.params.sport}
           />
@@ -34,10 +34,9 @@ class ExchangeLayout extends Component {
 
   get contentRight() {
     return (
-      <div className="exchange-content-right">
-        <div className="exchange-content-right-top panel">
-          <Bets/>
-        </div>
+      <div className={styles.right}>
+        <Bets />
+
         <div className="exchange-content-right-bottom panel">
 
         </div>
@@ -47,10 +46,10 @@ class ExchangeLayout extends Component {
 
   get contentMiddle() {
     return (
-      <div className="exchange-content-middle">
-        <div className="exchange-content-middle-top panel">
-        </div>
-        <div className="exchange-content-middle-bottom panel">
+      <div className={styles.main}>
+        <figure className={styles.mainMedia}>
+        </figure>
+        <div className={styles.mainMarket}>
           {this.marketView}
         </div>
       </div>
@@ -58,36 +57,23 @@ class ExchangeLayout extends Component {
   }
 
   get marketView() {
-    if (this.props.params.entity === 'market') {
-      return (
-        <MarketDetail
-          params={this.props.params}
-          />
-      );
+    const { params, items } = this.props
+    if (params.entity === 'market') {
+      return <MarketDetail params={params} />
+    } else {
+      return <Markets items={items} />
     }
-
-    return (
-      <Markets
-        items={this.props.items}
-        />
-    );
-  }
-
-  get content() {
-    return (
-      <div className="exchange-content">
-        {this.contentLeft}
-        {this.contentMiddle}
-        {this.contentRight}
-      </div>
-    );
   }
 
   render() {
     return (
-      <div className={styles.root}>
-        {this.content}
-        <ExchangeFooter className="exchange-footer panel"/>
+      <div>
+        <div className={styles.root}>
+          {this.contentLeft}
+          {this.contentMiddle}
+          {this.contentRight}
+        </div>
+        <ExchangeFooter className={styles.footer}/>
       </div>
     );
   }
