@@ -1,176 +1,87 @@
 @import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
 @import '../../../../less/_fonts.less';
 
-.__react_component_tooltip.place-bottom:before {
-  display: none;
+:local(.list) {
+  padding: 0;
+  margin: 0;
 }
 
-.__react_component_tooltip.place-bottom:after {
-  display: none;
+:local(.listItem) {
+  padding: 0;
+  margin: @space 0;
+  border-left: 3px solid;
+  padding-left: @space-s;
+  &.back {
+    border-left-color: @shamrock;
+  }
+  &.lay {
+    border-left-color: @roman;
+  }
+
 }
 
-:local(.root) {
-  text-align: center;
+:local(.statusBlock) {
+  display: inline-block;
+  margin-bottom: @space-s;
+  font-size: @font-size-xs;
+  border-radius: @border-radius;
+  padding: 0.5em 1em;
+
+   &.pending {
+    color: #eae16c;
+    background-color: @site-panel-bg-light;
+  }
+
+  &.active {
+    color: @shamrock;
+    background-color: @site-panel-bg-light;
+  }
+
+  &.filled {
+    color: @white;
+    background-color: @site-panel-bg-light;
+  }
+}
+
+:local(.runner) {
+  margin-bottom: @space-m;
+}
+
+:local(.runnerName) {
+  display: block;
+}
+
+:local(.runnerMarket) {
+  display: block;
+  @color: @gull-gray;
+  font-size: @font-size-xs;
+}
+
+:local(.odds) {
+  display: block;
+  @color: @gull-gray;
+}
+
+:local(.details) {
+  display: flex;
+  justify-content: space-between;
+}
+
+:local(.detailsHeading) {
+  display: flex;
   color: @gull-gray;
+  .headingXS();
+}
 
-  .active-bet-header {
-    display: flex;
-    font-size: 8px;
-    margin: 0 5px 10px 0;
-  }
-
-  .active-bet-items {
-    margin-right: 5px;
-  }
-
-  .active-bet-row {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    border-radius: 3px;
-    background-color: @charade-light;
-    margin-bottom: 5px;
-    font-size: 11px;
-
-    &-back {
-      border-left: solid fade(@shamrock, 75%);
-    }
-
-    &-lay {
-      border-left: solid fade(@roman, 75%);
-    }
-
-    .runner {
-      cursor: pointer;
-      color: @site-text;
-      text-align: left;
-
-      &-name {
-        padding-bottom: 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        .type-icon {
-          position: relative;
-          padding-right: 4px;
-          top: -1px;
-          font-size: 8px;
-
-          &-back {
-            color: @shamrock;
-          }
-
-          &-lay {
-            color: @roman;
-          }
-        }
-      }
-
-      &-market {
-        opacity: 0.7;
-        font-size: 9px;
-        white-space: pre-wrap;
-
-        .multilineTruncate(22px, 11px, 2);
-      }
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .column {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 0 5px 0 5px;
-
-    &-currency {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      bottom: -5px;
-    }
-  }
-
-  .currency {
-    font-size: 7px;
-    margin-top: 3px;
-  }
-
-  .runner {
-    width: 30%;
-  }
-
-  .odds {
-    width: 15%;
-  }
-
-  .matched {
-    width: 15%;
-
-    &-numerator {
-      display: block;
-      padding-bottom: 5px;
-    }
-
-    &-denominator {
-      border-top: solid 1px;
-      padding: 2px 5px 0 5px;
-    }
-  }
-
-  .profit {
-    width: 12%;
-  }
-
-  .status {
-    display: flex;
-    justify-content: center;
-    width: 10%;
-    cursor: pointer;
-
-    .status-block {
-      display: inline-flex;
-      padding: 3px 6px 3px 6px;
-      border-radius: 3px;
-      font-size: 8px;
-
-      &-pending {
-        color: #eae16c;
-        background-color: rgba(234, 225, 108, 0.05);
-      }
-
-      &-active {
-        color: @shamrock;
-        background-color: rgba(43, 228, 136, 0.05);
-      }
-
-      &-filled {
-        color: @white;
-        background-color: rgba(255, 255, 255, 0.05);
-      }
-    }
-  }
+:local(.detailsItem) {
+  font-size: @font-size-s;
 }
 
 :local(.tooltip) {
-  margin-top: 15px !important;
-  font-size: 9px !important;
-  text-align: left !important;
-  border: none !important;
-  opacity: 1 !important;
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-
-  .runner-tooltip-entity {
-    font-family: 'brandon-grotesque-medium' !important;
-  }
-
   .status-tooltip {
-    max-width: 80px;
-  }
+    .defaultFont();
+    font-size: @font-size-s;
+    max-width: 200px;
+  } 
 }

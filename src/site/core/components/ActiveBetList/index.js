@@ -43,24 +43,35 @@ class ActiveBetList extends Component {
       const profit = ((parseInt(bet.get('pool_total')) + parseInt(bet.get('stake')) + parseInt(bet.get('liability'))) * this.exchangeRate).toFixed(1);
 
       return (
-        <div key={index} className={`active-bet-row active-bet-row-${bet.get('type')}`}>
-          <div className="runner column" data-tip data-for={bet.get('id')}>
-            <div className="runner-name">{bet.get('runner_name')}</div>
-            <div className="runner-market">{bet.get('market_name')}</div>
-          </div>
-          {this.renderRunnerTooltip(bet)}
-          <div className="odds column">{bet.get('odds')}</div>
-          <div className="matched column">
-            <span className="matched-numerator">{matched}</span>
-            <span className="matched-denominator">{totalMatched}</span>
-          </div>
-          <div className="profit column column-currency">
-            <div className="profit-amount">{profit}</div>
-            <div className="currency">{t(`core:currency.${this.props.currency}`)}</div>
-          </div>
-          <div className="status column" data-tip data-for={`${bet.get('id')}-status`}>{this.renderStatus(bet.get('status'))}</div>
+        <li key={index} className={classNames([styles.listItem, bet.get('type')])}>
+          
+          {this.renderStatus(bet.get('status'), bet)}
+
           {this.renderStatusTooltip(bet)}
-        </div>
+
+          <div className={styles.runner} data-tip data-for={bet.get('id')}>
+            <span className={styles.runnerName}>{bet.get('runner_name')}</span>
+            <span className={styles.runnerMarket}>{bet.get('market_name')}</span>
+          </div>
+
+          {this.renderRunnerTooltip(bet)}
+
+          <div className={styles.details}>
+            <div className={styles.detailsOdds}>
+              <span className={styles.detailsHeading}>Odds</span>
+              <span className={styles.detailsItem}>{bet.get('odds')}</span>
+            </div>
+            <div className={styles.detailsMatched}>
+              <span className={styles.detailsHeading}>Matched</span>
+              <span className={styles.detailsItem}>{matched} / {totalMatched}</span>
+            </div>
+            <div className={styles.detailsProfit}>
+              <div className={styles.detailsHeading}>Profit</div>
+              <span className={styles.detailsItem}>{profit} {t(`core:currency.${this.props.currency}`)}</span>
+            </div>
+          </div>
+
+        </li>
       );
     });
   }
@@ -71,7 +82,7 @@ class ActiveBetList extends Component {
 
   renderRunnerTooltip(bet) {
     return (
-      <ReactTooltip id={bet.get('id')} place="bottom" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
+      <ReactTooltip id={bet.get('id')} place="left" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
         <div className="runner-tooltip-entity">{bet.get('entity_name')}</div>
         <div>{bet.get('market_name')}</div>
       </ReactTooltip>
@@ -80,27 +91,26 @@ class ActiveBetList extends Component {
 
   renderStatusTooltip(bet) {
     return (
-      <ReactTooltip id={`${bet.get('id')}-status`} place="bottom" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
+      <ReactTooltip id={`${bet.get('id')}-status`} place="left" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
         <div className="status-tooltip">{t(`core:bets.active.${bet.get('status')}-info`)}</div>
       </ReactTooltip>
     );
   }
 
-  renderStatus(status) {
+  renderStatus(status, bet) {
     return (
-      <div className={`status-block status-block-${status}`}>
+      <span className={classNames(styles.statusBlock, status)} data-tip data-for={`${bet.get('id')}-status`}>
         {t(`core:bets.active.${status}`)}
-      </div>
+      </span>
     );
   }
 
   render() {
     return (
       <div className={classNames([styles.root, this.props.className])}>
-        {this.header}
-        <div className="active-bet-items">
+        <ul className={styles.list}>
           {this.activeBets}
-        </div>
+        </ul>
       </div>
     );
   }
