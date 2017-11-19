@@ -1,27 +1,60 @@
-.font-names {
+@import './_utils';
 
-  @font-face {
-    font-family: 'brandon-grotesque-light';
-    src: url('../fonts/proxima-nova-soft-regular.ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'brandon-grotesque-regular';
-    src: url('../fonts/proxima-nova-soft-sb-regular.ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'brandon-grotesque-medium';
-    src: url('../fonts/proxima-nova-soft-bold.ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-
+@font-face {
+  font-family: 'Proxima-Nova-Soft';
+  src: url('../fonts/proxima-nova-soft-sb-regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Proxima-Nova-Soft';
+  src: url('../fonts/proxima-nova-soft-bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-family: 'Proxima-Nova-Soft', sans-serif;
+
+.defaultFont() {
+  font-family: @font-family;
+  font-weight: bold;
+  font-size: @font-size;
+  line-height: 1.5;
+}
+
+.headingL() {
+  font-size: @font-size-l;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: @gull-gray;
+}
+
+.headingM() {
+  font-size: @font-size-m;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: @gull-gray;
+}
+
+.headingS() {
+  font-size: @font-size-s;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: @gull-gray;
+}
+
+.headingXS() {
+  font-size: @font-size-xs;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: @gull-gray;
+}
+
 
 .multilineTruncate(@height, @line-height, @lines) {
   display: -webkit-box;
@@ -33,3 +66,5 @@
   -webkit-box-orient: vertical;
   /* autoprefixer: on */
 }
+
+
