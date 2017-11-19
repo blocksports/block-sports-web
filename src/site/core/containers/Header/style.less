@@ -3,19 +3,17 @@
 @import '../../../../less/_utils.less';
 
 :local(.root) {
+  height: @header-height;
   display: flex;
-  height: 4.6rem;
-  margin-bottom: @space;
+  margin-bottom: @panel-gutter;
 }
 
 :local(.logo) {
-  height: 4.6rem;
-  width: 4.6rem;
+  height: @header-height;
+  width: @header-height;
   .makePanel();
-  padding: 6px;
-  
-  &:hover,
-  &:focus {
+  padding: 4px;
+  &:hover {
     opacity: 0.6;    
   }
 }
@@ -39,12 +37,12 @@
 :local(.currency) {
   display: flex;
   align-items: center;
-  margin: 0.5em 0;
+  margin: 0.2em 0;
 }
 
 :local(.currencyName) {
   display: inline-block;
-  margin-right: @space-s;
+  margin-right: @space-xs;
   .headingXS();
 }
 
@@ -52,31 +50,42 @@
   font-size: @font-size-m;
   line-height: 1;
   background-color: @site-panel-bg-light;
-  padding: 0.3em 0.4em;
+  padding: 0.2em 0.3em;
   border-radius: @border-radius;
 }
 
+:local(.exchangeCurrency) {
+  font-size: @font-size-xs;
+}
+
 :local(.balance) {
-  margin: 0 @space-xl;
+  margin: 0 @space-m 0 @space-xl;
 }
 
 :local(.balanceHeading) {
+  display: block;
+  margin-bottom: @space-xs;
   .headingS();
+  color: @white;
+}
+
+:local(.balanceAmountCurrency) {
+  font-size: @font-size-s;
 }
 
 :local(.balanceAmount) {
+  display: block;
   color: @shamrock;
+  line-height: 1;
 }
 
 :local(.icon) {
-  
   i {
     font-size: @font-size-xl;
+    color: @gull-gray;
   }
-
 }
 
-
 :local(.newAccount) {
-  margin-left: @space-xl;
+  margin-left: @space-m;
 }

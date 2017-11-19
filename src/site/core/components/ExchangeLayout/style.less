@@ -1,6 +1,9 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_utils.less';
 
+@left-height: (@header-height + @footer-height) + (@panel-gutter * 4);
+@main-height: (@header-height + @footer-height) + (@panel-gutter * 4);
+
 :local(.root) {
   display: flex;
   width: 100%;
@@ -8,12 +11,16 @@
 
 :local(.left) {
  flex: 0 0 250px;
+ height: ~"calc(100vh - @{left-height})";
+ overflow-y: scroll;
  .makePanel();
 }
 
 :local(.main) {
   flex-grow: 1;
-  margin: 0 1rem;
+  margin: 0 @panel-gutter;
+  height: ~"calc(100vh - @{left-height})";
+  overflow-y: scroll;
 }
 
 :local(.mainMarket) {
@@ -23,9 +30,9 @@
 
 :local(.mainMedia) {
   display: block;
-  padding-bottom: 33%;
+  padding-bottom: 25%;
   border-radius: 5px;
-  margin: 0 0 1rem 0;
+  margin: 0 0 @panel-gutter 0;
   background-color: @gull-gray;
 }
 

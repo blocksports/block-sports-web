@@ -3,34 +3,36 @@
 
 :local(.root) {
   position: relative;
-  max-width: 20rem;
+  max-width: 18rem;
   width: 100%;
-
-  .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 0.75rem;
-    transform: translate3d(0, ~"calc(-50% - 1px)", 0);
-  }
-
-  input {
-    background: transparent;
-    -webkit-appearance: none;
-    outline: none;
-    width: 100%;
-    border-radius: @border-radius;
-    border: 1px solid @white;
-    font-size: @font-size-s;
-    line-height: 1;
-    padding: 0.75em 0.75em 0.75em 3em;
-    color: @white;
-    cursor: not-allowed;
-
-    &:focus {
-      + i {
-        color: @white;
-      }
-    }
-  }
-
 }
+
+:local(.icon) {
+  position: absolute;
+  top: 50%;
+  left: 1.6rem;
+  transform: ~"translate3d(0, -50%, 0)";
+  font-size: @font-size-m;
+  line-height: 1;
+  color: @gull-gray;
+}
+
+:local(.input) {
+  background: transparent;
+  -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+  border-radius: @border-radius * 2;
+  border: 1px solid @gull-gray;
+  font-size: @font-size-m;
+  line-height: 1;
+  padding: 0.4em 2em 0.4em 3.5em;
+  color: @gull-gray;
+  cursor: not-allowed;
+
+  &::-webkit-input-placeholder { color: @gull-gray; }
+  &:-moz-placeholder           { color: @gull-gray; }
+  &::-moz-placeholder          { color: @gull-gray; }
+  &:-ms-input-placeholder      { color: @gull-gray; }  
+}
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import classNames from 'classnames';
 import { t } from 'i18next';
 import styles from './style.less';
 
@@ -27,14 +28,10 @@ class Search extends Component {
 
   render() {
     return (
-      <div 
-        className={styles.root} 
-        onMouseEnter={() => this.handleMouseEnter()} 
-        onMouseLeave={() => this.handleMouseLeave()}
-      >
-        <i className="fa fa-search search-icon" aria-hidden="true"/>
+      <div className={styles.root} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+        <i className={classNames(['fa', 'fa-search', styles.icon])} aria-hidden="true"/>
         <input 
-          className="search" 
+          className={styles.input}
           placeholder={t('core:header.search-placeholder')} 
           value={this.state.value}
         />

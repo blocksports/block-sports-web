@@ -26,6 +26,11 @@ body {
 	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
+html,
+body {
+	overflow: hidden;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -74,7 +79,7 @@ h6 {
 }
 
 :local(.root) {
-	padding: 1rem;
+	padding: @panel-gutter;
 }
 
 img {

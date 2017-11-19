@@ -4,11 +4,13 @@
 
 :local(.dateHeading) {
   display: block;
-  .headingM();
+  font-size: @font-size-m;
+  line-height: 1;
+  color: @gull-gray;
   margin-bottom: @space;
-  &:not(:first-of-type) {
-    margin-top: calc(@space * 2.5);
-  }
+  background-color: @site-panel-bg-light;
+  padding: @space-xs @space;
+  border-radius: @border-radius;
 }
 
 :local(.itemRoot) {
@@ -19,7 +21,7 @@
 }
 
 :local(.itemDate) {
-  flex: 0 0 110px;
+  flex: 0 0 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,16 +30,18 @@
 
 :local(.itemDateDay) {
   display: block;
-  .headingXS();
+  .headingS();
 }
 
 :local(.itemDateTime) {
   display: block;
+  .headingM();
+  color: @white;
 }
 
 :local(.runnerRow) {
   flex: 0 0 100%;
-  padding: 0.5rem @space;
+  padding: 0.4em @space;
   &:not(:last-of-type) {
     border-bottom: 1px solid @market-item-border;
   }
@@ -51,7 +55,8 @@
 }
 
 :local(.marketRowDetail) {
-  
+  color: @gull-gray;
+  font-size: 13px;
 }
 
 :local(.marketRowActions) {
@@ -72,7 +77,7 @@
 }
 
 :local(.side) {
-  flex: 0 0 110px;
+  flex: 0 0 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,6 +93,8 @@
 
 :local(.sidePool) {
   display: block;
+  .headingM();
+  color: @white;
 }
 
 :local(.sideCurrency) {

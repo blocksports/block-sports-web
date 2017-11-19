@@ -39,7 +39,10 @@ class Header extends Component {
     return (
       <div className={styles.balance}>
         <h5 className={styles.balanceHeading}>{t('core:header.balance')}</h5>
-        <span className={styles.balanceAmount}>{this.convert(this.props.balance)}{' '}{t(`core:currency.${this.props.currency}`)}</span>
+        <span className={styles.balanceAmount}>
+          {this.convert(this.props.balance)}{' '}
+          <span className={styles.balanceAmountCurrency}>{t(`core:currency.${this.props.currency}`)}</span>
+        </span>
       </div>
     );
   }
@@ -104,7 +107,7 @@ class Header extends Component {
         <span className={styles.currencyAmount}>
           {this.props.price.getIn([currency, exchangeCurrency]).toFixed(2)}
           {' '}
-          {t(`core:currency.${exchangeCurrency}`)}
+          <span className={styles.exchangeCurrency}>{t(`core:currency.${exchangeCurrency}`)}</span>
           </span>
       </div>
     )
