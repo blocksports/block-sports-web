@@ -24,13 +24,12 @@ class BetSlipList extends Component {
     if (this.isEmpty('back') && this.isEmpty('lay')) return null;
 
     return (
-      <div className="remove-all">
-        {t('core:bets.bet-slip.remove-all')}
+      <div className={styles.removeAll}>
         <Button
-          className={styles.removeAllButton}
+          className={classNames([styles.removeAllButton, 'button-white', 'button-s'])}
           onClick={this.props.onRemoveAllClick}
         >
-          <i className="fa fa-times" aria-hidden="true"/>
+          {t('core:bets.bet-slip.remove-all')}
         </Button>
       </div>
     );
@@ -45,7 +44,6 @@ class BetSlipList extends Component {
 
     return (
       <div className={`bet-slip-${type}`}>
-        {this.renderHeader(type)}
         {this.renderRows(type, this.props.items.get(type))}
       </div>
     );
