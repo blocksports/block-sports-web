@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Immutable from 'immutable';
 import ModalWrapper from './ModalWrapper';
+import classNames from 'classnames';
 import Button from '../Button'
 import styles from './confirmBet.less';
 import DemoQrImage from '../../../../img/demo-qr.png';
@@ -29,7 +30,7 @@ class ModalConfirmBet extends Component {
 	    		<div>
 	    			<FormStepOne {...this.props} />
 	    			<div className={styles.buttonContainerNext}>
-	    				<Button onClick={() => this.updateStep(2)}>Next</Button>
+	    				<Button className="button-m button-white" onClick={() => this.updateStep(2)}>Next</Button>
 	    			</div>
 	    		</div>
 	    	}
@@ -37,11 +38,11 @@ class ModalConfirmBet extends Component {
 	    		<div>
 		    		<FormStepTwo {...this.props} />
 		    		<div className={styles.buttonContainerPrev}>
-		    			<Button onClick={() => this.updateStep(1)}>Back</Button>
+		    			<Button className="button-m button-white" onClick={() => this.updateStep(1)}>Back</Button>
 		    		</div>
 	    		</div>
 	    	}
-	    	<div>
+	    	<div className={styles.progressWrap}>
 	    		<span className={styles.progressText}>Step {currentStep} of {totalSteps}</span>
 					<progress className={styles.progress} value={currentStep / totalSteps * 100} max="100"></progress>
 				</div>
@@ -75,18 +76,18 @@ class FormStepOne extends Component {
 				<div className={styles.highlight}>
 					<div className={styles.row}>
 						<h5 className={styles.bodyHeading}>
-							<span className={styles.bodyHeadingType}>{confirmingBet.getIn(['type'])}</span>
+							<span className={classNames([styles.bodyHeadingType, confirmingBet.getIn(['type'])])}>{confirmingBet.getIn(['type'])}</span>
 							{confirmingBet.getIn(['runner_name'])}
 						</h5>
 						<div className={styles.stake}>
 							<span className={styles.stakeHeading}>Your stake</span>
 							<div className={styles.stakeItem}>
 								<span className={styles.stakeCurrency}>GAS</span>
-								<span className={styles.stakeNumL}>2.50</span>
+								<span className={styles.stakeNumL}>??</span>
 							</div>
 							<div className={styles.stakeItem}>
 								<span className={styles.stakeCurrency}>USD</span>
-								<span className={styles.stakeNumS}>5453</span>
+								<span className={styles.stakeNumS}>??</span>
 							</div>
 						</div>
 					</div>
@@ -99,7 +100,7 @@ class FormStepOne extends Component {
 				{showOptions && 
 					<div>
 						<div className={styles.info}>
-							<p>{confirmingBet.getIn(['entity_name'])} | {confirmingBet.getIn(['market_name'])}<br />
+							<p>{confirmingBet.getIn(['entity_name'])}: {confirmingBet.getIn(['market_name'])}<br />
 							Date, Time</p>
 						</div>
 						<div className={styles.infoDetails}>

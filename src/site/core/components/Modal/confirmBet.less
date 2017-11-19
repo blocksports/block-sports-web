@@ -1,18 +1,17 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
-@import '../../../../less/_space.less';
-@import '../../../../less/_animations.less';
+@import '../../../../less/_utils.less';
 
 :local(.highlight) {
-	padding: @space-s;
-	background-color: @tuna;
-	border-radius: 5px;
+	padding: @space;
+	background-color: @site-panel-bg-light;
+	border-radius: @border-radius;
 }
 
 :local(.buttonContainerNext),
 :local(.buttonContainerPrev) {
-	padding: 0 @space-s;
-	margin-top: 1rem;
+	margin: @space-xl 0 @space 0;
+	padding: 0 @space;
 }
 
 :local(.buttonContainerNext) {
@@ -23,9 +22,14 @@
 :local(.buttonContainerPrev) {
 }
 
-:local(.progressText) {
-	display: block;
+:local(.progressWrap) {
 	text-align: center;
+}
+
+:local(.progressText) {
+	.headingM();
+	display: block;
+	color: @white;
 }
 
 :local(.progress) {
@@ -57,7 +61,7 @@
 
 :local(.formContainer) {
 	position: relative;
-	padding: 0 @space-s;
+	padding: 0 @space;
 }
 
 :local(.bodyHeading) {
@@ -67,8 +71,13 @@
 
 :local(.bodyHeadingType) {
 	display: block;
-	color: @shamrock;
 	text-transform: capitalize;
+	&.back {
+		color: @shamrock;
+	}
+	&.lay {
+		color: @roman;
+	}
 }
 
 :local(.row) {
@@ -78,29 +87,29 @@
 
 :local(.stake) {
 	text-align: right;
+	line-height: 1;
 }
 
 :local(.stakeHeading) {
-	color: @gull-gray;
-	display: inline-block;
-	margin-bottom: @space-xs;
-	text-decoration: uppercase;
+	display: block;
+	.headingS();
 }
 
 :local(.stakeCurrency) {
-	color: @gull-gray;
+	.headingS();
 	display: inline-block;
 	margin-right: @space-xs;
-	text-decoration: uppercase;
 }
 
 :local(.stakeNumL) {
-	font-size: 1.75rem;
+	display: inline-block;
+	margin: @space-xs 0;
+	font-size: @font-size-xxl;
 }
 
 :local(.infoToggle) {
 	text-align: center;
-	margin-top: @space-s;
+	margin-top: @space;
 
 	a i {
 		font-size: 34px;
@@ -109,10 +118,10 @@
 }
 
 :local(.info) {
-	border-top: 2px solid @white;
-	border-bottom: 2px solid @white;
-	padding: @space-s 0;
-	margin-top: @space-s;
+	border-top: 1px solid @white;
+	border-bottom: 1px solid @white;
+	padding: @space 0;
+	margin-top: @space-xl;
 
 	p {
 		margin: 0;
@@ -121,34 +130,35 @@
 }
 
 :local(.infoDetails) {
-	margin-top: @space-s;
+	margin-top: @space-xl;
 	display: flex;
 	justify-content: space-between;
 }
 
 :local(.infoDetailsItemHeading) {
+	.headingS();
 	display: block;
 	margin-bottom: @space-xs;
-	color: @gull-gray;
-	font-size: 1rem;
-	text-transform: uppercase;
 }
 
 :local(.infoDetailsItemNumber) {
-	font-size: 2rem;
+	display: inline-block;
+	line-height: 1;
+	font-size: @font-size-xxl;
 }
 
 :local(.infoDetailsItemCurrency) {
 	display: inline-block;
 	margin-left: @space-xs;
-	font-size: 1rem;
+	font-size: @font-size-s;
+	line-height: 1;
 }
 
 :local(.qr) {
 	display: block;
 	max-width: 150px;
 	height: auto;
-	margin: @space-s auto;
+	margin: @space auto;
 }
 
 :local(.warning) {
@@ -158,7 +168,7 @@
 
 :local(.warningHeading) {
 	color: @roman;
-	font-weight: bold;
-	font-size: 1.25rem;
+	display: block;
+	font-size: @font-size-l;
 	margin-bottom: 0.5rem;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Button from '../Button'
 import styles from './style.less';
 
 const ModalWrapper = props => {
@@ -9,9 +11,9 @@ const ModalWrapper = props => {
 			<article className={styles.content}>
 				<header>
 			  	{props.title && <h3 className={styles.heading}>{props.title}</h3>}
-			    <a className={styles.closeButton} onClick={() => props.setCurrentModal(null)}>
+			    <Button className={classNames([styles.closeButton, 'button-square', 'button-minimal'])} onClick={() => props.setCurrentModal(null)}>
 			    	<i class="fa fa-times" aria-hidden="true"></i>
-			    </a>
+			    </Button>
 			  </header>
 			  <section className={styles.body}>
 			  	{props.children}
