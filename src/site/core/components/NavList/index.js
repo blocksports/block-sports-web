@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
+import classNames from 'classnames';
 import { Link, IndexLink } from 'react-router';
 import { categoryFilters } from '../../../../lib/constants';
 
@@ -27,17 +28,17 @@ class NavList extends Component {
   get header() {
     if (!this.filterExists) {
       return (
-        <div className="navigation-header">
+        <div className={styles.header}>
           All Markets
         </div>
       );
     }
 
     return (
-      <div className="navigation-header">
-        <span className="navigation-market-link"><Link to="/exchange">{t('core:navigation.header-all')}</Link></span>
-        <span className="navigation-caret">></span>
-        <span className="navigation-category">{t(`core:categories.${this.props.filter}`)}</span>
+      <div className={styles.header}>
+        <span className={styles.headerLink}><Link to="/exchange">{t('core:navigation.header-all')}</Link></span>
+        <span><i className={classNames(['fa', 'fa-angle-right', styles.headerIcon])} aria-hidden="true"/></span>
+        <span className={styles.headerCategory}>{t(`core:categories.${this.props.filter}`)}</span>
       </div>
     );
   }
@@ -56,15 +57,15 @@ class NavList extends Component {
         `/exchange/${item.get('id')}`;
 
       return (
-        <div className="navigation-row" key={idx}>
-          <Link to={link} className="navigation-item" activeClassName={styles.active}>
-            <span className="navigation-item-name">{item.get('name')}</span>
-            <div className="navigation-item-count">
-              <span className="block-number">{item.get('marketCount')}</span>
+        <li>
+          <Link to={link} className={styles.item} activeClassName={styles.itemActive}>
+            <span className={styles.itemName}>{item.get('name')}</span>
+            <div>
+              <span className={styles.itemCount}>({item.get('marketCount')})</span>{' '}
+              <span><i className="fa fa-angle-right" aria-hidden="true"/></span>
             </div>
-            <span className="navigation-item-caret"><i className="fa fa-caret-right caret-icon" aria-hidden="true"/></span>
           </Link>
-        </div>
+        </li>
       );
     });
   }
@@ -77,7 +78,11 @@ class NavList extends Component {
     return (
       <div className={styles.root}>
         {this.header}
-        {this.renderItems}
+        <nav className={styles.nav}>
+          <ul>
+            {this.renderItems}
+          </ul>
+        </nav>
       </div>
     );
   }
