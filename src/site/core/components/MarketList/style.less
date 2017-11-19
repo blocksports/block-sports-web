@@ -1,210 +1,129 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
 
-:local(.root) {
-  padding-right: 7px;
-
-  .date-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 25px;
-    background-color: @site-panel-bg-light;
-    border-radius: 3px;
-    font-size: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+:local(.dateHeading) {
+  display: block;
+  .headingM();
+  margin-bottom: @space;
+  &:not(:first-of-type) {
+    margin-top: calc(@space * 2.5);
   }
 }
 
 :local(.itemRoot) {
   display: flex;
   border: 1px solid @market-item-border;
-  border-radius: 3px;
-  font-size: 12px;
-  margin-bottom: 10px;
-
-  .market-item-side {
-    display: flex;
-    width: 80px;
-
-    .side-content {
-      display: flex;
-      flex-grow: 1;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      font-family: 'brandon-grotesque-medium';
-
-      .day {
-        font-size: 10px;
-        color: @gull-gray;
-      }
-
-      .time {
-        font-size: 9px;
-      }
-
-      .matched {
-        font-size: 8px;
-        color: @gull-gray;
-      }
-
-      .pool {
-        font-size: 10.5px;
-      }
-
-      .rules {
-        margin-top: 4px;
-        font-size: 7px;
-        color: @gull-gray;
-      }
-    }
-  }
-
-  .left {
-    cursor: pointer;
-  }
-
-  .market-item-middle {
-    display: flex;
-    border-right: 1px solid @market-item-border;
-    border-left: 1px solid @market-item-border;
-    flex-grow: 1;
-    flex-direction: column;
-
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  border-radius: @border-radius;
+  margin-bottom: @space;
 }
 
-:local(.oddsButton) {
-  width: 60px;
-  height: 25px;
+:local(.itemDate) {
+  flex: 0 0 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-  padding: 0;
+:local(.itemDateDay) {
+  display: block;
+  .headingXS();
+}
 
-  &:last-child {
-    margin: 0;
-  }
-
-  .odds {
-    display: block;
-    line-height: 10px;
-  }
-
-  .matched {
-    display: block;
-    font-size: 7.5px;
-    line-height: 8px;
-  }
+:local(.itemDateTime) {
+  display: block;
 }
 
 :local(.runnerRow) {
-  .market-item-row {
-    height: 35px;
+  flex: 0 0 100%;
+  padding: 0.5rem @space;
+  &:not(:last-of-type) {
     border-bottom: 1px solid @market-item-border;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    &-detail {
-      flex-grow: 1;
-      padding-left: 10px;
-    }
-
-    &-actions {
-      display: flex;
-      padding: 5px;
-
-      .bet-buttons {
-        display: flex;
-
-        &:last-child {
-          margin-right: -5px;
-        }
-
-        .bet-button {
-          margin-right: 5px;
-
-          &-back {
-
-            .btn-back {
-              opacity: 0.5;
-            }
-
-            &:last-child {
-              .btn-back {
-                opacity: 1;
-                border-color: @shamrock;
-                color: @shamrock;
-              }
-            }
-          }
-
-          &-lay {
-
-            .btn-lay {
-              opacity: 0.5;
-            }
-
-            &:first-child {
-              .btn-lay {
-                opacity: 1;
-                border-color: @roman;
-                color: @roman;
-              }
-            }
-          }
-
-          &-empty {
-            .btn-empty {
-              opacity: 0.5;
-            }
-          }
-        }
-      }
-
-      .action {
-        display: flex;
-        align-items: center;
-
-        &-profit {
-          &-amount {
-            min-width: 35px;
-            padding-bottom: 1px;
-            margin-left: 5px;
-            font-family: 'brandon-grotesque-medium';
-            text-align: center;
-            font-size: 11px;
-            color: @shamrock;
-          }
-        }
-
-        &-confirm {
-          margin-left: 10px;
-        }
-      }
-    }
-  }
-
-  &:last-child {
-    .market-item-row:last-child {
-      border-bottom: none;
-    }
-  }
-
-  .bet {
-    font-size: 9.5px;
-    cursor: default;
   }
 }
 
-:local(.confirmButton) {
-  background-color: @site-panel-bg-light;
-  height: 16px;
-  width: 70px;
-  font-size: 8px;
+:local(.marketRow) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+:local(.marketRowDetail) {
+  
+}
+
+:local(.marketRowActions) {
+  display: flex;
+
+  .button:not(:last-of-type) {
+    margin-right: @space-s;
+  }
+
+}
+
+:local(.main) {
+  display: flex;
+  flex-wrap: wrap;
+  border-right: 1px solid @market-item-border;
+  border-left: 1px solid @market-item-border;
+  flex-grow: 1;
+}
+
+:local(.side) {
+  flex: 0 0 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+:local(.sideMatched) {
+  display: block;
+  .headingXS();
+}
+
+:local(.sidePool) {
+  display: block;
+}
+
+:local(.sideCurrency) {
+  display: block;
+  font-size: @font-size-xs;
+}
+
+:local(.betRow) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: @space 0;
+}
+
+:local(.betRowDetail) {
+  .headingS();
+}
+
+:local(.betRowActions) {
+  display: flex;
+}
+
+:local(.betRowActionsOdds),
+:local(.betRowActionsBet),
+:local(.betRowActionsProfit) {
+  display: flex;
+  align-items: center;
+  margin-right: @space-l;
+  span {
+    display: inline-block;
+    margin-right: @space-xs;
+    .headingS();
+    color: @white;
+  }
+}
+
+:local(.betRowActionsProfitAmount) {
+  color: @shamrock;
 }

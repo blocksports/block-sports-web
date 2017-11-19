@@ -56,9 +56,9 @@ class MarketList extends Component {
 
   renderDateRow(date, key) {
     return (
-      <div className="date-row" key={`date-${key}`}>
+      <span className={styles.dateHeading} key={`date-${key}`}>
         {dateTime(date, dateTypes.dayMonthDate)}
-      </div>
+      </span>
     );
   }
 

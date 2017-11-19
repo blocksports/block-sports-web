@@ -59,16 +59,11 @@ class MarketListItem extends Component {
 
   get contentLeft() {
     const date = this.props.item.get('date');
-
     return (
-      <div className="market-item-side left"  onClick={this.handleMarketClick}>
-        <div className="side-content">
-          <span className="day">
-            {dateTime(date, dateTypes.calendarDay)}
-          </span>
-          <span className="time">
-            {dateTime(date, dateTypes.time)}
-          </span>
+      <div className={styles.itemDate} onClick={this.handleMarketClick}>
+        <div>
+          <span className={styles.itemDateDay}>{dateTime(date, dateTypes.calendarDay)}</span>
+          <span className={styles.itemDateTime}>{dateTime(date, dateTypes.time)}</span>
         </div>
       </div>
     );
@@ -76,17 +71,14 @@ class MarketListItem extends Component {
 
   get contentRight() {
     return (
-      <div className="market-item-side">
-        <div className="side-content">
-          <span className="matched">
-            {t('core:markets.item.matched')}
+      <div className={styles.side}>
+        <div>
+          <span className={styles.sideMatched}>{t('core:markets.item.matched')}</span>
+          <span className={styles.sidePool}>
+            {round(this.props.item.get('total_matched') * this.exchangeRate, 2)}<br />
           </span>
-          <span className="pool">
-            {round(this.props.item.get('total_matched') * this.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
-          </span>
-          <span className="rules">
-            {t('core:markets.item.rules')}&nbsp;>
-          </span>
+          <span className={styles.sideCurrency}>{t(`core:currency.${this.props.currency}`)}</span>
+          {/*<span className={styles.sideRules}>{t('core:markets.item.rules')}></span>*/}
         </div>
       </div>
     );
@@ -94,7 +86,7 @@ class MarketListItem extends Component {
 
   get contentMiddle() {
     return (
-      <div className="market-item-middle">
+      <div className={styles.main}>
         {this.renderRunnerRows(this.props.item.get('runner_a'))}
         {this.drawRow}
         {this.renderRunnerRows(this.props.item.get('runner_b'))}
@@ -218,13 +210,11 @@ class MarketListItem extends Component {
   renderRunnerRows(runner) {
     return (
       <div className={styles.runnerRow}>
-        <div className="market-item-row"  onClick={this.handleMarketClick}>
-          <div className="market-item-row-detail">
-            {runner.get('name')}
-          </div>
-          <div className="market-item-row-actions">
-            <div className="bet-buttons">{this.renderBetButtons(runner, 'back')}</div>
-            <div className="bet-buttons">{this.renderBetButtons(runner, 'lay')}</div>
+        <div className={styles.marketRow} onClick={this.handleMarketClick}>
+          <span className={styles.marketRowDetail}>{runner.get('name')}</span>
+          <div className={styles.marketRowActions}>
+            {this.renderBetButtons(runner, 'back')}
+            {this.renderBetButtons(runner, 'lay')}
           </div>
         </div>
         {this.renderBetRow(runner)}
@@ -234,34 +224,33 @@ class MarketListItem extends Component {
 
   renderBetRow(runner) {
     if (this.state.activeOption !== runner.get('runner_id')) return null;
-
     return (
-      <div className="market-item-row bet">
-        <div className="market-item-row-detail">
+      <div className={styles.betRow}>
+        <span className={styles.betRowDetail}>
           {t('core:markets.item.bet-for')}
-        </div>
-        <div className="market-item-row-actions">
-          <div className="action action-odds">
-            {t('core:markets.item.odds')}:
+        </span>
+        <div className={styles.betRowActions}>
+          <div className={styles.betRowActionsOdds}>
+           <span>{t('core:markets.item.odds')}:</span>
             <SpinBox
               value={this.state.odds}
               onChange={this.handleInputChange('odds')}
             />
           </div>
-          <div className="action action-bet">
-            {t('core:markets.item.bet')}:
+          <div className={styles.betRowActionsBet}>
+            <span>{t('core:markets.item.bet')}:</span>
             <SpinBox
               value={this.state.stake}
               onChange={this.handleInputChange('stake')}
             />
           </div>
-          <div className="action action-profit">
-            {t('core:markets.item.profit')}:
-            <span className="action-profit-amount">{this.getProfit(this.state.odds, this.state.stake)}</span>
+          <div className={styles.betRowActionsProfit}>
+            <span>{t('core:markets.item.profit')}:</span>
+            <span className={styles.betRowActionsProfitAmount}>{this.getProfit(this.state.odds, this.state.stake)}</span>
           </div>
-          <div className="action action-confirm">
+          <div className={styles.betRowActionsConfirm}>
             <Button
-              className={styles.confirmButton}
+              className="button-white button-s"
               onClick={this.handleConfirmClick(runner)}
               isDisabled={!this.state.stake}
               >
@@ -280,9 +269,7 @@ class MarketListItem extends Component {
 
     bets.forEach((bet, idx) => {
       betArray.push(
-        <div className={`bet-button bet-button-${type}`} key={idx}>
-          {this.renderBetButton(runner, bet, type)}
-        </div>
+        this.renderBetButton(runner, bet, type) 
       );
     });
 
@@ -290,7 +277,7 @@ class MarketListItem extends Component {
       betArray.push(
         <div className="bet-button bet-button-empty" key={betArray.length}>
           <Button
-            className={classNames([styles.oddsButton, 'btn-empty'])}
+            className={classNames([styles.oddsButton, 'button-bet', 'btn-empty'])}
             onClick={this.handleOddsClick(runner, Immutable.Map(), type)}
             />
         </div>
@@ -305,15 +292,15 @@ class MarketListItem extends Component {
   renderBetButton(runner, bet, type) {
     return (
       <Button
-        className={classNames([styles.oddsButton, `btn-${type}`])}
+        className={classNames([styles.oddsButton, 'button-bet', `button-${type}`])}
         onClick={this.handleOddsClick(runner, bet, type)}
         >
-        <div className="odds">
+        <span className="odds">
           {bet.get('odds')}
-        </div>
-        <div className="matched">
+        </span>
+        <span className="matched">
           {round(bet.get('available') * this.exchangeRate, 2)} {t(`core:currency.${this.props.currency}`)}
-        </div>
+        </span>
       </Button>
     );
   }
