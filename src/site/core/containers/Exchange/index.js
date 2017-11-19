@@ -33,7 +33,7 @@ class Exchange extends Component {
 
   render() {
     return (
-      <div className={styles.root}>
+      <div>
         <ExchangeLayout
           params={this.props.params}
           query={this.props.location.query}
