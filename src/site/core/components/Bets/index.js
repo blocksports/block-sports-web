@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
-
+import { Tabs, Tab } from '../Tabs'
 import BetSlip from '../../containers/BetSlip';
 import ActiveBets from '../../containers/ActiveBets';
 import styles from './style.less';
@@ -29,12 +29,10 @@ class Bets extends Component {
 
   get tabs() {
     return (
-      <div className="bets-header">
-        <ul className="tabs">
-          <li className={this.tabClass('bet-slip')}><a className="tab-link" onClick={this.handleTabClick('bet-slip')}>{t('core:bets.bet-slip-tab')}</a></li>
-          <li className={this.tabClass('active')}><a className="tab-link" onClick={this.handleTabClick('active')}>{t('core:bets.active-tab')}</a></li>
-        </ul>
-      </div>
+      <Tabs>
+        <Tab className={this.tabClass('bet-slip')} onClick={this.handleTabClick('bet-slip')}>{t('core:bets.bet-slip-tab')}</Tab>
+        <Tab className={this.tabClass('active')} onClick={this.handleTabClick('active')}>{t('core:bets.active-tab')}</Tab>
+      </Tabs>
     );
   }
 
@@ -43,7 +41,7 @@ class Bets extends Component {
   }
 
   tabClass(tab) {
-    return classNames(['tab-item', {'is-active': tab == this.state.activeTab}]);
+    return classNames([{'active': tab == this.state.activeTab}]);
   }
 
   handleTabClick(tab) {
@@ -56,7 +54,7 @@ class Bets extends Component {
     return (
       <div className={styles.root}>
         {this.tabs}
-        <div className="bets-content">
+        <div className={styles.content}>
           <BetSlip
             className={this.displayClass('bet-slip')}
             focusTab={this.handleTabClick('bet-slip')}

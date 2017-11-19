@@ -1,57 +1,10 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
 
-:local(.root) {
-  .bets-header {
-    display: flex;
-    min-height: 32px;
-    border-radius: 3px 3px 0 0;
-    background-color: @market-header;
-    font-size: 12px;
-
-    .tabs {
-      display: flex;
-      width: 100%;
-
-      .tab-item {
-        display: flex;
-        width: 50%;
-        height: inherit;
-        text-align: center;
-
-        .tab-link {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          cursor: pointer;
-        }
-
-        &:first-child {
-          border-radius: 3px 0 0 0;
-        }
-
-        &:last-child {
-          border-radius: 0 3px 0 0;
-        }
-      }
-
-      .is-active {
-        background-color: @site-panel-bg;
-      }
-    }
-  }
-
-  .bets-content {
-    margin: 10px 5px 10px 10px;
-
-    .is-active {
-      overflow: auto;
-      max-height: 40vh;
-    }
-
-    .is-inactive {
-      display: none;
-    }
+:local(.content) {
+  padding: @space;
+  .is-inactive {
+    display: none;
   }
 }
