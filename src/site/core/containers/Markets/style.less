@@ -1,67 +1,10 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
 
-::-webkit-scrollbar {
-  -webkit-appearance: none;
+:local(.tabs) {
   background-color: @site-panel-bg-light;
-  border-radius: 4px;
-  width: 4px;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: @gull-gray;
-  box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
-:local(.root) {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  .market-header {
-    display: flex;
-    min-height: 32px;
-    background-color: @market-header;
-    border-radius: 3px 3px 0 0;
-    font-size: 12px;
-
-    .tabs {
-      display: flex;
-
-      .tab-item {
-        display: flex;
-        width: 125px;
-        height: inherit;
-        text-align: center;
-
-        .tab-link {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          cursor: pointer;
-
-          i {
-            margin-right: 5px;
-            font-size: 9px;
-            position: relative;
-            top: -1px;
-          }
-        }
-
-        &:first-child {
-          border-radius: 3px 0 0 0;
-        }
-      }
-
-      .is-active {
-        background-color: @site-panel-bg;
-      }
-    }
-  }
-
-  .market-body {
-    overflow: auto;
-    margin: 10px 5px 10px 10px;
-  }
+:local(.body) {
+  padding: calc(@space * 2) @space;
 }
