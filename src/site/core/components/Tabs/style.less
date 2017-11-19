@@ -1,0 +1,17 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.tabs) {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: @site-panel-bg-light;
+}
+
+:local(.tab) {
+
+  &.active {
+    background-color: @site-panel-bg;
+    color: @shamrock;
+  }
+
+}
