@@ -1,122 +1,82 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
 
 :local(.root) {
   display: flex;
-  flex-direction: row;
-  height: inherit;
+  height: 4.6rem;
+  margin-bottom: @space;
+}
 
-  .header-logo-img {
-    height: 50px;
-  }
-
-  .header-content {
-    display: flex !important;
-    flex-grow: 1;
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 10px;
-      flex-grow: 1;
-    }
-
-    .header-right {
-      display: flex;
-
-      .header-content {
-        margin-right: 25px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .settings {
-        &-icon {
-          font-size: 25px;
-        }
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      .account {
-        &-icon {
-          font-size: 25px;
-        }
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      .currencies {
-        font-family: 'brandon-grotesque-regular';
-        font-size: 7px;
-
-        .price {
-          margin-bottom: 4px;
-
-          &:last-child {
-            margin-bottom: 0;
-          }
-
-          .currency {
-            display: inline-block;
-            width: 20px;
-          }
-
-          &-block {
-            display: inline-block;
-            padding: 1px 8px 1px 8px;
-            background-color: @site-panel-bg-light;
-            border-radius: 4px;
-
-            &-amount {
-              display: inline-block;
-              min-width: 22px;
-              font-family: 'brandon-grotesque-medium';
-              font-size: 9px;
-            }
-
-            &-currency {
-              font-size: 5px;
-            }
-          }
-        }
-      }
-
-      .balance {
-        font-size: 11px;
-
-        &-text {
-          position: relative;
-          bottom: -2px;
-        }
-
-        &-amount {
-          position: relative;
-          top: -1px;
-          color: @shamrock;
-          font-family: 'brandon-grotesque-medium';
-
-          .price {
-            font-size: 15px;
-          }
-
-          .currency {
-            font-size: 12px;
-            font-family: 'brandon-grotesque-regular';
-          }
-        }
-      }
-    }
+:local(.logo) {
+  height: 4.6rem;
+  width: 4.6rem;
+  .makePanel();
+  padding: 6px;
+  
+  &:hover,
+  &:focus {
+    opacity: 0.6;    
   }
 }
 
-:local(.newAccountButton) {
-  height: 18px;
-  width: 85px;
+:local(.main) {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-left: @space;
+  .makePanel();
+}
+
+:local(.actions) {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+:local(.currency) {
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+:local(.currencyName) {
+  display: inline-block;
+  margin-right: @space-s;
+  .headingXS();
+}
+
+:local(.currencyAmount) {
+  font-size: @font-size-m;
+  line-height: 1;
+  background-color: @site-panel-bg-light;
+  padding: 0.3em 0.4em;
+  border-radius: @border-radius;
+}
+
+:local(.balance) {
+  margin: 0 @space-xl;
+}
+
+:local(.balanceHeading) {
+  .headingS();
+}
+
+:local(.balanceAmount) {
+  color: @shamrock;
+}
+
+:local(.icon) {
+  
+  i {
+    font-size: @font-size-xl;
+  }
+
+}
+
+
+:local(.newAccount) {
+  margin-left: @space-xl;
 }

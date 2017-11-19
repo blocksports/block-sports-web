@@ -26,17 +26,9 @@ class Header extends Component {
     this.props.fetchUser();
   }
 
-  get logo() {
-    return (
-        <IndexLink to="/" >
-          <img className="header-logo-img panel" src={Logo}/>
-        </IndexLink>
-    );
-  }
-
   get currencies() {
     return (
-      <div className="header-content currencies">
+      <div className={styles.currencies}>
         {this.renderCurrency('NEO')}
         {this.renderCurrency('GAS')}
       </div>
@@ -45,37 +37,33 @@ class Header extends Component {
 
   get balance() {
     return (
-      <div className="header-content balance">
-        <div className="balance-text">{t('core:header.balance')}</div>
-        <div className="balance-amount">
-          <span className="price">{this.convert(this.props.balance)}</span>&nbsp;<span className="currency">{t(`core:currency.${this.props.currency}`)}</span>
-        </div>
+      <div className={styles.balance}>
+        <h5 className={styles.balanceHeading}>{t('core:header.balance')}</h5>
+        <span className={styles.balanceAmount}>{this.convert(this.props.balance)}{' '}{t(`core:currency.${this.props.currency}`)}</span>
       </div>
     );
   }
 
   get settings() {
     return (
-      <div className="header-content settings">
-        <i className="fa fa-cog settings-icon" aria-hidden="true"/>
-      </div>
+      <Button className={classNames([styles.icon, 'button-minimal button-square'])}>
+        <i className="fa fa-cog" aria-hidden="true"/>
+      </Button>
     );
   }
 
   get account() {
     return (
-      <div className="header-content account">
-        <i className="fa fa-user account-icon" aria-hidden="true"/>
-      </div>
+      <Button className={classNames([styles.icon, 'button-minimal button-square'])}>
+        <i className="fa fa-user" aria-hidden="true"/>
+      </Button>
     );
   }
 
   get newAccount() {
     return (
-      <div className="header-content new-account">
-        <Button
-          className={classNames(["btn-main", styles.newAccountButton])}
-          onClick={this.handleNewAccountClick}>
+      <div className={styles.newAccount}>
+        <Button className="button-white button-s" onClick={this.handleNewAccountClick}>
           {t('core:header.new-account')}
         </Button>
       </div>
@@ -84,11 +72,9 @@ class Header extends Component {
 
   get content() {
     return (
-      <div className="header-content panel">
-        <div className="header-left">
-          <Search/>
-        </div>
-        <div className="header-right">
+      <div className={styles.main}>
+        <Search />
+        <div className={styles.actions}>
           {this.currencies}
           {this.balance}
           {this.settings}
@@ -113,22 +99,25 @@ class Header extends Component {
     if (!this.props.price.getIn([currency, exchangeCurrency])) return null;
 
     return (
-      <div className="price">
-        <span className="currency">{t(`core:currency.${currency}`)}</span>
-        <div className="price-block">
-          <span className="price-block-amount">{this.props.price.getIn([currency, exchangeCurrency]).toFixed(2)}</span>&nbsp;
-          <span className="price-block-currency">{t(`core:currency.${exchangeCurrency}`)}</span>
-        </div>
+      <div className={styles.currency}>
+        <span className={styles.currencyName}>{t(`core:currency.${currency}`)}</span>
+        <span className={styles.currencyAmount}>
+          {this.props.price.getIn([currency, exchangeCurrency]).toFixed(2)}
+          {' '}
+          {t(`core:currency.${exchangeCurrency}`)}
+          </span>
       </div>
     )
   }
 
   render() {
     return (
-      <div className={styles.root}>
-        {this.logo}
+      <header className={styles.root}>
+        <IndexLink to="/" className={styles.logo}>
+          <img src={Logo} alt="Block Sports logo" />
+        </IndexLink>
         {this.content}
-      </div>
+      </header>
     );
   }
 }
