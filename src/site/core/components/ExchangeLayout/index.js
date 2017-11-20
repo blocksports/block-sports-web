@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import { t } from 'i18next';
 
 import Bets from '../Bets';
+import Chat from '../Chat';
 import Navigation from '../../containers/Navigation';
 import Markets from '../../containers/Markets';
 import MarketDetail from '../../containers/MarketDetail';
@@ -35,10 +36,9 @@ class ExchangeLayout extends Component {
   get contentRight() {
     return (
       <div className={styles.right}>
-        <Bets />
-
-        <div className="exchange-content-right-bottom panel">
-
+        <Bets className={styles.bets} />
+        <div className={styles.chat}>
+          <Chat />
         </div>
       </div>
     );

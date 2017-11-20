@@ -1,8 +1,7 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_utils.less';
 
-@left-height: (@header-height + @footer-height) + (@panel-gutter * 4);
-@main-height: (@header-height + @footer-height) + (@panel-gutter * 4);
+@panel-height: (@header-height + @footer-height) + (@panel-gutter * 4);
 
 :local(.root) {
   display: flex;
@@ -11,7 +10,7 @@
 
 :local(.left) {
  flex: 0 0 210px;
- height: ~"calc(100vh - @{left-height})";
+ height: ~"calc(100vh - @{panel-height})";
  overflow-y: scroll;
  .makePanel();
 }
@@ -19,7 +18,7 @@
 :local(.main) {
   flex-grow: 1;
   margin: 0 @panel-gutter;
-  height: ~"calc(100vh - @{left-height})";
+  height: ~"calc(100vh - @{panel-height})";
   overflow-y: scroll;
 }
 
@@ -37,9 +36,25 @@
 }
 
 :local(.right) {
+  height: ~"calc(100vh - @{panel-height})";
   flex: 0 0 250px;
- .makePanel();
- padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+:local(.bets) {
+  flex: 0 0 200px;
+  overflow-y: scroll;
+  .makePanel();
+  padding: 0;
+}
+
+:local(.chat) {
+  flex-grow: 1;
+  .makePanel();
+  position: relative;
+  margin-top: @panel-gutter;
+  overflow-y: scroll;
 }
 
 :local(.footer) {
