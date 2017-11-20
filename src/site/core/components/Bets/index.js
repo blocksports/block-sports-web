@@ -52,7 +52,7 @@ class Bets extends Component {
 
   render() {
     return (
-      <div className={styles.root}>
+      <div className={classNames([styles.root, this.props.className])}>
         {this.tabs}
         <div className={styles.content}>
           <BetSlip
