@@ -61,7 +61,7 @@ class NavList extends Component {
           <Link to={link} className={styles.item} activeClassName={styles.itemActive}>
             <span className={styles.itemName}>{item.get('name')}</span>
             <div>
-              <span className={styles.itemCount}>({item.get('marketCount')})</span>{' '}
+              <span className={styles.itemCount}>{item.get('marketCount')}</span>{' '}
               <span><i className="fa fa-angle-right" aria-hidden="true"/></span>
             </div>
           </Link>
