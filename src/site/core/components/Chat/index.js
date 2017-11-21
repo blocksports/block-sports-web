@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
+import { shuffle } from 'lodash';
 import classNames from 'classnames';
 import styles from './style.less';
 
@@ -44,22 +45,30 @@ class Chat extends Component {
   	this.setState({
   		messages: [...this.state.messages, {
   			username: 'UserBoy191',
-  			message: '5049fj49f'
+  			message: this.refs.chatMessage.value
   		}]
   	})
   }
 
+  componentWillUpdate(nextProps) {
+  	if(this.props.params.sport !== nextProps.params.sport) {
+  		this.setState({
+  			messages: shuffle(demoMessages)
+  		})
+  	}
+  }
+
   render() {
     return (
-	  	<div>
-	  		<span className={styles.heading}>Heading</span>
+	  	<div className={styles.root}>
+	  		<span className={styles.heading}>{this.props.params.sport} Chat</span>
 	  		<div className={styles.body}>
 	  			{this.state.messages.map((item, index) =>
 	  				<ChatMessage message={item} key={index} />
 	  			)}
 	  		</div>
 	  		<form className={styles.form} onSubmit={(e) => this.handleFormSubmit(e)}>
-	  			<input className={styles.input} rows="2" placeholder="Type a message..." />
+	  			<input className={styles.input} rows="2" placeholder="Type a message..." ref="chatMessage" />
 	  		</form>
 	  	</div>
     );
@@ -74,6 +83,7 @@ const ChatMessage = ({ message }) =>
 	</div>
 
 Chat.propTypes = {
+	params: PropTypes.object.isRequired
 };
 
 export default Chat;

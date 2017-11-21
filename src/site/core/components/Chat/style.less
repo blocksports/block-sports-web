@@ -1,8 +1,17 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_utils.less';
 
-:local(.heading) {
+:local(.root) {
 
+}
+
+
+:local(.heading) {
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: block;
 	background-color: @site-panel-bg-light;
 	border-radius: @border-radius;
 	padding: @space-xs;
@@ -11,16 +20,28 @@
 }
 
 :local(.body) {
-	overflow-y: scroll
+	padding: @site-panel-spacing;
 }
 
 :local(.form) {
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	input {
+		display: block;
+		width: 100%;
+		background-color: @site-panel-bg-light;
+		padding: @site-panel-spacing;
+		color: @white;
+	}
 
 }
 
 :local(.chatMessage) {
 	font-size: @font-size-m;
-	margin: @space-m 0;
+	margin: @space-xs 0;
 }
 
 :local(.chatMessageUsername) {

@@ -38,7 +38,7 @@ class ExchangeLayout extends Component {
       <div className={styles.right}>
         <Bets className={styles.bets} />
         <div className={styles.chat}>
-          <Chat />
+          <Chat params={this.props.params} />
         </div>
       </div>
     );
