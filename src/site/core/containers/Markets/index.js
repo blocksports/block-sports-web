@@ -39,7 +39,6 @@ export class Markets extends Component {
   }
 
   tabClass(tab) {
-    console.log(tab, this.state.activeOrder, tab == this.state.activeOrder)
     return classNames([tab == this.state.activeOrder ? 'active' : null]);
   }
 
