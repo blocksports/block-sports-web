@@ -8,27 +8,24 @@ import styles from './style.less';
 
 const demoMessages = [
 	{
-		username: 'UserBoy11',
+		username: 'User1242',
 		message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 	}, {
-		username: 'UserBoy151',
+		username: 'User151342',
 		message: 'Duis mattis risus odio, sed finibus libero tincidunt a.'
 	}, {
-		username: 'UserBoy100',
+		username: 'User4345',
 		message: 'Etiam et eros mauris. Nullam rutrum ornare dolor.'
 	}, {
-		username: 'UserBoy221',
+		username: 'User1131',
 		message: 'Phasellus finibus magna quam, vitae efficitur metus rutrum nec.'
 	}, {
-		username: 'UserBoy52',
+		username: 'User9504',
 		message: 'Nullam nec sem et turpis fringilla euismod a et velit. Praesent quis aliquam diam.'
 	}, {
-		username: 'UserBoy98',
+		username: 'User43',
 		message: 'Nulla congue, felis nec iaculis consequat, mi metus imperdiet tortor, eu tincidunt est dolor ac ex.'
-	}, {
-		username: 'UserBoy155',
-		message: 'Etiam fermentum orci eu venenatis cursus. Donec aliquam ut enim a pharetra.'
-	},
+	}
 ]
 
 class Chat extends Component {
@@ -36,40 +33,36 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
+    	showWarning: false,
     	messages: demoMessages
     }
   }
 
-  handleFormSubmit(e) {
-  	e.preventDefault();
+  handleMouseEnter() {
   	this.setState({
-  		messages: [...this.state.messages, {
-  			username: 'UserBoy191',
-  			message: this.refs.chatMessage.value
-  		}]
+  		showWarning: true,
   	})
   }
 
-  componentWillUpdate(nextProps) {
-  	if(this.props.params.sport !== nextProps.params.sport) {
-  		this.setState({
-  			messages: shuffle(demoMessages)
-  		})
-  	}
+  handleMouseLeave() {
+  	this.setState({
+  		showWarning: false,
+  	})
   }
 
   render() {
     return (
-	  	<div className={styles.root}>
-	  		<span className={styles.heading}>{this.props.params.sport} Chat</span>
+	  	<div className={styles.root} onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+	  		<span className={styles.heading}>Chat</span>
 	  		<div className={styles.body}>
 	  			{this.state.messages.map((item, index) =>
 	  				<ChatMessage message={item} key={index} />
 	  			)}
 	  		</div>
-	  		<form className={styles.form} onSubmit={(e) => this.handleFormSubmit(e)}>
-	  			<input className={styles.input} rows="2" placeholder="Type a message..." ref="chatMessage" />
+	  		<form className={styles.form}>
+	  			<textarea className={styles.input} rows="2" placeholder="Type a message..." ref="chatMessage" />
 	  		</form>
+	  		{this.state.showWarning && <DisabledMessage />}
 	  	</div>
     );
   }
@@ -82,8 +75,12 @@ const ChatMessage = ({ message }) =>
 		<span className={styles.chatMessageMessage}>: {message.message}</span>
 	</div>
 
+const DisabledMessage = () => 
+	<div class={styles.disabledMessage}>
+		<span>Chat is currently disabled</span>
+	</div>
+
 Chat.propTypes = {
-	params: PropTypes.object.isRequired
 };
 
 export default Chat;

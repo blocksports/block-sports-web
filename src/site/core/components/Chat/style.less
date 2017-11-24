@@ -2,7 +2,8 @@
 @import '../../../../less/_utils.less';
 
 :local(.root) {
-
+	display: flex;
+	flex-direction: column;
 }
 
 
@@ -20,21 +21,22 @@
 }
 
 :local(.body) {
+	flex-grow: 1;
 	padding: @site-panel-spacing;
 }
 
 :local(.form) {
 	position: sticky;
 	bottom: 0;
-	left: 0;
-	right: 0;
 
-	input {
+	textarea {
 		display: block;
 		width: 100%;
 		background-color: @site-panel-bg-light;
-		padding: @site-panel-spacing;
+		border: 1px solid @gull-gray;
+		padding: @space-s @site-panel-spacing;
 		color: @white;
+		border-radius: @border-radius;
 	}
 
 }
@@ -51,3 +53,16 @@
 :local(.chatMessageMessage) {
 }
 
+:local(.disabledMessage) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: fade(@site-panel-bg, 90%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: @space-m;
+	color: @roman;
+}

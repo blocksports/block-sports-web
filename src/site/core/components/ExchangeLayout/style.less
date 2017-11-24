@@ -50,11 +50,14 @@
 }
 
 :local(.chat) {
+  position: relative;
   flex-grow: 1;
   .makePanel();
   padding: 0;
   margin-top: @panel-gutter;
-  overflow-y: scroll;
+  // overflow-y: scroll;
+  overflow: hidden;
+  display: flex;
 }
 
 :local(.footer) {
