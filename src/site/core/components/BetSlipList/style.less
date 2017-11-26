@@ -2,41 +2,90 @@
 @import '../../../../less/_fonts.less';
 @import '../../../../less/_utils.less';
 
-:local(.list) {
-  padding: 0;
-  margin: 0;
-}
-
-:local(.listItem) {
-  padding: 0;
-  margin: @space 0;
+:local(.itemRoot) {
+  position: relative;
+  margin: @space-m 0;
+  padding: @space-s;
   border-left: 3px solid;
-  padding-left: @space-s;
+  background-color: @site-panel-bg-light;
+  border-radius: @border-radius;
+  
   &.back {
     border-left-color: @shamrock;
   }
+  
   &.lay {
     border-left-color: @roman;
   }
+
 }
 
-:local(.runner) {
+:local(.header) {
   margin-bottom: @space-m;
 }
 
-:local(.runnerName) {
-  display: block;
+:local(.headerTop) {
+
 }
 
-:local(.runnerMarket) {
+:local(.headerTitle) {
+  width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:local(.headerSub) {
   display: block;
   @color: @gull-gray;
-  font-size: @font-size-xs;
+  font-size: @font-size-s;
+}
+
+:local(.removeButton) {
+  position: absolute;
+  top: @space-s;
+  right: @space-s;
+  padding: 0;
+  line-height: 1;
+  height: auto;
+  i {
+    color: @gull-gray;
+  }
 }
 
 :local(.details) {
   display: flex;
+}
+
+:local(.detailsItem) {
+  font-size: @font-size-s;
+  width: 25%;
+  margin-right: @space-s;
+}
+
+:local(.detailsHeading) {
+  display: flex;
   justify-content: space-between;
+  margin-bottom: @space-xs;
+  padding-right: 12px;
+}
+
+:local(.detailsBet) {
+  flex-grow: 1;
+}
+
+:local(.input) {
+  font-family: @font-family;
+  font-size: @font-size-s;
+  line-height: 1;
+  width: 100%;
+  background-color: darken(@site-panel-bg-light, 4%);
+  color: @white;
+  padding: 0.5em;
+  border-radius: @border-radius;
+  &:focus {
+    outline: none;
+  }
 }
 
 :local(.detailsHeading) {
@@ -45,212 +94,14 @@
   .headingXS();
 }
 
-:local(.detailsItem) {
-  font-size: @font-size-s;
-}
-
-:local(.tooltip) {
-  .status-tooltip {
-    .defaultFont();
-    font-size: @font-size-s;
-    max-width: 200px;
-  } 
-}
-
-:local(.actions) {
-  display: flex;
-  justify-content: space-between;
-  margin-top: @space;
-}
-
 :local(.removeAll) {
+  display: flex;
+  justify-content: flex-end;
   margin-top: calc(@space * 2);
 }
 
-
-// .__react_component_tooltip.place-bottom:before {
-//   display: none;
-// }
-
-// .__react_component_tooltip.place-bottom:after {
-//   display: none;
-// }
-
-// :local(.root) {
-//   text-align: center;
-//   color: @gull-gray;
-
-//   .bet-slip-header {
-//     display: flex;
-//     font-size: 8px;
-//     margin: 0 5px 10px 0;
-//   }
-
-//   .remove-all {
-//     display: flex;
-//     float: right;
-//     margin-right: 6px;
-//     opacity: 0.7;
-//     font-size: 9px;
-//   }
-
-// }
-
-// :local(.tooltip) {
-//   margin-top: 15px !important;
-//   font-size: 9px !important;
-//   text-align: left !important;
-//   border: none !important;
-//   opacity: 1 !important;
-//   padding-left: 8px !important;
-//   padding-right: 8px !important;
-
-//   .runner-tooltip-entity {
-//     font-family: 'brandon-grotesque-medium' !important;
-//   }
-
-//   .status-tooltip {
-//     max-width: 80px;
-//   }
-// }
-
-// :local(.itemRoot) {
-//   display: flex;
-//   align-items: center;
-//   height: 50px;
-//   border-radius: 3px;
-//   background-color: @charade-light;
-//   margin: 0 5px 5px 0;
-//   font-size: 11px;
-
-//   &:last-child {
-//     margin-bottom: 10px;
-//   }
-
-//   .runner {
-//     color: @site-text;
-
-//     &-name {
-//       padding-bottom: 5px;
-//       overflow: hidden;
-//       text-overflow: ellipsis;
-//     }
-
-//     &-market {
-//       opacity: 0.7;
-//       font-size: 9px;
-//       white-space: pre-wrap;
-
-//       .multilineTruncate(22px, 11px, 2);
-//     }
-//   }
-
-//   .currency {
-//     font-size: 7px;
-//     margin-top: 3px;
-//   }
-
-//   .profit-amount {
-//     display: flex;
-//     height: 19px;
-//     align-items: center;
-//   }
-
-//   .type {
-//     .btn-back {
-//       border-color: @shamrock;
-//       color: @shamrock;
-//     }
-
-//     .btn-lay {
-//       border-color: @roman;
-//       color: @roman;
-//     }
-//   }
-// }
-
-// :local(.rowFormat) {
-//   .column {
-//     overflow: hidden;
-//     white-space: nowrap;
-//     text-overflow: ellipsis;
-//     padding: 0 5px 0 5px;
-
-//     &-currency {
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: center;
-//       align-items: center;
-//       position: relative;
-//       bottom: -5px;
-//     }
-//   }
-
-//   .runner {
-//     width: 30%;
-//     text-align: left;
-//   }
-
-//   .odds {
-//     width: 15%;
-//   }
-
-//   .stake {
-//     width: 15%
-//   }
-
-//   .profit {
-//     width: 12%;
-//   }
-
-//   .type {
-//     width: 10%;
-//   }
-// }
-
-// :local(.betButton) {
-//   display: inline-flex;
-//   width: 26px;
-//   height: 11px;
-//   padding: 0 0 0 1px;
-//   border-radius: 3px;
-//   font-size: 8px;
-// }
-
-// :local(.tooltip) {
-//   margin-top: 15px !important;
-//   font-size: 9px !important;
-//   text-align: left !important;
-//   border: none !important;
-//   opacity: 1 !important;
-//   padding-left: 8px !important;
-//   padding-right: 8px !important;
-
-//   .runner-tooltip-entity {
-//     font-family: 'brandon-grotesque-medium' !important;
-//   }
-
-//   .status-tooltip {
-//     max-width: 80px;
-//   }
-// }
-
-// :local(.removeButton) {
-//   position: relative;
-//   opacity: 0.7;
-//   top: -36%;
-//   left: -0.5%;
-//   border: none;
-//   padding: 0;
-//   font-size: 9px;
-// }
-
-// :local(.removeAllButton) {
-//   position: relative;
-//   opacity: 1;
-//   top: -1px;
-//   margin-left: 5px;
-//   border: none;
-//   padding: 0;
-//   font-size: 9px;
-// }
+:local(.removeAllButton) {
+  padding: 0;
+  color: @gull-gray;
+  height: auto;
+}

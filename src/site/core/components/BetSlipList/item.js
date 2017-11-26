@@ -10,24 +10,24 @@ import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
 
-const getBetLiability = (state) => {
-  const { odds, stake, type } = state;
-
-  if (type === 'back') {
-    return stake;
-  } else {
-    return (odds * stake)
-  }
+const getBetLiability = ({ odds, stake, type }) => {
+  if (type === 'back') return stake;
+  return (odds * stake)
 }
 
-const getTotalPool = (state) => {
-  const { odds, stake, type } = state;
+const getTotalPool = ({ odds, stake, type }) => {
+  if (type === 'back') return (odds - 1) * stake;
+  return stake;
+}
 
-  if (type === 'back') {
-    return (odds - 1) * stake;
-  } else {
-    return stake;
-  }
+const calculateProfit = (odds, stake) => {
+  const profit = Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0
+  if (profit >= 0) return profit
+  return 0
+}
+
+const calculateStake = (odds, profit) => {
+  return ((profit + (profit / (odds-1))) / odds) || 0
 }
 
 class BetSlipItem extends Component {
@@ -35,15 +35,18 @@ class BetSlipItem extends Component {
     super(props, context);
 
     this.state = {
-      odds: props.item.getIn(['bet', 'odds']),
-      stake: "",
       id: props.item.get('id'),
-      type: props.item.get('type')
+      type: props.item.get('type'),
+      odds: props.item.getIn(['bet', 'odds']),
+      stake: '0.00',
     };
 
     this.handleBetClick = this.handleBetClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleOddsChange = this.handleOddsChange.bind(this)
+    this.handleStakeChange = this.handleStakeChange.bind(this)
+    this.handleProfitChange = this.handleProfitChange.bind(this)
+    this.handleLiabilityChange = this.handleLiabilityChange.bind(this)
   }
 
   componentWillMount() {
@@ -72,16 +75,35 @@ class BetSlipItem extends Component {
     return (!this.state.stake || this.state.stake <= 0) || (!this.state.odds || this.state.odds <= 0);
   }
 
-  get profit() {
-    return (this.state.odds * this.state.stake).toFixed(2) || 0;
+  // get profit() {
+  //   return (this.state.odds * this.state.stake).toFixed(2) || 0;
+  // }
+
+  handleOddsChange(value) {
+    this.setState({
+      odds: value,
+      profit: calculateProfit(value, this.state.stake),
+    })
   }
 
-  handleInputChange(field) {
-    return (value) => {
-      this.setState({
-        [field]: value
-      });
-    };
+  handleStakeChange(value) {
+    this.setState({
+      stake: value,
+      profit: calculateProfit(parseFloat(this.state.odds), parseFloat(value)),
+    })
+  } 
+
+  handleProfitChange(value) {
+    this.setState({
+      profit: value,
+      stake: calculateStake(parseFloat(this.state.odds), parseFloat(value))
+    })
+  }
+
+  handleLiabilityChange(value) {
+    this.setState({
+      liability: getBetLiability(this.state)
+    })
   }
 
   handleBetClick(match, runner) {
@@ -131,66 +153,74 @@ class BetSlipItem extends Component {
   render() {
     const match = this.props.item.get('item');
     const runner = this.props.item.get('runner');
-
+    const { type, currency } = this.props
     return (
-      <div className={classNames([styles.listItem, this.props.type])}>
+      <article className={classNames([styles.itemRoot, type])}>
         
-        <div className={styles.runner} data-tip data-for={match.get('id')}>
-          <span className={styles.runnerName}>{this.props.item.getIn(['runner', 'name'])}</span>
-          <span className={styles.runnerMarket}>{match.get('name')}</span>
-        </div>
+        <header className={styles.header} data-tip data-for={match.get('id')}>
+          <div className={styles.headerTop}>
+            <span className={styles.headerTitle}>{this.props.item.getIn(['runner', 'name'])}</span>
+            <div>
+              <Button className={classNames([styles.removeButton, 'button-minimal', 'button-m', 'button-square'])} onClick={this.handleRemoveClick}>
+                <i className="fa fa-times" aria-hidden="true"/>
+              </Button>
+            </div>
+          </div>
+          <span className={styles.headerSub}>{match.get('name')}</span>
+        </header>
 
-        {this.renderRunnerTooltip(match)}
+        {/*{this.renderRunnerTooltip(match)}*/}
 
-        <div class={styles.details}>
-
+        <div className={styles.details}>
+          
           <div className={styles.detailsItem}>
-            <span className={styles.detailsHeading}>Odds</span>
-            <SpinBox
-              value={this.state.odds}
-              onChange={this.handleInputChange('odds')}
-              placeholder={0}
-            />
+            <div className={styles.detailsHeading}>
+              <span>Odds</span>
+            </div>
+            <SpinBox value={this.state.odds} onChange={this.handleOddsChange} />
           </div>
 
           <div className={styles.detailsItem}>
-            <span className={styles.detailsHeading}>Stake</span>
-            <SpinBox
-              value={this.state.stake}
-              onChange={this.handleInputChange('stake')}
-              placeholder={0}
-            />
-            {/*<span className={styles.currency}>{t(`core:currency.${this.props.currency}`)}</span>*/}
+            <div className={styles.detailsHeading}>
+              <span>Stake</span>
+              <span className={styles.detailsHeadingCurrency}>{currency}</span>
+            </div>
+            <SpinBox value={this.state.stake} onChange={this.handleStakeChange} />
           </div>
 
-          <div className={styles.detailsItem}>
-            <span className={styles.detailsHeading}>Profit</span>
-            <span className={styles.profitAmount}>{this.profit} {t(`core:currency.${this.props.currency}`)}</span>
-          </div>
+          {type === 'back' &&
+            <div className={styles.detailsItem}>
+              <div className={styles.detailsHeading}>
+                <span>Profit</span>
+                <span className={styles.detailsHeadingCurrency}>{currency}</span>
+              </div>
+              <SpinBox value={this.state.profit} onChange={this.handleProfitChange} />
+            </div>
+          }
+          
+          {type === 'lay' &&
+            <div className={styles.detailsItem}>
+              <div className={styles.detailsHeading}>
+                <span>Liability</span>
+               <span className={styles.detailsHeadingCurrency}>{currency}</span>
+              </div>
+              <SpinBox value={this.state.liability} onChange={this.handleLiabilityChange} />
+            </div>
+          }
 
-        </div>
-
-        <div className={styles.actions}>
-          <div>
+          <div className={styles.detailsBet}>
             <Button
-              className={classNames([styles.betButton, 'button-s', `button-${this.props.type}`])}
+              className={classNames([styles.betButton, 'button-s', `button-${type}`])}
               onClick={this.handleBetClick(match, runner)}
               isDisabled={this.isDisabled}
             >
-              {t(`core:bets.bet-slip.button-${this.props.type}`)}
+              {t(`core:bets.bet-slip.button-${type}`)}
             </Button>
           </div>
-          <div>
-            <Button
-              className={classNames([styles.removeButton, 'button-minimal', 'button-m', 'button-square'])}
-              onClick={this.handleRemoveClick}
-            >
-              <i className="fa fa-times" aria-hidden="true"/>
-            </Button>
-          </div>
+
         </div>
 
-      </div>
+      </article>
     );
   }
 }

@@ -26,10 +26,12 @@ class BetSlipList extends Component {
     return (
       <div className={styles.removeAll}>
         <Button
-          className={classNames([styles.removeAllButton, 'button-white', 'button-s'])}
+          className={classNames([styles.removeAllButton, 'button-minimal', 'button-m'])}
           onClick={this.props.onRemoveAllClick}
         >
           {t('core:bets.bet-slip.remove-all')}
+          {' '}
+          <i className="fa fa-close" aria-hidden="true" />
         </Button>
       </div>
     );
@@ -45,18 +47,6 @@ class BetSlipList extends Component {
     return (
       <div className={`bet-slip-${type}`}>
         {this.renderRows(type, this.props.items.get(type))}
-      </div>
-    );
-  }
-
-  renderHeader(type) {
-    return (
-      <div className={classNames(["bet-slip-header", styles.rowFormat])}>
-        <div className="runner column">{t(`core:bets.bet-slip.runner-${type}`)}</div>
-        <div className="odds column">{t('core:bets.bet-slip.odds')}</div>
-        <div className="stake column">{t('core:bets.bet-slip.stake')}</div>
-        <div className="profit column">{t(`core:bets.bet-slip.profit-${type}`)}</div>
-        <div className="type column"></div>
       </div>
     );
   }
