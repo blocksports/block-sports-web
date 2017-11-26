@@ -88,7 +88,7 @@ class MarketListItem extends Component {
     return (
       <div className={styles.main}>
         {this.renderRunnerRows(this.props.item.get('runner_a'))}
-        {this.drawRow}
+        {/*{this.drawRow}*/}
         {this.renderRunnerRows(this.props.item.get('runner_b'))}
         {this.showDraw ? this.renderRunnerRows(this.props.item.get('draw')) : null}
       </div>
@@ -97,7 +97,6 @@ class MarketListItem extends Component {
 
   get drawRow() {
     if (!this.props.showDetail) return null;
-
     return this.renderRunnerRows(this.props.item.get('draw'));
   }
 
@@ -146,7 +145,7 @@ class MarketListItem extends Component {
     return (event) => {
       event.stopPropagation();
 
-      if (this.props.showDetail && this.props.onOddsClick) {
+      if (this.props.onOddsClick) {
         return this.props.onOddsClick({
           id: this.getBetID(runner),
           bet: bet,

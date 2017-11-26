@@ -47,7 +47,7 @@ class MarketList extends Component {
           minimumBet={this.props.minimumBet}
           showDetail={this.props.showDetail}
           onOddsClick={this.props.onOddsClick}
-          />
+        />
       );
     });
 

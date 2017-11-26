@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
 import { selectExchangeRate } from '../../selectors/currency';
-import { placeBet } from '../../reducers/bet';
+import { addBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
 import { Tabs, Tab } from '../../components/Tabs';
 import styles from './style.less';
@@ -60,9 +60,9 @@ export class Markets extends Component {
             items={this.props.items}
             currency={this.props.activeCurrency}
             exchangeRate={this.props.exchangeRate}
-            onConfirmBet={this.props.placeBet}
+            onOddsClick={this.props.addBet}
             minimumBet={this.props.minimumBet}
-            />
+          />
         </div>
       </div>
     );
@@ -82,8 +82,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    placeBet: (...args) => {
-      return dispatch(placeBet(...args));
+    addBet: (...args) => {
+      return dispatch(addBet(...args));
     }
   };
 }
