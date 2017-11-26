@@ -36,35 +36,34 @@ class Bets extends Component {
     );
   }
 
-  displayClass(tab) {
-    return classNames({'is-active': tab === this.state.activeTab, 'is-inactive': tab !== this.state.activeTab});
-  }
-
   tabClass(tab) {
-    return classNames([{'active': tab == this.state.activeTab}]);
+    return classNames([styles.tab, {'active': tab == this.state.activeTab}]);
   }
 
   handleTabClick(tab) {
     return () => {
-      this.setState({activeTab: tab});
+      this.setState({ activeTab: tab });
     };
   }
 
   render() {
+    const { activeTab } = this.state
     return (
       <div className={classNames([styles.root, this.props.className])}>
         {this.tabs}
         <div className={styles.content}>
-          <BetSlip
-            className={this.displayClass('bet-slip')}
-            focusTab={this.handleTabClick('bet-slip')}
-            isActive={this.state.activeTab == 'bet-slip'}
+          {activeTab === 'bet-slip' &&
+            <BetSlip
+              focusTab={this.handleTabClick('bet-slip')}
+              isActive={this.state.activeTab == 'bet-slip'}
             />
-          <ActiveBets
-            className={this.displayClass('active')}
-            focusTab={this.handleTabClick('active')}
-            isActive={this.state.activeTab == 'active'}
+          }
+          {activeTab === 'active' &&
+            <ActiveBets
+              focusTab={this.handleTabClick('active')}
+              isActive={this.state.activeTab == 'active'}
             />
+          }
         </div>
       </div>
     );
