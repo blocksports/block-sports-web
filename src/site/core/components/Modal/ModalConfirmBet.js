@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ModalWrapper from './ModalWrapper';
 import classNames from 'classnames';
@@ -24,32 +25,41 @@ class ModalConfirmBet extends Component {
 
 	render() {
 		const { currentStep, totalSteps, showWarning } = this.state;
+		const betType = this.props.confirmingBet.getIn(['type'])
 	  return (
 	    <ModalWrapper {...this.props} title="Confirm your bet">
 	    	{currentStep == 1 && 
 	    		<div>
 	    			<FormStepOne {...this.props} />
-	    			<div className={styles.buttonContainerNext}>
-	    				<Button className="button-m button-white" onClick={() => this.updateStep(2)}>Next</Button>
+	    			<div className={styles.buttonContainer}>
+	    				<Button className={classNames(['button-m', `button-${betType}`])} onClick={() => this.updateStep(2)}>Next</Button>
 	    			</div>
 	    		</div>
 	    	}
 	    	{currentStep == 2 && 
 	    		<div>
 		    		<FormStepTwo {...this.props} />
-		    		<div className={styles.buttonContainerPrev}>
-		    			<Button className="button-m button-white" onClick={() => this.updateStep(1)}>Back</Button>
+		    		<div className={styles.buttonContainer}>
+		    			<Button className={classNames(['button-m', `button-${betType}`])} onClick={() => this.updateStep(1)}>Back</Button>
+		    			<Button className={classNames(['button-m', 'button-white'])} onClick={() => this.props.setCurrentModal(null)}>Done</Button>
 		    		</div>
 	    		</div>
 	    	}
-	    	<div className={styles.progressWrap}>
+	    	<div className={styles.progressContainer}>
 	    		<span className={styles.progressText}>Step {currentStep} of {totalSteps}</span>
-					<progress className={styles.progress} value={currentStep / totalSteps * 100} max="100"></progress>
+	    		<div className={styles.progressBar}>
+						<div className={styles.progress} style={{width: `${currentStep / totalSteps * 100}%`}} />
+					</div>
 				</div>
 	    </ModalWrapper>
 	  );
 	}
 }
+
+ModalConfirmBet.propTypes = {
+  setCurrentModal: PropTypes.func.isRequired,
+  confirmingBet: PropTypes.object.isRequired,
+};
 
 export default ModalConfirmBet;
 
@@ -91,37 +101,37 @@ class FormStepOne extends Component {
 							</div>
 						</div>
 					</div>
+					{showOptions && 
+						<div>
+							<div className={styles.info}>
+								<span className={styles.truncate}>{confirmingBet.getIn(['entity_name'])} | {confirmingBet.getIn(['market_name'])}</span>
+								<span>Date, Time</span>
+							</div>
+							<div className={styles.infoDetails}>
+								<div className={styles.infoDetailsItem}>
+									<span className={styles.infoDetailsItemHeading}>Odds</span>
+									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['odds'])}</span>
+									<span className={styles.infoDetailsItemCurrency}>GAS</span>
+								</div>
+								<div className={styles.infoDetailsItem}>
+									<span className={styles.infoDetailsItemHeading}>Stake</span>
+									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['stake'])}</span>
+									<span className={styles.infoDetailsItemCurrency}>GAS</span>
+								</div>
+								<div className={styles.infoDetailsItem}>
+									<span className={styles.infoDetailsItemHeading}>Profit</span>
+									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['profit'])}</span>
+									<span className={styles.infoDetailsItemCurrency}>GAS</span>
+								</div>
+							</div>
+						</div>
+					}
 				</div>
 				<div className={styles.infoToggle}>
 					<a onClick={() => this.handleOptionsToggle()}>
 						<i class={`fa fa-angle-${showOptions ? 'up' : 'down'}`} aria-hidden="true"></i>
 					</a>
 				</div>
-				{showOptions && 
-					<div>
-						<div className={styles.info}>
-							<p>{confirmingBet.getIn(['entity_name'])}: {confirmingBet.getIn(['market_name'])}<br />
-							Date, Time</p>
-						</div>
-						<div className={styles.infoDetails}>
-							<div className={styles.infoDetailsItem}>
-								<span className={styles.infoDetailsItemHeading}>Odds</span>
-								<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['odds'])}</span>
-								<span className={styles.infoDetailsItemCurrency}>GAS</span>
-							</div>
-							<div className={styles.infoDetailsItem}>
-								<span className={styles.infoDetailsItemHeading}>Stake</span>
-								<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['stake'])}</span>
-								<span className={styles.infoDetailsItemCurrency}>GAS</span>
-							</div>
-							<div className={styles.infoDetailsItem}>
-								<span className={styles.infoDetailsItemHeading}>Profit</span>
-								<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['profit'])}</span>
-								<span className={styles.infoDetailsItemCurrency}>GAS</span>
-							</div>
-						</div>
-					</div>
-				}
 			</div>
 		)
 	}
@@ -133,7 +143,7 @@ class FormStepTwo extends Component {
 	constructor() {
 		super();
 		this.state = {
-			warningTimeout: 800,
+			warningTimeout: 3000,
 			showWarning: false,
 		}
 	}
