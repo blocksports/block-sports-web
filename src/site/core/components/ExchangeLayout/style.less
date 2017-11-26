@@ -9,7 +9,7 @@
 }
 
 :local(.left) {
- flex: 0 0 210px;
+ width: 210px;
  height: ~"calc(100vh - @{panel-height})";
  overflow-y: scroll;
  .makePanel();
@@ -37,13 +37,14 @@
 
 :local(.right) {
   height: ~"calc(100vh - @{panel-height})";
-  flex: 0 0 250px;
+  width: 350px;
   display: flex;
   flex-direction: column;
 }
 
 :local(.bets) {
-  flex: 0 0 200px;
+  height: 300px;
+  width: 100%;
   overflow-y: scroll;
   .makePanel();
   padding: 0;
