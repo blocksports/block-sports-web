@@ -46,7 +46,7 @@ class MarketListItem extends Component {
 
     this.handleOddsClick = this.handleOddsClick.bind(this);
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
-    this.handleMarketClick = this.handleMarketClick.bind(this);
+    // this.handleMarketClick = this.handleMarketClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.resetState = this.resetState.bind(this);
   }
@@ -60,7 +60,7 @@ class MarketListItem extends Component {
   get contentLeft() {
     const date = this.props.item.get('date');
     return (
-      <div className={styles.itemDate} onClick={this.handleMarketClick}>
+      <div className={styles.itemDate}>
         <div>
           <span className={styles.itemDateDay}>{dateTime(date, dateTypes.calendarDay)}</span>
           <span className={styles.itemDateTime}>{dateTime(date, dateTypes.time)}</span>
@@ -193,11 +193,10 @@ class MarketListItem extends Component {
     }
   }
 
-  handleMarketClick() {
-    const link = `/exchange/${this.props.item.get('sport')}/market/${this.props.item.get('id')}`;
-
-    browserHistory.push(link);
-  }
+  // handleMarketClick() {
+  //   const link = `/exchange/${this.props.item.get('sport')}/market/${this.props.item.get('id')}`;
+  //   browserHistory.push(link);
+  // }
 
   handleInputChange(type) {
     return (value) => {
@@ -210,7 +209,7 @@ class MarketListItem extends Component {
   renderRunnerRows(runner) {
     return (
       <div className={styles.runnerRow}>
-        <div className={styles.marketRow} onClick={this.handleMarketClick}>
+        <div className={styles.marketRow}>
           <span className={styles.marketRowDetail}>{runner.get('name')}</span>
           <div className={styles.marketRowActions}>
             {this.renderBetButtons(runner, 'back')}
