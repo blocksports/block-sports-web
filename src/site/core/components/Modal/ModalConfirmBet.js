@@ -48,7 +48,7 @@ class ModalConfirmBet extends Component {
 	    	<div className={styles.progressContainer}>
 	    		<span className={styles.progressText}>Step {currentStep} of {totalSteps}</span>
 	    		<div className={styles.progressBar}>
-						<div className={styles.progress} style={{width: `${currentStep / totalSteps * 100}%`}} />
+						<div className={classNames([styles.progress, betType])} style={{width: `${currentStep / totalSteps * 100}%`}} />
 					</div>
 				</div>
 	    </ModalWrapper>
