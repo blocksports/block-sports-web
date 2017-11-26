@@ -143,7 +143,7 @@ class FormStepTwo extends Component {
 	constructor() {
 		super();
 		this.state = {
-			warningTimeout: 3000,
+			warningTimeout: 2500,
 			showWarning: false,
 		}
 	}
@@ -166,7 +166,7 @@ class FormStepTwo extends Component {
 						<p>This is a proof of concept demo, the Block Sports Exchange is not currently available. DO NOT send to this mock address.</p>
 					</div>
 				}
-				<img src={DemoQrImage} className={styles.qr} />
+				<img src={DemoQrImage} className={styles.qr} alt="Fake QR code" />
 				<div className={styles.highlight}>
 					<span>eoRJdaIqxdek4fj4Fa98fj4cemkKPe0fj</span>
 				</div>
