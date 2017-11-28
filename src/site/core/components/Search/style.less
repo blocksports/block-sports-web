@@ -1,30 +1,38 @@
 @import '../../../../less/_colours.less';
-@import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
 
 :local(.root) {
-  display: flex;
-  width: 215px;
-  border-radius: 10px;
-  border: 1px solid @gull-gray;
-  height: 25px;
-
-  padding: 0 10px 0 10px;
-
-  .search-icon {
-    position: relative;
-    height: 10px;
-    top: 8px;
-    font-size: 9px;
-  }
-
-  .search {
-      padding-left: 8px;
-      color: @site-text;
-      width: 215px;
-      &:focus {
-        outline: none;
-      }
-  }
-
-
+  position: relative;
+  max-width: 18rem;
+  width: 100%;
 }
+
+:local(.icon) {
+  position: absolute;
+  top: 50%;
+  left: 1.6rem;
+  transform: ~"translate3d(0, -50%, 0)";
+  font-size: @font-size-m;
+  line-height: 1;
+  color: @gull-gray;
+}
+
+:local(.input) {
+  background: transparent;
+  -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+  border-radius: @border-radius * 2;
+  border: 1px solid @gull-gray;
+  font-size: @font-size-m;
+  line-height: 1;
+  padding: 0.4em 2em 0.4em 3.5em;
+  color: @gull-gray;
+  cursor: not-allowed;
+
+  &::-webkit-input-placeholder { color: @gull-gray; }
+  &:-moz-placeholder           { color: @gull-gray; }
+  &::-moz-placeholder          { color: @gull-gray; }
+  &:-ms-input-placeholder      { color: @gull-gray; }  
+}
+

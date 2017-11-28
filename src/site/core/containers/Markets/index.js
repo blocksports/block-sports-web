@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
 import { selectExchangeRate } from '../../selectors/currency';
-import { placeBet } from '../../reducers/bet';
+import { addBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
-
+import { Tabs, Tab } from '../../components/Tabs';
 import styles from './style.less';
 
 export class Markets extends Component {
@@ -31,38 +31,38 @@ export class Markets extends Component {
 
   get tabs() {
     return (
-      <div className="market-header">
-        <ul className="tabs">
-          <li className={this.tabClass('time')}><a className="tab-link" onClick={this.handleTabClick('time')}><i className="fa fa-clock-o" aria-hidden="true"/>{t('core:markets.header-time')}</a></li>
-          <li className={this.tabClass('popular')}><a className="tab-link" onClick={this.handleTabClick('popular')}><i className="fa fa-star-o" aria-hidden="true"/>{t('core:markets.header-popular')}</a></li>
-        </ul>
-      </div>
+      <Tabs className={styles.tabs}>
+        <Tab className={this.tabClass('time')} onClick={this.handleTabClick('time')}><i className="fa fa-clock-o" aria-hidden="true"/>{t('core:markets.header-time')}</Tab>
+        <Tab className={this.tabClass('popular')} onClick={this.handleTabClick('popular')}><i className="fa fa-star-o" aria-hidden="true"/>{t('core:markets.header-popular')}</Tab>
+      </Tabs>
     );
   }
 
   tabClass(tab) {
-    return classNames(['tab-item', {'is-active': tab == this.state.activeOrder}]);
+    return classNames([tab == this.state.activeOrder ? 'active' : null]);
   }
 
   handleTabClick(tab) {
     return () => {
-      this.setState({activeOrder: tab});
+      this.setState({
+        activeOrder: tab
+      });
     };
   }
 
   render() {
     return (
-      <div className={styles.root}>
+      <div>
         {this.tabs}
-        <div className="market-body">
+        <div className={styles.body}>
           <MarketList
             order={this.state.activeOrder}
             items={this.props.items}
             currency={this.props.activeCurrency}
             exchangeRate={this.props.exchangeRate}
-            onConfirmBet={this.props.placeBet}
+            onOddsClick={this.props.addBet}
             minimumBet={this.props.minimumBet}
-            />
+          />
         </div>
       </div>
     );
@@ -82,8 +82,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    placeBet: (...args) => {
-      return dispatch(placeBet(...args));
+    addBet: (...args) => {
+      return dispatch(addBet(...args));
     }
   };
 }

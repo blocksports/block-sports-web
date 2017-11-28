@@ -5,6 +5,7 @@ import currencyReducer from './currency'
 import exchangeReducer from './exchange';
 import navigationReducer from './navigation';
 import routerReducer from './router';
+import modalReducer from './modal';
 
 const coreReducer = combineReducers({
   user: userReducer,
@@ -12,7 +13,8 @@ const coreReducer = combineReducers({
   currency: currencyReducer,
   exchange: exchangeReducer,
   navigation: navigationReducer,
-  router: routerReducer
+  router: routerReducer,
+  modal: modalReducer,
 });
 
 export default coreReducer;

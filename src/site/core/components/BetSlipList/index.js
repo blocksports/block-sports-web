@@ -24,13 +24,14 @@ class BetSlipList extends Component {
     if (this.isEmpty('back') && this.isEmpty('lay')) return null;
 
     return (
-      <div className="remove-all">
-        {t('core:bets.bet-slip.remove-all')}
+      <div className={styles.removeAll}>
         <Button
-          className={styles.removeAllButton}
+          className={classNames([styles.removeAllButton, 'button-minimal', 'button-m'])}
           onClick={this.props.onRemoveAllClick}
         >
-          <i className="fa fa-times" aria-hidden="true"/>
+          {t('core:bets.bet-slip.remove-all')}
+          {' '}
+          <i className="fa fa-close" aria-hidden="true" />
         </Button>
       </div>
     );
@@ -45,20 +46,7 @@ class BetSlipList extends Component {
 
     return (
       <div className={`bet-slip-${type}`}>
-        {this.renderHeader(type)}
         {this.renderRows(type, this.props.items.get(type))}
-      </div>
-    );
-  }
-
-  renderHeader(type) {
-    return (
-      <div className={classNames(["bet-slip-header", styles.rowFormat])}>
-        <div className="runner column">{t(`core:bets.bet-slip.runner-${type}`)}</div>
-        <div className="odds column">{t('core:bets.bet-slip.odds')}</div>
-        <div className="stake column">{t('core:bets.bet-slip.stake')}</div>
-        <div className="profit column">{t(`core:bets.bet-slip.profit-${type}`)}</div>
-        <div className="type column"></div>
       </div>
     );
   }

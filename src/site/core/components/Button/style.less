@@ -1,27 +1,126 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
 
-.btn {
-  display: flex;
-  flex-direction: column;
+// Base
+
+.button {
+  font-family: 'Proxima-Nova-Soft', sans-serif;
+  background: transparent;
+  outline: none;
+  -webkit-apperance: none;
+  cursor: pointer;
+  display: inline-block;
   border: 1px solid @white;
   border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 3px;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  cursor: pointer;
-  font-family: 'brandon-grotesque-medium';
+  line-height: 1;
+  padding: 0.75em 1.25em 0.55em;
+  color: currentColor;
+  font-size: @font-size;
+  transition: all 0.3s;
 
-  &-main {
-    color: @site-text;
-    font-size: 9px;
-    text-transform: uppercase;
+  &:not(.button-square) i {
+    margin-right: 0.5rem;
+    font-size: 1em;
   }
 
-  &-disabled {
-    cursor: not-allowed !important;
-    opacity: 0.3;
+}
+
+// Tabs
+
+.button-tab {
+  border-radius: 0;
+  font-size: @font-size-m;
+  padding: 1em 1.25em 0.85em;
+  &:hover,
+  &:focus {
+    opacity: 1!important;
+  }
+}
+
+// Square
+
+.button-square {
+  padding: 0.75rem;
+}
+
+// Minimal
+
+.button-minimal {
+  border: 0;
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+  }
+}
+
+// Disabled
+
+.button-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.3;
+}
+
+
+// Button sizes
+
+.button-s {
+  letter-spacing: 0;
+  font-size: @font-size-s;
+}
+
+.button-m {
+  letter-spacing: 0;
+  font-size: @font-size-m;
+}
+
+// Button colours
+
+.button-white {
+  background: fade(@white, 5%);
+
+  &:hover {
+    background: @white;
+    color: @charade;
+  }
+}
+
+// Bet Buttons
+
+.button-bet {
+  padding: 0.2em 1.2em;
+  letter-spacing: 0;
+
+  .odds {
+    display: block;
+    font-size: @font-size-m;
+  }
+
+  .matched {
+    display: block;
+    font-size: @font-size-xs;
+  }
+
+}
+
+.button-back {
+  background: fade(@shamrock, 5%);
+  color: @shamrock;
+  border-color: @shamrock;
+  
+  &:hover {
+    background: @shamrock;
+    color: @charade;
+  }
+}
+
+.button-lay {
+  background: fade(@roman, 5%);
+  color: @roman;
+  border-color: @roman;
+  
+  &:hover {
+    background: @roman;
+    color: @charade;
   }
 }

@@ -20,13 +20,9 @@ class Button extends Component {
 
   render() {
     return (
-      <a
-        className={classNames(['btn', this.props.className, {"btn-disabled": this.props.isDisabled}])}
-        onClick={this.handleClick}
-        type="button"
-        >
+      <button className={classNames(['button', this.props.className, {'button-disabled': this.props.isDisabled}])} onClick={this.handleClick}>
         {this.props.children}
-      </a>
+      </button>
     );
   }
 }

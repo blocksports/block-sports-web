@@ -3,20 +3,15 @@
 
 :local(.root) {
   display: flex;
-  height: 20px;
-  width: 70px;
   border: 1px solid @gull-gray;
-  border-radius: 3px;
-  font-size: 9.5px;
-  font-family: 'brandon-grotesque-regular';
+  border-radius: @border-radius;
+  margin-right: calc(@space * 2);
 
   .toggle-option {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+    font-size: @font-size-s;
+    line-height: 1;
+    padding: 0.5em 1em 0.4em;
     cursor: pointer;
-
     &:last-child {
       border-left: 1px solid @gull-gray;
     }
@@ -27,4 +22,5 @@
     color: @site-panel-bg;
     cursor: default;
   }
+
 }

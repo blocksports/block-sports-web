@@ -1,60 +1,68 @@
 @import '../../../../less/_colours.less';
-@import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
+
+@panel-height: (@header-height + @footer-height) + (@panel-gutter * 4);
 
 :local(.root) {
   display: flex;
-  flex-direction: column;
   width: 100%;
+}
 
-  .exchange-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+:local(.left) {
+ width: 210px;
+ height: ~"calc(100vh - @{panel-height})";
+ overflow-y: scroll;
+ .makePanel();
+}
 
-    &-left {
-      flex-shrink: 0;
-      width: 225px;
-    }
+:local(.main) {
+  flex-grow: 1;
+  margin: 0 @panel-gutter;
+  height: ~"calc(100vh - @{panel-height})";
+  overflow-y: scroll;
+}
 
-    &-right {
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-      width: 325px;
+:local(.mainMarket) {
+  .makePanel();
+  overflow: hidden;
+  padding: 0;
+}
 
-      &-top {
-        min-height: 75px;
-      }
+:local(.mainMedia) {
+  display: block;
+  padding-bottom: 25%;
+  border-radius: 5px;
+  margin: 0 0 @panel-gutter 0;
+  background-color: @gull-gray;
+}
 
-      &-bottom {
-        display: flex;
-        flex-grow: 3;
-      }
-    }
+:local(.right) {
+  height: ~"calc(100vh - @{panel-height})";
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
 
-    &-middle {
-      display: flex;
-      flex-grow: 2;
-      flex-direction: column;
-      min-width: 400px;
+:local(.bets) {
+  height: 300px;
+  width: 100%;
+  overflow-y: scroll;
+  .makePanel();
+  padding: 0;
+}
 
-      &-top {
-        flex-grow: 1;
-        min-height: 150px;
-      }
+:local(.chat) {
+  position: relative;
+  flex-grow: 1;
+  .makePanel();
+  padding: 0;
+  margin-top: @panel-gutter;
+  // overflow-y: scroll;
+  overflow: hidden;
+  display: flex;
+}
 
-      &-bottom {
-        display: flex;
-        flex-grow: 3;
-      }
-    }
-  }
-
-  .exchange-footer {
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    min-width: 966px;
-  }
+:local(.footer) {
+  margin-top: @space;
+  .makePanel();
 }

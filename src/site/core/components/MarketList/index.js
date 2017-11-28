@@ -48,7 +48,7 @@ class MarketList extends Component {
           minimumBet={this.props.minimumBet}
           showDetail={this.props.showDetail}
           onOddsClick={this.props.onOddsClick}
-          />
+        />
       );
     });
 
@@ -57,9 +57,9 @@ class MarketList extends Component {
 
   renderDateRow(date, key) {
     return (
-      <div className="date-row" key={`date-${key}`}>
+      <span className={styles.dateHeading} key={`date-${key}`}>
         {dateTime(date, dateTypes.dayMonthDate)}
-      </div>
+      </span>
     );
   }
 
