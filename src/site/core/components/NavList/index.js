@@ -57,7 +57,7 @@ class NavList extends Component {
         `/exchange/${item.get('id')}`;
 
       return (
-        <li>
+        <li key={idx}>
           <Link to={link} className={styles.item} activeClassName={styles.itemActive}>
             <span className={styles.itemName}>{item.get('name')}</span>
             <div>
