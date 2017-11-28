@@ -6,12 +6,12 @@
 	flex-direction: column;
 }
 
-
 :local(.heading) {
 	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
+	z-index: 99;
 	display: block;
 	background-color: @site-panel-bg-light;
 	border-radius: @border-radius;
@@ -28,6 +28,7 @@
 :local(.form) {
 	position: sticky;
 	bottom: 0;
+	z-index: 99;
 
 	textarea {
 		display: block;

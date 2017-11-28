@@ -76,7 +76,7 @@ const ChatMessage = ({ message }) =>
 	</div>
 
 const DisabledMessage = () => 
-	<div class={styles.disabledMessage}>
+	<div className={styles.disabledMessage}>
 		<span>Chat is currently disabled</span>
 	</div>
 
