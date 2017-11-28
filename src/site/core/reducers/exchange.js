@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import axios from '../../../lib/request';
 import { createAction, createReducer } from 'redux-act';
-import { getNestedMarketsArray, calculateMatchPools } from '../../../lib/utils';
+import { getNestedMarketsArray } from '../../../lib/utils';
 import { mockMarkets } from './__mockData';
 
 const fetchMarketsRequest = createAction('FETCH_MARKETS_REQUEST');
