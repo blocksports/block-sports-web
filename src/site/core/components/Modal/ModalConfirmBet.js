@@ -186,7 +186,7 @@ class FormStepTwo extends Component {
 	constructor() {
 		super();
 		this.state = {
-			warningTimeout: 2000000,
+			warningTimeout: 3000,
 			showWarning: false,
 		}
 	}
