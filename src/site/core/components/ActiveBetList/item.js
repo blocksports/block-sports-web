@@ -12,11 +12,13 @@ import SpinBox from '../SpinBox'
 class ActiveBetListItem extends Component {
   constructor(props) {
     super(props);
+    const odds = props.bet.get('odds')
+    const stake = props.bet.get('stake')
     this.state = {
-      odds: props.bet.get('odds'),
-      stake: props.bet.get('stake'),
-      profit: props.bet.get('profit'),
-      matched: props.bet.get('matched')
+      odds,
+      stake,
+      profit: (odds - 1) * stake,
+      matched: 0,
     }
   }
   
@@ -70,7 +72,7 @@ class ActiveBetListItem extends Component {
           <div className={styles.detailsItem}>
             <div className={styles.detailsHeading}>
               <span>Stake</span>
-              <span className={styles.detailsHeadingCurrency}>{currency}</span>
+              <span className={styles.detailsCurrency}>{currency}</span>
             </div>
             <span class={styles.detailsValue}>{this.state.stake}</span>
           </div>
@@ -79,7 +81,7 @@ class ActiveBetListItem extends Component {
             <div className={styles.detailsItem}>
               <div className={styles.detailsHeading}>
                 <span>Profit</span>
-                <span className={styles.detailsHeadingCurrency}>{currency}</span>
+                <span className={styles.detailsCurrency}>{currency}</span>
               </div>
               <span class={styles.detailsValue}>{this.state.profit}</span>
             </div>
@@ -89,7 +91,7 @@ class ActiveBetListItem extends Component {
             <div className={styles.detailsItem}>
               <div className={styles.detailsHeading}>
                 <span>Liability</span>
-               <span className={styles.detailsHeadingCurrency}>{currency}</span>
+                <span className={styles.detailsCurrency}>{currency}</span>
               </div>
               <span class={styles.detailsValue}>{this.state.matched}</span>
             </div>

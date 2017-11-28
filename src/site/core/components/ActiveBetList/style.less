@@ -72,7 +72,7 @@
 :local(.detailsItem) {
   font-size: @font-size-s;
   width: 25%;
-  margin-right: @space-s;
+  padding-right: @space-s;
 }
 
 :local(.detailsHeading) {
@@ -82,7 +82,12 @@
   padding-right: 12px;
 }
 
+:local(.detailsCurrency) {
+  color: @white;
+}
+
 :local(.detailsValue) {
+  display: block;
   font-size: @font-size-s;
   line-height: 1;
   background-color: darken(@site-panel-bg-light, 4%);
