@@ -5,14 +5,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	background-color: @site-panel-bg-light;
-	position: sticky;
-	top: 0;
+	transition: background-color 0.3s;
 }
 
 :local(.tab) {
 
   &.active {
     background-color: @site-panel-bg;
+  }
+
+  &:hover {
+  	background-color: darken(@site-panel-bg-light, 5%);
   }
 
 }
