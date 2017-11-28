@@ -25,14 +25,20 @@ class ModalConfirmBet extends Component {
 
 	render() {
 		const { currentStep, totalSteps, showWarning } = this.state;
-		const betType = this.props.confirmingBet.getIn(['type'])
+		const { confirmingBet } = this.props;
+		const betType = confirmingBet.getIn(['type'])
 	  return (
 	    <ModalWrapper {...this.props} title="Confirm your bet">
 	    	{currentStep == 1 && 
 	    		<div>
 	    			<FormStepOne {...this.props} />
 	    			<div className={styles.buttonContainer}>
-	    				<Button className={classNames(['button-m', `button-${betType}`])} onClick={() => this.updateStep(2)}>Next</Button>
+	    				<Button 
+	    					className={classNames([styles.buttonNext, 'button-m', `button-${betType}`])} 
+	    					onClick={() => this.updateStep(2)}
+	    				>
+	    					Next
+	    				</Button>
 	    			</div>
 	    		</div>
 	    	}
@@ -78,9 +84,27 @@ class FormStepOne extends Component {
 		})
 	}
 
+	getStake(stake, priceUsd) {
+		return {
+			GAS: stake,
+			USD: (stake * priceUsd).toFixed(2),
+		}
+	}
+
+	getLiability(liability, priceUsd) {
+		return {
+			GAS: liability,
+			USD: (liability * priceUsd).toFixed(2),
+		}
+	}	
+
 	render() {
 		const { showOptions } = this.state
-		const { confirmingBet } = this.props
+		const { confirmingBet, price, activeCurrency } = this.props
+		const priceUsd = price.getIn(['GAS', 'USD'])
+		const stake = this.getStake(confirmingBet.getIn(['stake']), priceUsd)
+		const liability = this.getLiability(confirmingBet.getIn(['liability']), priceUsd)
+		const betType = confirmingBet.getIn(['type'])
 		return (
 			<div className={styles.formContainer}>
 				<div className={styles.highlight}>
@@ -93,11 +117,11 @@ class FormStepOne extends Component {
 							<span className={styles.stakeHeading}>Your stake</span>
 							<div className={styles.stakeItem}>
 								<span className={styles.stakeCurrency}>GAS</span>
-								<span className={styles.stakeNumL}>??</span>
+								<span className={styles.stakeNumL}>{stake.GAS}</span>
 							</div>
 							<div className={styles.stakeItem}>
 								<span className={styles.stakeCurrency}>USD</span>
-								<span className={styles.stakeNumS}>??</span>
+								<span className={styles.stakeNumS}>{stake.USD}</span>
 							</div>
 						</div>
 					</div>
@@ -109,29 +133,48 @@ class FormStepOne extends Component {
 							</div>
 							<div className={styles.infoDetails}>
 								<div className={styles.infoDetailsItem}>
-									<span className={styles.infoDetailsItemHeading}>Odds</span>
-									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['odds'])}</span>
-									<span className={styles.infoDetailsItemCurrency}>GAS</span>
+									<div className={styles.infoDetailsHeading}>
+										<span>Odds</span>
+									</div>
+									<span className={styles.infoDetailsValue}>{confirmingBet.getIn(['odds'])}</span>
 								</div>
 								<div className={styles.infoDetailsItem}>
-									<span className={styles.infoDetailsItemHeading}>Stake</span>
-									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['stake'])}</span>
-									<span className={styles.infoDetailsItemCurrency}>GAS</span>
+									<div className={styles.infoDetailsHeading}>
+										<span>Stake</span>
+										<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+									</div>
+									<span className={styles.infoDetailsValue}>{stake[activeCurrency]}</span>
 								</div>
-								<div className={styles.infoDetailsItem}>
-									<span className={styles.infoDetailsItemHeading}>Profit</span>
-									<span className={styles.infoDetailsItemNumber}>{confirmingBet.getIn(['profit'])}</span>
-									<span className={styles.infoDetailsItemCurrency}>GAS</span>
-								</div>
+								{betType === 'back' &&
+									<div className={styles.infoDetailsItem}>
+										<div className={styles.infoDetailsHeading}>
+											<span>Profit</span>
+											<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+										</div>
+										<span className={styles.infoDetailsValue}>
+											{parseFloat((confirmingBet.getIn(['odds'])) - 1) * stake[activeCurrency]}
+										</span>
+									</div>
+								}
+								{betType === 'lay' &&
+									<div className={styles.infoDetailsItem}>
+										<div className={styles.infoDetailsHeading}>
+											<span>Liability</span>
+											<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+										</div>
+										<span className={styles.infoDetailsValue}>00.00</span>
+									</div>
+								}
 							</div>
 						</div>
 					}
 				</div>
 				<div className={styles.infoToggle}>
 					<a onClick={() => this.handleOptionsToggle()}>
-						<i class={`fa fa-angle-${showOptions ? 'up' : 'down'}`} aria-hidden="true"></i>
+						<i className={`fa fa-angle-${showOptions ? 'up' : 'down'}`} aria-hidden="true"></i>
 					</a>
 				</div>
+
 			</div>
 		)
 	}
@@ -143,7 +186,7 @@ class FormStepTwo extends Component {
 	constructor() {
 		super();
 		this.state = {
-			warningTimeout: 2500,
+			warningTimeout: 2000000,
 			showWarning: false,
 		}
 	}
@@ -158,18 +201,35 @@ class FormStepTwo extends Component {
 
 	render() {
 		const { showWarning } = this.state
+		const { confirmingBet } = this.props
 		return (
-			<div className={styles.formContainer}>
+			<div className={classNames([styles.formContainer, styles.formContainerStepTwo])}>
 				{showWarning &&
 					<div className={styles.warning}>
 						<h6 className={styles.warningHeading}>Sorry! You can't bet right now.</h6>
 						<p>This is a proof of concept demo, the Block Sports Exchange is not currently available. DO NOT send to this mock address.</p>
 					</div>
 				}
-				<img src={DemoQrImage} className={styles.qr} alt="Fake QR code" />
-				<div className={styles.highlight}>
-					<span>eoRJdaIqxdek4fj4Fa98fj4cemkKPe0fj</span>
+				<div className={styles.contractDetails}>
+					<div>
+						Send 
+						<span className={`color-${confirmingBet.getIn(['type'])}`}>
+							{' '}{confirmingBet.getIn(['liability'])} GAS{' '}
+						</span> 
+						to the contract below
+					</div>
 				</div>
+
+				<div className={styles.contractQrCode}>
+					<span>Qr code for mobile wallet</span>
+					<img src={DemoQrImage} alt="Fake QR code" />
+				</div>
+				
+				<div className={styles.contractAddress}>
+					<span className={styles.contractAddressHeading}>Contract address desktop wallet</span>
+					<span className={styles.contractAddressCode}>eoRJdaIqxdek4fj4Fa98fj4cemkKPe0fj</span>
+				</div>
+
 			</div>
 		)
 	}

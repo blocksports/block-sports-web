@@ -22,6 +22,10 @@
 	padding: 0 @space;
 }
 
+:local(.buttonNext) {
+	margin-left: auto;
+}
+
 :local(.progressContainer) {
 	text-align: center;
 }
@@ -58,7 +62,6 @@
 :local(.formContainer) {
 	position: relative;
 	padding: 0 @space;
-	margin-bottom: @space;
 }
 
 :local(.bodyHeading) {
@@ -131,33 +134,78 @@
 :local(.infoDetails) {
 	margin-top: @space;
 	display: flex;
-	justify-content: space-between;
 }
 
-:local(.infoDetailsItemHeading) {
+:local(.infoDetailsItem) {
+	width: 24%;
+	margin-right: @space;
+}
+
+:local(.infoDetailsHeading) {
 	.headingS();
-	display: block;
+	display: flex;
+	justify-content: space-between;
 	margin-bottom: @space-xs;
+	color: @white;
 }
 
-:local(.infoDetailsItemNumber) {
+:local(.infoDetailsCurrency) {
 	display: inline-block;
-	line-height: 1;
-	font-size: @font-size-xxl;
-}
-
-:local(.infoDetailsItemCurrency) {
-	display: inline-block;
-	margin-left: @space-xs;
 	font-size: @font-size-s;
 	line-height: 1;
+	color: @gull-gray;
 }
 
-:local(.qr) {
+:local(.infoDetailsValue) {
 	display: block;
-	max-width: 150px;
-	height: auto;
-	margin: @space auto;
+	line-height: 1;
+	font-size: @font-size-l;
+	background-color: darken(@site-panel-bg-light, 4%);
+	padding: @space-s;
+	border-radius: @border-radius;
+}
+
+:local(.formContainerStepTwo) {
+	text-align: center;
+	margin-bottom: @space-xl;
+}
+
+:local(.contractDetails) {
+	display: inline-block;
+	line-height: 1;
+	padding: @space-s;
+	background-color: @site-panel-bg-light;
+	border-radius: @border-radius;
+}
+
+:local(.contractQrCode) {
+	margin: @space 0;
+	span {
+		.headingS();
+		display: inline-block;
+		margin: 0 auto @space-s auto;
+	}
+	img {
+		display: block;
+		max-width: 150px;
+		height: auto;
+		margin: 0 auto;
+	}
+}
+
+:local(.contractAddressHeading) {
+	.headingS();
+	display: inline-block;
+	margin: 0 auto @space-s auto;
+}
+
+:local(.contractAddressCode) {
+	display: inline-block;
+	line-height: 1;
+	padding: @space-s;
+	background-color: @white;
+	color: @shark;
+	border-radius: @border-radius;	
 }
 
 :local(.warning) {
@@ -169,7 +217,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	text-align: center;
 	background: fade(@site-panel-bg, 90%);
 	padding: 0 2rem;
 }
