@@ -273,7 +273,7 @@ class MarketListItem extends Component {
 
     while (this.props.showDetail && betArray.length < 3) {
       betArray.push(
-        <div className="bet-button bet-button-empty" key={betArray.length}>
+        <div className="bet-button bet-button-empty" key={Math.random()}>
           <Button
             className={classNames([styles.oddsButton, 'button-bet', 'btn-empty'])}
             onClick={this.handleOddsClick(runner, Immutable.Map(), type)}

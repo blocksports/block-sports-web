@@ -12,22 +12,26 @@ import styles from './style.less';
 
 const getBetLiability = ({ odds, stake, type }) => {
   if (type === 'back') return stake;
-  return (odds * stake)
+  return (odds * stake).toFixed(2)
 }
 
 const getTotalPool = ({ odds, stake, type }) => {
   if (type === 'back') return (odds - 1) * stake;
-  return stake;
+  return stake.toFixed(2)
 }
 
 const calculateProfit = (odds, stake) => {
-  const profit = Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0
-  if (profit >= 0) return profit
-  return 0
+  // const profit = Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0
+  const profit = (odds - 1) * stake
+  return profit >= 0 ? profit.toFixed(2) : 0
 }
 
 const calculateStake = (odds, profit) => {
-  return ((profit + (profit / (odds-1))) / odds) || 0
+  return ((profit + (profit / (odds-1))) / odds).toFixed(2) || 0
+}
+
+const calculateLiability = (odds, profit) => {
+  return ((profit + (profit / (odds-1))) / odds).toFixed(2) || 0
 }
 
 class BetSlipItem extends Component {
@@ -39,6 +43,7 @@ class BetSlipItem extends Component {
       type: props.item.get('type'),
       odds: props.item.getIn(['bet', 'odds']),
       stake: '0.00',
+      liability: '0.00',
     };
 
     this.handleBetClick = this.handleBetClick.bind(this);
@@ -75,28 +80,25 @@ class BetSlipItem extends Component {
     return (!this.state.stake || this.state.stake <= 0) || (!this.state.odds || this.state.odds <= 0);
   }
 
-  // get profit() {
-  //   return (this.state.odds * this.state.stake).toFixed(2) || 0;
-  // }
-
-  handleOddsChange(value) {
+  handleOddsChange(odds) {
     this.setState({
-      odds: value,
-      profit: calculateProfit(value, this.state.stake),
+      odds,
+      profit: calculateProfit(odds, this.state.stake),
     })
   }
 
-  handleStakeChange(value) {
+  handleStakeChange(stake) {
     this.setState({
-      stake: value,
-      profit: calculateProfit(parseFloat(this.state.odds), parseFloat(value)),
+      stake,
+      profit: calculateProfit(parseFloat(this.state.odds), parseFloat(stake)),
+      liability: calculateLiability(parseFloat(this.state.odds), parseFloat(stake))
     })
   } 
 
-  handleProfitChange(value) {
+  handleProfitChange(profit) {
     this.setState({
-      profit: value,
-      stake: calculateStake(parseFloat(this.state.odds), parseFloat(value))
+      profit,
+      stake: calculateStake(parseFloat(this.state.odds), parseFloat(profit))
     })
   }
 
