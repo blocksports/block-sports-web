@@ -158,6 +158,8 @@ export const mockMarkets = [{
   "scale":0.167
 }];
 
+export const mockPrices = {"NEO":{"USD":28.14,"GAS":1.23,"AUD":35.7},"GAS":{"USD":22.79,"GAS":1,"AUD":29.02}};
+
 // export const mockMarkets = [
 //   {
 //     id: '1',

@@ -1,13 +1,12 @@
 import Immutable from 'immutable';
-import axios from '../../../lib/request';
+import axios from 'axios';
 import { createAction, createReducer } from 'redux-act';
+import { mockPrices } from './__mockData';
 
 const fetchPriceRequest = createAction('FETCH_PRICE_REQUEST');
 const fetchPriceSuccess = createAction('FETCH_PRICE_SUCCESS', (data, resp) => [data, resp]);
 
 const updateActiveCurrency = createAction('UPDATE_CURRENCY');
-
-const mockPrices = {"NEO":{"USD":28.14,"GAS":1.23,"AUD":35.7},"GAS":{"USD":22.79,"GAS":1,"AUD":29.02}};
 
 export function fetchPrice(data) {
   return (dispatch) => {
@@ -22,13 +21,6 @@ export function fetchPrice(data) {
       dispatch(fetchPriceSuccess(data, {data: mockPrices}));
     });
 
-    // axios({
-    //   method:'get',
-    //   url: 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=NEO,GAS&tsyms=USD,GAS,AUD'
-    // })
-    // .then((resp) => {
-    //   dispatch(fetchPriceSuccess(data, resp));
-    // });
   };
 }
 

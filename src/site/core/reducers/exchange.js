@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import axios from '../../../lib/request';
+import axios from 'axios';
 import { createAction, createReducer } from 'redux-act';
 import { getNestedMarketsArray } from '../../../lib/utils';
 import { mockMarkets } from './__mockData';
@@ -28,7 +28,6 @@ export function fetchMarkets(data) {
     }).catch((err) => {
       dispatch(fetchMarketsSuccess(data, {data: mockMarkets}));
     });
-
 
   };
 }
