@@ -12,26 +12,27 @@ import styles from './style.less';
 
 const getBetLiability = ({ odds, stake, type }) => {
   if (type === 'back') return stake;
-  return (odds * stake).toFixed(2)
+  return (odds * stake).toFixed(2);
 }
 
 const getTotalPool = ({ odds, stake, type }) => {
   if (type === 'back') return (odds - 1) * stake;
-  return stake.toFixed(2)
+  return stake.toFixed(2);
 }
 
 const calculateProfit = (odds, stake) => {
   // const profit = Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0
   const profit = (odds - 1) * stake
-  return profit >= 0 ? profit.toFixed(2) : 0
+  return profit >= 0 ? profit.toFixed(2) : 0;
 }
 
-const calculateStake = (odds, profit) => {
-  return ((profit + (profit / (odds-1))) / odds).toFixed(2) || 0
+const calculateStake = (odds, profit, type) => {
+  if (type === 'back') return ((profit + (profit / (odds-1))) / odds).toFixed(2) || 0;
+  return (profit/odds).toFixed(2) || 0;
 }
 
 const calculateLiability = (odds, profit) => {
-  return ((profit + (profit / (odds-1))) / odds).toFixed(2) || 0
+  return (odds * profit - profit).toFixed(2) || 0;
 }
 
 class BetSlipItem extends Component {
@@ -43,6 +44,7 @@ class BetSlipItem extends Component {
       type: props.item.get('type'),
       odds: props.item.getIn(['bet', 'odds']),
       stake: '0.00',
+      profit: '0.00',
       liability: '0.00',
     };
 
@@ -81,10 +83,13 @@ class BetSlipItem extends Component {
   }
 
   handleOddsChange(odds) {
+    if (odds < 1.01) odds = 1.01;
+
     this.setState({
       odds,
       profit: calculateProfit(odds, this.state.stake),
-    })
+      liability: calculateProfit(odds, this.state.stake)
+    });
   }
 
   handleStakeChange(stake) {
@@ -92,20 +97,21 @@ class BetSlipItem extends Component {
       stake,
       profit: calculateProfit(parseFloat(this.state.odds), parseFloat(stake)),
       liability: calculateLiability(parseFloat(this.state.odds), parseFloat(stake))
-    })
+    });
   } 
 
   handleProfitChange(profit) {
     this.setState({
       profit,
-      stake: calculateStake(parseFloat(this.state.odds), parseFloat(profit))
-    })
+      stake: calculateStake(parseFloat(this.state.odds), parseFloat(profit), "back")
+    });
   }
 
-  handleLiabilityChange(value) {
+  handleLiabilityChange(liability) {
     this.setState({
-      liability: getBetLiability(this.state)
-    })
+      liability,
+      stake: calculateStake(parseFloat(this.state.odds), parseFloat(liability), "lay")
+    });
   }
 
   handleBetClick(match, runner) {
