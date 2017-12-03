@@ -9,7 +9,7 @@
 }
 
 :local(.left) {
- width: 210px;
+ flex: 0 0 210px;
  height: ~"calc(100vh - @{panel-height})";
  overflow-y: scroll;
  .makePanel();
@@ -38,7 +38,7 @@
 
 :local(.right) {
   height: ~"calc(100vh - @{panel-height})";
-  width: 350px;
+  flex: 0 0 350px;
   display: flex;
   flex-direction: column;
 }
