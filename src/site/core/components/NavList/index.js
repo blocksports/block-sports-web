@@ -49,7 +49,7 @@ class NavList extends Component {
   get renderItems() {
     const category = this.category;
     const items = category ? category.get('competitions') : this.props.items;
-
+    if (!items) return null
     return items.map((item, idx) => {
       const link = this.props.filter ?
         `/exchange/${category.get('id')}/${item.get('id')}` :
