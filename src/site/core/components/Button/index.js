@@ -8,13 +8,11 @@ import styles from './style.less';
 class Button extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event) {
-    if (this.props.isDisabled) return;
-
+    if (this.props.isDisabled || !this.props.onClick) return;
     this.props.onClick(event);
   }
 
@@ -29,7 +27,7 @@ class Button extends Component {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   isDisabled: PropTypes.bool,
   classNames: PropTypes.string
 };
@@ -37,6 +35,5 @@ Button.propTypes = {
 Button.defaultProps = {
   isDisabled: false
 }
-
 
 export default Button;
