@@ -83,3 +83,52 @@
 :local(.formSubmit) {
 	margin-left: auto;
 }
+
+/* Settings */
+
+:local(.dropdownSettings) {
+	list-style: none;
+	padding: 0 @space;
+	margin: 0;
+}
+
+:local(.dropdownSettingsItem) {
+	padding: @space-s 0;
+	font-size: @font-size-m;
+	color: @gull-gray;
+
+	&:not(:first-child) {
+		border-top: 1px solid @site-panel-bg-light;
+	}
+
+	i {
+		font-size: @font-size;
+		margin-right: @space-s;
+	}
+
+}
+
+/* New Account */
+
+:local(.dropdownNewAccountBody) {
+	text-align: center;
+}
+
+:local(.accountDisabledIcon) {
+	font-size: 40px;
+	display: block;
+	margin: 0 auto;
+}
+
+:local(.accountDisabledHeading) {
+	display: block;
+	width: 80%;
+	margin: @space auto;
+	color: @roman;
+	font-size: @font-size;
+}
+
+:local(.accountDisabledBody) {
+	margin: 0 0 @space 0;
+	font-size: @font-size-s;
+}

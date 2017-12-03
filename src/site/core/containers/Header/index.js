@@ -11,6 +11,8 @@ import { fetchUser } from '../../reducers/user';
 import Button from '../../components/Button';
 import Search from '../../components/Search';
 import Account from '../../components/Header/Account';
+import Settings from '../../components/Header/Settings';
+import NewAccount from '../../components/Header/NewAccount';
 import styles from './style.less';
 import Logo from '../../../../img/header-logo.png';
 
@@ -48,11 +50,7 @@ class Header extends Component {
   }
 
   get settings() {
-    return (
-      <Button className={classNames([styles.icon, 'button-minimal button-square'])}>
-        <i className="fa fa-cog" aria-hidden="true"/>
-      </Button>
-    );
+    return <Settings />
   }
 
   get account() {
@@ -60,13 +58,7 @@ class Header extends Component {
   }
 
   get newAccount() {
-    return (
-      <div className={styles.newAccount}>
-        <Button className="button-white button-s" onClick={this.handleNewAccountClick}>
-          {t('core:header.new-account')}
-        </Button>
-      </div>
-    );
+    return <NewAccount />
   }
 
   get content() {
