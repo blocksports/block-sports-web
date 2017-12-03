@@ -21,7 +21,7 @@
 }
 
 :local(.itemDate) {
-  flex: 0 0 70px;
+  flex: 0 0 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,7 @@
 
 :local(.itemDateDay) {
   display: block;
+  line-height: 1;
   .headingS();
 }
 
@@ -37,6 +38,8 @@
   display: block;
   .headingM();
   color: @white;
+  line-height: 1;
+  margint-top: 0.25em;
 }
 
 :local(.runnerRow) {
@@ -77,7 +80,7 @@
 }
 
 :local(.side) {
-  flex: 0 0 70px;
+  flex: 0 0 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,6 +92,7 @@
 :local(.sideMatched) {
   display: block;
   .headingXS();
+  margin: 0.25em 0;  
 }
 
 :local(.sidePool) {
@@ -100,6 +104,7 @@
 :local(.sideCurrency) {
   display: block;
   font-size: @font-size-xs;
+  line-height: 1;
 }
 
 :local(.betRow) {

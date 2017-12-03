@@ -75,10 +75,10 @@ class MarketListItem extends Component {
         <div>
           <span className={styles.sideMatched}>{t('core:markets.item.matched')}</span>
           <span className={styles.sidePool}>
-            {round(this.props.item.get('matched') * this.exchangeRate, 2)}&nbsp;{t(`core:currency.${this.props.currency}`)}
+            {round(this.props.item.get('matched') * this.exchangeRate, 2)}
           </span>
           <span className={styles.sideCurrency}>{t(`core:currency.${this.props.currency}`)}</span>
-          <span className={styles.sideRules}>{t('core:markets.item.rules')}></span>
+          {/*<span className={styles.sideRules}>{t('core:markets.item.rules')}></span>*/}
         </div>
       </div>
     );
@@ -88,14 +88,14 @@ class MarketListItem extends Component {
     // Only have up to 3 outcomes at the moment
     if (this.props.item.get('outcomes') == 2) {
       return (
-        <div lassName={styles.main}>
+        <div className={styles.main}>
           {this.renderMarketRow(0)}
           {this.renderMarketRow(1)}
         </div>
       );
     } else {
       return (
-        <div lassName={styles.main}>
+        <div className={styles.main}>
           {this.renderMarketRow(0)}
           {this.renderMarketRow(1, true)}
           {this.renderMarketRow(2)}
@@ -276,7 +276,7 @@ class MarketListItem extends Component {
 
     bets.forEach((bet, idx) => {
       betArray.push(
-        this.renderBetButton(outcome, bet, type) 
+        this.renderBetButton(outcome, bet, type, idx) 
       );
     });
 
@@ -296,11 +296,12 @@ class MarketListItem extends Component {
     return betArray;
   }
 
-  renderBetButton(outcome, bet, type) {
+  renderBetButton(outcome, bet, type, idx) {
     return (
       <Button
         className={classNames([styles.oddsButton, 'button-bet', `button-${type}`])}
         onClick={this.handleOddsClick(outcome, bet, type)}
+        key={idx}
         >
         <span className="odds">
           {bet.get('odds')}
