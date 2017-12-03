@@ -10,8 +10,8 @@ import { fetchPrice } from '../../reducers/currency';
 import { fetchUser } from '../../reducers/user';
 import Button from '../../components/Button';
 import Search from '../../components/Search';
+import Account from '../../components/Header/Account';
 import styles from './style.less';
-
 import Logo from '../../../../img/header-logo.png';
 
 class Header extends Component {
@@ -56,11 +56,7 @@ class Header extends Component {
   }
 
   get account() {
-    return (
-      <Button className={classNames([styles.icon, 'button-minimal button-square'])}>
-        <i className="fa fa-user" aria-hidden="true"/>
-      </Button>
-    );
+    return <Account />
   }
 
   get newAccount() {
