@@ -22,7 +22,6 @@ class HeaderDropDown extends Component {
   }
 
   handleClickOutside() {
-    console.log('clicked outside...')
     this.setState({
       showDropdown: false,
     })
