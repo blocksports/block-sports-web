@@ -5,12 +5,14 @@ import { mockMarkets, mockPrices, mockNavigation } from '../site/core/reducers/_
 export const initMockServer = () => {
     const baseURL = process.env.APP_API_URL;
 
+    nock.cleanAll();
+    console.log(baseURL)
     nock(baseURL).
     persist().
     get('/v1/exchange').
     delay(1000).
     reply(200, mockMarkets);
-
+    console.log("test")
     nock(baseURL).
     persist().
     get('/v1/currency').

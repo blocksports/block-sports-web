@@ -12,10 +12,16 @@ const fetchMarketSuccess = createAction('FETCH_MARKET_SUCCESS', (data, resp) => 
 
 const updateMinimum = createAction('UPDATE_MINIMUM_BET');
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function fetchMarkets(data) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchMarketsRequest());
 
+    await sleep(2000);
+    
     axios({
       method: 'get',
       url: '/v1/exchange',

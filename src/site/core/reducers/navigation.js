@@ -8,9 +8,15 @@ import { mockNavigation } from './__mockData';
 const fetchNavigationRequest = createAction('FETCH_NAVIGATION_REQUEST');
 const fetchNavigationSuccess = createAction('FETCH_NAVIGATION_SUCCESS');
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function fetchNavigation(data) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchNavigationRequest());
+
+    await sleep(2000);
 
     axios({
       method: 'get',

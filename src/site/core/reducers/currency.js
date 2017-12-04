@@ -8,9 +8,15 @@ const fetchPriceSuccess = createAction('FETCH_PRICE_SUCCESS', (data, resp) => [d
 
 const updateActiveCurrency = createAction('UPDATE_CURRENCY');
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function fetchPrice(data) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchPriceRequest());
+
+    await sleep(2000);
 
     axios({
       method: 'get',
