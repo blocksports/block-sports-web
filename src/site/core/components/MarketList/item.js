@@ -7,7 +7,7 @@ import uuid from 'uuid/v4';
 import moment from 'moment';
 import { browserHistory } from 'react-router';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
-import { round } from '../../../../lib/utils';
+import { round, getParticipantName } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
@@ -85,23 +85,16 @@ class MarketListItem extends Component {
   }
 
   get contentMiddle() {
-    // Only have up to 3 outcomes at the moment
-    if (this.props.item.get('outcomes') == 2) {
-      return (
-        <div className={styles.main}>
-          {this.renderMarketRow(0)}
-          {this.renderMarketRow(1)}
-        </div>
-      );
-    } else {
-      return (
-        <div className={styles.main}>
-          {this.renderMarketRow(0)}
-          {this.renderMarketRow(1, true)}
-          {this.renderMarketRow(2)}
-        </div>
-      );
-    }
+    const outcomes = this.props.item.get('outcomes');
+    const rows = Array.apply(null, {length: outcomes}).map((_, idx) => {
+      return this.renderMarketRow(idx);
+    });
+
+    return (
+      <div className={styles.main}>
+        {rows}
+      </div>
+    );
   }
 
   get exchangeRate() {
@@ -149,14 +142,12 @@ class MarketListItem extends Component {
 
   handleOddsClick(outcome, bet, type) {
     return (event) => {
-      event.stopPropagation();
-
       if (this.props.onOddsClick) {
         return this.props.onOddsClick({
           id: this.getBetID(outcome),
           bet: bet,
           outcome: outcome,
-          item: this.props.item,
+          match: this.props.item,
           type: type
         });
       }
@@ -173,7 +164,6 @@ class MarketListItem extends Component {
 
   handleConfirmClick(runner) {
     return () => {
-
       // data wouldn't normally be generated here
       this.props.onConfirmBet({
         id: uuid(),
@@ -212,12 +202,10 @@ class MarketListItem extends Component {
   }
 
   renderMarketRow(outcome, isDraw) {
-    // Account for mismatched array lengths
-    const participantIndex = outcome > 0 ? 1 : 0;
-    const name = isDraw ? "Draw" : this.props.item.getIn(['participants', participantIndex]);
+    const name = getParticipantName(this.props.item, outcome);
 
     return (
-      <div className={styles.runnerRow}>
+      <div className={styles.runnerRow} key={outcome}>
         <div className={styles.marketRow}>
           <span className={styles.marketRowDetail}>{name}</span>
           <div className={styles.marketRowActions}>

@@ -6,6 +6,7 @@ import moment from 'moment';
 import uuid from 'uuid/v4'
 import { t } from 'i18next';
 import ReactTooltip from 'react-tooltip';
+import { getParticipantName } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
@@ -17,7 +18,7 @@ const getBetLiability = ({ odds, stake, type }) => {
 
 const getTotalPool = ({ odds, stake, type }) => {
   if (type === 'back') return (odds - 1) * stake;
-  return stake.toFixed(2);
+  return (stake * 1).toFixed(2);
 }
 
 const calculateProfit = (odds, stake) => {
@@ -114,18 +115,17 @@ class BetSlipItem extends Component {
     });
   }
 
-  handleBetClick(match, runner) {
+  handleBetClick(match, outcome) {
     return () => {
       this.props.onBetClick({
         id: uuid(),
         type: this.props.type,
-        market_id: runner.get('market_id'),
+        market_id: match.get('id'),
         market_name: match.get('name'),
         entity: match.get('entity'),
         entity_id: match.get('entity_id'),
         entity_name: match.get('entity_name'),
-        runner_id: runner.get('runner_id'),
-        runner_name: runner.get('name'),
+        runner_name: getParticipantName(match, outcome),
         odds: this.state.odds,
         stake: this.state.stake,
         pool_total: getTotalPool(this.state),
@@ -159,15 +159,16 @@ class BetSlipItem extends Component {
   }
 
   render() {
-    const match = this.props.item.get('item');
-    const runner = this.props.item.get('runner');
+    const match = this.props.item.get('match');
+    const outcome = this.props.item.get('outcome');
+
     const { type, currency } = this.props
     return (
       <article className={classNames([styles.itemRoot, type])}>
         
         <header className={styles.header} data-tip data-for={match.get('id')}>
           <div className={styles.headerTop}>
-            <span className={styles.headerTitle}>{this.props.item.getIn(['runner', 'name'])}</span>
+            <span className={styles.headerTitle}>{getParticipantName(match, outcome)}</span>
             <div>
               <Button className={classNames([styles.removeButton, 'button-minimal', 'button-m', 'button-square'])} onClick={this.handleRemoveClick}>
                 <i className="fa fa-times" aria-hidden="true"/>
@@ -219,7 +220,7 @@ class BetSlipItem extends Component {
           <div className={styles.detailsBet}>
             <Button
               className={classNames([styles.betButton, 'button-s', `button-${type}`])}
-              onClick={this.handleBetClick(match, runner)}
+              onClick={this.handleBetClick(match, outcome)}
               isDisabled={this.isDisabled}
             >
               {t(`core:bets.bet-slip.button-${type}`)}

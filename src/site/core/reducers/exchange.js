@@ -67,7 +67,6 @@ const exchangeReducer = createReducer({
   [fetchMarketsSuccess]: (state, [data, resp]) => {
     const nestedArray = getNestedMarketsArray(data);
     const oldMarkets = state.get('markets');
-
     const matches = Immutable.fromJS(resp.data);
 
     const newMarkets = oldMarkets.updateIn(nestedArray, (val = matches) => val);
