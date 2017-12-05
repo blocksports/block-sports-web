@@ -16,7 +16,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export function fetchMarkets(data) {
+export function fetchMarkets(params, query) {
   return async (dispatch) => {
     dispatch(fetchMarketsRequest());
 
@@ -26,13 +26,14 @@ export function fetchMarkets(data) {
       method: 'get',
       url: '/v1/exchange',
       params: {
-        sport: data.sport,
-        competition: data.competition
+        sport: params.sport,
+        competition: params.competition,
+        order: query.order
       }
     }).then((resp) => {
-      dispatch(fetchMarketsSuccess(data, resp));
+      dispatch(fetchMarketsSuccess(params, resp));
     }).catch((err) => {
-      dispatch(fetchMarketsSuccess(data, {data: mockMarkets}));
+      dispatch(fetchMarketsSuccess(params, {data: mockMarkets}));
     });
 
   };
@@ -68,8 +69,11 @@ const exchangeReducer = createReducer({
     const nestedArray = getNestedMarketsArray(data);
     const oldMarkets = state.get('markets');
     const matches = Immutable.fromJS(resp.data);
-
-    const newMarkets = oldMarkets.updateIn(nestedArray, (val = matches) => val);
+    
+    // Merge if market data exists, create new if not
+    const newMarkets = oldMarkets.getIn(nestedArray) ?
+    oldMarkets.mergeIn(nestedArray, matches) :
+    oldMarkets.updateIn(nestedArray, (val = matches) => val);
 
     return state.merge({
       isLoading: false,

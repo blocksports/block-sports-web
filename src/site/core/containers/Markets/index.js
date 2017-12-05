@@ -8,6 +8,7 @@ import { selectExchangeRate } from '../../selectors/currency';
 import { addBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
 import { Tabs, Tab } from '../../components/Tabs';
+import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
 
 export class Markets extends Component {
@@ -15,7 +16,7 @@ export class Markets extends Component {
     super(props, context);
 
     this.state = {
-      activeOrder: 'time'
+      activeOrder: 'date'
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -32,7 +33,7 @@ export class Markets extends Component {
   get tabs() {
     return (
       <Tabs className={styles.tabs}>
-        <Tab className={this.tabClass('time')} onClick={this.handleTabClick('time')}><i className="fa fa-clock-o" aria-hidden="true"/>{t('core:markets.header-time')}</Tab>
+        <Tab className={this.tabClass('date')} onClick={this.handleTabClick('date')}><i className="fa fa-clock-o" aria-hidden="true"/>{t('core:markets.header-time')}</Tab>
         <Tab className={this.tabClass('popular')} onClick={this.handleTabClick('popular')}><i className="fa fa-star-o" aria-hidden="true"/>{t('core:markets.header-popular')}</Tab>
       </Tabs>
     );
@@ -44,6 +45,8 @@ export class Markets extends Component {
 
   handleTabClick(tab) {
     return () => {
+      addQuery({ order: tab});
+
       this.setState({
         activeOrder: tab
       });

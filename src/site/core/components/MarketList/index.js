@@ -25,8 +25,6 @@ class MarketList extends Component {
   get renderItems() {
     let items = this.props.items;
 
-    items = items.sort(getMarketOrder(this.props.order));
-
     let itemArray = [];
     let lastDate = '';
 
