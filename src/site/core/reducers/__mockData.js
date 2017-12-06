@@ -112,7 +112,7 @@ export const mockNavigation = [
 export const mockMarkets = [{
   "id":"9t7GbKPLoo04",
   "name":"Adelaide United_Central Coast Mariners",
-  "sport":"Soccer",
+  "sport":"soccer",
   "competition":"A-LEAGUE",
   "competition_name":"A-League",
   "participants":["Adelaide United","Central Coast Mariners"],

@@ -61,7 +61,7 @@ class ExchangeLayout extends Component {
     if (params.entity === 'market') {
       return <MarketDetail params={params} />
     } else {
-      return <Markets items={items} />
+      return <Markets items={items} params={params}/>
     }
   }
 

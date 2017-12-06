@@ -11,6 +11,8 @@ import { Tabs, Tab } from '../../components/Tabs';
 import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
 
+import _ from 'lodash';
+
 export class Markets extends Component {
   constructor(props, context) {
     super(props, context);
@@ -27,7 +29,9 @@ export class Markets extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
+    if (!_.isEqual(this.props.params, nextProps.params)) {
+      this.setState({activeOrder: 'date'});
+    }
   }
 
   get tabs() {
@@ -37,6 +41,10 @@ export class Markets extends Component {
         <Tab className={this.tabClass('popular')} onClick={this.handleTabClick('popular')}><i className="fa fa-star-o" aria-hidden="true"/>{t('core:markets.header-popular')}</Tab>
       </Tabs>
     );
+  }
+
+  get isFrontPage() {
+    return !this.props.params.sport && !this.props.params.competition;
   }
 
   tabClass(tab) {
@@ -59,12 +67,12 @@ export class Markets extends Component {
         {this.tabs}
         <div className={styles.body}>
           <MarketList
-            order={this.state.activeOrder}
             items={this.props.items}
             currency={this.props.activeCurrency}
             exchangeRate={this.props.exchangeRate}
             onOddsClick={this.props.addBet}
             minimumBet={this.props.minimumBet}
+            isFrontPage={this.isFrontPage}
           />
         </div>
       </div>

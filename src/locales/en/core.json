@@ -4,6 +4,18 @@
     "USD": "USD",
     "NEO": "NEO"
   },
+  "sport": {
+    "soccer": "Soccer",
+    "american-football": "American Football",
+    "mixed-martial-arts": "Mixed Martial Arts",
+    "basketball": "Basketball",
+    "cricket": "Cricket",
+    "ice-hockey": "Ice Hockey",
+    "boxing": "Boxing",
+    "table-tennis": "Table Tennis",
+    "baseball": "Baseball",
+    "australian-football-league": "Australian Rules"
+  },
   "header": {
     "search-placeholder": "Search for Sports, Matches, Players",
     "balance": "BALANCE",
