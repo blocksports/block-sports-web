@@ -132,3 +132,34 @@
 	margin: 0 0 @space 0;
 	font-size: @font-size-s;
 }
+
+/* Currencies */
+
+:local(.currency) {
+  display: flex;
+  align-items: center;
+  margin: 0.2em 0;
+}
+
+:local(.currencyLoading) {
+  width: 4rem;
+  margin: 0.6rem 0;
+}
+
+:local(.currencyName) {
+  display: inline-block;
+  margin-right: @space-xs;
+  .headingXS();
+}
+
+:local(.currencyAmount) {
+  font-size: @font-size-m;
+  line-height: 1;
+  background-color: @site-panel-bg-light;
+  padding: 0.2em 0.3em;
+  border-radius: @border-radius;
+}
+
+:local(.exchangeCurrency) {
+  font-size: @font-size-xs;
+}

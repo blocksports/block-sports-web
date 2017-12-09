@@ -13,29 +13,19 @@ import Search from '../../components/Search';
 import Account from '../../components/Header/Account';
 import Settings from '../../components/Header/Settings';
 import NewAccount from '../../components/Header/NewAccount';
-import SkeletonBlock from '../../components/SkeletonBlock'
+import Currencies from '../../components/Header/Currencies';
 import styles from './style.less';
 import Logo from '../../../../img/header-logo.png';
+
 
 class Header extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleNewAccountClick = this.handleNewAccountClick.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchPrice();
     this.props.fetchUser();
-  }
-
-  get currencies() {
-    return (
-      <div className={styles.currencies}>
-        {this.renderCurrency('NEO')}
-        {this.renderCurrency('GAS')}
-      </div>
-    );
   }
 
   get balance() {
@@ -50,28 +40,17 @@ class Header extends Component {
     );
   }
 
-  get settings() {
-    return <Settings />
-  }
-
-  get account() {
-    return <Account />
-  }
-
-  get newAccount() {
-    return <NewAccount />
-  }
-
   get content() {
+    const { isLoadingCurrency, currency, price, exchangeCurrency } = this.props
     return (
       <div className={styles.main}>
         <Search />
         <div className={styles.actions}>
-          {this.currencies}
+          <Currencies isLoadingCurrency={isLoadingCurrency} currency={currency} price={price} exchangeCurrency={exchangeCurrency} />
           {this.balance}
-          {this.settings}
-          {this.account}
-          {this.newAccount}
+          <Settings />
+          <Account />
+          <NewAccount />
         </div>
       </div>
     );
@@ -80,31 +59,6 @@ class Header extends Component {
   convert(amount) {
     const rate = this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
     return (rate * amount).toFixed(2);
-  }
-
-  handleNewAccountClick() {
-    return;
-  }
-
-  renderCurrency(currency) {
-    const { exchangeCurrency } = this.props
-    if (this.props.isLoadingCurrency || !this.props.price.getIn([currency, exchangeCurrency])) {
-      return (
-        <div className={styles.currencyLoading}>
-          <SkeletonBlock size="large" />
-        </div>
-      )
-    }
-    return (
-      <div className={styles.currency}>
-        <span className={styles.currencyName}>{t(`core:currency.${currency}`)}</span>
-        <span className={styles.currencyAmount}>
-          {this.props.price.getIn([currency, exchangeCurrency]).toFixed(2)}
-          {' '}
-          <span className={styles.exchangeCurrency}>{t(`core:currency.${exchangeCurrency}`)}</span>
-          </span>
-      </div>
-    )
   }
 
   render() {
