@@ -13,6 +13,7 @@ import Search from '../../components/Search';
 import Account from '../../components/Header/Account';
 import Settings from '../../components/Header/Settings';
 import NewAccount from '../../components/Header/NewAccount';
+import SkeletonBlock from '../../components/SkeletonBlock'
 import styles from './style.less';
 import Logo from '../../../../img/header-logo.png';
 
@@ -86,9 +87,14 @@ class Header extends Component {
   }
 
   renderCurrency(currency) {
-    const exchangeCurrency = this.props.exchangeCurrency;
-    if (!this.props.price.getIn([currency, exchangeCurrency])) return null;
-
+    const { exchangeCurrency } = this.props
+    if (this.props.isLoadingCurrency || !this.props.price.getIn([currency, exchangeCurrency])) {
+      return (
+        <div className={styles.currencyLoading}>
+          <SkeletonBlock size="large" />
+        </div>
+      )
+    }
     return (
       <div className={styles.currency}>
         <span className={styles.currencyName}>{t(`core:currency.${currency}`)}</span>
@@ -120,6 +126,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    'isLoadingCurrency': state.getIn(['core', 'currency', 'isLoading']),
     'isLoggedIn': state.getIn(['core', 'user', 'isLoggedIn']),
     'path': state.getIn(['core', 'router', 'locationBeforeTransitions', 'pathname']),
     'price': state.getIn(['core', 'currency', 'price']),
