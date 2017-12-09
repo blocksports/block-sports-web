@@ -7,6 +7,7 @@ import { t } from 'i18next';
 import { selectExchangeRate } from '../../selectors/currency';
 import { addBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
+import MarketListSkeleton from '../../components/MarketList/MarketListSkeleton';
 import { Tabs, Tab } from '../../components/Tabs';
 import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
@@ -54,7 +55,6 @@ export class Markets extends Component {
   handleTabClick(tab) {
     return () => {
       addQuery({ order: tab});
-
       this.setState({
         activeOrder: tab
       });
@@ -62,18 +62,24 @@ export class Markets extends Component {
   }
 
   render() {
+    const { isLoading, items, activeCurrency, exchangeRate, addBet, minimumBet } = this.props
     return (
       <div>
         {this.tabs}
         <div className={styles.body}>
-          <MarketList
-            items={this.props.items}
-            currency={this.props.activeCurrency}
-            exchangeRate={this.props.exchangeRate}
-            onOddsClick={this.props.addBet}
-            minimumBet={this.props.minimumBet}
-            isFrontPage={this.isFrontPage}
-          />
+          {isLoading && 
+            <MarketListSkeleton />
+          }
+          {!isLoading && 
+            <MarketList
+              items={items}
+              currency={activeCurrency}
+              exchangeRate={exchangeRate}
+              onOddsClick={addBet}
+              minimumBet={minimumBet}
+              isFrontPage={this.isFrontPage}
+            />
+          }
         </div>
       </div>
     );
@@ -87,7 +93,8 @@ const mapStateToProps = (state) => {
   return {
     'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
     'exchangeRate': selectExchangeRate(state),
-    'minimumBet': state.getIn(['core', 'exchange', 'minimumBet'])
+    'isLoading': state.getIn(['core', 'exchange', 'isLoading']),
+    'minimumBet': state.getIn(['core', 'exchange', 'minimumBet']),
   };
 };
 

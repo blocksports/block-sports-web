@@ -100,6 +100,7 @@ class MarketList extends Component {
     );
   }
   render() {
+
     if (this.props.items.isEmpty()) return null;
 
     return (
@@ -118,7 +119,7 @@ MarketList.propTypes = {
   items: PropTypes.instanceOf(Immutable.List),
   showDetail: PropTypes.bool,
   isFrontPage: PropTypes.bool,
-  onOddsClick: PropTypes.func
+  onOddsClick: PropTypes.func,
 };
 
 MarketList.defaultProps = {
