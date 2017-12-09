@@ -16,7 +16,7 @@ export function fetchNavigation(data) {
   return async (dispatch) => {
     dispatch(fetchNavigationRequest());
 
-    await sleep(2000);
+    await sleep(5000);
 
     axios({
       method: 'get',
@@ -42,7 +42,7 @@ const navigationReducer = createReducer({
   },
   [fetchNavigationSuccess]: (state, resp) => {
     return state.merge({
-      isLoading: true,
+      isLoading: false,
       navigation: Immutable.fromJS(resp.data)
     });
   }

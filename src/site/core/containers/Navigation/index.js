@@ -7,28 +7,28 @@ import { fetchNavigation } from '../../reducers/navigation';
 import classNames from 'classnames';
 import { t } from 'i18next';
 
+import NavListSkeleton from '../../components/NavList/NavListSkeleton';
 import NavList from '../../components/NavList';
 import styles from './style.less';
 
 class Navigation extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
 
   componentWillMount() {
     this.props.fetchNavigation();
   }
 
   render() {
+    const { isLoading, items, sport } = this.props
+    if (isLoading) {
+      return <NavListSkeleton />
+    }
     return (
       <div className={styles.root}>
-        <NavList
-          items={this.props.items}
-          filter={this.props.sport}
-          />
+        <NavList items={items} filter={sport} />
       </div>
     );
   }
+
 }
 
 Navigation.propTypes = {
@@ -38,6 +38,7 @@ Navigation.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    'isLoading': state.getIn(['core', 'navigation', 'isLoading']),
     'items': state.getIn(['core', 'navigation', 'navigation']),
     'path': state.getIn(['core', 'router', 'locationBeforeTransitions', 'pathname'])
   };
