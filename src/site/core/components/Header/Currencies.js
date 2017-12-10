@@ -10,11 +10,8 @@ import {
 	fadeTransitionStyles,
 } from '../../../../lib/animation';
 
-
 const Currencies = props => {
-	const isLoading =
-		props.isLoadingCurrency ||
-		!props.price.getIn([props.currency, props.exchangeCurrency]);
+	const isLoading = props.isLoadingCurrency;
 	return (
 		<div className={styles.currencies}>
 			{isLoading && (
