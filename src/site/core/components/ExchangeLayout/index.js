@@ -12,77 +12,69 @@ import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
 class ExchangeLayout extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
+	constructor(props, context) {
+		super(props, context);
+	}
 
-  componentWillMount() {
-  }
+	componentWillMount() {}
 
-  componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps(nextProps) {}
 
-  }
+	get contentLeft() {
+		return (
+			<div className={styles.left}>
+				<Navigation sport={this.props.params.sport} />
+			</div>
+		);
+	}
 
-  get contentLeft() {
-    return (
-      <div className={styles.left}>
-        <Navigation
-          sport={this.props.params.sport}
-          />
-      </div>
-    );
-  }
+	get contentRight() {
+		return (
+			<div className={styles.right}>
+				<Bets className={styles.bets} />
+				<div className={styles.chat}>
+					<Chat params={this.props.params} />
+				</div>
+			</div>
+		);
+	}
 
-  get contentRight() {
-    return (
-      <div className={styles.right}>
-        <Bets className={styles.bets} />
-        <div className={styles.chat}>
-          <Chat params={this.props.params} />
-        </div>
-      </div>
-    );
-  }
+	get contentMiddle() {
+		return (
+			<div className={styles.main}>
+				<figure className={styles.mainMedia} />
+				<div className={styles.mainMarket}>{this.marketView}</div>
+			</div>
+		);
+	}
 
-  get contentMiddle() {
-    return (
-      <div className={styles.main}>
-        <figure className={styles.mainMedia}>
-        </figure>
-        <div className={styles.mainMarket}>
-          {this.marketView}
-        </div>
-      </div>
-    );
-  }
+	get marketView() {
+		const { params, items } = this.props;
+		if (params.entity === 'market') {
+			return <MarketDetail params={params} />;
+		} else {
+			return <Markets items={items} params={params} />;
+		}
+	}
 
-  get marketView() {
-    const { params, items } = this.props
-    if (params.entity === 'market') {
-      return <MarketDetail params={params} />
-    } else {
-      return <Markets items={items} params={params}/>
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <div className={styles.root}>
-          {this.contentLeft}
-          {this.contentMiddle}
-          {this.contentRight}
-        </div>
-        <ExchangeFooter className={styles.footer}/>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<div className={styles.root}>
+					{this.contentLeft}
+					{this.contentMiddle}
+					{this.contentRight}
+				</div>
+				<ExchangeFooter className={styles.footer} />
+			</div>
+		);
+	}
 }
 
 ExchangeLayout.propTypes = {
-  params: PropTypes.object,
-  query: PropTypes.object,
-  items: PropTypes.instanceOf(Immutable.List).isRequired
+	params: PropTypes.object,
+	query: PropTypes.object,
+	items: PropTypes.instanceOf(Immutable.List).isRequired,
 };
 
 export default ExchangeLayout;

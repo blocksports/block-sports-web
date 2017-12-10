@@ -4,12 +4,10 @@
 
 // import Search from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<Search />', () => {
-  it('Should', () => {
-    expect(true).toEqual(false);
-  });
+	it('Should', () => {
+		expect(true).toEqual(false);
+	});
 });

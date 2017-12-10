@@ -4,12 +4,10 @@
 
 // import Button from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<Button />', () => {
-  it('Should', () => {
-    expect(true).toEqual(false);
-  });
+	it('Should', () => {
+		expect(true).toEqual(false);
+	});
 });

@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
-import ModalConductor from '../ModalConductor'
+import ModalConductor from '../ModalConductor';
 import Layout from '../../components/Layout';
 
 import { fetchUser } from '../../reducers/user';
@@ -18,9 +18,7 @@ class Root extends Component {
 	render() {
 		return (
 			<div className={styles.root}>
-				<Layout>
-					{this.props.children}
-				</Layout>
+				<Layout>{this.props.children}</Layout>
 				<ModalConductor />
 			</div>
 		);
@@ -29,20 +27,20 @@ class Root extends Component {
 
 Root.propTypes = {
 	user: PropTypes.instanceOf(Immutable.Map).isRequired,
-	fetchUser: PropTypes.func.isRequired
+	fetchUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
-		'user': state.getIn(['core', 'user'], Immutable.Map()),
+		user: state.getIn(['core', 'user'], Immutable.Map()),
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
 	return {
 		fetchUser: (...args) => {
-					return dispatch(fetchUser(...args));
-		}
+			return dispatch(fetchUser(...args));
+		},
 	};
 };
 

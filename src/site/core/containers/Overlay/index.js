@@ -7,31 +7,28 @@ import classNames from 'classnames';
 import styles from './style.less';
 
 class Overlay extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
+	constructor(props, context) {
+		super(props, context);
+	}
 
-  render() {
-    return (
-      <div className={styles.overlay}>
-      </div>
-    );
-  }
+	render() {
+		return <div className={styles.overlay} />;
+	}
 }
 
 Overlay.propTypes = {
-  lastPath: PropTypes.string.isRequired,
-  children: PropTypes.node
+	lastPath: PropTypes.string.isRequired,
+	children: PropTypes.node,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    lastPath: state.getIn(['core', 'routing', 'lastPath'], '/')
-  };
+const mapStateToProps = state => {
+	return {
+		lastPath: state.getIn(['core', 'routing', 'lastPath'], '/'),
+	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
+const mapDispatchToProps = dispatch => {
+	return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overlay);

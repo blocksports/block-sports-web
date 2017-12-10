@@ -5,97 +5,107 @@ import { getNestedMarketsArray } from '../../../lib/utils';
 import { mockMarkets } from './__mockData';
 
 const fetchMarketsRequest = createAction('FETCH_MARKETS_REQUEST');
-const fetchMarketsSuccess = createAction('FETCH_MARKETS_SUCCESS', (data, resp) => [data, resp]);
+const fetchMarketsSuccess = createAction(
+	'FETCH_MARKETS_SUCCESS',
+	(data, resp) => [data, resp]
+);
 
 const fetchMarketRequest = createAction('FETCH_MARKET_REQUEST');
-const fetchMarketSuccess = createAction('FETCH_MARKET_SUCCESS', (data, resp) => [data, resp]);
+const fetchMarketSuccess = createAction(
+	'FETCH_MARKET_SUCCESS',
+	(data, resp) => [data, resp]
+);
 
 const updateMinimum = createAction('UPDATE_MINIMUM_BET');
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export function fetchMarkets(params, query) {
-  return async (dispatch) => {
-    dispatch(fetchMarketsRequest());
+	return async dispatch => {
+		dispatch(fetchMarketsRequest());
 
-    await sleep(2000);
-    
-    axios({
-      method: 'get',
-      url: '/v1/exchange',
-      params: {
-        sport: params.sport,
-        competition: params.competition,
-        order: query.order
-      }
-    }).then((resp) => {
-      dispatch(fetchMarketsSuccess(params, resp));
-    }).catch((err) => {
-      dispatch(fetchMarketsSuccess(params, {data: mockMarkets}));
-    });
+		await sleep(2000);
 
-  };
+		axios({
+			method: 'get',
+			url: '/v1/exchange',
+			params: {
+				sport: params.sport,
+				competition: params.competition,
+				order: query.order,
+			},
+		})
+			.then(resp => {
+				dispatch(fetchMarketsSuccess(params, resp));
+			})
+			.catch(err => {
+				dispatch(fetchMarketsSuccess(params, { data: mockMarkets }));
+			});
+	};
 }
 
 export function fetchMarket(data) {
-  return (dispatch) => {
-    dispatch(fetchMarketRequest());
-    dispatch(fetchMarketSuccess(data, mockMarkets[0]));
-  };
+	return dispatch => {
+		dispatch(fetchMarketRequest());
+		dispatch(fetchMarketSuccess(data, mockMarkets[0]));
+	};
 }
 
 export function updateMinimumBet(data) {
-  return (dispatch) => {
-    dispatch(updateMinimum(data));
-  };
+	return dispatch => {
+		dispatch(updateMinimum(data));
+	};
 }
 
 const initialState = Immutable.Map({
-  isLoading: false,
-  minimumBet: 0,
-  markets: Immutable.Map(),
-  activeMarket: Immutable.Map()
+	isLoading: false,
+	minimumBet: 0,
+	markets: Immutable.Map(),
+	activeMarket: Immutable.Map(),
 });
 
-const exchangeReducer = createReducer({
-  [fetchMarketsRequest]: (state) => {
-    return state.merge({
-      isLoading: true
-    });
-  },
-  [fetchMarketsSuccess]: (state, [data, resp]) => {
-    const nestedArray = getNestedMarketsArray(data);
-    const oldMarkets = state.get('markets');
-    const matches = Immutable.fromJS(resp.data);
-    
-    // Merge if market data exists, create new if not
-    const newMarkets = oldMarkets.getIn(nestedArray) ?
-    oldMarkets.mergeIn(nestedArray, matches) :
-    oldMarkets.updateIn(nestedArray, (val = matches) => val);
+const exchangeReducer = createReducer(
+	{
+		[fetchMarketsRequest]: state => {
+			return state.merge({
+				isLoading: true,
+			});
+		},
+		[fetchMarketsSuccess]: (state, [data, resp]) => {
+			const nestedArray = getNestedMarketsArray(data);
+			const oldMarkets = state.get('markets');
+			const matches = Immutable.fromJS(resp.data);
 
-    return state.merge({
-      isLoading: false,
-      markets: newMarkets
-    });
-  },
-  [fetchMarketRequest]: (state) => {
-    return state.merge({
-      isLoading: true
-    });
-  },
-  [fetchMarketSuccess]: (state, [data, resp]) => {
-    return state.merge({
-      isLoading: false,
-      activeMarket: Immutable.fromJS(resp)
-    });
-  },
-  [updateMinimum]: (state, data) => {
-    return state.merge({
-      minimumBet: data
-    });
-  }
-}, initialState);
+			// Merge if market data exists, create new if not
+			const newMarkets = oldMarkets.getIn(nestedArray)
+				? oldMarkets.mergeIn(nestedArray, matches)
+				: oldMarkets.updateIn(nestedArray, (val = matches) => val);
+
+			return state.merge({
+				isLoading: false,
+				markets: newMarkets,
+			});
+		},
+		[fetchMarketRequest]: state => {
+			return state.merge({
+				isLoading: true,
+			});
+		},
+		[fetchMarketSuccess]: (state, [data, resp]) => {
+			return state.merge({
+				isLoading: false,
+				activeMarket: Immutable.fromJS(resp),
+			});
+		},
+		[updateMinimum]: (state, data) => {
+			return state.merge({
+				minimumBet: data,
+			});
+		},
+	},
+	initialState
+);
 
 export default exchangeReducer;

@@ -4,12 +4,10 @@ import { shallow, mount } from 'enzyme';
 
 import ViewSlider from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<ViewSlider />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

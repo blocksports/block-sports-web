@@ -4,12 +4,10 @@
 
 // import MarketList from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<MarketList />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

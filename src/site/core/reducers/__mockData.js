@@ -1,164 +1,160 @@
 export const mockNavigation = [
-  {
-    id: 'soccer',
-    name: 'Soccer',
-    type: 'sport',
-    marketCount: 20,
-    items: [
-      {
-        id: '111',
-        name: 'A League',
-        type: 'competition',
-        sport: 'soccer',
-        marketCount: 5
-      },
-      {
-        id: '112',
-        name: 'B League',
-        type: 'competition',
-        sport: 'soccer',
-        marketCount: 5
-      },
-      {
-        id: '113',
-        name: 'C League',
-        type: 'competition',
-        sport: 'soccer',
-        marketCount: 5
-      },
-      {
-        id: '114',
-        name: 'D League',
-        type: 'competition',
-        sport: 'soccer',
-        marketCount: 5
-      },
-    ],
-  },
-  {
-    id: 'cricket',
-    name: 'Cricket',
-    type: 'sport',
-    marketCount: 15,
-    items: [
-      {
-        id: '211',
-        name: 'A Test',
-        type: 'competition',
-        sport: 'cricket',
-        marketCount: 5
-      },
-      {
-        id: '212',
-        name: 'B Test',
-        type: 'competition',
-        sport: 'cricket',
-        marketCount: 5
-      },
-      {
-        id: '213',
-        name: 'C Test',
-        type: 'competition',
-        sport: 'cricket',
-        marketCount: 5
-      },
-    ],
-  },
-  {
-    id: 'mma',
-    name: 'Mixed Martial Arts',
-    type: 'sport',
-    marketCount: 25,
-    items: [
-      {
-        id: '311',
-        name: 'Card 1',
-        type: 'competition',
-        sport: 'mma',
-        marketCount: 5
-      },
-      {
-        id: '312',
-        name: 'Card 2',
-        type: 'competition',
-        sport: 'mma',
-        marketCount: 5
-      },
-      {
-        id: '313',
-        name: 'Card 3',
-        type: 'competition',
-        sport: 'mma',
-        marketCount: 5
-      },
-      {
-        id: '314',
-        name: 'Card 4',
-        type: 'competition',
-        sport: 'mma',
-        marketCount: 5
-      },
-      {
-        id: '315',
-        name: 'Card 5',
-        type: 'competition',
-        sport: 'mma',
-        marketCount: 5
-      }
-    ],
-  },
+	{
+		id: 'soccer',
+		name: 'Soccer',
+		type: 'sport',
+		marketCount: 20,
+		items: [
+			{
+				id: '111',
+				name: 'A League',
+				type: 'competition',
+				sport: 'soccer',
+				marketCount: 5,
+			},
+			{
+				id: '112',
+				name: 'B League',
+				type: 'competition',
+				sport: 'soccer',
+				marketCount: 5,
+			},
+			{
+				id: '113',
+				name: 'C League',
+				type: 'competition',
+				sport: 'soccer',
+				marketCount: 5,
+			},
+			{
+				id: '114',
+				name: 'D League',
+				type: 'competition',
+				sport: 'soccer',
+				marketCount: 5,
+			},
+		],
+	},
+	{
+		id: 'cricket',
+		name: 'Cricket',
+		type: 'sport',
+		marketCount: 15,
+		items: [
+			{
+				id: '211',
+				name: 'A Test',
+				type: 'competition',
+				sport: 'cricket',
+				marketCount: 5,
+			},
+			{
+				id: '212',
+				name: 'B Test',
+				type: 'competition',
+				sport: 'cricket',
+				marketCount: 5,
+			},
+			{
+				id: '213',
+				name: 'C Test',
+				type: 'competition',
+				sport: 'cricket',
+				marketCount: 5,
+			},
+		],
+	},
+	{
+		id: 'mma',
+		name: 'Mixed Martial Arts',
+		type: 'sport',
+		marketCount: 25,
+		items: [
+			{
+				id: '311',
+				name: 'Card 1',
+				type: 'competition',
+				sport: 'mma',
+				marketCount: 5,
+			},
+			{
+				id: '312',
+				name: 'Card 2',
+				type: 'competition',
+				sport: 'mma',
+				marketCount: 5,
+			},
+			{
+				id: '313',
+				name: 'Card 3',
+				type: 'competition',
+				sport: 'mma',
+				marketCount: 5,
+			},
+			{
+				id: '314',
+				name: 'Card 4',
+				type: 'competition',
+				sport: 'mma',
+				marketCount: 5,
+			},
+			{
+				id: '315',
+				name: 'Card 5',
+				type: 'competition',
+				sport: 'mma',
+				marketCount: 5,
+			},
+		],
+	},
 ];
 
-export const mockMarkets = [{
-  "id":"9t7GbKPLoo04",
-  "name":"Adelaide United_Central Coast Mariners",
-  "sport":"soccer",
-  "competition":"A-LEAGUE",
-  "competition_name":"A-League",
-  "participants":["Adelaide United","Central Coast Mariners"],
-  "commence":"1510822200",
-  "status":"Pending",
-  "outcomes":3,
-  "matched":7927.2300000000005,
-  "match_odds": {
-    "back":[
-      [
-        {"odds":2.54,"available":20.88},
-        {"odds":2.5,"available":31.12},
-        {"odds":2.44,"available":93.7}
-      ],
-      [
-        {"odds":2.45,"available":22.48},
-        {"odds":2.41,"available":31.92}
-      ],
-      [
-        {"odds":3.37,"available":21.42},
-        {"odds":3.29,"available":30.87}
-      ]
-    ],
-    "lay":[
-      [
-        {"odds":4.8,"available":21.18},
-        {"odds":4.95,"available":30.56}
-      ],
-      [
-        {"odds":4.8,"available":20.79},
-        {"odds":4.95,"available":34.46},
-        {"odds":5.12,"available":95.47},
-        {"odds":5.25,"available":284.94},
-        {"odds":5.5,"available":664.53}
-      ],
-      [
-        {"odds":8.8,"available":23.3},
-        {"odds":9.31,"available":31.53},
-        {"odds":9.82,"available":93.84}
-      ]
-    ]
-  },
-  "scale":0.167
-}];
+export const mockMarkets = [
+	{
+		id: '9t7GbKPLoo04',
+		name: 'Adelaide United_Central Coast Mariners',
+		sport: 'soccer',
+		competition: 'A-LEAGUE',
+		competition_name: 'A-League',
+		participants: ['Adelaide United', 'Central Coast Mariners'],
+		commence: '1510822200',
+		status: 'Pending',
+		outcomes: 3,
+		matched: 7927.2300000000005,
+		match_odds: {
+			back: [
+				[
+					{ odds: 2.54, available: 20.88 },
+					{ odds: 2.5, available: 31.12 },
+					{ odds: 2.44, available: 93.7 },
+				],
+				[{ odds: 2.45, available: 22.48 }, { odds: 2.41, available: 31.92 }],
+				[{ odds: 3.37, available: 21.42 }, { odds: 3.29, available: 30.87 }],
+			],
+			lay: [
+				[{ odds: 4.8, available: 21.18 }, { odds: 4.95, available: 30.56 }],
+				[
+					{ odds: 4.8, available: 20.79 },
+					{ odds: 4.95, available: 34.46 },
+					{ odds: 5.12, available: 95.47 },
+					{ odds: 5.25, available: 284.94 },
+					{ odds: 5.5, available: 664.53 },
+				],
+				[
+					{ odds: 8.8, available: 23.3 },
+					{ odds: 9.31, available: 31.53 },
+					{ odds: 9.82, available: 93.84 },
+				],
+			],
+		},
+		scale: 0.167,
+	},
+];
 
-export const mockPrices = {"NEO":{"USD":28.14,"GAS":1.23,"AUD":35.7},"GAS":{"USD":22.79,"GAS":1,"AUD":29.02}};
+export const mockPrices = {
+	NEO: { USD: 28.14, GAS: 1.23, AUD: 35.7 },
+	GAS: { USD: 22.79, GAS: 1, AUD: 29.02 },
+};
 
 // export const mockMarkets = [
 //   {

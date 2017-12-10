@@ -5,12 +5,10 @@ import { createOptions } from '../../../../lib/testing';
 
 import { BetSlip } from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<BetSlip />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

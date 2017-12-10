@@ -4,12 +4,10 @@
 
 // import SpinBox from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<SpinBox />', () => {
-  it('Should', () => {
-    expect(true).toEqual(false);
-  });
+	it('Should', () => {
+		expect(true).toEqual(false);
+	});
 });

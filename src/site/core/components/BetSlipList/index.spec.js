@@ -4,12 +4,10 @@ import { shallow, mount } from 'enzyme';
 
 import BetSlipList from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<BetSlipList />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

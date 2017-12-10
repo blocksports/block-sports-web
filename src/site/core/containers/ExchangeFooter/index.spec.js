@@ -5,12 +5,10 @@ import { createOptions } from '../../../../lib/testing';
 
 import { ExchangeFooter } from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<ExchangeFooter />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

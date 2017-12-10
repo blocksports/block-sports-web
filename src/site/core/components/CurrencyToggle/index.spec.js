@@ -4,12 +4,10 @@ import { shallow, mount } from 'enzyme';
 
 import CurrencyToggle from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<CurrencyToggle />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

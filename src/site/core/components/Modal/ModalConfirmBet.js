@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ModalWrapper from './ModalWrapper';
 import classNames from 'classnames';
-import Button from '../Button'
+import Button from '../Button';
 import styles from './confirmBet.less';
 import DemoQrImage from '../../../../img/demo-qr.png';
-import { fadeDefaultStyle, fadeTransitionStyles } from '../../../../lib/animation';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
 class ModalConfirmBet extends Component {
 	constructor() {
@@ -16,7 +19,7 @@ class ModalConfirmBet extends Component {
 			currentStep: 1,
 			previousStep: null,
 			totalSteps: 2,
-		}
+		};
 		this.updateStep = this.updateStep.bind(this);
 	}
 
@@ -24,90 +27,104 @@ class ModalConfirmBet extends Component {
 		this.setState({
 			previousStep: this.state.currentStep,
 			currentStep: nextStep,
-		})
+		});
 	}
 
 	render() {
 		const { currentStep, previousStep, totalSteps, showWarning } = this.state;
 		const { confirmingBet } = this.props;
-		const betType = confirmingBet.getIn(['type'])
-	  return (
-	    <ModalWrapper {...this.props} title="Confirm your bet">
-	  		{currentStep == 1 && 
-	    		<div>
-	    			<FormStepOne {...this.props} />
-	    			<div className={styles.buttonContainer}>
-	    				<Button 
-	    					className={classNames([styles.buttonNext, 'button-m', `button-${betType}`])} 
-	    					onClick={() => this.updateStep(2)}
-	    				>
-	    					Next
-	    				</Button>
-	    			</div>
-	    		</div>
-	    	}
+		const betType = confirmingBet.getIn(['type']);
+		return (
+			<ModalWrapper {...this.props} title="Confirm your bet">
+				{currentStep == 1 && (
+					<div>
+						<FormStepOne {...this.props} />
+						<div className={styles.buttonContainer}>
+							<Button
+								className={classNames([
+									styles.buttonNext,
+									'button-m',
+									`button-${betType}`,
+								])}
+								onClick={() => this.updateStep(2)}>
+								Next
+							</Button>
+						</div>
+					</div>
+				)}
 
-	    	{currentStep == 2 && 
-	    		<div>
-		    		<FormStepTwo {...this.props} />
-		    		<div className={styles.buttonContainer}>
-		    			<Button className={classNames(['button-m', `button-${betType}`])} onClick={() => this.updateStep(1)}>Back</Button>
-		    			<Button className={classNames(['button-m', 'button-white'])} onClick={() => this.props.setCurrentModal(null)}>Done</Button>
-		    		</div>
-	    		</div>
-	    	}
+				{currentStep == 2 && (
+					<div>
+						<FormStepTwo {...this.props} />
+						<div className={styles.buttonContainer}>
+							<Button
+								className={classNames(['button-m', `button-${betType}`])}
+								onClick={() => this.updateStep(1)}>
+								Back
+							</Button>
+							<Button
+								className={classNames(['button-m', 'button-white'])}
+								onClick={() => this.props.setCurrentModal(null)}>
+								Done
+							</Button>
+						</div>
+					</div>
+				)}
 
-	    	<div className={styles.progressContainer}>
-	    		<span className={styles.progressText}>Step {currentStep} of {totalSteps}</span>
-	    		<div className={styles.progressBar}>
-						<div className={classNames([styles.progress, betType])} style={{width: `${currentStep / totalSteps * 100}%`}} />
+				<div className={styles.progressContainer}>
+					<span className={styles.progressText}>
+						Step {currentStep} of {totalSteps}
+					</span>
+					<div className={styles.progressBar}>
+						<div
+							className={classNames([styles.progress, betType])}
+							style={{ width: `${currentStep / totalSteps * 100}%` }}
+						/>
 					</div>
 				</div>
-
-	    </ModalWrapper>
-	  );
+			</ModalWrapper>
+		);
 	}
 }
 
 ModalConfirmBet.propTypes = {
-  setCurrentModal: PropTypes.func.isRequired,
-  confirmingBet: PropTypes.object.isRequired,
+	setCurrentModal: PropTypes.func.isRequired,
+	confirmingBet: PropTypes.object.isRequired,
 };
 
 export default ModalConfirmBet;
 
 class FormStepOne extends Component {
-
 	constructor() {
 		super();
 		this.state = {
-			showOptions: false
-		}
+			showOptions: false,
+		};
 	}
 
 	handleOptionsToggle() {
 		this.setState({
 			showOptions: !this.state.showOptions,
-		})
+		});
 	}
 
 	getStake(stake, priceUsd) {
 		return {
 			GAS: stake,
 			USD: (stake * priceUsd).toFixed(2),
-		}
+		};
 	}
 
 	getLiability(liability, priceUsd) {
 		return {
 			GAS: liability,
 			USD: (liability * priceUsd).toFixed(2),
-		}
-	}	
+		};
+	}
 
 	getProfit(odds, stake) {
-  	const profit = (odds - 1) * stake
-  	return profit >= 0 ? profit.toFixed(2) : 0;
+		const profit = (odds - 1) * stake;
+		return profit >= 0 ? profit.toFixed(2) : 0;
 	}
 
 	getLayLiability(odds, stake) {
@@ -115,23 +132,34 @@ class FormStepOne extends Component {
 	}
 
 	render() {
-		const { showOptions } = this.state
-		const { confirmingBet, price, activeCurrency } = this.props
-		const priceUsd = price.getIn(['GAS', 'USD'])
-		const stake = this.getStake(confirmingBet.getIn(['stake']), priceUsd)
-		const liability = this.getLiability(confirmingBet.getIn(['liability']), priceUsd)
-		const betType = confirmingBet.getIn(['type'])
+		const { showOptions } = this.state;
+		const { confirmingBet, price, activeCurrency } = this.props;
+		const priceUsd = price.getIn(['GAS', 'USD']);
+		const stake = this.getStake(confirmingBet.getIn(['stake']), priceUsd);
+		const liability = this.getLiability(
+			confirmingBet.getIn(['liability']),
+			priceUsd
+		);
+		const betType = confirmingBet.getIn(['type']);
 		return (
 			<Transition appear={true} in={true} timeout={0}>
-	    	{(state) => (
-		    	<div className={styles.formContainer} style={{
-		       	...fadeDefaultStyle,
-		        ...fadeTransitionStyles[state]
-		      }}>
+				{state => (
+					<div
+						className={styles.formContainer}
+						style={{
+							...fadeDefaultStyle,
+							...fadeTransitionStyles[state],
+						}}>
 						<div className={styles.highlight}>
 							<div className={styles.row}>
 								<h5 className={styles.bodyHeading}>
-									<span className={classNames([styles.bodyHeadingType, confirmingBet.getIn(['type'])])}>{confirmingBet.getIn(['type'])}</span>
+									<span
+										className={classNames([
+											styles.bodyHeadingType,
+											confirmingBet.getIn(['type']),
+										])}>
+										{confirmingBet.getIn(['type'])}
+									</span>
 									{confirmingBet.getIn(['runner_name'])}
 								</h5>
 								<div className={styles.stake}>
@@ -146,10 +174,13 @@ class FormStepOne extends Component {
 									</div>
 								</div>
 							</div>
-							{showOptions && 
+							{showOptions && (
 								<div>
 									<div className={styles.info}>
-										<span className={styles.truncate}>{confirmingBet.getIn(['entity_name'])} | {confirmingBet.getIn(['market_name'])}</span>
+										<span className={styles.truncate}>
+											{confirmingBet.getIn(['entity_name'])} |{' '}
+											{confirmingBet.getIn(['market_name'])}
+										</span>
 										<span>Date, Time</span>
 									</div>
 									<div className={styles.infoDetails}>
@@ -157,123 +188,155 @@ class FormStepOne extends Component {
 											<div className={styles.infoDetailsHeading}>
 												<span>Odds</span>
 											</div>
-											<span className={styles.infoDetailsValue}>{confirmingBet.getIn(['odds'])}</span>
+											<span className={styles.infoDetailsValue}>
+												{confirmingBet.getIn(['odds'])}
+											</span>
 										</div>
 										<div className={styles.infoDetailsItem}>
 											<div className={styles.infoDetailsHeading}>
 												<span>Stake</span>
-												<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+												<span className={styles.infoDetailsCurrency}>
+													{activeCurrency}
+												</span>
 											</div>
-											<span className={styles.infoDetailsValue}>{stake[activeCurrency]}</span>
+											<span className={styles.infoDetailsValue}>
+												{stake[activeCurrency]}
+											</span>
 										</div>
-										{betType === 'back' &&
+										{betType === 'back' && (
 											<div className={styles.infoDetailsItem}>
 												<div className={styles.infoDetailsHeading}>
 													<span>Profit</span>
-													<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+													<span className={styles.infoDetailsCurrency}>
+														{activeCurrency}
+													</span>
 												</div>
 												<span className={styles.infoDetailsValue}>
-													{this.getProfit(parseFloat(confirmingBet.getIn(['odds'])), stake[activeCurrency])}
+													{this.getProfit(
+														parseFloat(confirmingBet.getIn(['odds'])),
+														stake[activeCurrency]
+													)}
 												</span>
 											</div>
-										}
-										{betType === 'lay' &&
+										)}
+										{betType === 'lay' && (
 											<div className={styles.infoDetailsItem}>
 												<div className={styles.infoDetailsHeading}>
 													<span>Liability</span>
-													<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
+													<span className={styles.infoDetailsCurrency}>
+														{activeCurrency}
+													</span>
 												</div>
 												<span className={styles.infoDetailsValue}>
-													{this.getLayLiability(parseFloat(confirmingBet.getIn(['odds'])), stake[activeCurrency])}
+													{this.getLayLiability(
+														parseFloat(confirmingBet.getIn(['odds'])),
+														stake[activeCurrency]
+													)}
 												</span>
 											</div>
-										}
+										)}
 									</div>
 								</div>
-							}
+							)}
 						</div>
 						<div className={styles.infoToggle}>
 							<a onClick={() => this.handleOptionsToggle()}>
-								<i className={`fa fa-angle-${showOptions ? 'up' : 'down'}`} aria-hidden="true"></i>
+								<i
+									className={`fa fa-angle-${showOptions ? 'up' : 'down'}`}
+									aria-hidden="true"
+								/>
 							</a>
 						</div>
 					</div>
 				)}
 			</Transition>
-		)
+		);
 	}
 }
 
-
 class FormStepTwo extends Component {
-	
 	constructor() {
 		super();
 		this.state = {
 			warningTimeout: 3000,
 			showWarning: false,
-		}
+		};
 	}
 
 	componentWillMount() {
 		setTimeout(() => {
 			this.setState({
 				showWarning: true,
-			})
-		}, this.state.warningTimeout)
+			});
+		}, this.state.warningTimeout);
 	}
 
 	render() {
-		const { showWarning } = this.state
-		const { confirmingBet } = this.props
+		const { showWarning } = this.state;
+		const { confirmingBet } = this.props;
 		return (
 			<Transition appear={true} in={true} timeout={0}>
-	    	{(state) => (
-		    	<div style={{
-		       	...fadeDefaultStyle,
-		        ...fadeTransitionStyles[state]
-		      }}>
-					<div className={classNames([styles.formContainer, styles.formContainerStepTwo])}>
-						{showWarning &&
-							<Transition appear={true} in={true} timeout={0}>
-								{(state) => (
-						    	<div style={{
-						       	...fadeDefaultStyle,
-						        ...fadeTransitionStyles[state]
-						      }}>
-										<div className={styles.warning}>
-											<h6 className={styles.warningHeading}>Sorry! You can't bet right now.</h6>
-											<p>This is a proof of concept demo, the Block Sports Exchange is not currently available. DO NOT send to this mock address.</p>
+				{state => (
+					<div
+						style={{
+							...fadeDefaultStyle,
+							...fadeTransitionStyles[state],
+						}}>
+						<div
+							className={classNames([
+								styles.formContainer,
+								styles.formContainerStepTwo,
+							])}>
+							{showWarning && (
+								<Transition appear={true} in={true} timeout={0}>
+									{state => (
+										<div
+											style={{
+												...fadeDefaultStyle,
+												...fadeTransitionStyles[state],
+											}}>
+											<div className={styles.warning}>
+												<h6 className={styles.warningHeading}>
+													Sorry! You can't bet right now.
+												</h6>
+												<p>
+													This is a proof of concept demo, the Block Sports
+													Exchange is not currently available. DO NOT send to
+													this mock address.
+												</p>
+											</div>
 										</div>
-									</div>
-								)}
-							</Transition>
-						}
-						<div className={styles.contractDetails}>
-							<div>
-								Send 
-								<span className={`color-${confirmingBet.getIn(['type'])}`}>
-									{' '}{confirmingBet.getIn(['liability'])} GAS{' '}
-								</span> 
-								to the contract below
+									)}
+								</Transition>
+							)}
+							<div className={styles.contractDetails}>
+								<div>
+									Send
+									<span className={`color-${confirmingBet.getIn(['type'])}`}>
+										{' '}
+										{confirmingBet.getIn(['liability'])} GAS{' '}
+									</span>
+									to the contract below
+								</div>
+							</div>
+
+							<div className={styles.contractQrCode}>
+								<span>Qr code for mobile wallet</span>
+								<img src={DemoQrImage} alt="Fake QR code" />
+							</div>
+
+							<div className={styles.contractAddress}>
+								<span className={styles.contractAddressHeading}>
+									Contract address desktop wallet
+								</span>
+								<span className={styles.contractAddressCode}>
+									eoRJdaIqxdek4fj4Fa98fj4cemkKPe0fj
+								</span>
 							</div>
 						</div>
-
-						<div className={styles.contractQrCode}>
-							<span>Qr code for mobile wallet</span>
-							<img src={DemoQrImage} alt="Fake QR code" />
-						</div>
-						
-						<div className={styles.contractAddress}>
-							<span className={styles.contractAddressHeading}>Contract address desktop wallet</span>
-							<span className={styles.contractAddressCode}>eoRJdaIqxdek4fj4Fa98fj4cemkKPe0fj</span>
-						</div>
-
 					</div>
-				
-				</div>
 				)}
 			</Transition>
-		)
+		);
 	}
 }

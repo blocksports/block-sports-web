@@ -17,11 +17,14 @@ import registerServiceWorker from './lib/registerServiceWorker';
 import { initLocale } from './lib/i18n';
 
 function syncHistory(history, store) {
-  return syncHistoryWithStore(history, store, {
-    selectLocationState: (state) => {
-      return state.get('core').get('router').toJS();
-    }
-  });
+	return syncHistoryWithStore(history, store, {
+		selectLocationState: state => {
+			return state
+				.get('core')
+				.get('router')
+				.toJS();
+		},
+	});
 }
 
 let store = configureStore(browserHistory, Immutable.Map());
@@ -33,16 +36,16 @@ axios.defaults.baseURL = process.env.APP_API_URL;
 initLocale();
 
 ReactDOM.render(
-  <div>
-    <LocaleProvider locale={enUS}>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router history={history} routes={routes}/>
-        </Provider>
-      </ThemeProvider>
-    </LocaleProvider>
-  </div>,
-  document.getElementById('root')
+	<div>
+		<LocaleProvider locale={enUS}>
+			<ThemeProvider theme={theme}>
+				<Provider store={store}>
+					<Router history={history} routes={routes} />
+				</Provider>
+			</ThemeProvider>
+		</LocaleProvider>
+	</div>,
+	document.getElementById('root')
 );
 
 registerServiceWorker();

@@ -5,12 +5,10 @@ import { createOptions } from '../../../../lib/testing';
 
 import { ActiveBets } from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<ActiveBets />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

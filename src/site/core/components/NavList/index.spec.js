@@ -4,12 +4,10 @@
 
 // import NavList from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<NavList />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

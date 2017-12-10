@@ -5,12 +5,10 @@
 
 // import { Markets } from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<Markets />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

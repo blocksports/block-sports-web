@@ -4,12 +4,10 @@
 
 // import ExchangeLayout from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<ExchangeLayout />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

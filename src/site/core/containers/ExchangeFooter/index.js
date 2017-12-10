@@ -12,74 +12,74 @@ import { updateMinimumBet } from '../../reducers/exchange';
 import styles from './style.less';
 
 export class ExchangeFooter extends Component {
-  constructor(props, context) {
-    super(props, context);
+	constructor(props, context) {
+		super(props, context);
 
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-  }
+		this.handleToggleClick = this.handleToggleClick.bind(this);
+	}
 
-  componentWillMount() {
+	componentWillMount() {}
 
-  }
+	componentWillReceiveProps(nextProps) {}
 
-  componentWillReceiveProps(nextProps) {
+	handleToggleClick(currency) {
+		this.props.updateCurrency(currency);
+	}
 
-  }
-
-  handleToggleClick(currency) {
-    this.props.updateCurrency(currency);
-  }
-
-  render() {
-    return (
-      <div className={classNames([styles.root, this.props.className])}>
-        <div className={styles.left}>
-          ...
-        </div>
-        <div className={styles.right}>
-          <div className={styles.currency}>
-            <CurrencyToggle
-              currency={this.props.activeCurrency}
-              exchangeCurrency={this.props.activeExchangeCurrency}
-              onToggle={this.handleToggleClick}
-              />
-          </div>
-          <div className={styles.betView}>
-            <span className={styles.betViewText}>{t('core:footer.bet-view')}</span>
-            <ViewSlider
-              currency={this.props.activeCurrency}
-              exchangeCurrency={this.props.activeExchangeCurrency}
-              exchangeRate={this.props.exchangeRate}
-              onChange={this.props.updateMinimumBet}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className={classNames([styles.root, this.props.className])}>
+				<div className={styles.left}>...</div>
+				<div className={styles.right}>
+					<div className={styles.currency}>
+						<CurrencyToggle
+							currency={this.props.activeCurrency}
+							exchangeCurrency={this.props.activeExchangeCurrency}
+							onToggle={this.handleToggleClick}
+						/>
+					</div>
+					<div className={styles.betView}>
+						<span className={styles.betViewText}>
+							{t('core:footer.bet-view')}
+						</span>
+						<ViewSlider
+							currency={this.props.activeCurrency}
+							exchangeCurrency={this.props.activeExchangeCurrency}
+							exchangeRate={this.props.exchangeRate}
+							onChange={this.props.updateMinimumBet}
+						/>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 ExchangeFooter.propTypes = {
-  className: PropTypes.string
+	className: PropTypes.string,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
-    'activeExchangeCurrency': state.getIn(['core', 'currency', 'activeExchangeCurrency']),
-    'exchangeRate': selectExchangeRate(state)
-  };
+const mapStateToProps = state => {
+	return {
+		activeCurrency: state.getIn(['core', 'currency', 'activeCurrency']),
+		activeExchangeCurrency: state.getIn([
+			'core',
+			'currency',
+			'activeExchangeCurrency',
+		]),
+		exchangeRate: selectExchangeRate(state),
+	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateCurrency: (...args) => {
-      return dispatch(updateCurrency(...args));
-    },
-    updateMinimumBet: (...args) => {
-      return dispatch(updateMinimumBet(...args));
-    }
-  };
-}
+const mapDispatchToProps = dispatch => {
+	return {
+		updateCurrency: (...args) => {
+			return dispatch(updateCurrency(...args));
+		},
+		updateMinimumBet: (...args) => {
+			return dispatch(updateMinimumBet(...args));
+		},
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExchangeFooter);

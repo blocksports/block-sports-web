@@ -7,27 +7,30 @@ import { createAction, createReducer } from 'redux-act';
 
 const storeLastPathAction = createAction('STORE_LAST_PATH');
 
-export const storeLastPath = (path) => {
-  return (dispatch) => {
-    dispatch(storeLastPathAction(path));
-  };
+export const storeLastPath = path => {
+	return dispatch => {
+		dispatch(storeLastPathAction(path));
+	};
 };
 
 const initialState = Immutable.fromJS({
-  locationBeforeTransitions: null
+	locationBeforeTransitions: null,
 });
 
-const reducer = createReducer({
-  [LOCATION_CHANGE]: (state = initialState, payload) => {
-    return state.merge({
-      locationBeforeTransitions: payload
-    });
-  },
-  [storeLastPathAction]: (state, path) => {
-    return state.merge({
-      lastPath: path
-    });
-  }
-}, initialState);
+const reducer = createReducer(
+	{
+		[LOCATION_CHANGE]: (state = initialState, payload) => {
+			return state.merge({
+				locationBeforeTransitions: payload,
+			});
+		},
+		[storeLastPathAction]: (state, path) => {
+			return state.merge({
+				lastPath: path,
+			});
+		},
+	},
+	initialState
+);
 
 export default reducer;

@@ -12,139 +12,137 @@ import styles from './style.less';
 const duration = 300;
 
 const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0,
-}
+	transition: `opacity ${duration}ms ease-in-out`,
+	opacity: 0,
+};
 
 const transitionStyles = {
-  entering: { opacity: 0 },
-  entered:  { opacity: 1 },
+	entering: { opacity: 0 },
+	entered: { opacity: 1 },
 };
 
 class MarketList extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
+	constructor(props, context) {
+		super(props, context);
+	}
 
-  componentWillMount() {
+	componentWillMount() {}
 
-  }
+	componentWillReceiveProps(nextProps) {}
 
-  componentWillReceiveProps(nextProps) {
+	get renderItemsByDate() {
+		let items = this.props.items;
 
-  }
+		let itemArray = [];
+		let lastDate = '';
 
-  get renderItemsByDate() {
-    let items = this.props.items;
+		items.forEach((item, idx) => {
+			const date = moment.unix(item.get('commence')).format('D');
+			// Inject date row if there is a new day
+			if (date != lastDate) {
+				lastDate = date;
+				itemArray.push(this.renderDateRow(item.get('commence'), idx));
+			}
 
-    let itemArray = [];
-    let lastDate = '';
+			itemArray.push(
+				<MarketListItem
+					key={idx}
+					item={item}
+					onConfirmBet={this.props.onConfirmBet}
+					currency={this.props.currency}
+					exchangeRate={this.props.exchangeRate}
+					minimumBet={this.props.minimumBet}
+					showDetail={this.props.showDetail}
+					onOddsClick={this.props.onOddsClick}
+				/>
+			);
+		});
 
-    items.forEach((item, idx) => {
-      const date = moment.unix(item.get('commence')).format('D');
-      // Inject date row if there is a new day
-      if (date != lastDate) {
-        lastDate = date;
-        itemArray.push(this.renderDateRow(item.get('commence'), idx));
-      }
+		return itemArray;
+	}
 
-      itemArray.push(
-        <MarketListItem
-          key={idx}
-          item={item}
-          onConfirmBet={this.props.onConfirmBet}
-          currency={this.props.currency}
-          exchangeRate={this.props.exchangeRate}
-          minimumBet={this.props.minimumBet}
-          showDetail={this.props.showDetail}
-          onOddsClick={this.props.onOddsClick}
-        />
-      );
-    });
+	get renderItemsBySport() {
+		let items = this.props.items;
 
-    return itemArray;
-  }
+		let itemArray = [];
+		let lastSport = '';
 
-  get renderItemsBySport() {
-    let items = this.props.items;
-    
-        let itemArray = [];
-        let lastSport = '';
-    
-        items.forEach((item, idx) => {
-          const sport = item.get('sport');
-          // Inject sport row if there is a new sport
-          if (sport != lastSport) {
-            lastSport = sport;
-            itemArray.push(this.renderSportRow(sport, idx));
-          }
-    
-          itemArray.push(
-            <MarketListItem
-              key={idx}
-              item={item}
-              onConfirmBet={this.props.onConfirmBet}
-              currency={this.props.currency}
-              exchangeRate={this.props.exchangeRate}
-              minimumBet={this.props.minimumBet}
-              showDetail={this.props.showDetail}
-              onOddsClick={this.props.onOddsClick}
-            />
-          );
-        });
-    
-        return itemArray;
-  }
+		items.forEach((item, idx) => {
+			const sport = item.get('sport');
+			// Inject sport row if there is a new sport
+			if (sport != lastSport) {
+				lastSport = sport;
+				itemArray.push(this.renderSportRow(sport, idx));
+			}
 
-  renderDateRow(date, key) {
-    return (
-      <span className={styles.dateHeading} key={`date-${key}`}>
-        {dateTime(date, dateTypes.dayMonthDate)}
-      </span>
-    );
-  }
+			itemArray.push(
+				<MarketListItem
+					key={idx}
+					item={item}
+					onConfirmBet={this.props.onConfirmBet}
+					currency={this.props.currency}
+					exchangeRate={this.props.exchangeRate}
+					minimumBet={this.props.minimumBet}
+					showDetail={this.props.showDetail}
+					onOddsClick={this.props.onOddsClick}
+				/>
+			);
+		});
 
-  renderSportRow(sport, key) {
-    return (
-      <span className={styles.dateHeading} key={`sport-${key}`}>
-        {t(`core:sport.${sport}`)}
-      </span>
-    );
-  }
-  render() {
+		return itemArray;
+	}
 
-    if (this.props.items.isEmpty()) return null;
+	renderDateRow(date, key) {
+		return (
+			<span className={styles.dateHeading} key={`date-${key}`}>
+				{dateTime(date, dateTypes.dayMonthDate)}
+			</span>
+		);
+	}
 
-    return (
-      <div className={styles.root}>
-        <Transition appear={true} in={true} timeout={0}>
-          {(state) => (
-            <div style={{
-              ...defaultStyle,
-              ...transitionStyles[state]
-            }}>
-              {this.props.isFrontPage ? this.renderItemsBySport : this.renderItemsByDate}
-            </div>
-          )}
-        </Transition>
-      </div>
-    );
-  }
+	renderSportRow(sport, key) {
+		return (
+			<span className={styles.dateHeading} key={`sport-${key}`}>
+				{t(`core:sport.${sport}`)}
+			</span>
+		);
+	}
+	render() {
+		if (this.props.items.isEmpty()) return null;
+
+		return (
+			<div className={styles.root}>
+				<Transition appear={true} in={true} timeout={0}>
+					{state => (
+						<div
+							style={{
+								...defaultStyle,
+								...transitionStyles[state],
+							}}>
+							{this.props.isFrontPage
+								? this.renderItemsBySport
+								: this.renderItemsByDate}
+						</div>
+					)}
+				</Transition>
+			</div>
+		);
+	}
 }
 
 MarketList.propTypes = {
-  onConfirmBet: PropTypes.func,
-  exchangeRate: PropTypes.number.isRequired,
-  currency: PropTypes.string.isRequired,
-  minimumBet: PropTypes.number.isRequired,
-  items: PropTypes.instanceOf(Immutable.List),
-  showDetail: PropTypes.bool,
-  isFrontPage: PropTypes.bool,
-  onOddsClick: PropTypes.func,
+	onConfirmBet: PropTypes.func,
+	exchangeRate: PropTypes.number.isRequired,
+	currency: PropTypes.string.isRequired,
+	minimumBet: PropTypes.number.isRequired,
+	items: PropTypes.instanceOf(Immutable.List),
+	showDetail: PropTypes.bool,
+	isFrontPage: PropTypes.bool,
+	onOddsClick: PropTypes.func,
 };
 
 MarketList.defaultProps = {
-  showDetail: false
-}
+	showDetail: false,
+};
 
 export default MarketList;

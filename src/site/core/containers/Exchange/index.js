@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
@@ -14,66 +14,72 @@ import _ from 'lodash';
 import styles from './style.less';
 
 class Exchange extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
+	constructor(props, context) {
+		super(props, context);
+	}
 
-  componentWillMount() {
-    this.props.fetchMarkets(this.props.params, this.props.location.query);
-    subToMarkets(this.props.dispatch, this.props.params)
-  }
+	componentWillMount() {
+		this.props.fetchMarkets(this.props.params, this.props.location.query);
+		subToMarkets(this.props.dispatch, this.props.params);
+	}
 
-  componentWillReceiveProps(nextProps) {
-    if (this.routeHasUpdated(nextProps)) {
-      this.props.fetchMarkets(nextProps.params, nextProps.location.query);
-      subToMarkets(this.props.dispatch, nextProps.params, this.props.params);
-    }
-  }
+	componentWillReceiveProps(nextProps) {
+		if (this.routeHasUpdated(nextProps)) {
+			this.props.fetchMarkets(nextProps.params, nextProps.location.query);
+			subToMarkets(this.props.dispatch, nextProps.params, this.props.params);
+		}
+	}
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.routeHasUpdated(nextProps) || !Immutable.is(this.props.items, nextProps.items);
-  }
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.routeHasUpdated(nextProps) ||
+			!Immutable.is(this.props.items, nextProps.items)
+		);
+	}
 
-  componentWillUnmount() {
-    unsubFromMarkets(this.props.params);
-  }
+	componentWillUnmount() {
+		unsubFromMarkets(this.props.params);
+	}
 
-  routeHasUpdated(nextProps) {
-    return !_.isEqual(this.props.params, nextProps.params) || !_.isEqual(this.props.location.query, nextProps.location.query);
-  }
+	routeHasUpdated(nextProps) {
+		return (
+			!_.isEqual(this.props.params, nextProps.params) ||
+			!_.isEqual(this.props.location.query, nextProps.location.query)
+		);
+	}
 
-  render() {
-    return (
-      <div>
-        <ExchangeLayout
-          params={this.props.params}
-          query={this.props.location.query}
-          items={this.props.items}
-          />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<ExchangeLayout
+					params={this.props.params}
+					query={this.props.location.query}
+					items={this.props.items}
+				/>
+			</div>
+		);
+	}
 }
 
 Exchange.propTypes = {
-  params: PropTypes.object,
-  location: PropTypes.object.isRequired,
-  items: PropTypes.instanceOf(Immutable.List).isRequired
+	params: PropTypes.object,
+	location: PropTypes.object.isRequired,
+	items: PropTypes.instanceOf(Immutable.List).isRequired,
 };
 
 const mapStateToProps = (state, props) => {
-  return {
-    items: selectMarketItems(state, props)
-  };
+	return {
+		items: selectMarketItems(state, props),
+	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    fetchMarkets: (...args) => {
-      return dispatch(fetchMarkets(...args));
-    },
-  };
+const mapDispatchToProps = dispatch => {
+	return {
+		dispatch,
+		fetchMarkets: (...args) => {
+			return dispatch(fetchMarkets(...args));
+		},
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Exchange);

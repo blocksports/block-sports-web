@@ -10,58 +10,56 @@ import MarketList from '../../components/MarketList';
 import styles from './style.less';
 
 export class MarketDetail extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
+	constructor(props, context) {
+		super(props, context);
+	}
 
-  componentWillMount() {
-    this.props.fetchMarket(this.props.params);
-  }
+	componentWillMount() {
+		this.props.fetchMarket(this.props.params);
+	}
 
-  componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps(nextProps) {}
 
-  }
-
-  render() {
-    return (
-      <div className={styles.root}>
-        <MarketList
-          items={Immutable.List([this.props.item])}
-          showDetail={true}
-          currency={this.props.activeCurrency}
-          exchangeRate={this.props.exchangeRate}
-          minimumBet={this.props.minimumBet}
-          onOddsClick={this.props.addBet}
-          />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className={styles.root}>
+				<MarketList
+					items={Immutable.List([this.props.item])}
+					showDetail={true}
+					currency={this.props.activeCurrency}
+					exchangeRate={this.props.exchangeRate}
+					minimumBet={this.props.minimumBet}
+					onOddsClick={this.props.addBet}
+				/>
+			</div>
+		);
+	}
 }
 
 MarketDetail.propTypes = {
-  params: PropTypes.object.isRequired,
-  item: PropTypes.instanceOf(Immutable.Map).isRequired,
-  fetchMarket: PropTypes.func.isRequired
+	params: PropTypes.object.isRequired,
+	item: PropTypes.instanceOf(Immutable.Map).isRequired,
+	fetchMarket: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    item: state.getIn(['core', 'exchange', 'activeMarket'], Immutable.Map()),
-    'activeCurrency': state.getIn(['core', 'currency', 'activeCurrency']),
-    'exchangeRate': selectExchangeRate(state),
-    'minimumBet': state.getIn(['core', 'exchange', 'minimumBet'])
-  };
+const mapStateToProps = state => {
+	return {
+		item: state.getIn(['core', 'exchange', 'activeMarket'], Immutable.Map()),
+		activeCurrency: state.getIn(['core', 'currency', 'activeCurrency']),
+		exchangeRate: selectExchangeRate(state),
+		minimumBet: state.getIn(['core', 'exchange', 'minimumBet']),
+	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMarket: (...args) => {
-      return dispatch(fetchMarket(...args));
-    },
-    addBet: (...args) => {
-      return dispatch(addBet(...args));
-    }
-  };
-}
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchMarket: (...args) => {
+			return dispatch(fetchMarket(...args));
+		},
+		addBet: (...args) => {
+			return dispatch(addBet(...args));
+		},
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketDetail);
