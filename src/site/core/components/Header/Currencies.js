@@ -5,18 +5,11 @@ import { t } from 'i18next';
 import classNames from 'classnames';
 import styles from './styles.less';
 import SkeletonBlock from '../SkeletonBlock';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
-const duration = 300;
-
-const defaultStyle = {
-	transition: `opacity ${duration}ms ease-in-out`,
-	opacity: 0,
-};
-
-const transitionStyles = {
-	entering: { opacity: 0 },
-	entered: { opacity: 1 },
-};
 
 const Currencies = props => {
 	const isLoading =
@@ -39,8 +32,8 @@ const Currencies = props => {
 					{state => (
 						<div
 							style={{
-								...defaultStyle,
-								...transitionStyles[state],
+								...fadeDefaultStyle,
+								...fadeTransitionStyles[state],
 							}}>
 							<Currency {...props} currency="NEO" />
 							<Currency {...props} currency="GAS" />
