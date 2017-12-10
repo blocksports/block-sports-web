@@ -1,4 +1,4 @@
-const fadeDuration = 300
+const fadeDuration = 250
 
 export const fadeDefaultStyle = {
   transition: `opacity ${fadeDuration}ms ease-in-out`,
