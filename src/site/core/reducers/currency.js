@@ -37,7 +37,7 @@ export function updateCurrency(currency) {
 }
 
 const initialState = Immutable.Map({
-  isLoading: false,
+  isLoading: true,
   activeCurrency: 'GAS',
   activeExchangeCurrency: 'USD',
   price: Immutable.Map()
