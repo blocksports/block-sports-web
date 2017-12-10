@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
@@ -42,31 +43,25 @@ class BetSlipList extends Component {
   }
 
   renderBets(type) {
-    if (this.isEmpty(type)) return;
-
+    const { items, exchangeRate, currency, onBetClick, onRemoveClick } = this.props
+    let betSlipitems = items.get(type) || Immutable.Map()
+    betSlipitems = betSlipitems.toList();
     return (
-      <div className={`bet-slip-${type}`}>
-        {this.renderRows(type, this.props.items.get(type))}
-      </div>
+      <TransitionGroup className={`bet-slip-${type}`}>
+        {betSlipitems.map((bet, index) => (
+          <Fade key={bet.getIn(['id'])}>
+            <BetSlipItem
+              item={bet}
+              type={type}
+              exchangeRate={exchangeRate}
+              currency={currency}
+              onBetClick={onBetClick}
+              onRemoveClick={onRemoveClick}
+            />
+          </Fade>
+        ))}
+      </TransitionGroup>
     );
-  }
-
-  renderRows(type, items) {
-    const itemList = items.toList();
-
-    return itemList.map((bet, index) => {
-      return (
-        <BetSlipItem
-          item={bet}
-          exchangeRate={this.props.exchangeRate}
-          currency={this.props.currency}
-          key={index}
-          type={type}
-          onBetClick={this.props.onBetClick}
-          onRemoveClick={this.props.onRemoveClick}
-          />
-      );
-    });
   }
 
   render() {
@@ -79,6 +74,16 @@ class BetSlipList extends Component {
     );
   }
 }
+
+const Fade = ({ children, ...props }) => (
+  <CSSTransition
+    {...props}
+    timeout={300}
+    classNames="fade"
+  >
+    {children}
+  </CSSTransition>
+);
 
 BetSlipList.propTypes = {
   className: PropTypes.string,

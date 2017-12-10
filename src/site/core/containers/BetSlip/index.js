@@ -10,13 +10,6 @@ import BetSlipList from '../../components/BetSlipList/index';
 import styles from './style.less';
 
 export class BetSlip extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  componentWillMount() {
-
-  }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.items.equals(nextProps.items)) {
@@ -24,29 +17,21 @@ export class BetSlip extends Component {
     }
   }
 
-  get content() {
-    if (this.props.items.isEmpty()) {
-      return (
-        <div className="empty-text">{t('core:bets.bet-slip.is-empty')}</div>
-      );
-    }
-
-    return (
-      <BetSlipList
-        items={this.props.items}
-        currency={this.props.activeCurrency}
-        exchangeRate={this.props.exchangeRate}
-        onBetClick={this.props.placeBet}
-        onRemoveClick={this.props.removeBet}
-        onRemoveAllClick={this.props.removeAllBets}
-        />
-    );
-  }
-
   render() {
+    const { items, activeCurrency, exchangeRate, placeBet, removeBet, removeAllBets } = this.props 
     return (
       <div className={classNames([styles.root, this.props.className])}>
-        {this.content}
+        {items.isEmpty() && 
+          <div className="empty-text">{t('core:bets.bet-slip.is-empty')}</div>
+        }
+        <BetSlipList
+          items={items}
+          currency={activeCurrency}
+          exchangeRate={exchangeRate}
+          onBetClick={placeBet}
+          onRemoveClick={removeBet}
+          onRemoveAllClick={removeAllBets}
+        />
       </div>
     );
   }
