@@ -8,7 +8,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "generate": "plop --plopfile generators/index.js",
-    "toolbox": "react-toolbox-themr"
+    "toolbox": "react-toolbox-themr",
+    "format": "prettier --jsx-bracket-same-line --use-tabs --single-quote --trailing-comma es5 --write 'src/**/*.js';"
   },
   "dependencies": {
     "antd": "^2.11.2",
@@ -37,6 +38,7 @@
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
+    "prettier": "^1.9.1",
     "promise": "7.1.1",
     "prop-types": "^15.5.10",
     "qs": "^6.5.1",
