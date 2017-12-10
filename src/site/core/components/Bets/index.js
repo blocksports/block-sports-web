@@ -41,7 +41,7 @@ class Bets extends Component {
   }
 
   displayClass(tab) {
-    return classNames({'is-active': tab === this.state.activeTab, 'is-inactive': tab !== this.state.activeTab});
+    return classNames([styles.tabContent, {'is-active': tab === this.state.activeTab, 'is-inactive': tab !== this.state.activeTab}]);
   }
 
 

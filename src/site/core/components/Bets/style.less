@@ -12,11 +12,14 @@
 	width: 50%;
 }
 
-:local(.content) {
-  padding: @space;
-
-  .is-inactive {
+:local(.tabContent) {
+	
+	&.is-inactive {
     display: none;
   }
-  
+
+}
+
+:local(.content) {
+  padding: @space;  
 }
