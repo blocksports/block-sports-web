@@ -49,7 +49,7 @@ class ActiveBetListItem extends Component {
             <div className={styles.detailsHeading}>
               <span>Odds</span>
             </div>
-            <span class={styles.detailsValue}>{this.state.odds}</span>
+            <span className={styles.detailsValue}>{this.state.odds}</span>
           </div>
 
           <div className={styles.detailsItem}>
@@ -57,7 +57,7 @@ class ActiveBetListItem extends Component {
               <span>Stake</span>
               <span className={styles.detailsCurrency}>{currency}</span>
             </div>
-            <span class={styles.detailsValue}>{this.state.stake}</span>
+            <span className={styles.detailsValue}>{this.state.stake}</span>
           </div>
 
           {type === 'back' &&
@@ -66,7 +66,7 @@ class ActiveBetListItem extends Component {
                 <span>Profit</span>
                 <span className={styles.detailsCurrency}>{currency}</span>
               </div>
-              <span class={styles.detailsValue}>{this.state.profit}</span>
+              <span className={styles.detailsValue}>{this.state.profit}</span>
             </div>
           }
           
@@ -76,7 +76,7 @@ class ActiveBetListItem extends Component {
                 <span>Liability</span>
                 <span className={styles.detailsCurrency}>{currency}</span>
               </div>
-              <span class={styles.detailsValue}>{this.state.matched}</span>
+              <span className={styles.detailsValue}>{this.state.matched}</span>
             </div>
           }
 
@@ -84,7 +84,7 @@ class ActiveBetListItem extends Component {
             <div className={styles.detailsHeading}>
               <span>Matched</span>
             </div>
-            <span class={styles.detailsValue}>{this.state.matched}</span>
+            <span className={styles.detailsValue}>{this.state.matched}</span>
           </div>
 
         </div>
