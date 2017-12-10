@@ -10,13 +10,18 @@ import ActiveBetListItem from './item';
 
 class ActiveBetList extends Component {
 	render() {
-		const { currency } = this.props;
+		const { currency, exchangeRate } = this.props;
 		let items = this.props.items || [];
 		items = items.sort(orderByDate('date_created', -1));
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
 				{items.map((bet, index) => (
-					<ActiveBetListItem key={index} bet={bet} currency={currency} />
+					<ActiveBetListItem
+						key={bet.get('id')}
+						bet={bet}
+						currency={currency}
+						exchangeRate={exchangeRate}
+					/>
 				))}
 			</div>
 		);

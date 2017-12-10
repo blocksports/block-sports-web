@@ -11,14 +11,24 @@ import SpinBox from '../SpinBox';
 class ActiveBetListItem extends Component {
 	constructor(props) {
 		super(props);
-		const odds = props.bet.get('odds');
-		const stake = props.bet.get('stake');
+		const odds = parseFloat(props.bet.get('odds'));
+		const stake = parseFloat(props.bet.get('stake'));
 		this.state = {
 			odds,
 			stake,
-			profit: (odds - 1) * stake,
+			profit: this.getProfit(odds, stake),
+			layLiability: this.getLayLiability(odds, stake),
 			matched: 0,
 		};
+	}
+
+	getProfit(odds, stake) {
+		const profit = (odds - 1) * stake;
+		return profit >= 0 ? profit.toFixed(2) : 0;
+	}
+
+	getLayLiability(odds, stake) {
+		return (odds * stake).toFixed(2);
 	}
 
 	get exchangeRate() {
@@ -75,7 +85,9 @@ class ActiveBetListItem extends Component {
 								<span>Liability</span>
 								<span className={styles.detailsCurrency}>{currency}</span>
 							</div>
-							<span className={styles.detailsValue}>{this.state.matched}</span>
+							<span className={styles.detailsValue}>
+								{this.state.layLiability}
+							</span>
 						</div>
 					)}
 
@@ -92,10 +104,9 @@ class ActiveBetListItem extends Component {
 }
 
 ActiveBetListItem.propTypes = {
-	// className: PropTypes.string,
-	// items: PropTypes.instanceOf(Immutable.List).isRequired,
-	// exchangeRate: PropTypes.number.isRequired,
-	// currency: PropTypes.string.isRequired,
+	bet: PropTypes.instanceOf(Immutable.Map).isRequired,
+	exchangeRate: PropTypes.number.isRequired,
+	currency: PropTypes.string.isRequired,
 };
 
 export default ActiveBetListItem;
