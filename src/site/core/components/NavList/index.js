@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Transition from 'react-transition-group/Transition';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
 import { Link, IndexLink } from 'react-router';
 import { categoryFilters } from '../../../../lib/constants';
-
 import styles from './style.less';
+
+const duration = 300;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 },
+};
 
 class NavList extends Component {
   constructor(props, context) {
@@ -69,20 +81,23 @@ class NavList extends Component {
     });
   }
 
-  navItem(item) {
-
-  }
-
   render() {
     return (
-      <div className={styles.root}>
-        {this.header}
-        <nav className={styles.nav}>
-          <ul>
-            {this.renderItems}
-          </ul>
-        </nav>
-      </div>
+      <Transition appear={true} in={true} timeout={0}>
+        {(state) => (
+          <div className={styles.root} style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}>
+            {this.header}
+            <nav className={styles.nav}>
+              <ul>
+                {this.renderItems}
+              </ul>
+            </nav>
+          </div>
+        )}
+      </Transition>
     );
   }
 }
