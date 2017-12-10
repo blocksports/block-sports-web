@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
@@ -6,8 +7,19 @@ import { getMarketOrder } from '../../../../lib/utils';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import moment from 'moment';
 import MarketListItem from './item';
-
 import styles from './style.less';
+
+const duration = 300;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered:  { opacity: 1 },
+};
 
 class MarketList extends Component {
   constructor(props, context) {
@@ -105,7 +117,16 @@ class MarketList extends Component {
 
     return (
       <div className={styles.root}>
-        {this.props.isFrontPage ? this.renderItemsBySport : this.renderItemsByDate}
+        <Transition appear={true} in={true} timeout={0}>
+          {(state) => (
+            <div style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }}>
+              {this.props.isFrontPage ? this.renderItemsBySport : this.renderItemsByDate}
+            </div>
+          )}
+        </Transition>
       </div>
     );
   }
