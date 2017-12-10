@@ -26,23 +26,6 @@ class ActiveBetListItem extends Component {
     return this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
   }
 
-  renderRunnerTooltip(bet) {
-    return (
-      <ReactTooltip id={bet.get('id')} place="left" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
-        <div className="runner-tooltip-entity">{bet.get('entity_name')}</div>
-        <div>{bet.get('market_name')}</div>
-      </ReactTooltip>
-    );
-  }
-
-  renderStatusTooltip(bet) {
-    return (
-      <ReactTooltip id={`${bet.get('id')}-status`} place="left" effect="solid" type="light" delayShow={500} delayHide={200} className={styles.tooltip}>
-        <div className="status-tooltip">{t(`core:bets.active.${bet.get('status')}-info`)}</div>
-      </ReactTooltip>
-    );
-  }
-
   render() {
   	const { bet, currency } = this.props;
   	const status = bet.get('status');
