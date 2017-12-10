@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import styles from './styles.less';
 import SkeletonBlock from '../SkeletonBlock';
 
-const duration = 400;
+const duration = 300;
 
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out`,
