@@ -105,6 +105,15 @@ class FormStepOne extends Component {
 		}
 	}	
 
+	getProfit(odds, stake) {
+  	const profit = (odds - 1) * stake
+  	return profit >= 0 ? profit.toFixed(2) : 0;
+	}
+
+	getLayLiability(odds, stake) {
+		return (odds * stake).toFixed(2);
+	}
+
 	render() {
 		const { showOptions } = this.state
 		const { confirmingBet, price, activeCurrency } = this.props
@@ -164,7 +173,7 @@ class FormStepOne extends Component {
 													<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
 												</div>
 												<span className={styles.infoDetailsValue}>
-													{parseFloat((confirmingBet.getIn(['odds'])) - 1) * stake[activeCurrency]}
+													{this.getProfit(parseFloat(confirmingBet.getIn(['odds'])), stake[activeCurrency])}
 												</span>
 											</div>
 										}
@@ -174,7 +183,9 @@ class FormStepOne extends Component {
 													<span>Liability</span>
 													<span className={styles.infoDetailsCurrency}>{activeCurrency}</span>
 												</div>
-												<span className={styles.infoDetailsValue}>00.00</span>
+												<span className={styles.infoDetailsValue}>
+													{this.getLayLiability(parseFloat(confirmingBet.getIn(['odds'])), stake[activeCurrency])}
+												</span>
 											</div>
 										}
 									</div>
