@@ -190,7 +190,7 @@ class BetSlipItem extends Component {
 		const { type, currency } = this.props;
 		return (
 			<article className={classNames([styles.itemRoot, type])}>
-				<header className={styles.header} data-tip data-for={match.get('id')}>
+				<header className={styles.header}>
 					<div className={styles.headerTop}>
 						<span className={styles.headerTitle}>
 							{getParticipantName(match, outcome)}
@@ -210,8 +210,6 @@ class BetSlipItem extends Component {
 					</div>
 					<span className={styles.headerSub}>{match.get('name')}</span>
 				</header>
-
-				{/*{this.renderRunnerTooltip(match)}*/}
 
 				<div className={styles.details}>
 					<div className={styles.detailsItem}>

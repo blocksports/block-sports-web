@@ -31,7 +31,7 @@ class ActiveBetListItem extends Component {
 		const type = bet.get('type');
 		return (
 			<article className={classNames([styles.itemRoot, type])}>
-				<header className={styles.header} data-tip data-for={bet.get('id')}>
+				<header className={styles.header}>
 					<div className={styles.headerTop}>
 						<span className={styles.headerTitle}>{bet.get('runner_name')}</span>
 						<div>
