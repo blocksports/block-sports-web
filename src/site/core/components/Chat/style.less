@@ -13,9 +13,9 @@
 	right: 0;
 	z-index: 99;
 	display: block;
-	background-color: @site-panel-bg-light;
-	border-radius: @border-radius;
-	padding: @space-xs;
+	border-radius: @border-radius @border-radius 0 0;
+	border-bottom: 1px solid @border-1;
+	padding: @space-s;
 	text-align: center;
 	font-size: @font-size-m;
 }
@@ -29,17 +29,17 @@
 	position: sticky;
 	bottom: 0;
 	z-index: 99;
-
+	padding: @space-s @site-panel-spacing @site-panel-spacing @site-panel-spacing;
+	background-color: @site-panel-bg-light;
 	textarea {
 		display: block;
 		width: 100%;
 		background-color: @site-panel-bg-light;
-		border: 1px solid @gull-gray;
+		border: 1px solid @border-1;
 		padding: @space-s @site-panel-spacing;
-		color: @white;
+		color: @gray-1;
 		border-radius: @border-radius;
 	}
-
 }
 
 :local(.chatMessage) {
@@ -48,7 +48,7 @@
 }
 
 :local(.chatMessageUsername) {
-	color: @shamrock;
+	color: @primary;
 }
 
 :local(.chatMessageMessage) {
@@ -60,12 +60,12 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: fade(@site-panel-bg, 90%);
+	background: @overlay-light;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: @space-m;
-	color: @roman;
+	color: @error;
 	z-index: 9999;
-	cursor: not-allowed;	
+	cursor: not-allowed;
 }

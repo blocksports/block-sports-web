@@ -11,26 +11,28 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: @modal-bg;
+	background-color: @overlay;
 	z-index: 9999;
 }
 
 :local(.content) {
 	position: relative;
-	max-width: 420px;
+	max-width: 320px;
 	margin: 0 @space;
 	width: 100%;
-	background-color: @site-panel-bg;
+	background-color: @modal-bg;
+	color: @white-2;
 	border-radius: @border-radius;
-	box-shadow: 0 0 40px 0 @site-panel-shadow;
+	box-shadow: 0 0 40px 0 @modal-shadow;
 	overflow: hidden;
 }
 
 :local(.heading) {
-	.headingL();
+	text-transform: uppercase;
 	text-align: center;
-	margin: @space-xl 0;
-	color: @white;
+	line-height: 1;
+	margin: @space 0;
+	color: @white-1;
 }
 
 :local(.closeButton) {
@@ -39,6 +41,12 @@
 	right: 0;
 	padding: 0.5rem;
 	i {
-		color: @gull-gray;
+		color: @gray-1;
+		.transitionAll();
+
+		&:hover,
+		&:focus {
+			color: @white-1;
+		}
 	}
 }

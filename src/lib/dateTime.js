@@ -4,6 +4,7 @@ export const dateTypes = {
 	dayMonthDate: 'DAY_MONTH_DATE',
 	calendarDay: 'CALENDAR_DAY',
 	time: 'TIME',
+	dayMonthYearTime: 'DAY_MONTH_YEAR_TIME',
 };
 
 const calendarFormat = {
@@ -32,6 +33,10 @@ export function dateTime(value, format) {
 				.format('h:mma')
 				.toUpperCase();
 			break;
+		case dateTypes.dayMonthYearTime:
+			return moment.unix(value).format('dddd, MMMM Do h:mma');
+			break;
+
 		default:
 			return moment
 				.unix(value)

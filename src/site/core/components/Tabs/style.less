@@ -2,20 +2,23 @@
 @import '../../../../less/_fonts.less';
 
 :local(.tabs) {
-	display: flex;
-	flex-wrap: wrap;
-	background-color: @site-panel-bg-light;
-	transition: background-color 0.3s;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 :local(.tab) {
-
   &.active {
-    background-color: @site-panel-bg;
+    background-color: @black-5;
+    color: @primary !important;
   }
 
-  &:hover {
-  	background-color: darken(@site-panel-bg-light, 5%);
+  &:not(:first-of-type) {
+    margin-left: @space-m;
   }
 
+  &:hover,
+  &:focus {
+    background-color: @black-5;
+    color: @white-1;
+  }
 }

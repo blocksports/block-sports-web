@@ -1,32 +1,32 @@
 @import '../../../../less/_colours.less';
 
 :local(.root) {
-	position: relative;
-	overflow: hidden;
-	height: 4px;
-	background-color: @gull-gray;
-	&::after {
-  	content: '';
+  position: relative;
+  overflow: hidden;
+  height: 4px;
+  background-color: @gray-1;
+  &::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, @gull-gray, darken(@gull-gray, 30%), @gull-gray);
+    background: linear-gradient(90deg, @gray-1, lighten(@gray-1, 30%), @gray-1);
     animation: progress 1.5s ease-in-out infinite;
   }
 }
 
 :local(.small) {
-	width: 30%;
+  width: 30%;
 }
 
 :local(.medium) {
-	width: 50%;
+  width: 50%;
 }
 
 :local(.large) {
-	width: 100%;
+  width: 100%;
 }
 
 @keyframes progress {

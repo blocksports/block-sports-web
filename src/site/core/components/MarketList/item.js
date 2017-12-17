@@ -42,11 +42,13 @@ class MarketListItem extends Component {
 			available: '',
 			stake: '',
 			type: '',
+			isMatchSuspended: this.isMatchSuspended(
+				parseFloat(props.item.get('commence'))
+			),
 		};
 
 		this.handleOddsClick = this.handleOddsClick.bind(this);
 		this.handleConfirmClick = this.handleConfirmClick.bind(this);
-		// this.handleMarketClick = this.handleMarketClick.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.resetState = this.resetState.bind(this);
 	}
@@ -97,7 +99,6 @@ class MarketListItem extends Component {
 		const rows = Array.apply(null, { length: outcomes }).map((_, idx) => {
 			return this.renderMarketRow(idx);
 		});
-
 		return <div className={styles.main}>{rows}</div>;
 	}
 
@@ -196,11 +197,6 @@ class MarketListItem extends Component {
 		};
 	}
 
-	// handleMarketClick() {
-	//   const link = `/exchange/${this.props.item.get('sport')}/market/${this.props.item.get('id')}`;
-	//   browserHistory.push(link);
-	// }
-
 	handleInputChange(type) {
 		return value => {
 			this.setState({
@@ -209,17 +205,23 @@ class MarketListItem extends Component {
 		};
 	}
 
-	renderMarketRow(outcome, isDraw) {
-		const name = getParticipantName(this.props.item, outcome);
+	isMatchSuspended(commence) {
+		return moment().unix() > commence;
+	}
 
+	renderMarketRow(outcome, isDraw) {
+		const { item } = this.props;
+		const name = getParticipantName(item, outcome);
 		return (
 			<div className={styles.runnerRow} key={outcome}>
 				<div className={styles.marketRow}>
 					<span className={styles.marketRowDetail}>{name}</span>
-					<div className={styles.marketRowActions}>
-						{this.renderBetButtons(outcome, 'back')}
-						{this.renderBetButtons(outcome, 'lay')}
-					</div>
+					{!this.state.isMatchSuspended && (
+						<div className={styles.marketRowActions}>
+							{this.renderBetButtons(outcome, 'back')}
+							{this.renderBetButtons(outcome, 'lay')}
+						</div>
+					)}
 				</div>
 			</div>
 		);
@@ -327,15 +329,24 @@ class MarketListItem extends Component {
 			type: '',
 		});
 	}
+	'';
+
+	get contentSuspended() {
+		return (
+			<div className={styles.suspended}>
+				<div>In-play</div>
+				<div>Betting Disabled</div>
+			</div>
+		);
+	}
 
 	render() {
-		console.log(this.props);
 		if (this.props.item.isEmpty()) return null;
-
 		return (
 			<div className={styles.itemRoot}>
 				{this.contentLeft}
 				{this.contentMiddle}
+				{this.state.isMatchSuspended && this.contentSuspended}
 				{this.contentRight}
 			</div>
 		);

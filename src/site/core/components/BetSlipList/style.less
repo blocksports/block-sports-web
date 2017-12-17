@@ -1,31 +1,33 @@
 @import '../../../../less/_colours.less';
-@import '../../../../less/_fonts.less';
 @import '../../../../less/_utils.less';
+@import '../../../../less/_fonts.less';
 
 :local(.itemRoot) {
   position: relative;
-  margin: @space-m 0;
   padding: @space-s;
-  border-left: 3px solid;
-  background-color: @site-panel-bg-light;
+  border-left: @border-radius solid;
+  background-color: @black-5;
   border-radius: @border-radius;
-  
-  &.back {
-    border-left-color: @shamrock;
-  }
-  
-  &.lay {
-    border-left-color: @roman;
+  margin: @space-s 0;
+
+  &:first-of-type {
+    margin-top: 0;
   }
 
+  &.back {
+    border-left-color: @back;
+  }
+
+  &.lay {
+    border-left-color: @lay;
+  }
 }
 
 :local(.header) {
-  margin-bottom: @space-m;
+  margin-bottom: @space-s;
 }
 
 :local(.headerTop) {
-
 }
 
 :local(.headerTitle) {
@@ -37,8 +39,9 @@
 
 :local(.headerSub) {
   display: block;
-  @color: @gull-gray;
+  color: @gray-1;
   font-size: @font-size-s;
+  margin-top: 0.1rem;
 }
 
 :local(.removeButton) {
@@ -48,8 +51,17 @@
   padding: 0;
   line-height: 1;
   height: auto;
+
   i {
-    color: @gull-gray;
+    color: @gray-1;
+    .transitionAll();
+  }
+
+  &:focus,
+  &:hover {
+    i {
+      color: @white-1;
+    }
   }
 }
 
@@ -68,6 +80,14 @@
   justify-content: space-between;
   margin-bottom: @space-xs;
   padding-right: 12px;
+  color: @white-2;
+  font-size: @font-size-xs;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+:local(.detailsCurrency) {
+  color: @gray-1;
 }
 
 :local(.detailsBet) {
@@ -81,7 +101,7 @@
   line-height: 1;
   width: 100%;
   background-color: darken(@site-panel-bg-light, 4%);
-  color: @white;
+  color: @white-1;
   padding: 0.5em;
   border-radius: @border-radius;
   &:focus {
@@ -89,20 +109,22 @@
   }
 }
 
-:local(.detailsHeading) {
-  display: flex;
-  color: @gull-gray;
-  .headingXS();
-}
-
 :local(.removeAll) {
   display: flex;
   justify-content: flex-end;
   margin-top: calc(@space * 2);
+  &:hover,
+  &:focus {
+    color: @white-1;
+  }
 }
 
 :local(.removeAllButton) {
   padding: 0;
-  color: @gull-gray;
+  color: @gray-1;
   height: auto;
+  &:hover,
+  &:focus {
+    color: @white-1;
+  }
 }

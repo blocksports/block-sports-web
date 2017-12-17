@@ -9,12 +9,16 @@
 }
 
 :local(.logo) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: @header-height;
   width: @header-height;
   .makePanel();
-  padding: 4px;
+  padding: @space-s;
+  &:focus,
   &:hover {
-    opacity: 0.6;    
+    opacity: 0.6;
   }
 }
 
@@ -35,31 +39,27 @@
 }
 
 :local(.balance) {
-  margin: 0 @space-m 0 @space-xl;
+  min-width: 5rem;
 }
 
 :local(.balanceHeading) {
   display: block;
   margin-bottom: @space-xs;
-  .headingS();
-  color: @white;
-}
-
-:local(.balanceAmountCurrency) {
-  font-size: @font-size-s;
+  font-size: @font-size-xs;
+  line-height: 1;
+  text-transform: uppercase;
+  color: @white-2;
 }
 
 :local(.balanceAmount) {
   display: block;
-  color: @shamrock;
+  font-size: @font-size-l;
+  color: @primary;
   line-height: 1;
 }
 
-:local(.icon) {
-  i {
-    font-size: @font-size-xl;
-    color: @gull-gray;
-  }
+:local(.balanceAmountCurrency) {
+  font-size: @font-size-xs;
 }
 
 :local(.newAccount) {

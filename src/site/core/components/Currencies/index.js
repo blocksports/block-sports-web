@@ -11,11 +11,10 @@ import {
 } from '../../../../lib/animation';
 
 const Currencies = props => {
-	const isLoading = props.isLoadingCurrency;
 	return (
-		<div className={styles.currencies}>
-			{isLoading && (
-				<div>
+		<div>
+			{props.isLoadingCurrency && (
+				<div className={styles.currencies}>
 					<div className={styles.currencyLoading}>
 						<SkeletonBlock size="large" />
 					</div>
@@ -24,10 +23,11 @@ const Currencies = props => {
 					</div>
 				</div>
 			)}
-			{!isLoading && (
+			{!props.isLoadingCurrency && (
 				<Transition appear={true} in={true} timeout={0}>
 					{state => (
 						<div
+							className={styles.currencies}
 							style={{
 								...fadeDefaultStyle,
 								...fadeTransitionStyles[state],

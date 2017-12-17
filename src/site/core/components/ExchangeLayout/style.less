@@ -6,26 +6,23 @@
 :local(.root) {
   display: flex;
   width: 100%;
+  height: ~'calc(100vh - @{panel-height})';
 }
 
 :local(.left) {
- flex: 0 0 210px;
- height: ~"calc(100vh - @{panel-height})";
- overflow-y: scroll;
- .makePanel();
+  flex: 0 0 220px;
+  .makePanel();
+  padding: 0;
 }
 
 :local(.main) {
   flex-grow: 1;
   margin: 0 @panel-gutter;
-  height: ~"calc(100vh - @{panel-height})";
-  overflow-y: scroll;
+  .makePanelLight();
+  padding: 0;
 }
 
 :local(.mainMarket) {
-  .makePanel();
-  overflow: hidden;
-  padding: 0;
 }
 
 :local(.mainMedia) {
@@ -33,31 +30,28 @@
   padding-bottom: 25%;
   border-radius: 5px;
   margin: 0 0 @panel-gutter 0;
-  background-color: @gull-gray;
+  background-color: @gray-1;
 }
 
 :local(.right) {
-  height: ~"calc(100vh - @{panel-height})";
   flex: 0 0 350px;
   display: flex;
   flex-direction: column;
 }
 
 :local(.bets) {
-  height: 300px;
+  height: 350px;
   width: 100%;
-  overflow-y: scroll;
-  .makePanel();
+  .makePanelLight();
   padding: 0;
 }
 
 :local(.chat) {
   position: relative;
   flex-grow: 1;
-  .makePanel();
+  .makePanelLight();
   padding: 0;
   margin-top: @panel-gutter;
-  // overflow-y: scroll;
   overflow: hidden;
   display: flex;
 }

@@ -6,19 +6,11 @@ import { t } from 'i18next';
 import classNames from 'classnames';
 import { Link, IndexLink } from 'react-router';
 import { categoryFilters } from '../../../../lib/constants';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 import styles from './style.less';
-
-const duration = 300;
-
-const defaultStyle = {
-	transition: `opacity ${duration}ms ease-in-out`,
-	opacity: 0,
-};
-
-const transitionStyles = {
-	entering: { opacity: 0 },
-	entered: { opacity: 1 },
-};
 
 class NavList extends Component {
 	constructor(props, context) {
@@ -72,14 +64,16 @@ class NavList extends Component {
 						to={link}
 						className={styles.item}
 						activeClassName={styles.itemActive}>
-						<span className={styles.itemName}>{item.get('name')}</span>
-						<div>
-							{this.props.filter && (
-								<span className={styles.itemCount}>{item.get('count')}</span>
-							)}
-							<span>
-								<i className="fa fa-angle-right" aria-hidden="true" />
-							</span>
+						<div className={styles.itemInner}>
+							<span className={styles.itemName}>{item.get('name')}</span>
+							<div className={styles.itemRight}>
+								{this.props.filter && (
+									<span className={styles.itemCount}>{item.get('count')}</span>
+								)}
+								<span>
+									<i className="fa fa-angle-right" aria-hidden="true" />
+								</span>
+							</div>
 						</div>
 					</Link>
 				</li>
@@ -94,8 +88,8 @@ class NavList extends Component {
 					<div
 						className={styles.root}
 						style={{
-							...defaultStyle,
-							...transitionStyles[state],
+							...fadeDefaultStyle,
+							...fadeTransitionStyles[state],
 						}}>
 						{this.header}
 						<nav className={styles.nav}>

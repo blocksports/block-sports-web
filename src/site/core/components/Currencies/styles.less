@@ -1,0 +1,42 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+@import '../../../../less/_utils.less';
+
+:local(.currencies) {
+	display: flex;
+}
+
+:local(.currency) {
+	display: flex;
+	align-items: baseline;
+	&:not(:first-of-type) {
+		margin-left: @space-s;
+	}
+}
+
+:local(.currencyLoading) {
+	width: 4rem;
+	&:not(:first-of-type) {
+		margin-left: @space-s;
+	}
+}
+
+:local(.currencyName) {
+	display: inline-block;
+	margin-right: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
+	color: @white-2;
+}
+
+:local(.currencyAmount) {
+	line-height: 1;
+	background-color: @site-panel-bg-light;
+	padding: 0.4em 0.4em 0.35em 0.4rem;
+	border-radius: @border-radius;
+}
+
+:local(.exchangeCurrency) {
+	font-size: @font-size-xs;
+}

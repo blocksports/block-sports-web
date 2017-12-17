@@ -18,12 +18,19 @@
   font-size: @font-size-s;
   line-height: 1;
   width: 100%;
-  background-color: darken(@site-panel-bg-light, 4%);
-  color: @white;
   padding: 0.5em;
   border-radius: @border-radius;
+  border: 1px solid @border-1;
+  color: @white-1;
+  .transitionAll();
+
   &:focus {
     outline: none;
+  }
+
+  &:focus,
+  &:hover {
+    background: lighten(@black-5, 3%);
   }
 }
 
@@ -34,21 +41,21 @@
 }
 
 :local(.increment) {
-  width: 0; 
+  width: 0;
   height: 0;
   border-top: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid @gull-gray;
+  border-bottom: 4px solid @gray-1;
   margin-bottom: 0.1rem;
 }
 
 :local(.decrement) {
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-bottom: 0;
   margin-top: 0.1rem;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid @gull-gray;
+  border-top: 4px solid @gray-1;
 }

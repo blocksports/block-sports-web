@@ -72,8 +72,7 @@ class Chat extends Component {
 					<textarea
 						className={styles.input}
 						rows="2"
-						placeholder="Type a message..."
-						ref="chatMessage"
+						value="Type a message..."
 					/>
 				</form>
 				{this.state.showWarning && <DisabledMessage />}

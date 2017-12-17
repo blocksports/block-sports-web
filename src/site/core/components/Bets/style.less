@@ -2,24 +2,20 @@
 @import '../../../../less/_fonts.less';
 @import '../../../../less/_utils.less';
 
+:local(.inner) {
+	padding: 0 @site-panel-spacing @site-panel-spacing @site-panel-spacing;
+}
+
 :local(.tabs) {
 	position: sticky;
 	top: 0;
 	z-index: 99;
-}
-
-:local(.tab) {
-	width: 50%;
+	background-color: @site-panel-bg-light;
+	padding: @site-panel-spacing 0;
 }
 
 :local(.tabContent) {
-	
 	&.is-inactive {
-    display: none;
-  }
-
-}
-
-:local(.content) {
-  padding: @space;  
+		display: none;
+	}
 }

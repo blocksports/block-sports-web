@@ -4,16 +4,16 @@
 
 :local(.highlight) {
 	padding: @space;
-	background-color: @site-panel-bg-light;
+	background-color: @modal-bg-light;
 	border-radius: @border-radius;
 }
 
 :local(.truncate) {
 	display: block;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 :local(.buttonContainer) {
@@ -31,32 +31,33 @@
 }
 
 :local(.progressText) {
-	.headingM();
-	margin: 1.25em 0;
 	display: block;
-	color: @white;
+	font-size: @font-size-s;
+	color: @gray-1;
+	line-height: 1;
+	text-transform: uppercase;
+	margin: @space-l 0;
 }
 
 :local(.progressBar) {
 	position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: @site-panel-bg-light;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: @modal-bg-light;
 }
 
 :local(.progress) {
-  height: 4px;
-  border-radius: @border-radius;
+	height: 4px;
+	border-radius: @border-radius;
 
-  &.back {
-  	background-color: @shamrock;
-  }
+	&.back {
+		background-color: @back;
+	}
 
-  &.lay {
-  	background-color: @roman;
-  }
-
+	&.lay {
+		background-color: @lay;
+	}
 }
 
 :local(.formContainer) {
@@ -65,19 +66,20 @@
 }
 
 :local(.bodyHeading) {
-	font-size: 1.25rem;
 	margin: 0;
 }
 
 :local(.bodyHeadingType) {
 	display: block;
-	text-transform: capitalize;
+	margin-bottom: @space-xs;
+	font-size: @font-size-xs;
 	line-height: 1;
+	text-transform: uppercase;
 	&.back {
-		color: @shamrock;
+		color: @back;
 	}
 	&.lay {
-		color: @roman;
+		color: @lay;
 	}
 }
 
@@ -87,29 +89,35 @@
 }
 
 :local(.stake) {
-	text-align: right;
-	line-height: 1;
+}
+
+:local(.stakeItem) {
+	margin-bottom: @space-xs;
+	display: flex;
+	align-items: baseline;
 }
 
 :local(.stakeHeading) {
 	display: block;
-	.headingS();
+	margin-bottom: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	color: @gray-1;
+	text-transform: uppercase;
+}
+
+:local(.stakeValue) {
+	flex-grow: 1;
+	padding-right: @space-xs;
 }
 
 :local(.stakeCurrency) {
-	.headingS();
-	display: inline-block;
-	margin-right: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	color: @gray-1;
 }
 
-:local(.stakeNumL) {
-	display: inline-block;
-	margin: @space-xs 0;
-	font-size: @font-size-xxl;
-}
-
-:local(.stakeNumS) {
-}
+// Info
 
 :local(.infoToggle) {
 	text-align: center;
@@ -120,20 +128,18 @@
 }
 
 :local(.info) {
-	border-top: 2px solid @site-border-light;
-	border-bottom: 2px solid @site-border-light;
+	border-top: 1px solid @border-1;
+	border-bottom: 1px solid @border-1;
 	padding: @space 0;
 	margin-top: @space;
-
 	p {
 		margin: 0;
 	}
-
 }
 
 :local(.infoDetails) {
-	margin-top: @space;
 	display: flex;
+	margin-top: @space;
 }
 
 :local(.infoDetailsItem) {
@@ -142,27 +148,29 @@
 }
 
 :local(.infoDetailsHeading) {
-	.headingS();
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: @space-xs;
-	color: @white;
+	color: @white-2;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
 }
 
 :local(.infoDetailsCurrency) {
-	display: inline-block;
-	font-size: @font-size-s;
 	line-height: 1;
-	color: @gull-gray;
+	color: @gray-1;
 }
 
 :local(.infoDetailsValue) {
 	display: block;
+	font-size: @font-size-s;
 	line-height: 1;
-	font-size: @font-size-l;
-	background-color: darken(@site-panel-bg-light, 4%);
-	padding: @space-s;
+	color: @white-1;
+	padding: 0.5em;
 	border-radius: @border-radius;
+	border: 1px solid @border-1;
+	background: lighten(@black-5, 3%);
 }
 
 :local(.formContainerStepTwo) {
@@ -174,16 +182,19 @@
 	display: inline-block;
 	line-height: 1;
 	padding: @space-s;
-	background-color: @site-panel-bg-light;
+	background-color: @modal-bg-light;
 	border-radius: @border-radius;
 }
 
 :local(.contractQrCode) {
 	margin: @space 0;
 	span {
-		.headingS();
+		font-size: @font-size-s;
+		line-height: 1;
+		color: @gray-1;
 		display: inline-block;
-		margin: 0 auto @space-s auto;
+		margin: 0 auto @space-xs auto;
+		text-transform: uppercase;
 	}
 	img {
 		display: block;
@@ -194,18 +205,21 @@
 }
 
 :local(.contractAddressHeading) {
-	.headingS();
+	text-transform: uppercase;
+	font-size: @font-size-s;
+	line-height: 1;
+	color: @gray-1;
 	display: inline-block;
-	margin: 0 auto @space-s auto;
+	margin: 0 auto @space-xs auto;
 }
 
 :local(.contractAddressCode) {
 	display: inline-block;
 	line-height: 1;
 	padding: @space-s;
-	background-color: @white;
-	color: @shark;
-	border-radius: @border-radius;	
+	background-color: @white-2;
+	color: @black-1;
+	border-radius: @border-radius;
 }
 
 :local(.warning) {
@@ -217,12 +231,11 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	background: fade(@site-panel-bg, 90%);
+	background: @overlay-light;
 	padding: 0 2rem;
 }
 
 :local(.warningHeading) {
-	color: @roman;
+	color: @error;
 	display: block;
-	font-size: @font-size-l;
 }

@@ -3,7 +3,7 @@ import Header from '../../containers/Header';
 import styles from './style.less';
 
 const Layout = props => (
-	<div className={styles.root}>
+	<div>
 		<Header />
 		{props.children}
 	</div>

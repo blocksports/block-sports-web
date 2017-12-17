@@ -7,117 +7,91 @@ import { getMarketOrder } from '../../../../lib/utils';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import moment from 'moment';
 import MarketListItem from './item';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 import styles from './style.less';
 
-const duration = 300;
-
-const defaultStyle = {
-	transition: `opacity ${duration}ms ease-in-out`,
-	opacity: 0,
-};
-
-const transitionStyles = {
-	entering: { opacity: 0 },
-	entered: { opacity: 1 },
-};
-
 class MarketList extends Component {
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	componentWillMount() {}
-
-	componentWillReceiveProps(nextProps) {}
-
 	get renderItemsByDate() {
-		let items = this.props.items;
-
-		let itemArray = [];
-		let lastDate = '';
-
-		items.forEach((item, idx) => {
-			const date = moment.unix(item.get('commence')).format('D');
-			// Inject date row if there is a new day
-			if (date != lastDate) {
-				lastDate = date;
-				itemArray.push(this.renderDateRow(item.get('commence'), idx));
+		let arr = [];
+		let prevDate;
+		this.props.items.forEach(item => {
+			const date = moment.unix(item.get('commence')).format('YYYYMMDD');
+			if (date !== prevDate) {
+				arr.push([]);
 			}
-
-			itemArray.push(
-				<MarketListItem
-					key={idx}
-					item={item}
-					onConfirmBet={this.props.onConfirmBet}
-					currency={this.props.currency}
-					exchangeRate={this.props.exchangeRate}
-					minimumBet={this.props.minimumBet}
-					showDetail={this.props.showDetail}
-					onOddsClick={this.props.onOddsClick}
-				/>
+			arr[arr.length - 1].push(item);
+			prevDate = date;
+		});
+		return arr.map((item, index) => {
+			return (
+				<div className={styles.group} key={index}>
+					<h5 className={styles.groupHeading}>
+						{dateTime(item[0].get('commence'), dateTypes.dayMonthDate)}
+					</h5>
+					{item.map((markerListItem, index) => (
+						<MarketListItem
+							key={index}
+							item={markerListItem}
+							onConfirmBet={this.props.onConfirmBet}
+							currency={this.props.currency}
+							exchangeRate={this.props.exchangeRate}
+							minimumBet={this.props.minimumBet}
+							showDetail={this.props.showDetail}
+							onOddsClick={this.props.onOddsClick}
+						/>
+					))}
+				</div>
 			);
 		});
-
-		return itemArray;
 	}
 
 	get renderItemsBySport() {
-		let items = this.props.items;
-
-		let itemArray = [];
-		let lastSport = '';
-
-		items.forEach((item, idx) => {
+		let arr = [];
+		let prevSport;
+		this.props.items.forEach(item => {
 			const sport = item.get('sport');
-			// Inject sport row if there is a new sport
-			if (sport != lastSport) {
-				lastSport = sport;
-				itemArray.push(this.renderSportRow(sport, idx));
+			if (sport !== prevSport) {
+				arr.push([]);
 			}
-
-			itemArray.push(
-				<MarketListItem
-					key={idx}
-					item={item}
-					onConfirmBet={this.props.onConfirmBet}
-					currency={this.props.currency}
-					exchangeRate={this.props.exchangeRate}
-					minimumBet={this.props.minimumBet}
-					showDetail={this.props.showDetail}
-					onOddsClick={this.props.onOddsClick}
-				/>
+			arr[arr.length - 1].push(item);
+			prevSport = sport;
+		});
+		return arr.map((item, index) => {
+			return (
+				<div className={styles.group} key={index}>
+					<h5 className={styles.groupHeading}>
+						{t(`core:sport.${item[0].get('sport')}`)}
+					</h5>
+					{item.map((markerListItem, index) => (
+						<MarketListItem
+							key={index}
+							item={markerListItem}
+							onConfirmBet={this.props.onConfirmBet}
+							currency={this.props.currency}
+							exchangeRate={this.props.exchangeRate}
+							minimumBet={this.props.minimumBet}
+							showDetail={this.props.showDetail}
+							onOddsClick={this.props.onOddsClick}
+						/>
+					))}
+				</div>
 			);
 		});
-
-		return itemArray;
 	}
 
-	renderDateRow(date, key) {
-		return (
-			<span className={styles.dateHeading} key={`date-${key}`}>
-				{dateTime(date, dateTypes.dayMonthDate)}
-			</span>
-		);
-	}
-
-	renderSportRow(sport, key) {
-		return (
-			<span className={styles.dateHeading} key={`sport-${key}`}>
-				{t(`core:sport.${sport}`)}
-			</span>
-		);
-	}
 	render() {
 		if (this.props.items.isEmpty()) return null;
-
 		return (
 			<div className={styles.root}>
 				<Transition appear={true} in={true} timeout={0}>
 					{state => (
 						<div
 							style={{
-								...defaultStyle,
-								...transitionStyles[state],
+								...fadeDefaultStyle,
+								...fadeTransitionStyles[state],
 							}}>
 							{this.props.isFrontPage
 								? this.renderItemsBySport

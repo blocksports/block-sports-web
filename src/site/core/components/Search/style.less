@@ -9,30 +9,66 @@
 
 :local(.icon) {
   position: absolute;
-  top: 50%;
+  top: ~'calc(50% - 1px)';
   left: 1.6rem;
-  transform: ~"translate3d(0, -50%, 0)";
+  transform: ~'translate3d(0, -50%, 0)';
   font-size: @font-size-m;
   line-height: 1;
-  color: @gull-gray;
+  color: @gray-1;
+}
+
+:local(.iconLarge) {
+  display: block;
+  font-size: 30px;
+  text-align: center;
+  margin: 0 0 @space-l 0;
+  color: @gray-1;
 }
 
 :local(.input) {
-  background: transparent;
-  -webkit-appearance: none;
-  outline: none;
   width: 100%;
-  border-radius: @border-radius * 2;
-  border: 1px solid @gull-gray;
+  border-radius: 1rem;
+  border: 1px solid @border-1;
   font-size: @font-size-m;
-  line-height: 1;
   padding: 0.4em 2em 0.4em 3.5em;
-  color: @gull-gray;
+  color: @gray-1;
   cursor: not-allowed;
 
-  &::-webkit-input-placeholder { color: @gull-gray; }
-  &:-moz-placeholder           { color: @gull-gray; }
-  &::-moz-placeholder          { color: @gull-gray; }
-  &:-ms-input-placeholder      { color: @gull-gray; }  
+  &::-webkit-input-placeholder {
+    color: @gray-1;
+  }
+  &:-moz-placeholder {
+    color: @gray-1;
+  }
+  &::-moz-placeholder {
+    color: @gray-1;
+  }
+  &:-ms-input-placeholder {
+    color: @gray-1;
+  }
+
+  &:focus {
+    &::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:-moz-placeholder {
+      color: transparent;
+    }
+    &::-moz-placeholder {
+      color: transparent;
+    }
+    &:-ms-input-placeholder {
+      color: transparent;
+    }
+  }
 }
 
+:local(.dropdown) {
+  width: 100% !important;
+  text-align: center;
+}
+
+:local(.dropdownInner) {
+  padding: @space-l;
+  color: @error;
+}

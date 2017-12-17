@@ -11,7 +11,6 @@ import MarketListSkeleton from '../../components/MarketList/MarketListSkeleton';
 import { Tabs, Tab } from '../../components/Tabs';
 import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
-
 import _ from 'lodash';
 
 export class Markets extends Component {
@@ -31,25 +30,6 @@ export class Markets extends Component {
 		if (!_.isEqual(this.props.params, nextProps.params)) {
 			this.setState({ activeOrder: 'date' });
 		}
-	}
-
-	get tabs() {
-		return (
-			<Tabs className={styles.tabs}>
-				<Tab
-					className={this.tabClass('date')}
-					onClick={this.handleTabClick('date')}>
-					<i className="fa fa-clock-o" aria-hidden="true" />
-					{t('core:markets.header-time')}
-				</Tab>
-				<Tab
-					className={this.tabClass('popular')}
-					onClick={this.handleTabClick('popular')}>
-					<i className="fa fa-star-o" aria-hidden="true" />
-					{t('core:markets.header-popular')}
-				</Tab>
-			</Tabs>
-		);
 	}
 
 	get isFrontPage() {
@@ -80,7 +60,20 @@ export class Markets extends Component {
 		} = this.props;
 		return (
 			<div>
-				{this.tabs}
+				<Tabs className={styles.tabs}>
+					<Tab
+						className={this.tabClass('date')}
+						onClick={this.handleTabClick('date')}>
+						<i className="fa fa-clock-o" aria-hidden="true" />
+						{t('core:markets.header-time')}
+					</Tab>
+					<Tab
+						className={this.tabClass('popular')}
+						onClick={this.handleTabClick('popular')}>
+						<i className="fa fa-star-o" aria-hidden="true" />
+						{t('core:markets.header-popular')}
+					</Tab>
+				</Tabs>
 				<div className={styles.body}>
 					{isLoading && <MarketListSkeleton />}
 					{!isLoading && (

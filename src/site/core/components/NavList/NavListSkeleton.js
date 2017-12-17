@@ -3,7 +3,7 @@ import SkeletonBlock from '../SkeletonBlock';
 import styles from './style.less';
 
 const NavListSkeleton = props => (
-	<div>
+	<div className={styles.skeletonItems}>
 		{[...Array(5)].map((_, i) => {
 			return <Item key={i} />;
 		})}

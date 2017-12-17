@@ -10,12 +10,11 @@ import { fetchPrice } from '../../reducers/currency';
 import { fetchUser } from '../../reducers/user';
 import Button from '../../components/Button';
 import Search from '../../components/Search';
-import Account from '../../components/Header/Account';
+// import Account from '../../components/Header/Account';
 import Settings from '../../components/Header/Settings';
 import NewAccount from '../../components/Header/NewAccount';
-import Currencies from '../../components/Header/Currencies';
 import styles from './style.less';
-import Logo from '../../../../img/header-logo.png';
+import Logo from '../../../../img/logo-white.svg';
 
 class Header extends Component {
 	constructor(props, context) {
@@ -27,53 +26,43 @@ class Header extends Component {
 		this.props.fetchUser();
 	}
 
-	get balance() {
-		return (
-			<div className={styles.balance}>
-				<h5 className={styles.balanceHeading}>{t('core:header.balance')}</h5>
-				<span className={styles.balanceAmount}>
-					{this.convert(this.props.balance)}{' '}
-					<span className={styles.balanceAmountCurrency}>
-						{t(`core:currency.${this.props.currency}`)}
-					</span>
-				</span>
-			</div>
-		);
-	}
-
-	get content() {
-		const { isLoadingCurrency, currency, price, exchangeCurrency } = this.props;
-		return (
-			<div className={styles.main}>
-				<Search />
-				<div className={styles.actions}>
-					<Currencies
-						isLoadingCurrency={isLoadingCurrency}
-						currency={currency}
-						price={price}
-						exchangeCurrency={exchangeCurrency}
-					/>
-					{this.balance}
-					<Settings />
-					<Account />
-					<NewAccount />
-				</div>
-			</div>
-		);
-	}
-
 	convert(amount) {
 		const rate = this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
 		return (rate * amount).toFixed(2);
 	}
 
 	render() {
+		const {
+			isLoadingCurrency,
+			currency,
+			price,
+			exchangeCurrency,
+			balance,
+		} = this.props;
 		return (
 			<header className={styles.root}>
 				<IndexLink to="/" className={styles.logo}>
 					<img src={Logo} alt="Block Sports logo" />
 				</IndexLink>
-				{this.content}
+				<div className={styles.main}>
+					<Search />
+					<div className={styles.actions}>
+						<div className={styles.balance}>
+							<h5 className={styles.balanceHeading}>
+								{t('core:header.balance')}
+							</h5>
+							<span className={styles.balanceAmount}>
+								{this.convert(balance)}{' '}
+								<span className={styles.balanceAmountCurrency}>
+									{t(`core:currency.${currency}`)}
+								</span>
+							</span>
+						</div>
+						<Settings />
+						{/*<Account />*/}
+						<NewAccount />
+					</div>
+				</div>
 			</header>
 		);
 	}

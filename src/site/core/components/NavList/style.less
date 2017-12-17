@@ -8,8 +8,9 @@
 :local(.header) {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: @space;
-  font-size: @font-size-m;
+  color: @white-1;
 }
 
 :local(.headerIcon) {
@@ -17,50 +18,66 @@
 }
 
 :local(.nav) {
-  border-bottom: 1px solid @white;
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+  border-bottom: 1px solid @border-1;
 }
 
 :local(.item) {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.75em 0;
-  border-top: 1px solid @white;
-  font-size: @font-size-m;
-  &:hover {
-    background-color: fade(@white, 10%);   
-    :local(.itemName) {
-      padding-left: @space-s;
+  display: block;
+  padding: 0.3rem 0;
+  border-top: 1px solid @border-1;
+  color: @white-2;
+  min-height: 2rem;
+  .transitionAll();
+  &:hover,
+  &:focus {
+    :local(.itemInner) {
+      background-color: @black-3;
     }
   }
 }
 
-:local(.itemName) {
-  transition: padding 250ms;
+:local(.itemActive) {
+  color: @primary;
+  :local(.itemInner) {
+    background-color: @black-3;
+  }
+  :local(.itemCount) {
+    border-color: @primary;
+    color: @white-1;
+  }
+}
+
+:local(.itemInner) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem @space-s;
+  border-radius: @border-radius;
+  .transitionAll();
+}
+
+:local(.itemRight) {
+  flex-shrink: 0;
+  margin-left: @space-s;
 }
 
 :local(.itemCount) {
   display: inline-block;
   margin-right: @space-s;
-  font-size: @font-size-xs;
+  font-size: 9px;
   line-height: 1;
-  color: @white;
-  border: 1px solid @white;
-  padding: 0.5em 0.5em 0.3em;
-  border-radius: 3px
+  color: @white-2;
+  border: 1px solid;
+  padding: 0.25rem 0.25rem 0.15rem;
+  border-radius: @border-radius;
+  .transitionAll();
 }
 
-:local(.itemActive) {
-  color: @shamrock;
-  :local(.itemCount) {
-    border-color: @shamrock;
-  }
+:local(.skeletonItems) {
+  margin-top: @site-panel-spacing;
+  padding: @site-panel-spacing;
 }
 
 :local(.itemSkeleton) {
-  padding: 0.75rem 0;
+  padding: @space-m 0;
 }

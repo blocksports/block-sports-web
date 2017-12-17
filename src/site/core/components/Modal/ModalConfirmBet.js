@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Button from '../Button';
 import styles from './confirmBet.less';
 import DemoQrImage from '../../../../img/demo-qr.png';
+import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
@@ -152,7 +153,7 @@ class FormStepOne extends Component {
 						}}>
 						<div className={styles.highlight}>
 							<div className={styles.row}>
-								<h5 className={styles.bodyHeading}>
+								<div>
 									<span
 										className={classNames([
 											styles.bodyHeadingType,
@@ -160,17 +161,19 @@ class FormStepOne extends Component {
 										])}>
 										{confirmingBet.getIn(['type'])}
 									</span>
-									{confirmingBet.getIn(['runner_name'])}
-								</h5>
+									<h5 className={styles.bodyHeading}>
+										{confirmingBet.getIn(['runner_name'])}
+									</h5>
+								</div>
 								<div className={styles.stake}>
 									<span className={styles.stakeHeading}>Your stake</span>
 									<div className={styles.stakeItem}>
+										<span className={styles.stakeValue}>{stake.GAS}</span>
 										<span className={styles.stakeCurrency}>GAS</span>
-										<span className={styles.stakeNumL}>{stake.GAS}</span>
 									</div>
 									<div className={styles.stakeItem}>
+										<span className={styles.stakeValue}>{stake.USD}</span>
 										<span className={styles.stakeCurrency}>USD</span>
-										<span className={styles.stakeNumS}>{stake.USD}</span>
 									</div>
 								</div>
 							</div>
@@ -178,10 +181,15 @@ class FormStepOne extends Component {
 								<div>
 									<div className={styles.info}>
 										<span className={styles.truncate}>
-											{confirmingBet.getIn(['entity_name'])} |{' '}
-											{confirmingBet.getIn(['market_name'])}
+											{confirmingBet.get('competition_name')} |{' '}
+											{confirmingBet.get('name')}
 										</span>
-										<span>Date, Time</span>
+										<span>
+											{dateTime(
+												parseFloat(confirmingBet.get('commence')),
+												dateTypes.dayMonthYearTime
+											)}
+										</span>
 									</div>
 									<div className={styles.infoDetails}>
 										<div className={styles.infoDetailsItem}>

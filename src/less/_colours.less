@@ -1,41 +1,62 @@
-/* Colours */
-// Purples
-@shark: #232328;
-@charade: #262633;
-@charade-light: #2D2B3D;
-@tuna: #383647;
-@gunpowder: #3F3D4E;
+/*
+ * Blacks
+ */
+@black-1: #1a1a1e;
+@black-2: #2f2f33;
+@black-3: #232327;
+@black-4: #262628;
+@black-5: #2a2a2c;
+@black-6: #3f3f44;
 
-// Grays
-@mid-gray: #6A6976;
-@gull-gray: #949FAF;
-@white: #FFFFFF;
+/*
+ * White
+ */
+@white-1: #fff;
+@white-2: #d1d1d1;
+@white-3: #e0e0e0;
 
-// Greens
-@shamrock: #2BE488;
+/* 
+ * Grays
+ */
+@gray-1: #6d6f75;
 
-// Reds
-@roman: #DB6B6B;
+/*
+ * Brand
+ */
+@primary: #2be488;
+@secondary: #db6b6b;
+@error: @secondary;
+@back: @primary;
+@lay: @secondary;
 
-/* Components */
-@site-text: @white;
-@site-text-light: #3f3f50;
-@site-border-light: fade(@white, 15%);
+/*
+ * Borders
+ */
+@border-1: #363940;
+@border-2: #303032;
 
-// Site and panels
-@site-bg: @shark;
-@site-panel-bg: @charade;
-@site-panel-bg-light: @tuna;
+/* 
+ * Base
+ */
+@site-bg: @black-5;
+@site-color: @white-1;
 
-// Navigation
-@nav-item-border: @mid-gray;
-@nav-item-active: @tuna;
-@nav-item-hover: @charade-light;
-@nav-text-active: @shamrock;
+/*
+ * Panels
+ */
+@site-panel-bg: @black-1;
+@site-panel-bg-light: @black-3;
+@site-panel-shadow: rgba(0, 0, 0, 0.5);
 
-// Market List
-@market-header: @tuna;
-@market-item-border: @site-border-light;
+/* 
+ * Modal
+ */
+@modal-bg: @site-panel-bg-light;
+@modal-bg-light: @black-5;
+@modal-shadow: @site-panel-shadow;
 
-// Modal
-@modal-bg: rgba(0, 0, 0, 0.8);
+/* 
+ * Overlay
+ */
+@overlay: fade(@black-1, 90%);
+@overlay-light: fade(@site-panel-bg-light, 90%);

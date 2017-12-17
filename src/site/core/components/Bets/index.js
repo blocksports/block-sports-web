@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
@@ -9,35 +11,12 @@ import ActiveBets from '../../containers/ActiveBets';
 import styles from './style.less';
 
 class Bets extends Component {
-	constructor(props, context) {
-		super(props, context);
-
+	constructor() {
+		super();
 		this.state = {
 			activeTab: 'active',
 		};
-
 		this.handleTabClick = this.handleTabClick.bind(this);
-	}
-
-	componentWillMount() {}
-
-	componentWillReceiveProps(nextProps) {}
-
-	get tabs() {
-		return (
-			<Tabs className={styles.tabs}>
-				<Tab
-					className={this.tabClass('bet-slip')}
-					onClick={this.handleTabClick('bet-slip')}>
-					{t('core:bets.bet-slip-tab')}
-				</Tab>
-				<Tab
-					className={this.tabClass('active')}
-					onClick={this.handleTabClick('active')}>
-					{t('core:bets.active-tab')}
-				</Tab>
-			</Tabs>
-		);
 	}
 
 	tabClass(tab) {
@@ -63,24 +42,41 @@ class Bets extends Component {
 	render() {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
-				{this.tabs}
-				<div className={styles.content}>
-					<BetSlip
-						className={this.displayClass('bet-slip')}
-						focusTab={this.handleTabClick('bet-slip')}
-						isActive={this.state.activeTab == 'bet-slip'}
-					/>
-					<ActiveBets
-						className={this.displayClass('active')}
-						focusTab={this.handleTabClick('active')}
-						isActive={this.state.activeTab == 'active'}
-					/>
-				</div>
+				<Scrollbars>
+					<div className={styles.inner}>
+						<Tabs className={styles.tabs}>
+							<Tab
+								className={this.tabClass('bet-slip')}
+								onClick={this.handleTabClick('bet-slip')}>
+								{t('core:bets.bet-slip-tab')}
+							</Tab>
+							<Tab
+								className={this.tabClass('active')}
+								onClick={this.handleTabClick('active')}>
+								{t('core:bets.active-tab')}
+							</Tab>
+						</Tabs>
+						<div className={styles.content}>
+							<BetSlip
+								className={this.displayClass('bet-slip')}
+								focusTab={this.handleTabClick('bet-slip')}
+								isActive={this.state.activeTab == 'bet-slip'}
+							/>
+							<ActiveBets
+								className={this.displayClass('active')}
+								focusTab={this.handleTabClick('active')}
+								isActive={this.state.activeTab == 'active'}
+							/>
+						</div>
+					</div>
+				</Scrollbars>
 			</div>
 		);
 	}
 }
 
-Bets.propTypes = {};
+Bets.propTypes = {
+	className: PropTypes.string,
+};
 
 export default Bets;

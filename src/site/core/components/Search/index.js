@@ -1,51 +1,50 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Immutable from 'immutable';
+import React from 'react';
+import Transition from 'react-transition-group/Transition';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import dropdown from '../Dropdown';
+import dropdownStyles from '../Dropdown/styles.less';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 import styles from './style.less';
 
-class Search extends Component {
-	constructor(props, context) {
-		super(props, context);
-		this.state = {
-			value: '',
-		};
-		this.handleMouseEnter = this.handleMouseEnter.bind(this);
-	}
+const Search = props => (
+	<div className={styles.root}>
+		<i
+			className={classNames(['fa', 'fa-search', styles.icon])}
+			aria-hidden="true"
+		/>
+		<input
+			className={styles.input}
+			placeholder={t('core:header.search-placeholder')}
+			onFocus={() => props.openDropdown()}
+		/>
+		<Transition in={props.showDropdown} timeout={0}>
+			{state => (
+				<div
+					className={classNames([dropdownStyles.dropdown, styles.dropdown])}
+					style={{
+						...fadeDefaultStyle,
+						...fadeTransitionStyles[state],
+					}}>
+					<div
+						className={classNames([
+							dropdownStyles.dropdownInner,
+							styles.dropdownInner,
+						])}>
+						<div className={dropdownStyles.dropdownWarning} />
+						<i
+							className={classNames(['fa', 'fa-search', styles.iconLarge])}
+							aria-hidden="true"
+						/>
+						<span>{t('core:header.search-disabled-message')}</span>
+					</div>
+				</div>
+			)}
+		</Transition>
+	</div>
+);
 
-	handleMouseEnter() {
-		this.setState({
-			value: 'Search is currently disabled',
-		});
-	}
-
-	handleMouseLeave() {
-		this.setState({
-			value: '',
-		});
-	}
-
-	render() {
-		return (
-			<div
-				className={styles.root}
-				onMouseEnter={() => this.handleMouseEnter()}
-				onMouseLeave={() => this.handleMouseLeave()}>
-				<i
-					className={classNames(['fa', 'fa-search', styles.icon])}
-					aria-hidden="true"
-				/>
-				<input
-					className={styles.input}
-					placeholder={t('core:header.search-placeholder')}
-					value={this.state.value}
-				/>
-			</div>
-		);
-	}
-}
-
-Search.propTypes = {};
-
-export default Search;
+export default dropdown(Search);

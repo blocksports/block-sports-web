@@ -5,13 +5,13 @@
 // Base
 
 .button {
-  font-family: 'Proxima-Nova-Soft', sans-serif;
+  font-family: @font-family;
   background: transparent;
   outline: none;
   -webkit-apperance: none;
   cursor: pointer;
   display: inline-block;
-  border: 1px solid @white;
+  border: 1px solid @white-1;
   border-radius: 3px;
   line-height: 1;
   padding: 0.75em 1.25em 0.55em;
@@ -23,35 +23,30 @@
     margin-right: 0.5rem;
     font-size: 1em;
   }
-
 }
 
 // Tabs
 
 .button-tab {
-  border-radius: 0;
   font-size: @font-size-m;
   padding: 1em 1.25em 0.85em;
+  color: @gray-1;
   &:hover,
   &:focus {
-    opacity: 1!important;
+    color: @white-1;
   }
 }
 
 // Square
 
 .button-square {
-  padding: 0.75rem;
+  padding: 0.25rem;
 }
 
 // Minimal
 
 .button-minimal {
   border: 0;
-  &:hover,
-  &:focus {
-    opacity: 0.5;
-  }
 }
 
 // Disabled
@@ -64,10 +59,9 @@
 // Active
 
 .button-active {
-  color: @shamrock;
-  border-color: @shamrock;
+  color: @primary;
+  border-color: @primary;
 }
-
 
 // Button sizes
 
@@ -84,50 +78,62 @@
 // Button colours
 
 .button-white {
-  background: fade(@white, 5%);
-
+  border-color: @white-2;
+  color: @white-2;
+  &:focus,
   &:hover {
-    background: fade(@white, 10%);
+    background: @white-2;
+    color: @black-1;
+  }
+}
+
+.button-primary {
+  border-color: @primary;
+  color: @primary;
+  &:focus,
+  &:hover {
+    background-color: @primary;
+    color: @black-1;
   }
 }
 
 // Bet Buttons
 
 .button-bet {
-  padding: 0.2em 1.2em;
+  padding: 0.2rem 0.4rem 0.15rem;
   letter-spacing: 0;
   min-width: 80px;
 
   .odds {
     display: block;
     font-size: @font-size-m;
+    margin-bottom: 2px;
   }
 
   .matched {
     display: block;
     font-size: @font-size-xs;
   }
-
 }
 
 .button-back {
-  background: fade(@shamrock, 5%);
-  color: @shamrock;
-  border-color: @shamrock;
-  
+  background: fade(@back, 5%);
+  color: @back;
+  border-color: @back;
+
   &:hover {
-    background: @shamrock;
-    color: @charade;
+    background: @back;
+    color: @black-1;
   }
 }
 
 .button-lay {
-  background: fade(@roman, 5%);
-  color: @roman;
-  border-color: @roman;
-  
+  background: fade(@lay, 5%);
+  color: @lay;
+  border-color: @lay;
+
   &:hover {
-    background: @roman;
-    color: @charade;
+    background: @lay;
+    color: @black-1;
   }
 }

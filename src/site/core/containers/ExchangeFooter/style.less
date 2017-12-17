@@ -4,12 +4,12 @@
 
 :local(.root) {
 	height: @footer-height;
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 :local(:left) {
-
 }
 
 :local(.right) {
@@ -18,10 +18,14 @@
 }
 
 :local(.betView) {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	margin-left: @space-m;
 }
 
 :local(.betViewText) {
-  .headingS();
+	font-size: @font-size-s;
+	line-height: 1;
+	text-transform: uppercase;
+	color: @gray-1;
 }

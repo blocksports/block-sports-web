@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
+import Currencies from '../../components/Currencies';
 import ViewSlider from '../../components/ViewSlider';
 import CurrencyToggle from '../../components/CurrencyToggle';
 import { selectExchangeRate } from '../../selectors/currency';
@@ -29,7 +30,14 @@ export class ExchangeFooter extends Component {
 	render() {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
-				<div className={styles.left}>...</div>
+				<div className={styles.left}>
+					<Currencies
+						isLoadingCurrency={this.props.isLoadingCurrency}
+						currency={this.props.currency}
+						price={this.props.price}
+						exchangeCurrency={this.props.exchangeCurrency}
+					/>
+				</div>
 				<div className={styles.right}>
 					<div className={styles.currency}>
 						<CurrencyToggle
@@ -68,6 +76,20 @@ const mapStateToProps = state => {
 			'activeExchangeCurrency',
 		]),
 		exchangeRate: selectExchangeRate(state),
+		isLoadingCurrency: state.getIn(['core', 'currency', 'isLoading']),
+		path: state.getIn([
+			'core',
+			'router',
+			'locationBeforeTransitions',
+			'pathname',
+		]),
+		price: state.getIn(['core', 'currency', 'price']),
+		currency: state.getIn(['core', 'currency', 'activeCurrency']),
+		exchangeCurrency: state.getIn([
+			'core',
+			'currency',
+			'activeExchangeCurrency',
+		]),
 	};
 };
 

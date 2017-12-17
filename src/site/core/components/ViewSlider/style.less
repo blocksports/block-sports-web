@@ -7,7 +7,7 @@
 
   .slider-value {
     min-width: 65px;
-    color: @shamrock;
+    color: @primary;
     .currency {
       font-size: @font-size-s;
     }
@@ -17,22 +17,31 @@
 // Yucky but quicker than retheming :~(
 :local(.slider) {
   width: 160px;
+  margin-left: @space-l;
+
   // .container
   ._-dLk {
-    padding-left: 7px;
+    padding-left: 0;
+    height: 0.75rem;
+  }
+
+  .kq8Om {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
   }
 
   // .progress
   ._2R4jW {
-    left: 20px !important;
+    left: 0 !important;
     width: 100% !important;
   }
 
   // .innerknob
   ._8VjZ5 {
-    height: 10px !important;
-    width: 10px !important;
-    background-color: @white !important;
+    height: 0.75rem !important;
+    width: 0.75rem !important;
+    background-color: @white-1 !important;
+    cursor: ew-resize;
   }
 
   // .snaps
@@ -42,11 +51,16 @@
 
   // .innerprogress
   ._3p0mR {
-    background-color: @gull-gray;
+    top: 0;
+    height: 0.75rem;
+    background-color: @site-panel-bg-light;
+    border-radius: 0.75rem;
+    margin-left: 0.5rem;
   }
 
   // .value ()
   .I0PhY {
-    background-color: @shamrock;
+    background-color: @primary;
+    border-radius: 0.75rem;
   }
 }

@@ -78,8 +78,8 @@ export function placeBet(data, slipData) {
 		dispatch(setCurrentModal('confirmBet'));
 		if (slipData) {
 			dispatch(removeBet(slipData));
+			dispatch(placeBetSuccess(data, {}));
 		}
-		dispatch(placeBetSuccess(data, {}));
 	};
 }
 

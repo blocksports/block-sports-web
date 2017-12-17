@@ -2,22 +2,30 @@
 @import '../../../../less/_fonts.less';
 @import '../../../../less/_utils.less';
 
-:local(.dateHeading) {
-  display: block;
+@spaceRunner: 0.225rem;
+
+:local(.group) {
+  padding: @site-panel-spacing;
+  border: 1px solid @border-2;
+  border-radius: @border-radius;
+  &:not(:last-of-type) {
+    margin-bottom: @space;
+  }
+}
+
+:local(.groupHeading) {
   font-size: @font-size-m;
   line-height: 1;
-  color: @gull-gray;
-  margin-bottom: @space;
-  background-color: @site-panel-bg-light;
-  padding: @space-xs @space;
-  border-radius: @border-radius;
+  margin-bottom: @site-panel-spacing;
 }
 
 :local(.itemRoot) {
   display: flex;
-  border: 1px solid @market-item-border;
+  background-color: @black-5;
   border-radius: @border-radius;
-  margin-bottom: @space;
+  &:not(:last-of-type) {
+    margin-bottom: @space-s;
+  }
 }
 
 :local(.itemDate) {
@@ -30,28 +38,37 @@
 
 :local(.itemDateDay) {
   display: block;
+  color: @gray-1;
+  font-size: @font-size-xs;
   line-height: 1;
-  .headingS();
+  text-transform: uppercase;
 }
 
 :local(.itemDateTime) {
   display: block;
-  .headingM();
-  color: @white;
+  color: @white-3;
   line-height: 1;
-  margint-top: 0.25em;
+  margin-top: 0.2em;
 }
 
 :local(.runnerRow) {
   flex: 0 0 100%;
-  padding: 0.4em @space;
+  padding: @spaceRunner @spaceRunner @spaceRunner @space;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+
   &:not(:last-of-type) {
-    border-bottom: 1px solid @site-border-light;
+    border-bottom: 1px solid @border-2;
+  }
+
+  &:hover {
+    background-color: lighten(@black-5, 3%);
   }
 }
 
 :local(.marketRowSkeleton) {
-  margin: 0.5rem;
+  margin: @space-s;
 }
 
 :local(.marketRow) {
@@ -59,27 +76,25 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
 
 :local(.marketRowDetail) {
-  color: @gull-gray;
-  font-size: 13px;
+  color: @white-3;
 }
 
 :local(.marketRowActions) {
   display: flex;
-
   .button:not(:last-of-type) {
-    margin-right: @space-s;
+    margin-right: @spaceRunner;
   }
-
 }
 
 :local(.main) {
   display: flex;
   flex-wrap: wrap;
-  border-right: 1px solid @market-item-border;
-  border-left: 1px solid @market-item-border;
+  border-right: 1px solid @border-2;
+  border-left: 1px solid @border-2;
   flex-grow: 1;
 }
 
@@ -89,20 +104,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 :local(.sideMatched) {
   display: block;
-  .headingXS();
-  margin: 0.25em 0;  
+  color: @gray-1;
+  font-size: @font-size-xs;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 :local(.sidePool) {
   display: block;
-  .headingM();
-  color: @white;
+  color: @white-1;
+  line-height: 1;
+  margin: 0.2em 0 0.25rem;
 }
 
 :local(.sideCurrency) {
@@ -111,35 +127,12 @@
   line-height: 1;
 }
 
-:local(.betRow) {
+:local(.suspended) {
+  width: 172px; // Need a better solution for this
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: @space 0;
-}
-
-:local(.betRowDetail) {
-  .headingS();
-}
-
-:local(.betRowActions) {
-  display: flex;
-}
-
-:local(.betRowActionsOdds),
-:local(.betRowActionsBet),
-:local(.betRowActionsProfit) {
-  display: flex;
-  align-items: center;
-  margin-right: @space-l;
-  span {
-    display: inline-block;
-    margin-right: @space-xs;
-    .headingS();
-    color: @white;
-  }
-}
-
-:local(.betRowActionsProfitAmount) {
-  color: @shamrock;
+  border-right: 1px solid @border-2;
+  text-transform: uppercase;
 }

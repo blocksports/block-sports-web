@@ -43,14 +43,18 @@ class ActiveBetListItem extends Component {
 			<article className={classNames([styles.itemRoot, type])}>
 				<header className={styles.header}>
 					<div className={styles.headerTop}>
-						<span className={styles.headerTitle}>{bet.get('runner_name')}</span>
+						<div>
+							<span className={styles.headerTitle}>
+								{bet.get('runner_name')}
+							</span>
+							<span className={styles.headerSub}>{bet.get('name')}</span>
+						</div>
 						<div>
 							<span className={classNames(styles.status, status)}>
 								{t(`core:bets.active.${status}`)}
 							</span>
 						</div>
 					</div>
-					<span className={styles.headerSub}>{bet.get('market_name')}</span>
 				</header>
 
 				<div className={styles.details}>

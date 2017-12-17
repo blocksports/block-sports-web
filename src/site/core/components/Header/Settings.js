@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import Transition from 'react-transition-group/Transition';
 import classNames from 'classnames';
-import HeaderDropDown from './Dropdown';
+import Button from '../../components/Button';
 import styles from './styles.less';
+import dropdown from '../Dropdown';
+import dropdownStyles from '../Dropdown/styles.less';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
 const fauxSettings = [
 	'Setting 1',
@@ -12,22 +18,45 @@ const fauxSettings = [
 	'Setting 5',
 ];
 
-const Settings = () => (
-	<HeaderDropDown
-		showButtonIcon={true}
-		buttonIcon="cog"
-		buttonClassName={classNames([styles.icon, 'button-minimal button-square'])}
-		buttonActiveClassName={styles.iconActive}
-		showWarning={true}>
-		<ul className={styles.dropdownSettings}>
-			{fauxSettings.map((setting, i) => (
-				<li className={styles.dropdownSettingsItem} key={i}>
-					<i className="fa fa-cog" aria-hidden="true" />
-					<span>{setting}</span>
-				</li>
-			))}
-		</ul>
-	</HeaderDropDown>
-);
+const Settings = props => {
+	return (
+		<div className={styles.settingsRoot}>
+			<Button
+				className={classNames([
+					styles.icon,
+					'button-minimal',
+					'button-square',
+					props.showDropdown ? styles.iconActive : null,
+				])}
+				onClick={() =>
+					props.showDropdown ? props.closeDropdown() : props.openDropdown()
+				}>
+				<i className="fa fa-cog" aria-hidden="true" />
+			</Button>
+			<Transition in={props.showDropdown} timeout={0}>
+				{state => (
+					<div
+						className={dropdownStyles.dropdown}
+						style={{
+							...fadeDefaultStyle,
+							...fadeTransitionStyles[state],
+						}}>
+						<div className={dropdownStyles.dropdownInner}>
+							<div className={dropdownStyles.dropdownWarning} />
+							<ul className={styles.settings}>
+								{fauxSettings.map((setting, i) => (
+									<li className={styles.settingsItem} key={i}>
+										<i className="fa fa-cog" aria-hidden="true" />
+										<span>{setting}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				)}
+			</Transition>
+		</div>
+	);
+};
 
-export default Settings;
+export default dropdown(Settings);

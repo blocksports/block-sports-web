@@ -28,9 +28,13 @@ const calculateProfit = (odds, stake) => {
 };
 
 const calculateStake = (odds, profit, type) => {
-	if (type === 'back')
-		return ((profit + profit / (odds - 1)) / odds).toFixed(2) || 0;
-	return (profit / odds).toFixed(2) || 0;
+	let stake;
+	if (type === 'back') {
+		stake = ((profit + profit / (odds - 1)) / odds).toFixed(2) || 0;
+	} else {
+		stake = (profit / odds).toFixed(2) || 0;
+	}
+	return !isNaN(stake) ? stake : 0;
 };
 
 const calculateLiability = (odds, profit) => {
@@ -138,19 +142,16 @@ class BetSlipItem extends Component {
 				{
 					id: uuid(),
 					type: this.props.type,
-					market_id: match.get('id'),
-					market_name: match.get('name'),
-					entity: match.get('entity'),
-					entity_id: match.get('entity_id'),
-					entity_name: match.get('entity_name'),
-					runner_name: getParticipantName(match, outcome),
 					odds: this.state.odds,
 					stake: this.state.stake,
+					status: 'pending',
+					date_created: moment().unix(),
+					...match.toObject(),
+					status: 'pending',
+					runner_name: getParticipantName(match, outcome),
 					pool_total: getTotalPool(this.state),
 					liability: getBetLiability(this.state),
 					pool_filled: 0,
-					status: 'pending',
-					date_created: moment().unix(),
 				},
 				{
 					id: this.state.id,
@@ -222,7 +223,7 @@ class BetSlipItem extends Component {
 					<div className={styles.detailsItem}>
 						<div className={styles.detailsHeading}>
 							<span>Stake</span>
-							<span className={styles.detailsHeadingCurrency}>{currency}</span>
+							<span className={styles.detailsCurrency}>{currency}</span>
 						</div>
 						<SpinBox
 							value={this.state.stake}
@@ -234,9 +235,7 @@ class BetSlipItem extends Component {
 						<div className={styles.detailsItem}>
 							<div className={styles.detailsHeading}>
 								<span>Profit</span>
-								<span className={styles.detailsHeadingCurrency}>
-									{currency}
-								</span>
+								<span className={styles.detailsCurrency}>{currency}</span>
 							</div>
 							<SpinBox
 								value={this.state.profit}
@@ -249,9 +248,7 @@ class BetSlipItem extends Component {
 						<div className={styles.detailsItem}>
 							<div className={styles.detailsHeading}>
 								<span>Liability</span>
-								<span className={styles.detailsHeadingCurrency}>
-									{currency}
-								</span>
+								<span className={styles.detailsCurrency}>{currency}</span>
 							</div>
 							<SpinBox
 								value={this.state.liability}

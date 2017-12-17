@@ -3,24 +3,37 @@
 
 :local(.root) {
   display: flex;
-  border: 1px solid @gull-gray;
+  border: 1px solid @site-panel-bg-light;
   border-radius: @border-radius;
   margin-right: calc(@space * 2);
+}
 
-  .toggle-option {
-    font-size: @font-size-s;
-    line-height: 1;
-    padding: 0.5em 1em 0.4em;
-    cursor: pointer;
-    &:last-child {
-      border-left: 1px solid @gull-gray;
-    }
+:local(.option) {
+  background: transparent;
+  outline: none;
+  -webkit-apperance: none;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  border-radius: none;
+  color: @gray-1;
+  font-size: @font-size-s;
+  line-height: 1;
+  transition: all 0.3s;
+  height: 1.3rem;
+  width: 3rem;
+
+  &:last-child {
+    border-left: 1px solid @site-panel-bg-light;
   }
+}
 
-  .is-active {
-    background-color: @gull-gray;
-    color: @site-panel-bg;
-    cursor: default;
-  }
+:local(.option):hover,
+:local(.option):focus {
+  color: @white-1;
+}
 
+:local(.option):local(.active) {
+  background: @site-panel-bg-light;
+  color: @white-1;
 }

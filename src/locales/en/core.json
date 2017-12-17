@@ -18,6 +18,7 @@
   },
   "header": {
     "search-placeholder": "Search for Sports, Matches, Players",
+    "search-disabled-message": "Sorry! We're still working on search.",
     "balance": "BALANCE",
     "new-account": "NEW ACCOUNT"
   },
@@ -54,7 +55,8 @@
       "pending": "PENDING",
       "active": "ACTIVE",
       "filled": "FILLED",
-      "pending-info": "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
+      "pending-info":
+        "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
     },
     "bet-slip": {
       "is-empty": "No bets selected",
