@@ -1,0 +1,35 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_fonts.less';
+
+:local(.root) {
+    display: flex;
+}
+
+:local(.timeInfo) {
+    line-height: 1;
+	background-color: @site-panel-bg-light;
+	padding: 0.4em 0.4em 0.35em 0.4rem;
+    border-radius: @border-radius;
+    margin-right: @space-s;
+
+    :local(.timeBlock) {
+        display: inline-block;
+        font-size: 9px;
+        line-height: 1;
+        margin-left: 0.1rem;
+        text-align: center;
+        color: @white-2;
+        border: 1px solid @primary;
+        padding: 0.25rem 0.25rem 0.15rem;
+        min-width: 1.375rem;
+        border-radius: @border-radius;
+        .transitionAll();
+      }
+}
+
+:local(.infoLoading) {
+	width: 6rem;
+	&:not(:first-of-type) {
+		margin-left: @space-s;
+	}
+}

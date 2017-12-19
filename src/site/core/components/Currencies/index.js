@@ -18,9 +18,6 @@ const Currencies = props => {
 					<div className={styles.currencyLoading}>
 						<SkeletonBlock size="large" />
 					</div>
-					<div className={styles.currencyLoading}>
-						<SkeletonBlock size="large" />
-					</div>
 				</div>
 			)}
 			{!props.isLoadingCurrency && (
@@ -32,7 +29,6 @@ const Currencies = props => {
 								...fadeDefaultStyle,
 								...fadeTransitionStyles[state],
 							}}>
-							<Currency {...props} currency="NEO" />
 							<Currency {...props} currency="GAS" />
 						</div>
 					)}

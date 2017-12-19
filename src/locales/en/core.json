@@ -72,6 +72,8 @@
     }
   },
   "footer": {
-    "bet-view": "Bet View"
+    "bet-view": "Bet View",
+    "last-block": "Last block",
+    "average-block": "Average block"
   }
 }

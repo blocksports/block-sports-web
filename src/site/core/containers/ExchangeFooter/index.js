@@ -7,6 +7,7 @@ import { t } from 'i18next';
 import Currencies from '../../components/Currencies';
 import ViewSlider from '../../components/ViewSlider';
 import CurrencyToggle from '../../components/CurrencyToggle';
+import BlockTimer from '../../components/BlockTimer';
 import { selectExchangeRate } from '../../selectors/currency';
 import { updateCurrency } from '../../reducers/currency';
 import { updateMinimumBet } from '../../reducers/exchange';
@@ -19,10 +20,6 @@ export class ExchangeFooter extends Component {
 		this.handleToggleClick = this.handleToggleClick.bind(this);
 	}
 
-	componentWillMount() {}
-
-	componentWillReceiveProps(nextProps) {}
-
 	handleToggleClick(currency) {
 		this.props.updateCurrency(currency);
 	}
@@ -31,14 +28,19 @@ export class ExchangeFooter extends Component {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
 				<div className={styles.left}>
+					<BlockTimer
+						lastUpdated={this.props.lastBlockUpdate}
+						averageTime={this.props.averageBlockTime}
+						isLoading={this.props.isBlockInfoLoading}
+					/>
+				</div>
+				<div className={styles.right}>
 					<Currencies
 						isLoadingCurrency={this.props.isLoadingCurrency}
 						currency={this.props.currency}
 						price={this.props.price}
 						exchangeCurrency={this.props.exchangeCurrency}
 					/>
-				</div>
-				<div className={styles.right}>
 					<div className={styles.currency}>
 						<CurrencyToggle
 							currency={this.props.activeCurrency}
@@ -90,6 +92,9 @@ const mapStateToProps = state => {
 			'currency',
 			'activeExchangeCurrency',
 		]),
+		averageBlockTime: state.getIn(['core', 'blockchain', 'averageTime']),
+		lastBlockUpdate: state.getIn(['core', 'blockchain', 'lastUpdated']),
+		isBlockInfoLoading: state.getIn(['core', 'blockchain', 'isLoading'])
 	};
 };
 
@@ -100,7 +105,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		updateMinimumBet: (...args) => {
 			return dispatch(updateMinimumBet(...args));
-		},
+		}
 	};
 };
 

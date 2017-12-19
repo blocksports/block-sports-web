@@ -8,6 +8,7 @@ import { t } from 'i18next';
 import { selectExchangeRate } from '../../selectors/currency';
 import { fetchPrice } from '../../reducers/currency';
 import { fetchUser } from '../../reducers/user';
+import { fetchBlockchainInfo } from '../../reducers/blockchain';
 import Button from '../../components/Button';
 import Search from '../../components/Search';
 // import Account from '../../components/Header/Account';
@@ -24,6 +25,7 @@ class Header extends Component {
 	componentWillMount() {
 		this.props.fetchPrice();
 		this.props.fetchUser();
+		this.props.fetchBlockchainInfo();
 	}
 
 	convert(amount) {
@@ -103,6 +105,9 @@ const mapDispatchToProps = dispatch => {
 		fetchUser: (...args) => {
 			return dispatch(fetchUser(...args));
 		},
+		fetchBlockchainInfo: (...args) => {
+			return dispatch(fetchBlockchainInfo(...args));
+		}
 	};
 };
 
