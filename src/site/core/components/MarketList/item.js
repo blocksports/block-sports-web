@@ -54,7 +54,7 @@ class MarketListItem extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.item.get('id') != nextProps.item.get('id')) {
+		if (this.props.item.get('name') != nextProps.item.get('name')) {
 			this.resetState();
 		}
 	}
@@ -146,7 +146,7 @@ class MarketListItem extends Component {
 	}
 
 	getBetID(outcome) {
-		return `${this.props.item.get('id')}-${outcome}`;
+		return `${this.props.item.get('name')}-${outcome}`;
 	}
 
 	handleOddsClick(outcome, bet, type) {

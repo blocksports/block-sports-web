@@ -171,7 +171,7 @@ class BetSlipItem extends Component {
 	renderRunnerTooltip(match) {
 		return (
 			<ReactTooltip
-				id={match.get('id')}
+				id={match.get('name')}
 				place="bottom"
 				effect="solid"
 				type="light"

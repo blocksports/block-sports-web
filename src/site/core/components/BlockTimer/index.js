@@ -60,8 +60,8 @@ class BlockTimer extends Component {
 
   calculateTimeSince(updatedAt) {
     const timeNow = moment.now()/1000;
-    const diff = ((timeNow - updatedAt)).toFixed(0);
-    return diff < 0 ? 0 : diff;
+    const diff = ((timeNow - updatedAt + 21));
+    return diff < 0 ? 0 : diff.toFixed(0);
   }
 
   render() {

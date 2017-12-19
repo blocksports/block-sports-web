@@ -5,6 +5,9 @@ import { mockPrices } from './__mockData';
 
 const fetchBlockchainRequest = createAction('FETCH_BLOCKCHAIN_REQUEST');
 const fetchBlockchainSuccess = createAction('FETCH_BLOCKCHAIN_SUCCESS');
+
+const updateBlockchain = createAction('UPDATE_BLOCKCHAIN_INFO');
+
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -32,6 +35,12 @@ export function fetchBlockchainInfo() {
 	};
 }
 
+export function updateBlockchainInfo(data) {
+	return dispatch => {
+		dispatch(updateBlockchain(data));
+	}
+}
+
 const initialState = Immutable.Map({
 	isLoading: true,
     averageTime: 0,
@@ -52,6 +61,13 @@ const blockchainReducer = createReducer(
                 averageTime: resp.average_time,
                 blockHeight: resp.block_height,
                 lastUpdated: resp.updated_at
+			});
+		},
+		[updateBlockchain]: (state, data) => {
+			return state.merge({
+				averageTime: data.average_time,
+                blockHeight: data.block_height,
+                lastUpdated: data.updated_at
 			});
 		}
 	},

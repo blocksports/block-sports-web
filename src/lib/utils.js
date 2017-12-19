@@ -45,9 +45,16 @@ export const round = (value, decimals) => {
 };
 
 export const roundByMagnitude = value => {
-	const order = Math.floor(Math.log(value) / Math.LN10 + 0.000000001);
-	const magnitude = Math.pow(10, order);
-	return Math.round(value / magnitude + 0.000000001) * magnitude || 0;
+	const order = Math.floor(Math.log(value) / Math.LN10 + 0.00001);
+	let magnitude = Math.pow(10, order);
+
+	// Need to handle e+x, e-x differently
+	if (magnitude < 1) {
+		magnitude = 1/magnitude
+		return Math.round(value * magnitude+0.00001) / magnitude || 0;
+	} else {
+		return Math.round(value / magnitude+0.00001) * magnitude || 0;
+	}
 };
 
 export const getParticipantName = (item, outcome) => {
