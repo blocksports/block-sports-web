@@ -23,7 +23,11 @@ export function fetchBlockchainInfo() {
 				dispatch(fetchBlockchainSuccess(resp.data));
 			})
 			.catch(err => {
-				dispatch(fetchBlockchainSuccess({ data: {} }));
+				dispatch(fetchBlockchainSuccess({
+					average_time: 24,
+					block_height: 0,
+					updated_at: 1513682132
+				}));
 			});
 	};
 }

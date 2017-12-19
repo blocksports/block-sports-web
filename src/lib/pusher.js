@@ -1,14 +1,14 @@
 import { fetchNavigation } from '../site/core/reducers/navigation';
 
 export function subToMarkets(dispatch, params, oldParams) {
+	const channelName = createMarketsChannel(params);
+
+	let channel = pusher.subscribe(channelName);
 	if (oldParams) {
 		unsubFromMarkets(oldParams);
 	}
 
-	const channelName = createMarketsChannel(params);
-
-	let channel = pusher.subscribe(channelName);
-	channel.bind('blockchain-update', data => {
+	channel.bind('app-update', data => {
 		const { prices, markets, block } = data;
 
 		// dispatch(updateMarkets(markets, params))
@@ -26,5 +26,5 @@ export function unsubFromMarkets(oldParams) {
 function createMarketsChannel(params) {
 	const sport = params.sport ? `-${params.sport}` : '';
 	const competition = params.competition ? `-${params.competition}` : '';
-	return `markets${sport}${competition}`;
+	return `markets${sport}${competition}-date`;
 }
