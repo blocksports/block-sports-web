@@ -9,6 +9,8 @@ const fetchPriceSuccess = createAction('FETCH_PRICE_SUCCESS', (data, resp) => [
 	resp,
 ]);
 
+const updatePriceData = createAction('UPDATE_PRICE_DATA');
+
 const updateActiveCurrency = createAction('UPDATE_CURRENCY');
 
 function sleep(ms) {
@@ -19,7 +21,7 @@ export function fetchPrice(data) {
 	return async dispatch => {
 		dispatch(fetchPriceRequest());
 
-		await sleep(2000);
+		await sleep(0);
 
 		axios({
 			method: 'get',
@@ -32,6 +34,12 @@ export function fetchPrice(data) {
 				dispatch(fetchPriceSuccess(data, { data: mockPrices }));
 			});
 	};
+}
+
+export function updatePrice(data) {
+	return dispatch => {
+		dispatch(updatePriceData(data));
+	}
 }
 
 export function updateCurrency(currency) {
@@ -65,6 +73,11 @@ const currencyReducer = createReducer(
 				activeCurrency: currency,
 			});
 		},
+		[updatePriceData]: (state, data) => {
+			return state.merge({
+				price: data
+			});
+		}
 	},
 	initialState
 );

@@ -20,13 +20,15 @@ class Exchange extends Component {
 
 	componentWillMount() {
 		this.props.fetchMarkets(this.props.params, this.props.location.query);
-		subToMarkets(this.props.dispatch, this.props.params);
+		subToMarkets(this.props.dispatch, this.props);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.routeHasUpdated(nextProps)) {
+			console.log(nextProps.location.query)
 			this.props.fetchMarkets(nextProps.params, nextProps.location.query);
-			subToMarkets(this.props.dispatch, nextProps.params, this.props.params);
+			subToMarkets(this.props.dispatch, nextProps);
+			unsubFromMarkets(this.props)
 		}
 	}
 
@@ -38,7 +40,7 @@ class Exchange extends Component {
 	}
 
 	componentWillUnmount() {
-		unsubFromMarkets(this.props.params);
+		unsubFromMarkets(this.props);
 	}
 
 	routeHasUpdated(nextProps) {

@@ -17,7 +17,8 @@ class BlockTimer extends Component {
     super(props, context);
 
     this.state = {
-      secondsSinceUpdate: this.calculateTimeSince(props.lastUpdated)
+      secondsSinceUpdate: this.calculateTimeSince(props.lastUpdated),
+      normalisedTime: 0
     }
 
     this.tick = this.tick.bind(this);
@@ -30,7 +31,10 @@ class BlockTimer extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.lastUpdated != nextProps.lastUpdated) {
       const timeSince = this.calculateTimeSince(nextProps.lastUpdated)
-      this.setState({secondsSinceUpdate: timeSince});
+      const timeNow = moment.now()/1000;
+
+      // Normalise time due to clocks being out of sync. Not super accurate but works better
+      this.setState({secondsSinceUpdate: timeSince, normalisedTime: timeNow-nextProps.lastUpdated});
     }
   }
 
@@ -52,16 +56,18 @@ class BlockTimer extends Component {
 
   tick() {  
     const secondsDiff = this.calculateTimeSince(this.props.lastUpdated) 
-    
+    const normalisedTime = this.state.normalisedTime
+
+
     this.setState({
-      secondsSinceUpdate: secondsDiff
+      secondsSinceUpdate: (secondsDiff - normalisedTime).toFixed(0)
     })
   }
 
   calculateTimeSince(updatedAt) {
     const timeNow = moment.now()/1000;
-    const diff = ((timeNow - updatedAt + 21));
-    return diff < 0 ? 0 : diff.toFixed(0);
+    const diff = ((timeNow - updatedAt));
+    return diff.toFixed(0);
   }
 
   render() {

@@ -17,6 +17,10 @@ const fetchMarketSuccess = createAction(
 );
 
 const updateMinimum = createAction('UPDATE_MINIMUM_BET');
+const updateExchangeMatches = createAction(
+	'UPDATE_EXCHANGE_MATCHES',
+	(data, resp) => [data, resp]
+);
 
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
@@ -26,7 +30,7 @@ export function fetchMarkets(params, query) {
 	return async dispatch => {
 		dispatch(fetchMarketsRequest());
 
-		await sleep(2000);
+		await sleep(0);
 
 		axios({
 			method: 'get',
@@ -57,6 +61,12 @@ export function updateMinimumBet(data) {
 	return dispatch => {
 		dispatch(updateMinimum(data));
 	};
+}
+
+export function updateExchange(matches, params) {
+	return dispatch => {
+		dispatch(updateExchangeMatches(params, matches));
+	}
 }
 
 const initialState = Immutable.Map({
@@ -104,6 +114,20 @@ const exchangeReducer = createReducer(
 				minimumBet: data,
 			});
 		},
+		[updateExchangeMatches]: (state, [data, resp]) => {
+			const nestedArray = getNestedMarketsArray(data);
+			const oldMarkets = state.get('markets');
+			const matches = Immutable.fromJS(resp);
+
+			// Merge if market data exists, create new if not
+			const newMarkets = oldMarkets.getIn(nestedArray)
+				? oldMarkets.mergeIn(nestedArray, matches)
+				: oldMarkets.updateIn(nestedArray, (val = matches) => val);
+
+			return state.merge({
+				markets: newMarkets,
+			});
+		}
 	},
 	initialState
 );

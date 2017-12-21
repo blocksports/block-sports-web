@@ -1,35 +1,40 @@
 import pako from 'pako';   
 import { fetchNavigation } from '../site/core/reducers/navigation';
+import { updateExchange } from '../site/core/reducers/exchange';
 import { updateBlockchainInfo } from '../site/core/reducers/blockchain';
+import { updatePrice } from '../site/core/reducers/currency';
 
-export function subToMarkets(dispatch, params, oldParams) {
-	const channelName = createMarketsChannel(params);
+export function subToMarkets(dispatch, props) {
+	const { params, location } = props;
+	const channelName = createMarketsChannel(params, location);
 
 	let channel = pusher.subscribe(channelName);
-	if (oldParams) {
-		unsubFromMarkets(oldParams);
-	}
 
 	channel.bind('app-update', data => {
 		const decodedData = decodeZlib(data);
 
 		const {blockchain_data, currencies, matches} = decodedData;
 
-		// dispatch(updateMarkets(markets, params))
-		// dispatch(updatePrices(prices))
+		dispatch(updateExchange(matches, params))
+		dispatch(updatePrice(currencies))
 		dispatch(updateBlockchainInfo(blockchain_data))
 	});
 }
 
-export function unsubFromMarkets(oldParams) {
-	const channelName = createMarketsChannel(oldParams);
-	let channel = pusher.unsubscribe(channelName);
+export function unsubFromMarkets(props) {
+	const { params, location } = props;
+	const channelName = createMarketsChannel(params, location);
+
+	pusher.unsubscribe(channelName);
 }
 
-function createMarketsChannel(params) {
+function createMarketsChannel(params, location) {
+	const orderQuery = location.query.order;
+	const order = orderQuery ? orderQuery : 'date';
 	const sport = params.sport ? `-${params.sport}` : '';
 	const competition = params.competition ? `-${params.competition}` : '';
-	return `markets${sport}${competition}-date`;
+
+	return `markets${sport}${competition}-${order}`;
 }
 
 const decodeZlib = (data) => {

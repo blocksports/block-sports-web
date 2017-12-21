@@ -16,7 +16,7 @@ export function fetchBlockchainInfo() {
 	return async dispatch => {
 		dispatch(fetchBlockchainRequest());
 
-		await sleep(2000);
+		await sleep(0);
 
 		axios({
 			method: 'get',
