@@ -28,7 +28,7 @@ export class BetSlip extends Component {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
 				{items.isEmpty() && (
-					<div className="empty-text">{t('core:bets.bet-slip.is-empty')}</div>
+					<div className={styles.empty}>{t('core:bets.bet-slip.is-empty')}</div>
 				)}
 				<BetSlipList
 					items={items}

@@ -26,7 +26,9 @@ export class ActiveBets extends Component {
 
 	get content() {
 		if (this.props.items.isEmpty() && !this.props.isLoading) {
-			return <div className="empty-text">{t('core:bets.active.is-empty')}</div>;
+			return (
+				<div className={styles.empty}>{t('core:bets.active.is-empty')}</div>
+			);
 		}
 
 		return (
