@@ -15,6 +15,7 @@ const NewAccount = props => (
 	<div className={styles.naRoot}>
 		<Button
 			className={classNames([
+				styles.naHeaderButton,
 				'button-s',
 				'button-primary',
 				props.showDropdown ? 'button-active' : null,
