@@ -26,7 +26,7 @@ export class ExchangeFooter extends Component {
 
 	render() {
 		return (
-			<div className={classNames([styles.root, this.props.className])}>
+			<footer className={classNames([styles.root, this.props.className])}>
 				<div className={styles.left}>
 					<BlockTimer
 						lastUpdated={this.props.lastBlockUpdate}
@@ -60,7 +60,7 @@ export class ExchangeFooter extends Component {
 						/>
 					</div>
 				</div>
-			</div>
+			</footer>
 		);
 	}
 }
@@ -94,7 +94,7 @@ const mapStateToProps = state => {
 		]),
 		averageBlockTime: state.getIn(['core', 'blockchain', 'averageTime']),
 		lastBlockUpdate: state.getIn(['core', 'blockchain', 'lastUpdated']),
-		isBlockInfoLoading: state.getIn(['core', 'blockchain', 'isLoading'])
+		isBlockInfoLoading: state.getIn(['core', 'blockchain', 'isLoading']),
 	};
 };
 
@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		updateMinimumBet: (...args) => {
 			return dispatch(updateMinimumBet(...args));
-		}
+		},
 	};
 };
 
