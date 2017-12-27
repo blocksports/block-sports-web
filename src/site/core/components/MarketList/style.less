@@ -3,6 +3,8 @@
 @import '../../../../less/_utils.less';
 
 @spaceRunner: 0.225rem;
+@itemBg: @black-5;
+@runnerHoverBg: #2d2d30;
 
 :local(.group) {
   padding: @site-panel-spacing;
@@ -21,7 +23,7 @@
 
 :local(.itemRoot) {
   display: flex;
-  background-color: @black-5;
+  background-color: @itemBg;
   border-radius: @border-radius;
   &:not(:last-of-type) {
     margin-bottom: @space-s;
@@ -63,7 +65,7 @@
   }
 
   &:hover {
-    background-color: lighten(@black-5, 3%);
+    background-color: @runnerHoverBg;
   }
 }
 
