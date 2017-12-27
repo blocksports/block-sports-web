@@ -1,10 +1,12 @@
 @import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
 
 :local(.root) {
   position: relative;
   overflow: hidden;
   height: 4px;
   background-color: @gray-1;
+  border-radius: @border-radius;
   &::after {
     content: '';
     position: absolute;
