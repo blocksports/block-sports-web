@@ -1,36 +1,39 @@
 import React from 'react';
 import classNames from 'classnames';
 import SkeletonBlock from '../SkeletonBlock';
-import style from './style.less';
+import styles from './style.less';
 
 const MarketListSkeleton = props => (
 	<div>
-		{[...Array(3)].map((_, i) => {
-			return <Item key={i} />;
-		})}
+		{[...Array(2)].map((_, i) => (
+			<div className={styles.group} key={i}>
+				<SkeletonBlock size="xsmall" className={styles.groupHeading} />
+				{[...Array(4)].map((_, i) => <Item key={i} />)}
+			</div>
+		))}
 	</div>
 );
 
 const Item = props => (
-	<div className={style.itemRoot}>
-		<div className={style.itemDate}>
+	<div className={styles.itemRoot}>
+		<div className={styles.itemDate}>
 			<SkeletonBlock size="medium" />
 		</div>
-		<div className={style.main}>
+		<div className={styles.main}>
 			{[...Array(3)].map((_, i) => {
 				return (
-					<div className={style.runnerRow} key={i}>
-						<div className={style.marketRow}>
+					<div className={styles.runnerRow} key={i}>
+						<div className={styles.marketRow}>
 							<SkeletonBlock
 								size="medium"
-								className={style.marketRowSkeleton}
+								className={styles.marketRowSkeleton}
 							/>
 						</div>
 					</div>
 				);
 			})}
 		</div>
-		<div className={style.side}>
+		<div className={styles.side}>
 			<SkeletonBlock size="medium" />
 		</div>
 	</div>
