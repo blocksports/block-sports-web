@@ -69,30 +69,48 @@
 
 :local(.settings) {
 	list-style: none;
-	padding: 0 @space;
+	padding: 0.2rem @site-panel-spacing;
 	margin: 0;
 }
 
 :local(.settingsItem) {
-	display: flex;
-	align-items: center;
-	padding: 0.7rem 0;
-	color: @white-2;
+  padding: 0.3rem 0;
+  color: @white-2;
+  .transitionAll();
 
-	&:not(:first-child) {
-		border-top: 1px solid @border-1;
-	}
+  &:hover,
+  &:focus {
+    :local(.settingsItemInner) {
+      background-color: @black-3;
+    }
+  }
 
-	svg {
-		display: inline-block;
-		margin-right: @space-s;
-		fill: currentColor;
-	}
+  :local(.itemGlyph) {
+    fill: currentColor;
+  }
 
-	span {
-		line-height: 1;
-	}
+  &:not(:first-child) {
+  	border-top: 1px solid @border-1;
+  }
 
+}
+
+:local(.settingsItemInner) {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem @space-s;
+  border-radius: @border-radius;
+  .transitionAll();
+  cursor: not-allowed;
+}
+
+:local(.itemGlyph) {
+	display: inline-block;
+	margin-right: @space-xs;
+}
+
+:local(.itemName) {
+	line-height: 1;
 }
 
 /*

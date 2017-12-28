@@ -19,6 +19,10 @@ const fauxSettings = [
 	'Setting 5',
 ];
 
+const onSettingsItemClick = (e) => {
+	e.preventDefault();
+}
+
 const Settings = props => {
 	return (
 		<div className={styles.settingsRoot}>
@@ -43,12 +47,13 @@ const Settings = props => {
 							...fadeTransitionStyles[state],
 						}}>
 						<div className={dropdownStyles.dropdownInner}>
-							<div className={dropdownStyles.dropdownWarning} />
 							<ul className={styles.settings}>
 								{fauxSettings.map((setting, i) => (
 									<li className={styles.settingsItem} key={i}>
-										<Glyph icon="cog" height="14" width="14" />
-										<span>{setting}</span>
+										<a href="#" className={styles.settingsItemInner} onClick={onSettingsItemClick}>
+											<Glyph icon="cog" height="14" width="14" className={styles.itemGlyph} />
+											<span className={styles.itemName}>{setting}</span>
+										</a>
 									</li>
 								))}
 							</ul>
