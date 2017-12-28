@@ -5,7 +5,7 @@
   display: flex;
   border: 1px solid @site-panel-bg-light;
   border-radius: @border-radius;
-  margin-right: calc(@space * 2);
+  margin: 0 calc(@space * 2);
 }
 
 :local(.option) {
@@ -15,16 +15,20 @@
   cursor: pointer;
   display: inline-block;
   border: none;
-  border-radius: none;
   color: @gray-1;
   font-size: @font-size-s;
-  line-height: 1;
-  transition: all 0.3s;
-  height: 1.3rem;
+  line-height: 1.4rem;
+  height: 1.4rem;
   width: 3rem;
+  padding: 0;
+  .transitionAll();
 
-  &:last-child {
-    border-left: 1px solid @site-panel-bg-light;
+  &:first-of-type {
+    border-radius: @border-radius 0 0 @border-radius;
+  }
+
+  &:last-of-type {
+    border-radius: 0 @border-radius @border-radius 0;
   }
 }
 
@@ -35,5 +39,5 @@
 
 :local(.option):local(.active) {
   background: @site-panel-bg-light;
-  color: @white-1;
+  color: @primary;
 }

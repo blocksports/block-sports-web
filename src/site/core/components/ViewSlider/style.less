@@ -4,14 +4,17 @@
 :local(.root) {
   display: flex;
   align-items: center;
+}
 
-  .slider-value {
-    min-width: 65px;
-    color: @primary;
-    .currency {
-      font-size: @font-size-s;
-    }
-  }
+:local(.sliderValue) {
+  display: flex;
+  align-items: baseline;
+  min-width: 65px;
+  color: @primary;
+}
+
+:local(.currency) {
+  font-size: @font-size-xs;
 }
 
 // Yucky but quicker than retheming :~(

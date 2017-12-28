@@ -9,12 +9,6 @@
 :local(.currency) {
 	display: flex;
 	align-items: baseline;
-	&:not(:first-of-type) {
-		margin-left: @space-s;
-	}
-	&:last-of-type {
-		margin-right: @space-s;
-	}
 }
 
 :local(.currencyLoading) {
@@ -36,7 +30,7 @@
 :local(.currencyAmount) {
 	line-height: 1;
 	background-color: @site-panel-bg-light;
-	padding: 0.4em 0.4em 0.35em 0.4rem;
+	padding: 0.3rem;
 	border-radius: @border-radius;
 }
 

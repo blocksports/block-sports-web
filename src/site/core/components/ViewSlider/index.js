@@ -73,9 +73,9 @@ class ViewSlider extends Component {
 					value={this.state.slider}
 					onChange={this.handleChange}
 				/>
-				<div className="slider-value">
-					<span className="price">{this.state.value}</span>&nbsp;
-					<span className="currency">
+				<div className={styles.sliderValue}>
+					<span className={styles.value}>{this.state.value}</span>&nbsp;
+					<span className={styles.currency}>
 						{t(`core:currency.${this.props.currency}`)}
 					</span>
 				</div>
