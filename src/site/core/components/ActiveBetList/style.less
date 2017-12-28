@@ -45,24 +45,30 @@
 }
 
 :local(.status) {
-  display: inline-block;
-  font-size: @font-size-xs;
+  display: inline-flex;
+  align-items: center;
   border-radius: @border-radius;
-  text-transform: uppercase;
-  padding: 0.3rem 0.5rem 0.2rem;
+  padding: 0 0.5rem;
+  height: 1rem;
   background-color: @site-panel-bg;
 
-  &.pending {
+  span {
+    text-transform: uppercase;
+    height: @font-size-xs;
+    font-size: @font-size-xs;
+  }
+
+  &.pending span {
     color: #eae16c;
     background-color: fade(#eae16c, 8%);
   }
 
-  &.active {
+  &.active span {
     background-color: fade(@primary, 8%);
     color: @primary;
   }
 
-  &.filled {
+  &.filled span {
     color: @white-1;
   }
 }

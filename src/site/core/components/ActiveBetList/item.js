@@ -50,9 +50,9 @@ class ActiveBetListItem extends Component {
 							<span className={styles.headerSub}>{bet.get('name')}</span>
 						</div>
 						<div>
-							<span className={classNames(styles.status, status)}>
-								{t(`core:bets.active.${status}`)}
-							</span>
+							<div className={classNames(styles.status, status)}>
+								<span>{t(`core:bets.active.${status}`)}</span>
+							</div>
 						</div>
 					</div>
 				</header>
