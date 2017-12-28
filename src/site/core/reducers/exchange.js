@@ -30,7 +30,7 @@ export function fetchMarkets(params, query) {
 	return async dispatch => {
 		dispatch(fetchMarketsRequest());
 
-		await sleep(0);
+		await sleep(1000);
 
 		axios({
 			method: 'get',
@@ -66,7 +66,7 @@ export function updateMinimumBet(data) {
 export function updateExchange(matches, params) {
 	return dispatch => {
 		dispatch(updateExchangeMatches(params, matches));
-	}
+	};
 }
 
 const initialState = Immutable.Map({
@@ -127,7 +127,7 @@ const exchangeReducer = createReducer(
 			return state.merge({
 				markets: newMarkets,
 			});
-		}
+		},
 	},
 	initialState
 );

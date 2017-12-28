@@ -16,7 +16,7 @@ export function fetchBlockchainInfo() {
 	return async dispatch => {
 		dispatch(fetchBlockchainRequest());
 
-		await sleep(0);
+		await sleep(1000);
 
 		axios({
 			method: 'get',
@@ -26,11 +26,13 @@ export function fetchBlockchainInfo() {
 				dispatch(fetchBlockchainSuccess(resp.data));
 			})
 			.catch(err => {
-				dispatch(fetchBlockchainSuccess({
-					average_time: 24,
-					block_height: 0,
-					updated_at: 1513682132
-				}));
+				dispatch(
+					fetchBlockchainSuccess({
+						average_time: 24,
+						block_height: 0,
+						updated_at: 1513682132,
+					})
+				);
 			});
 	};
 }
@@ -38,14 +40,14 @@ export function fetchBlockchainInfo() {
 export function updateBlockchainInfo(data) {
 	return dispatch => {
 		dispatch(updateBlockchain(data));
-	}
+	};
 }
 
 const initialState = Immutable.Map({
 	isLoading: true,
-    averageTime: 0,
-    blockHeight: 0,
-    lastUpdated: 0
+	averageTime: 0,
+	blockHeight: 0,
+	lastUpdated: 0,
 });
 
 const blockchainReducer = createReducer(
@@ -57,19 +59,19 @@ const blockchainReducer = createReducer(
 		},
 		[fetchBlockchainSuccess]: (state, resp) => {
 			return state.merge({
-                isLoading: false,
-                averageTime: resp.average_time,
-                blockHeight: resp.block_height,
-                lastUpdated: resp.updated_at
+				isLoading: false,
+				averageTime: resp.average_time,
+				blockHeight: resp.block_height,
+				lastUpdated: resp.updated_at,
 			});
 		},
 		[updateBlockchain]: (state, data) => {
 			return state.merge({
 				averageTime: data.average_time,
-                blockHeight: data.block_height,
-                lastUpdated: data.updated_at
+				blockHeight: data.block_height,
+				lastUpdated: data.updated_at,
 			});
-		}
+		},
 	},
 	initialState
 );

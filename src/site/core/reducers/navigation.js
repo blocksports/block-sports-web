@@ -16,7 +16,7 @@ export function fetchNavigation(data) {
 	return async dispatch => {
 		dispatch(fetchNavigationRequest());
 
-		await sleep(0);
+		await sleep(1000);
 
 		axios({
 			method: 'get',

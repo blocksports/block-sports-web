@@ -21,7 +21,7 @@ export function fetchPrice(data) {
 	return async dispatch => {
 		dispatch(fetchPriceRequest());
 
-		await sleep(0);
+		await sleep(1000);
 
 		axios({
 			method: 'get',
@@ -39,7 +39,7 @@ export function fetchPrice(data) {
 export function updatePrice(data) {
 	return dispatch => {
 		dispatch(updatePriceData(data));
-	}
+	};
 }
 
 export function updateCurrency(currency) {
@@ -75,9 +75,9 @@ const currencyReducer = createReducer(
 		},
 		[updatePriceData]: (state, data) => {
 			return state.merge({
-				price: data
+				price: data,
 			});
-		}
+		},
 	},
 	initialState
 );
