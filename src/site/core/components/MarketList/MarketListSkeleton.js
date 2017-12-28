@@ -7,7 +7,7 @@ const MarketListSkeleton = props => (
 	<div>
 		{[...Array(2)].map((_, i) => (
 			<div className={styles.group} key={i}>
-				<SkeletonBlock size="xsmall" className={styles.groupHeading} />
+				<SkeletonBlock size="xsmall" className={styles.groupHeadingSkeleton} />
 				{[...Array(4)].map((_, i) => <Item key={i} />)}
 			</div>
 		))}
