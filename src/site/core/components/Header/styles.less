@@ -7,19 +7,17 @@
 		font-size: 22px;
 		color: @gray-1;
 		.transitionAll();
-		&:focus,
-		&:hover {
-			color: @primary;
-		}
 	}
 }
 
-:local(.iconActive) {
-	opacity: 1 !important;
+:local(.icon):not(:local(.iconActive)):hover {
 	i {
-		color: @primary;
-		opacity: 1;
+		color: @white-1;
 	}
+}
+
+:local(.iconActive) i {
+	color: @primary;
 }
 
 :local(.form) {
