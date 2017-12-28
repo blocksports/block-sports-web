@@ -1,5 +1,5 @@
-@import '../../../../less/_colours.less';
-@import '../../../../less/_utils.less';
+@import "../../../../less/_colours.less";
+@import "../../../../less/_utils.less";
 
 :local(.root) {
   width: 100%;
@@ -14,7 +14,7 @@
   color: @white-1;
   padding: 0 @space-s;
 }
- 
+
 :local(.headerIcon) {
   position: relative;
   top: -1px;
@@ -44,7 +44,6 @@
   svg {
     fill: currentColor;
   }
-
 }
 
 :local(.itemActive) {
@@ -67,17 +66,25 @@
   .transitionAll();
 }
 
+:local(.itemName) {
+  line-height: 1;
+}
+
 :local(.itemIcon) {
   display: inline-block;
-  margin-right: @space-xs;
+  margin-right: 0.35rem;
   fill: currentColor;
   opacity: 0.85;
+}
+
+:local(.itemLeft) {
+  display: flex;
+  align-items: center;
 }
 
 :local(.itemRight) {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
   margin-left: @space-s;
 }
 
