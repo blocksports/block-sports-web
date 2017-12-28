@@ -8,24 +8,21 @@ import { orderByDate } from '../../../../lib/utils';
 import styles from './style.less';
 import ActiveBetListItem from './item';
 
-class ActiveBetList extends Component {
-	render() {
-		const { currency, exchangeRate } = this.props;
-		let items = this.props.items || [];
-		items = items.sort(orderByDate('date_created', -1));
-		return (
-			<div className={classNames([styles.root, this.props.className])}>
-				{items.map((bet, index) => (
-					<ActiveBetListItem
-						key={bet.get('id')}
-						bet={bet}
-						currency={currency}
-						exchangeRate={exchangeRate}
-					/>
-				))}
-			</div>
-		);
-	}
+const ActiveBetList = props => {
+	let items = props.items || [];
+	items = items.sort(orderByDate('date_created', -1));
+	return (
+		<div className={classNames([styles.root, props.className])}>
+			{items.map(bet => (
+				<ActiveBetListItem
+					key={bet.get('id')}
+					bet={bet}
+					currency={props.currency}
+					exchangeRate={props.exchangeRate}
+				/>
+			))}
+		</div>
+	);
 }
 
 ActiveBetList.propTypes = {
