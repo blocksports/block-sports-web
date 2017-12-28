@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import moment from 'moment';
 import uuid from 'uuid/v4';
 import { t } from 'i18next';
-import ReactTooltip from 'react-tooltip';
+import Glyph from '../Glyph';
 import { getParticipantName } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
@@ -168,21 +168,6 @@ class BetSlipItem extends Component {
 		});
 	}
 
-	renderRunnerTooltip(match) {
-		return (
-			<ReactTooltip
-				id={match.get('name')}
-				place="bottom"
-				effect="solid"
-				type="light"
-				delayShow={500}
-				delayHide={200}
-				className={styles.tooltip}>
-				<div className="runner-tooltip-entity">{match.get('entity_name')}</div>
-				<div>{match.get('name')}</div>
-			</ReactTooltip>
-		);
-	}
 
 	render() {
 		const match = this.props.item.get('match');
@@ -205,7 +190,7 @@ class BetSlipItem extends Component {
 									'button-square',
 								])}
 								onClick={this.handleRemoveClick}>
-								<i className="fa fa-times" aria-hidden="true" />
+								<Glyph height="14" width="14" icon="close" />
 							</Button>
 						</div>
 					</div>

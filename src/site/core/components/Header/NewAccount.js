@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 import Button from '../../components/Button';
 import styles from './styles.less';
+import Glyph from '../Glyph';
 import dropdown from '../Dropdown';
 import dropdownStyles from '../Dropdown/styles.less';
 import {
@@ -42,10 +43,7 @@ const NewAccount = props => (
 								dropdownStyles.dropdownBody,
 								styles.naBody,
 							])}>
-							<i
-								className={classNames(['fa', 'fa-ban', styles.naDisabledIcon])}
-								aria-hidden="true"
-							/>
+							<Glyph className={styles.naDisabledIcon} icon="ban" width="40" height="40" />
 							<span className={styles.naHeading}>
 								Sorry! You can't create an account yet.
 							</span>

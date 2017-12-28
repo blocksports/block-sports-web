@@ -2,6 +2,7 @@ import React from 'react';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Glyph from '../Glyph';
 import Button from '../Button';
 import styles from './style.less';
 import {
@@ -36,7 +37,7 @@ const ModalWrapper = props => {
 										'button-minimal',
 									])}
 									onClick={() => props.setCurrentModal(null)}>
-									<i className="fa fa-times" aria-hidden="true" />
+									<Glyph height="14" width="14" icon="close" />
 								</Button>
 							)}
 						</header>

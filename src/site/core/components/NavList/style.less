@@ -9,12 +9,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin-bottom: @space;
   color: @white-1;
+  padding: 0 @space-s;
 }
-
+ 
 :local(.headerIcon) {
-  margin: 0 @space-s;
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  fill: currentColor;
+  margin: 0 @space-xs;
 }
 
 :local(.nav) {
@@ -34,6 +40,11 @@
       background-color: @black-3;
     }
   }
+
+  svg {
+    fill: currentColor;
+  }
+
 }
 
 :local(.itemActive) {
@@ -56,7 +67,16 @@
   .transitionAll();
 }
 
+:local(.itemIcon) {
+  display: inline-block;
+  margin-right: @space-xs;
+  fill: currentColor;
+  opacity: 0.85;
+}
+
 :local(.itemRight) {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
   margin-left: @space-s;
 }

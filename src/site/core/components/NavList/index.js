@@ -4,6 +4,7 @@ import Transition from 'react-transition-group/Transition';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import classNames from 'classnames';
+import Glyph from '../Glyph';
 import { Link, IndexLink } from 'react-router';
 import { categoryFilters } from '../../../../lib/constants';
 import {
@@ -38,12 +39,7 @@ class NavList extends Component {
 				<span className={styles.headerLink}>
 					<Link to="/exchange">{t('core:navigation.header-all')}</Link>
 				</span>
-				<span>
-					<i
-						className={classNames(['fa', 'fa-angle-right', styles.headerIcon])}
-						aria-hidden="true"
-					/>
-				</span>
+				<Glyph height="14" width="14" icon="right" className={styles.headerIcon} />
 				<span className={styles.headerCategory}>{name}</span>
 			</div>
 		);
@@ -65,14 +61,15 @@ class NavList extends Component {
 						className={styles.item}
 						activeClassName={styles.itemActive}>
 						<div className={styles.itemInner}>
-							<span className={styles.itemName}>{item.get('name')}</span>
+							<div>
+								<Glyph height="14" width="14" icon={item.get('id')} className={styles.itemIcon} />
+								<span className={styles.itemName}>{item.get('name')}</span>
+							</div>
 							<div className={styles.itemRight}>
 								{this.props.filter && (
 									<span className={styles.itemCount}>{item.get('count')}</span>
 								)}
-								<span>
-									<i className="fa fa-angle-right" aria-hidden="true" />
-								</span>
+								<Glyph height="14" width="14" icon="right" />
 							</div>
 						</div>
 					</Link>

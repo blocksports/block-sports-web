@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ModalWrapper from './ModalWrapper';
+import Glyph from '../Glyph';
 import classNames from 'classnames';
 import styles from './mobileWarning.less';
 
 const ModalMobileWarning = props => (
 	<ModalWrapper {...this.props} allowClose={false}>
 		<div className={styles.root}>
-			<i
-				className={classNames(['fa', 'fa-mobile', styles.icon])}
-				aria-hidden="true"
-			/>
+			<Glyph width="40" height="40" icon="mobile" className={styles.icon} />
 			<span className={styles.head}>Sorry! Your screen is too small.</span>
 			<p className={styles.body}>
 				The Block Sports Exchange is not currently available for mobile devices.

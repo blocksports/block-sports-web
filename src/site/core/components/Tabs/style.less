@@ -7,9 +7,13 @@
 }
 
 :local(.tab) {
+
   &.active {
     background-color: @black-5;
     color: @primary !important;
+    svg {
+      fill: @primary;
+    }
   }
 
   &:not(:first-of-type) {
@@ -20,5 +24,11 @@
   &:focus {
     background-color: @black-5;
     color: @white-1;
+    fill: @white-1;
   }
+
+  svg {
+    fill: currentColor;
+  }
+
 }

@@ -9,7 +9,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "generate": "plop --plopfile generators/index.js",
     "toolbox": "react-toolbox-themr",
-    "format": "prettier --jsx-bracket-same-line --use-tabs --single-quote --trailing-comma es5 --write 'src/**/*.js';"
+    "format": "prettier --jsx-bracket-same-line --use-tabs --single-quote --trailing-comma es5 --write 'src/**/*.js';",
+    "optimiseGlyphs": "svgo -f public/glyphs/src --enable=convertStyleToAttrs --disable=removeViewBox --enable=removeElementsByAttr",
+    "glyphs": "npm run optimiseGlyphs && svg-sprite-generate -d public/glyphs/src -o public/glyphs/glyphs.svg"
   },
   "dependencies": {
     "autoprefixer": "7.1.1",
@@ -59,6 +61,8 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
+    "svg-sprite-generator": "0.0.7",
+    "svgo": "^1.0.3",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
     "uuid": "^3.1.0",

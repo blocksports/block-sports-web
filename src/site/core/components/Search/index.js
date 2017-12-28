@@ -2,6 +2,7 @@ import React from 'react';
 import Transition from 'react-transition-group/Transition';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import Glyph from '../Glyph';
 import dropdown from '../Dropdown';
 import dropdownStyles from '../Dropdown/styles.less';
 import {
@@ -12,10 +13,7 @@ import styles from './style.less';
 
 const Search = props => (
 	<div className={styles.root}>
-		<i
-			className={classNames(['fa', 'fa-search', styles.icon])}
-			aria-hidden="true"
-		/>
+		<Glyph height="14" width="14" icon="search" className={styles.icon} />
 		<input
 			className={styles.input}
 			placeholder={t('core:header.search-placeholder')}
@@ -35,10 +33,7 @@ const Search = props => (
 							styles.dropdownInner,
 						])}>
 						<div className={dropdownStyles.dropdownWarning} />
-						<i
-							className={classNames(['fa', 'fa-search', styles.iconLarge])}
-							aria-hidden="true"
-						/>
+						<Glyph height="40" width="40" icon="search" className={styles.iconLarge} />
 						<span>{t('core:header.search-disabled-message')}</span>
 					</div>
 				</div>

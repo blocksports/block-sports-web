@@ -3,21 +3,21 @@
 @import '../../../../less/_utils.less';
 
 :local(.icon) {
-	i {
+	svg {
 		font-size: 22px;
-		color: @gray-1;
+		fill: @gray-1;
 		.transitionAll();
 	}
 }
 
 :local(.icon):not(:local(.iconActive)):hover {
-	i {
-		color: @white-1;
+	svg {
+		fill: @white-1;
 	}
 }
 
-:local(.iconActive) i {
-	color: @primary;
+:local(.iconActive) svg {
+	fill: @primary;
 }
 
 :local(.form) {
@@ -74,18 +74,25 @@
 }
 
 :local(.settingsItem) {
-	padding: @space-s 0;
-	font-size: @font-size-m;
+	display: flex;
+	align-items: center;
+	padding: 0.7rem 0;
 	color: @white-2;
 
 	&:not(:first-child) {
 		border-top: 1px solid @border-1;
 	}
 
-	i {
-		font-size: @font-size;
+	svg {
+		display: inline-block;
 		margin-right: @space-s;
+		fill: currentColor;
 	}
+
+	span {
+		line-height: 1;
+	}
+
 }
 
 /*
@@ -105,10 +112,7 @@
 }
 
 :local(.naDisabledIcon) {
-	font-size: 40px;
-	display: block;
-	margin: 0 auto;
-	color: @gray-1;
+	fill: @gray-1;
 }
 
 :local(.naHeading) {

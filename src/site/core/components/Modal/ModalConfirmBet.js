@@ -5,6 +5,7 @@ import Immutable from 'immutable';
 import ModalWrapper from './ModalWrapper';
 import classNames from 'classnames';
 import Button from '../Button';
+import Glyph from '../Glyph';
 import styles from './confirmBet.less';
 import DemoQrImage from '../../../../img/demo-qr.png';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
@@ -249,10 +250,7 @@ class FormStepOne extends Component {
 						</div>
 						<div className={styles.infoToggle}>
 							<a onClick={() => this.handleOptionsToggle()}>
-								<i
-									className={`fa fa-angle-${showOptions ? 'up' : 'down'}`}
-									aria-hidden="true"
-								/>
+								<Glyph height="20" width="20" icon={showOptions ? 'up' : 'down'} />
 							</a>
 						</div>
 					</div>

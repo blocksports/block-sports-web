@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from '../../components/Button';
 import styles from './styles.less';
 import dropdown from '../Dropdown';
+import Glyph from '../Glyph';
 import dropdownStyles from '../Dropdown/styles.less';
 import {
 	fadeDefaultStyle,
@@ -31,7 +32,7 @@ const Settings = props => {
 				onClick={() =>
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
 				}>
-				<i className="fa fa-cog" aria-hidden="true" />
+				<Glyph icon="cog" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
 				{state => (
@@ -46,7 +47,7 @@ const Settings = props => {
 							<ul className={styles.settings}>
 								{fauxSettings.map((setting, i) => (
 									<li className={styles.settingsItem} key={i}>
-										<i className="fa fa-cog" aria-hidden="true" />
+										<Glyph icon="cog" height="14" width="14" />
 										<span>{setting}</span>
 									</li>
 								))}

@@ -8,6 +8,7 @@ import { selectExchangeRate } from '../../selectors/currency';
 import { addBet } from '../../reducers/bet';
 import MarketList from '../../components/MarketList';
 import MarketListSkeleton from '../../components/MarketList/MarketListSkeleton';
+import Glyph from '../../components/Glyph';
 import { Tabs, Tab } from '../../components/Tabs';
 import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
@@ -64,13 +65,13 @@ export class Markets extends Component {
 					<Tab
 						className={this.tabClass('date')}
 						onClick={this.handleTabClick('date')}>
-						<i className="fa fa-clock-o" aria-hidden="true" />
+						<Glyph height="16" width="16" icon="clock" />
 						{t('core:markets.header-time')}
 					</Tab>
 					<Tab
 						className={this.tabClass('popular')}
 						onClick={this.handleTabClick('popular')}>
-						<i className="fa fa-star-o" aria-hidden="true" />
+						<Glyph height="16" width="16" icon="star" />
 						{t('core:markets.header-popular')}
 					</Tab>
 				</Tabs>

@@ -28,13 +28,22 @@
 // Tabs
 
 .button-tab {
+  display: flex;
+  align-items: center;
   font-size: @font-size-m;
   padding: 1em 1.25em 0.85em;
   color: @gray-1;
+  
   &:hover,
   &:focus {
     color: @white-1;
   }
+
+  svg {
+    display: inline-block;
+    margin-right: @space-xs;
+  }
+
 }
 
 // Square
@@ -68,8 +77,8 @@
 .button-s {
   letter-spacing: 0;
   font-size: @font-size-s;
-  height: 1.7rem;
-  line-height: 1.7rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
 }
 
 .button-m {

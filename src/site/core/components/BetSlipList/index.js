@@ -5,6 +5,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
 import BetSlipItem from './item';
+import Glyph from '../Glyph';
 import Button from '../Button';
 import styles from './style.less';
 
@@ -30,7 +31,7 @@ class BetSlipList extends Component {
 					])}
 					onClick={this.props.onRemoveAllClick}>
 					{t('core:bets.bet-slip.remove-all')}{' '}
-					<i className="fa fa-close" aria-hidden="true" />
+					<Glyph width="14" height="14" icon="close" />
 				</Button>
 			</div>
 		);
