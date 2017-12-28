@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';

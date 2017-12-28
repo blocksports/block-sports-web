@@ -11,7 +11,7 @@ import NavListSkeleton from '../../components/NavList/NavListSkeleton';
 import NavList from '../../components/NavList';
 import styles from './style.less';
 
-class Navigation extends Component {
+export class Navigation extends Component {
 	componentWillMount() {
 		this.props.fetchNavigation();
 	}

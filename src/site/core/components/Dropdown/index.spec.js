@@ -1,11 +1,9 @@
 import React from 'react';
 import Immutable from 'immutable';
 import { shallow, mount } from 'enzyme';
-import NavList from './';
+import dropdown from './';
 
-const minProps = {};
-
-describe('<NavList />', () => {
+describe(dropdown, () => {
 	it('Should', () => {
 		expect(true).toEqual(true);
 	});

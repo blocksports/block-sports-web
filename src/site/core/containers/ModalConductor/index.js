@@ -6,7 +6,7 @@ import { setCurrentModal } from '../../reducers/modal';
 import ModalConfirmBet from '../../components/Modal/ModalConfirmBet';
 import ModalMobileWarning from '../../components/Modal/ModalMobileWarning';
 
-class ModalConductor extends Component {
+export class ModalConductor extends Component {
 	componentDidMount() {
 		this.dispatchMobileWarning();
 		window.addEventListener('resize', () => this.dispatchMobileWarning());

@@ -1,11 +1,11 @@
 import React from 'react';
 import Immutable from 'immutable';
 import { shallow, mount } from 'enzyme';
-import NavList from './';
+import ModalMobileWarning from './ModalMobileWarning';
 
 const minProps = {};
 
-describe('<NavList />', () => {
+describe('<ModalMobileWarning />', () => {
 	it('Should', () => {
 		expect(true).toEqual(true);
 	});

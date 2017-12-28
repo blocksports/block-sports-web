@@ -1,9 +1,8 @@
-// import React from 'react';
-// import Immutable from 'immutable';
-// import { shallow, mount } from 'enzyme';
-// import { createOptions } from '../../../../lib/testing';
+import React from 'react';
+import Immutable from 'immutable';
+import { shallow, mount } from 'enzyme';
 
-// import { Markets } from './';
+import { Markets } from './';
 
 const minProps = {};
 

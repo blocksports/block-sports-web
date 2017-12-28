@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import classNames from 'classnames';
 import styles from './style.less';
 
-class Overlay extends Component {
+export class Overlay extends Component {
 	constructor(props, context) {
 		super(props, context);
 	}

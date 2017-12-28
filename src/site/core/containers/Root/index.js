@@ -7,7 +7,7 @@ import Layout from '../../components/Layout';
 import { fetchUser } from '../../reducers/user';
 import styles from './style.less';
 
-const Root = props => (
+export const Root = props => (
 	<div className={styles.root}>
 		<Layout>{props.children}</Layout>
 		<ModalConductor />

@@ -1,11 +1,12 @@
 import React from 'react';
 import Immutable from 'immutable';
 import { shallow, mount } from 'enzyme';
-import NavList from './';
+
+import { Navigation } from './';
 
 const minProps = {};
 
-describe('<NavList />', () => {
+describe('<Navigation />', () => {
 	it('Should', () => {
 		expect(true).toEqual(true);
 	});

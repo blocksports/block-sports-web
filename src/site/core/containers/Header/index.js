@@ -17,7 +17,7 @@ import NewAccount from '../../components/Header/NewAccount';
 import styles from './style.less';
 import Logo from '../../../../img/logo-white.svg';
 
-class Header extends Component {
+export class Header extends Component {
 	constructor(props, context) {
 		super(props, context);
 	}
