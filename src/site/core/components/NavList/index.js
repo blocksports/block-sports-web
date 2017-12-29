@@ -30,12 +30,7 @@ class NavList extends Component {
 				<span className={styles.headerLink}>
 					<Link to="/exchange">{t('core:navigation.header-all')}</Link>
 				</span>
-				<Glyph
-					height="14"
-					width="14"
-					icon="right"
-					className={styles.headerIcon}
-				/>
+				<Glyph size="14" icon="right" className={styles.headerIcon} />
 				<span className={styles.headerCategory}>{name}</span>
 			</div>
 		);

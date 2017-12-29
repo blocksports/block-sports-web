@@ -18,8 +18,7 @@ const NavListItem = ({ filter, category, item }) => {
 				<div className={styles.itemInner}>
 					<div className={styles.itemLeft}>
 						<Glyph
-							height="14"
-							width="14"
+							size="14"
 							icon={item.get('id')}
 							className={styles.itemIcon}
 						/>
@@ -29,7 +28,7 @@ const NavListItem = ({ filter, category, item }) => {
 						{filter && (
 							<span className={styles.itemCount}>{item.get('count')}</span>
 						)}
-						<Glyph height="14" width="14" icon="right" />
+						<Glyph size="14" icon="right" />
 					</div>
 				</div>
 			</Link>

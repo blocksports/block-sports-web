@@ -189,7 +189,7 @@ class BetSlipItem extends Component {
 									'button-square',
 								])}
 								onClick={this.handleRemoveClick}>
-								<Glyph height="14" width="14" icon="close" />
+								<Glyph size="14" icon="close" />
 							</Button>
 						</div>
 					</div>

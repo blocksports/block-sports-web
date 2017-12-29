@@ -13,7 +13,7 @@ import styles from './style.less';
 
 const Search = props => (
 	<div className={styles.root}>
-		<Glyph height="14" width="14" icon="search" className={styles.icon} />
+		<Glyph size="14" icon="search" className={styles.icon} />
 		<input
 			className={styles.input}
 			placeholder={t('core:header.search-placeholder')}
@@ -33,12 +33,7 @@ const Search = props => (
 							styles.dropdownInner,
 						])}>
 						<div className={dropdownStyles.dropdownWarning} />
-						<Glyph
-							height="40"
-							width="40"
-							icon="search"
-							className={styles.iconLarge}
-						/>
+						<Glyph size="40" icon="search" className={styles.iconLarge} />
 						<span>{t('core:header.search-disabled-message')}</span>
 					</div>
 				</div>

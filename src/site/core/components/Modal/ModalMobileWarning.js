@@ -9,7 +9,7 @@ import styles from './mobileWarning.less';
 const ModalMobileWarning = props => (
 	<ModalWrapper {...this.props} allowClose={false}>
 		<div className={styles.root}>
-			<Glyph width="40" height="40" icon="mobile" className={styles.icon} />
+			<Glyph size="40" icon="mobile" className={styles.icon} />
 			<span className={styles.head}>Sorry! Your screen is too small.</span>
 			<p className={styles.body}>
 				The Block Sports Exchange is not currently available for mobile devices.

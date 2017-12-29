@@ -56,8 +56,7 @@ const Settings = props => {
 											onClick={onSettingsItemClick}>
 											<Glyph
 												icon="cog"
-												height="14"
-												width="14"
+												size="14"
 												className={styles.itemGlyph}
 											/>
 											<span className={styles.itemName}>{setting}</span>

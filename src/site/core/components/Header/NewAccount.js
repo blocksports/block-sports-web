@@ -43,12 +43,7 @@ const NewAccount = props => (
 								dropdownStyles.dropdownBody,
 								styles.naBody,
 							])}>
-							<Glyph
-								className={styles.naDisabledIcon}
-								icon="ban"
-								width="40"
-								height="40"
-							/>
+							<Glyph className={styles.naDisabledIcon} icon="ban" size="40" />
 							<span className={styles.naHeading}>
 								Sorry! You can't create an account yet.
 							</span>

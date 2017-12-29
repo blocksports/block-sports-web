@@ -37,7 +37,7 @@ const ModalWrapper = props => {
 										'button-minimal',
 									])}
 									onClick={() => props.setCurrentModal(null)}>
-									<Glyph height="14" width="14" icon="close" />
+									<Glyph size="14" icon="close" />
 								</Button>
 							)}
 						</header>
