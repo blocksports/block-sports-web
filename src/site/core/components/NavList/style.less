@@ -2,113 +2,113 @@
 @import "../../../../less/_utils.less";
 
 :local(.root) {
-  width: 100%;
+	width: 100%;
 }
 
 :local(.header) {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: @space;
-  color: @white-1;
-  padding: 0 @space-s;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: @space;
+	color: @white-1;
+	padding: 0 @space-s;
 }
 
 :local(.headerIcon) {
-  position: relative;
-  top: -1px;
-  display: inline-block;
-  fill: currentColor;
-  margin: 0 @space-xs;
+	position: relative;
+	top: -1px;
+	display: inline-block;
+	fill: currentColor;
+	margin: 0 @space-xs;
 }
 
 :local(.nav) {
-  border-bottom: 1px solid @border-1;
+	border-bottom: 1px solid @border-1;
 }
 
 :local(.item) {
-  display: block;
-  padding: 0.3rem 0;
-  border-top: 1px solid @border-1;
-  color: @white-2;
-  min-height: 2rem;
-  .transitionAll();
-  &:hover,
-  &:focus {
-    :local(.itemInner) {
-      background-color: @black-3;
-    }
-  }
+	display: block;
+	padding: 0.3rem 0;
+	border-top: 1px solid @border-1;
+	color: @white-2;
+	.transitionAll();
+	&:hover,
+	&:focus {
+		:local(.itemInner) {
+			background-color: @black-3;
+		}
+	}
 
-  svg {
-    fill: currentColor;
-  }
+	svg {
+		fill: currentColor;
+	}
 }
 
 :local(.itemActive) {
-  color: @primary;
-  :local(.itemInner) {
-    background-color: @black-3;
-  }
-  :local(.itemCount) {
-    border-color: @primary;
-    color: @white-1;
-  }
+	color: @primary;
+	:local(.itemInner) {
+		background-color: @black-3;
+	}
+	:local(.itemCount) {
+		border-color: @primary;
+		color: @white-1;
+	}
 }
 
 :local(.itemInner) {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem @space-s;
-  border-radius: @border-radius;
-  .transitionAll();
+	min-height: 1.8rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.4rem @space-s;
+	border-radius: @border-radius;
+	.transitionAll();
 }
 
 :local(.itemName) {
-  line-height: 1;
+	line-height: 1;
 }
 
 :local(.itemIcon) {
-  display: inline-block;
-  margin-right: 0.35rem;
-  fill: currentColor;
-  opacity: 0.85;
+	display: inline-block;
+	margin-right: 0.35rem;
+	fill: currentColor;
+	opacity: 0.85;
 }
 
 :local(.itemLeft) {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 :local(.itemRight) {
-  display: flex;
-  align-items: center;
-  margin-left: @space-s;
+	display: flex;
+	align-items: center;
+	margin-left: @space-s;
 }
 
 :local(.itemCount) {
-  display: inline-block;
-  margin-right: @space-s;
-  font-size: 9px;
-  line-height: 1;
-  color: @white-2;
-  border: 1px solid;
-  line-height: 1rem;
-  height: 1rem;
-  min-width: 1rem;
-  padding: 0 0.2rem;
-  text-align: center;
-  border-radius: @border-radius;
-  .transitionAll();
+	display: inline-block;
+	margin-right: @space-s;
+	font-size: 9px;
+	line-height: 1;
+	color: @white-2;
+	border: 1px solid;
+	line-height: 1rem;
+	height: 1rem;
+	min-width: 1rem;
+	padding: 0 0.2rem;
+	text-align: center;
+	border-radius: @border-radius;
+	.transitionAll();
 }
 
 :local(.skeletonItems) {
-  margin-top: @site-panel-spacing;
-  padding: @site-panel-spacing;
+	margin-top: @site-panel-spacing;
+	padding: @site-panel-spacing;
 }
 
 :local(.itemSkeleton) {
-  padding: @space-m 0;
+	padding: @space-m 0;
 }
