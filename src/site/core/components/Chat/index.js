@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Immutable from 'immutable';
-import { t } from 'i18next';
-import { shuffle } from 'lodash';
-import classNames from 'classnames';
-import styles from './style.less';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Immutable from "immutable";
+import { t } from "i18next";
+import { shuffle } from "lodash";
+import classNames from "classnames";
+import styles from "./style.less";
 
 const demoMessages = [
 	{
-		username: 'User1242',
-		message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		username: "User1242",
+		message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 	},
 	{
-		username: 'User151342',
-		message: 'Duis mattis risus odio, sed finibus libero tincidunt a.',
+		username: "User151342",
+		message: "Duis mattis risus odio, sed finibus libero tincidunt a."
 	},
 	{
-		username: 'User4345',
-		message: 'Etiam et eros mauris. Nullam rutrum ornare dolor.',
+		username: "User4345",
+		message: "Etiam et eros mauris. Nullam rutrum ornare dolor."
 	},
 	{
-		username: 'User1131',
-		message: 'Phasellus finibus magna quam, vitae efficitur metus rutrum nec.',
+		username: "User1131",
+		message: "Phasellus finibus magna quam, vitae efficitur metus rutrum nec."
 	},
 	{
-		username: 'User9504',
+		username: "User9504",
 		message:
-			'Nullam nec sem et turpis fringilla euismod a et velit. Praesent quis aliquam diam.',
+			"Nullam nec sem et turpis fringilla euismod a et velit. Praesent quis aliquam diam."
 	},
 	{
-		username: 'User43',
+		username: "User43",
 		message:
-			'Nulla congue, felis nec iaculis consequat, mi metus imperdiet tortor, eu tincidunt est dolor ac ex.',
-	},
+			"Nulla congue, felis nec iaculis consequat, mi metus imperdiet tortor, eu tincidunt est dolor ac ex."
+	}
 ];
 
 class Chat extends Component {
@@ -40,19 +40,19 @@ class Chat extends Component {
 		super(props);
 		this.state = {
 			showWarning: false,
-			messages: demoMessages,
+			messages: demoMessages
 		};
 	}
 
 	handleMouseEnter() {
 		this.setState({
-			showWarning: true,
+			showWarning: true
 		});
 	}
 
 	handleMouseLeave() {
 		this.setState({
-			showWarning: false,
+			showWarning: false
 		});
 	}
 
@@ -61,7 +61,8 @@ class Chat extends Component {
 			<div
 				className={styles.root}
 				onMouseEnter={() => this.handleMouseEnter()}
-				onMouseLeave={() => this.handleMouseLeave()}>
+				onMouseLeave={() => this.handleMouseLeave()}
+			>
 				<span className={styles.heading}>Chat</span>
 				<div className={styles.body}>
 					{this.state.messages.map((item, index) => (
@@ -72,7 +73,7 @@ class Chat extends Component {
 					<textarea
 						className={styles.input}
 						rows="2"
-						value="Type a message..."
+						placeholder="Type a message..."
 					/>
 				</form>
 				{this.state.showWarning && <DisabledMessage />}

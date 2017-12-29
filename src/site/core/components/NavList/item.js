@@ -41,8 +41,8 @@ const NavListItem = ({ filter, category, item }) => {
 
 NavListItem.propTypes = {
 	item: PropTypes.instanceOf(Immutable.Map).isRequired,
-	category: PropTypes.instanceOf(Immutable.Map).isRequired,
-	filter: PropTypes.string.isRequired
+	category: PropTypes.instanceOf(Immutable.Map),
+	filter: PropTypes.string
 };
 
 export default NavListItem;
