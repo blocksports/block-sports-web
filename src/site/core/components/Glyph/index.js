@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const Glyph = props => (
 	<svg width={props.width} height={props.height} className={props.className}>
-	  <use xlinkHref={`/glyphs/glyphs.svg#${props.icon}`} />
+		<use xlinkHref={`/glyphs/glyphs.svg#${props.icon}`} />
 	</svg>
 );
 

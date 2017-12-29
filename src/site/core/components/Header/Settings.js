@@ -19,9 +19,9 @@ const fauxSettings = [
 	'Setting 5',
 ];
 
-const onSettingsItemClick = (e) => {
+const onSettingsItemClick = e => {
 	e.preventDefault();
-}
+};
 
 const Settings = props => {
 	return (
@@ -50,8 +50,16 @@ const Settings = props => {
 							<ul className={styles.settings}>
 								{fauxSettings.map((setting, i) => (
 									<li className={styles.settingsItem} key={i}>
-										<a href="#" className={styles.settingsItemInner} onClick={onSettingsItemClick}>
-											<Glyph icon="cog" height="14" width="14" className={styles.itemGlyph} />
+										<a
+											href="#"
+											className={styles.settingsItemInner}
+											onClick={onSettingsItemClick}>
+											<Glyph
+												icon="cog"
+												height="14"
+												width="14"
+												className={styles.itemGlyph}
+											/>
 											<span className={styles.itemName}>{setting}</span>
 										</a>
 									</li>

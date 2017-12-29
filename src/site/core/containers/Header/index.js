@@ -107,7 +107,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		fetchBlockchainInfo: (...args) => {
 			return dispatch(fetchBlockchainInfo(...args));
-		}
+		},
 	};
 };
 

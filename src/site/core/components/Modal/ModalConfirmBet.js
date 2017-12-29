@@ -250,7 +250,11 @@ class FormStepOne extends Component {
 						</div>
 						<div className={styles.infoToggle}>
 							<a onClick={() => this.handleOptionsToggle()}>
-								<Glyph height="20" width="20" icon={showOptions ? 'up' : 'down'} />
+								<Glyph
+									height="20"
+									width="20"
+									icon={showOptions ? 'up' : 'down'}
+								/>
 							</a>
 						</div>
 					</div>

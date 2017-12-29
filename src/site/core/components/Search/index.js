@@ -33,7 +33,12 @@ const Search = props => (
 							styles.dropdownInner,
 						])}>
 						<div className={dropdownStyles.dropdownWarning} />
-						<Glyph height="40" width="40" icon="search" className={styles.iconLarge} />
+						<Glyph
+							height="40"
+							width="40"
+							icon="search"
+							className={styles.iconLarge}
+						/>
 						<span>{t('core:header.search-disabled-message')}</span>
 					</div>
 				</div>

@@ -4,12 +4,10 @@ import { shallow, mount } from 'enzyme';
 
 import BlockTimer from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<BlockTimer />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

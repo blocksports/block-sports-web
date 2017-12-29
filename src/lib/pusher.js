@@ -1,4 +1,4 @@
-import pako from 'pako';   
+import pako from 'pako';
 import { fetchNavigation } from '../site/core/reducers/navigation';
 import { updateExchange } from '../site/core/reducers/exchange';
 import { updateBlockchainInfo } from '../site/core/reducers/blockchain';
@@ -13,11 +13,11 @@ export function subToMarkets(dispatch, props) {
 	channel.bind('app-update', data => {
 		const decodedData = decodeZlib(data);
 
-		const {blockchain_data, currencies, matches} = decodedData;
+		const { blockchain_data, currencies, matches } = decodedData;
 
-		dispatch(updateExchange(matches, params))
-		dispatch(updatePrice(currencies))
-		dispatch(updateBlockchainInfo(blockchain_data))
+		dispatch(updateExchange(matches, params));
+		dispatch(updatePrice(currencies));
+		dispatch(updateBlockchainInfo(blockchain_data));
 	});
 }
 
@@ -37,12 +37,15 @@ function createMarketsChannel(params, location) {
 	return `markets${sport}${competition}-${order}`;
 }
 
-const decodeZlib = (data) => {
+const decodeZlib = data => {
 	const strData = atob(data);
-	const charData = strData.split('').map( x => x.charCodeAt(0));
+	const charData = strData.split('').map(x => x.charCodeAt(0));
 	const binData = new Uint8Array(charData);
 
 	const decoded = pako.inflate(binData);
-	const decodedString = String.fromCharCode.apply(null, new Uint16Array(decoded));
-	return JSON.parse(decodedString)
-}
+	const decodedString = String.fromCharCode.apply(
+		null,
+		new Uint16Array(decoded)
+	);
+	return JSON.parse(decodedString);
+};

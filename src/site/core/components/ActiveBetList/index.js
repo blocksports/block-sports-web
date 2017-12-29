@@ -23,7 +23,7 @@ const ActiveBetList = props => {
 			))}
 		</div>
 	);
-}
+};
 
 ActiveBetList.propTypes = {
 	className: PropTypes.string,

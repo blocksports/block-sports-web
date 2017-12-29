@@ -25,10 +25,10 @@ class Exchange extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.routeHasUpdated(nextProps)) {
-			console.log(nextProps.location.query)
+			console.log(nextProps.location.query);
 			this.props.fetchMarkets(nextProps.params, nextProps.location.query);
 			subToMarkets(this.props.dispatch, nextProps);
-			unsubFromMarkets(this.props)
+			unsubFromMarkets(this.props);
 		}
 	}
 

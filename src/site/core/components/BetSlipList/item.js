@@ -168,7 +168,6 @@ class BetSlipItem extends Component {
 		});
 	}
 
-
 	render() {
 		const match = this.props.item.get('match');
 		const outcome = this.props.item.get('outcome');

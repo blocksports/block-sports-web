@@ -50,10 +50,10 @@ export const roundByMagnitude = value => {
 
 	// Need to handle e+x, e-x differently
 	if (magnitude < 1) {
-		magnitude = 1/magnitude
-		return Math.round(value * magnitude+0.00001) / magnitude || 0;
+		magnitude = 1 / magnitude;
+		return Math.round(value * magnitude + 0.00001) / magnitude || 0;
 	} else {
-		return Math.round(value / magnitude+0.00001) * magnitude || 0;
+		return Math.round(value / magnitude + 0.00001) * magnitude || 0;
 	}
 };
 
