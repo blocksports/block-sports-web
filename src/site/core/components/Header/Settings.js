@@ -1,20 +1,20 @@
-import React from "react";
-import Transition from "react-transition-group/Transition";
-import classNames from "classnames";
-import Button from "../../components/Button";
-import styles from "./styles.less";
-import dropdown from "../Dropdown";
-import Glyph from "../Glyph";
-import dropdownStyles from "../Dropdown/styles.less";
+import React from 'react';
+import Transition from 'react-transition-group/Transition';
+import classNames from 'classnames';
+import Button from '../../components/Button';
+import styles from './styles.less';
+import dropdown from '../Dropdown';
+import Glyph from '../Glyph';
+import dropdownStyles from '../Dropdown/styles.less';
 import {
 	fadeDefaultStyle,
-	fadeTransitionStyles
-} from "../../../../lib/animation";
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
 const fauxSettings = [
-	["Account", "Wallets", "Interface"],
-	["Active Bets", "Bet History", "Sign Out"],
-	["Support", "Feedback"]
+	['Account', 'Wallets', 'Interface'],
+	['Active Bets', 'Bet History', 'Sign Out'],
+	['Support', 'Feedback'],
 ];
 
 const onSettingsItemClick = e => {
@@ -27,14 +27,13 @@ const Settings = props => {
 			<Button
 				className={classNames([
 					styles.icon,
-					"button-minimal",
-					"button-square",
-					props.showDropdown ? styles.iconActive : null
+					'button-minimal',
+					'button-square',
+					props.showDropdown ? styles.iconActive : null,
 				])}
 				onClick={() =>
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
-				}
-			>
+				}>
 				<Glyph icon="list" size="24" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
@@ -42,13 +41,12 @@ const Settings = props => {
 					<div
 						className={classNames([
 							dropdownStyles.dropdown,
-							styles.settingsDropdown
+							styles.settingsDropdown,
 						])}
 						style={{
 							...fadeDefaultStyle,
-							...fadeTransitionStyles[state]
-						}}
-					>
+							...fadeTransitionStyles[state],
+						}}>
 						<div className={dropdownStyles.dropdownInner}>
 							{fauxSettings.map((settings, i) => (
 								<ul className={styles.settingsList} key={i}>
@@ -57,10 +55,9 @@ const Settings = props => {
 											<a
 												href="#"
 												className={styles.settingsItemInner}
-												onClick={onSettingsItemClick}
-											>
+												onClick={onSettingsItemClick}>
 												<Glyph
-													icon={item.replace(/ /g, "").toLowerCase()}
+													icon={item.replace(/ /g, '').toLowerCase()}
 													size="16"
 													className={styles.itemGlyph}
 												/>

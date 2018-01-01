@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import Transition from "react-transition-group/Transition";
-import PropTypes from "prop-types";
-import Immutable from "immutable";
-import classNames from "classnames";
-import moment from "moment";
-import { t } from "i18next";
-import SkeletonBlock from "../SkeletonBlock";
-import styles from "./style.less";
+import React, { Component } from 'react';
+import Transition from 'react-transition-group/Transition';
+import PropTypes from 'prop-types';
+import Immutable from 'immutable';
+import classNames from 'classnames';
+import moment from 'moment';
+import { t } from 'i18next';
+import SkeletonBlock from '../SkeletonBlock';
+import styles from './style.less';
 import {
 	fadeDefaultStyle,
-	fadeTransitionStyles
-} from "../../../../lib/animation";
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
 class BlockTimer extends Component {
 	constructor(props, context) {
@@ -18,7 +18,7 @@ class BlockTimer extends Component {
 
 		this.state = {
 			secondsSinceUpdate: this.calculateTimeSince(props.lastUpdated),
-			normalisedTime: 0
+			normalisedTime: 0,
 		};
 
 		this.tick = this.tick.bind(this);
@@ -36,7 +36,7 @@ class BlockTimer extends Component {
 			// Normalise time due to clocks being out of sync. Not super accurate but works better
 			this.setState({
 				secondsSinceUpdate: timeSince,
-				normalisedTime: timeNow - nextProps.lastUpdated
+				normalisedTime: timeNow - nextProps.lastUpdated,
 			});
 		}
 	}
@@ -60,7 +60,7 @@ class BlockTimer extends Component {
 		const normalisedTime = this.state.normalisedTime;
 
 		this.setState({
-			secondsSinceUpdate: (secondsDiff - normalisedTime).toFixed(0)
+			secondsSinceUpdate: (secondsDiff - normalisedTime).toFixed(0),
 		});
 	}
 
@@ -89,14 +89,13 @@ class BlockTimer extends Component {
 								className={classNames([styles.root, this.props.className])}
 								style={{
 									...fadeDefaultStyle,
-									...fadeTransitionStyles[state]
-								}}
-							>
+									...fadeTransitionStyles[state],
+								}}>
 								<div className={styles.timeInfo}>
-									{t("core:footer.last-block")} {this.lastBlock}
+									{t('core:footer.last-block')} {this.lastBlock}
 								</div>
 								<div className={styles.timeInfo}>
-									{t("core:footer.average-block")} {this.averageBlock}
+									{t('core:footer.average-block')} {this.averageBlock}
 								</div>
 							</div>
 						)}
@@ -111,7 +110,7 @@ BlockTimer.propTypes = {
 	className: PropTypes.string,
 	lastUpdated: PropTypes.number.isRequired,
 	averageTime: PropTypes.number.isRequired,
-	isLoading: PropTypes.bool.isRequired
+	isLoading: PropTypes.bool.isRequired,
 };
 
 export default BlockTimer;
