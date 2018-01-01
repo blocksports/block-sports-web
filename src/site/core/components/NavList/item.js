@@ -14,13 +14,17 @@ const NavListItem = ({ filter, category, item }) => {
 			<Link
 				to={link}
 				className={styles.item}
-				activeClassName={styles.itemActive}>
+				activeClassName={styles.itemActive}
+			>
 				<div className={styles.itemInner}>
 					<div className={styles.itemLeft}>
 						{!filter && (
 							<Glyph
 								size="14"
-								icon={item.get('id')}
+								icon={item
+									.get('name')
+									.replace(/ /g, '')
+									.toLowerCase()}
 								className={styles.itemIcon}
 							/>
 						)}
