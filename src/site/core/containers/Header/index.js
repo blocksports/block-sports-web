@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Immutable from 'immutable';
-import { Link, IndexLink } from 'react-router';
-import classNames from 'classnames';
-import { t } from 'i18next';
-import { selectExchangeRate } from '../../selectors/currency';
-import { fetchPrice } from '../../reducers/currency';
-import { fetchUser } from '../../reducers/user';
-import { fetchBlockchainInfo } from '../../reducers/blockchain';
-import Button from '../../components/Button';
-import Search from '../../components/Search';
-// import Account from '../../components/Header/Account';
-import Settings from '../../components/Header/Settings';
-import NewAccount from '../../components/Header/NewAccount';
-import styles from './style.less';
-import Logo from '../../../../img/logo-white.svg';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Immutable from "immutable";
+import { Link, IndexLink } from "react-router";
+import classNames from "classnames";
+import { t } from "i18next";
+import { selectExchangeRate } from "../../selectors/currency";
+import { fetchPrice } from "../../reducers/currency";
+import { fetchUser } from "../../reducers/user";
+import { fetchBlockchainInfo } from "../../reducers/blockchain";
+import Search from "../../components/Search";
+import Settings from "../../components/Header/Settings";
+import Notifications from "../../components/Header/Notifications";
+import styles from "./style.less";
+import Logo from "../../../../img/logo-white.svg";
 
 export class Header extends Component {
 	constructor(props, context) {
@@ -29,7 +27,7 @@ export class Header extends Component {
 	}
 
 	convert(amount) {
-		const rate = this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
+		const rate = this.props.currency === "GAS" ? 1 : this.props.exchangeRate;
 		return (rate * amount).toFixed(2);
 	}
 
@@ -39,7 +37,7 @@ export class Header extends Component {
 			currency,
 			price,
 			exchangeCurrency,
-			balance,
+			balance
 		} = this.props;
 		return (
 			<header className={styles.root}>
@@ -51,18 +49,17 @@ export class Header extends Component {
 					<div className={styles.actions}>
 						<div className={styles.balance}>
 							<h5 className={styles.balanceHeading}>
-								{t('core:header.balance')}
+								{t("core:header.balance")}
 							</h5>
 							<span className={styles.balanceAmount}>
-								{this.convert(balance)}{' '}
+								{this.convert(balance)}{" "}
 								<span className={styles.balanceAmountCurrency}>
 									{t(`core:currency.${currency}`)}
 								</span>
 							</span>
 						</div>
 						<Settings />
-						{/*<Account />*/}
-						<NewAccount />
+						<Notifications />
 					</div>
 				</div>
 			</header>
@@ -72,28 +69,28 @@ export class Header extends Component {
 
 Header.propTypes = {
 	path: PropTypes.string.isRequired,
-	user: PropTypes.instanceOf(Immutable.Map),
+	user: PropTypes.instanceOf(Immutable.Map)
 };
 
 const mapStateToProps = state => {
 	return {
-		isLoadingCurrency: state.getIn(['core', 'currency', 'isLoading']),
-		isLoggedIn: state.getIn(['core', 'user', 'isLoggedIn']),
+		isLoadingCurrency: state.getIn(["core", "currency", "isLoading"]),
+		isLoggedIn: state.getIn(["core", "user", "isLoggedIn"]),
 		path: state.getIn([
-			'core',
-			'router',
-			'locationBeforeTransitions',
-			'pathname',
+			"core",
+			"router",
+			"locationBeforeTransitions",
+			"pathname"
 		]),
-		price: state.getIn(['core', 'currency', 'price']),
-		currency: state.getIn(['core', 'currency', 'activeCurrency']),
+		price: state.getIn(["core", "currency", "price"]),
+		currency: state.getIn(["core", "currency", "activeCurrency"]),
 		exchangeCurrency: state.getIn([
-			'core',
-			'currency',
-			'activeExchangeCurrency',
+			"core",
+			"currency",
+			"activeExchangeCurrency"
 		]),
 		exchangeRate: selectExchangeRate(state),
-		balance: state.getIn(['core', 'user', 'user', 'balance']),
+		balance: state.getIn(["core", "user", "user", "balance"])
 	};
 };
 
@@ -107,7 +104,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		fetchBlockchainInfo: (...args) => {
 			return dispatch(fetchBlockchainInfo(...args));
-		},
+		}
 	};
 };
 
