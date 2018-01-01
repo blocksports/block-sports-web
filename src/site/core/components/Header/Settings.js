@@ -40,7 +40,10 @@ const Settings = props => {
 			<Transition in={props.showDropdown} timeout={0}>
 				{state => (
 					<div
-						className={dropdownStyles.dropdown}
+						className={classNames([
+							dropdownStyles.dropdown,
+							styles.settingsDropdown
+						])}
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state]

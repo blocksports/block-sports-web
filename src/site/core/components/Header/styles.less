@@ -4,10 +4,15 @@
 
 :local(.icon) {
 	svg {
-		font-size: 22px;
 		fill: @gray-1;
 		.transitionAll();
 	}
+}
+
+:local(.iconLarge) {
+	display: block;
+	margin: 0 auto @space-l auto;
+	fill: @gray-1;
 }
 
 :local(.icon):not(:local(.iconActive)):hover {
@@ -20,39 +25,39 @@
 	fill: @primary;
 }
 
-:local(.form) {
-	display: flex;
-	flex-wrap: wrap;
-}
+// :local(.form) {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// }
 
-:local(.formInput) {
-	width: 100%;
-	border-radius: @border-radius;
-	border: 1px solid @white-2;
-	font-size: @font-size-s;
-	padding: 0.75em 1.25em;
-	color: @white-2;
-	cursor: not-allowed;
-	margin-bottom: @space-m;
+// :local(.formInput) {
+// 	width: 100%;
+// 	border-radius: @border-radius;
+// 	border: 1px solid @white-2;
+// 	font-size: @font-size-s;
+// 	padding: 0.75em 1.25em;
+// 	color: @white-2;
+// 	cursor: not-allowed;
+// 	margin-bottom: @space-m;
 
-	&:hover,
-	&:focus {
-		color: @white-2;
-	}
+// 	&:hover,
+// 	&:focus {
+// 		color: @white-2;
+// 	}
 
-	&::-webkit-input-placeholder {
-		color: @white-2;
-	}
-	&:-moz-placeholder {
-		color: @white-2;
-	}
-	&::-moz-placeholder {
-		color: @white-2;
-	}
-	&:-ms-input-placeholder {
-		color: @white-2;
-	}
-}
+// 	&::-webkit-input-placeholder {
+// 		color: @white-2;
+// 	}
+// 	&:-moz-placeholder {
+// 		color: @white-2;
+// 	}
+// 	&::-moz-placeholder {
+// 		color: @white-2;
+// 	}
+// 	&:-ms-input-placeholder {
+// 		color: @white-2;
+// 	}
+// }
 
 :local(.formSubmit) {
 	margin-left: auto;
@@ -64,7 +69,11 @@
 
 :local(.settingsRoot) {
 	position: relative;
-	margin-right: 0.5rem;
+	margin-right: 1rem;
+}
+
+:local(.settingsDropdown) {
+	width: 12rem;
 }
 
 :local(.settingsList) {
@@ -119,26 +128,45 @@
  * New Account 
  */
 
-:local(.naRoot) {
+// :local(.naRoot) {
+// 	position: relative;
+// 	margin-left: @space-l;
+// }
+
+// :local(.naBody) {
+// 	margin: 0 0 @space 0;
+// 	font-size: @font-size-s;
+// 	text-align: center;
+// 	color: @white-2;
+// }
+
+// :local(.naDisabledIcon) {
+// 	fill: @gray-1;
+// }
+
+// :local(.naHeading) {
+// 	display: block;
+// 	width: 80%;
+// 	margin: @space auto;
+// 	color: @error;
+// 	font-size: @font-size;
+// }
+
+/*
+ * Notifications
+ */
+
+:local(.notificationsRoot) {
 	position: relative;
-	margin-left: @space-l;
 }
 
-:local(.naBody) {
-	margin: 0 0 @space 0;
-	font-size: @font-size-s;
+:local(.notificationsDropdown) {
+	width: 18rem;
 	text-align: center;
-	color: @white-2;
 }
 
-:local(.naDisabledIcon) {
-	fill: @gray-1;
-}
-
-:local(.naHeading) {
-	display: block;
-	width: 80%;
-	margin: @space auto;
+:local(.notificationsDropdownInner) {
+	text-align: center;
+	padding: @space-l;
 	color: @error;
-	font-size: @font-size;
 }
