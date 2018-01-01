@@ -12,11 +12,9 @@ import {
 } from "../../../../lib/animation";
 
 const fauxSettings = [
-	"Setting 1",
-	"Long Setting 2",
-	"Setting 3",
-	"Long Setting 4",
-	"Setting 5"
+	["Account", "Wallets", "Interface"],
+	["Active Bets", "Bet History", "Sign Out"],
+	["Support", "Feedback"]
 ];
 
 const onSettingsItemClick = e => {
@@ -37,7 +35,7 @@ const Settings = props => {
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
 				}
 			>
-				<Glyph icon="cog" size="24" />
+				<Glyph icon="viewlist" size="24" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
 				{state => (
@@ -49,24 +47,26 @@ const Settings = props => {
 						}}
 					>
 						<div className={dropdownStyles.dropdownInner}>
-							<ul className={styles.settings}>
-								{fauxSettings.map((setting, i) => (
-									<li className={styles.settingsItem} key={i}>
-										<a
-											href="#"
-											className={styles.settingsItemInner}
-											onClick={onSettingsItemClick}
-										>
-											<Glyph
-												icon="cog"
-												size="14"
-												className={styles.itemGlyph}
-											/>
-											<span className={styles.itemName}>{setting}</span>
-										</a>
-									</li>
-								))}
-							</ul>
+							{fauxSettings.map((settings, i) => (
+								<ul className={styles.settingsList} key={i}>
+									{settings.map((item, i) => (
+										<li className={styles.settingsItem} key={i}>
+											<a
+												href="#"
+												className={styles.settingsItemInner}
+												onClick={onSettingsItemClick}
+											>
+												<Glyph
+													icon={item.replace(/ /g, "").toLowerCase()}
+													size="16"
+													className={styles.itemGlyph}
+												/>
+												<span className={styles.itemName}>{item}</span>
+											</a>
+										</li>
+									))}
+								</ul>
+							))}
 						</div>
 					</div>
 				)}

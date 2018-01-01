@@ -67,15 +67,18 @@
 	margin-right: 0.5rem;
 }
 
-:local(.settings) {
+:local(.settingsList) {
 	list-style: none;
-	padding: 0.2rem @site-panel-spacing;
-	margin: 0;
+	padding: 0.5rem 0;
+	margin: 0 @site-panel-spacing;
+
+	&:not(:last-of-type) {
+		border-bottom: 1px solid @border-3;
+	}
 }
 
 :local(.settingsItem) {
 	padding: 0.3rem 0;
-	color: @white-2;
 	.transitionAll();
 
 	&:hover,
@@ -83,10 +86,6 @@
 		:local(.settingsItemInner) {
 			background-color: @black-3;
 		}
-	}
-
-	:local(.itemGlyph) {
-		fill: currentColor;
 	}
 
 	&:not(:first-child) {
@@ -102,11 +101,14 @@
 	border-radius: @border-radius;
 	.transitionAll();
 	cursor: not-allowed;
+	color: @white-2;
 }
 
 :local(.itemGlyph) {
 	display: inline-block;
-	margin-right: @space-xs;
+	margin-right: 0.35rem;
+	fill: currentColor;
+	opacity: 0.85;
 }
 
 :local(.itemName) {
