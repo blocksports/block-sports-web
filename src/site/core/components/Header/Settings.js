@@ -35,7 +35,7 @@ const Settings = props => {
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
 				}
 			>
-				<Glyph icon="viewlist" size="24" />
+				<Glyph icon="list" size="24" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
 				{state => (
