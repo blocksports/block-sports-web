@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Immutable from "immutable";
-import classNames from "classnames";
-import { t } from "i18next";
-import styles from "./style.less";
-import Button from "../Button";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Immutable from 'immutable';
+import classNames from 'classnames';
+import { t } from 'i18next';
+import styles from './style.less';
+import Button from '../Button';
 
 class SpinBox extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputValue: props.value
+			inputValue: props.value,
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.increment = this.increment.bind(this);
@@ -20,17 +20,15 @@ class SpinBox extends Component {
 	componentWillUpdate(nextProps) {
 		if (this.state.inputValue !== nextProps.value) {
 			this.setState({
-				inputValue: nextProps.value
+				inputValue: nextProps.value,
 			});
 		}
 	}
 
 	handleInputChange(e) {
-		return e => {
-			if (/^[0-9.]*$/.test(e.target.value)) {
-				this.props.onChange(e.target.value);
-			}
-		};
+		if (/^[0-9.]*$/.test(e.target.value)) {
+			this.props.onChange(e.target.value);
+		}
 	}
 
 	increment() {
@@ -38,7 +36,7 @@ class SpinBox extends Component {
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
 			this.setState({
-				inputValue: nextValue
+				inputValue: nextValue,
 			});
 		}
 	}
@@ -48,7 +46,7 @@ class SpinBox extends Component {
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
 			this.setState({
-				inputValue: parseFloat(this.state.inputValue) - 2
+				inputValue: parseFloat(this.state.inputValue) - 2,
 			});
 		}
 	}
@@ -61,7 +59,7 @@ class SpinBox extends Component {
 						className={styles.input}
 						value={this.state.inputValue}
 						placeholder={this.props.placeholder}
-						onChange={this.handleInputChange}
+						onChange={e => this.handleInputChange(e)}
 					/>
 				</div>
 				<div className={styles.buttons}>
@@ -82,7 +80,7 @@ class SpinBox extends Component {
 SpinBox.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 	onChange: PropTypes.func.isRequired,
-	className: PropTypes.string
+	className: PropTypes.string,
 };
 
 export default SpinBox;
