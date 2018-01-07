@@ -259,7 +259,8 @@ class MarketListItem extends Component {
 						<Button
 							className="button-white button-s"
 							onClick={this.handleConfirmClick(runner)}
-							isDisabled={!this.state.stake}>
+							isDisabled={!this.state.stake}
+						>
 							{t('core:markets.item.confirm')}
 						</Button>
 					</div>
@@ -310,7 +311,8 @@ class MarketListItem extends Component {
 					`button-${type}`,
 				])}
 				onClick={this.handleOddsClick(outcome, bet, type)}
-				key={idx}>
+				key={idx}
+			>
 				<span className="odds">{bet.get('odds')}</span>
 				<span className="matched">
 					{round(bet.get('available') * this.exchangeRate, 2)}{' '}
@@ -334,8 +336,10 @@ class MarketListItem extends Component {
 	get contentSuspended() {
 		return (
 			<div className={styles.suspended}>
-				<div>In-play</div>
-				<div>Betting Disabled</div>
+				<span>
+					In-play<br />
+					Betting Disabled
+				</span>
 			</div>
 		);
 	}
