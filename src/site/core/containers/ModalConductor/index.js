@@ -7,14 +7,19 @@ import ModalConfirmBet from '../../components/Modal/ModalConfirmBet';
 import ModalMobileWarning from '../../components/Modal/ModalMobileWarning';
 
 export class ModalConductor extends Component {
+	constructor(props) {
+		super(props);
+		this.dispatchMobileWarning = this.dispatchMobileWarning.bind(this);
+	}
+
 	componentDidMount() {
 		this.dispatchMobileWarning();
-		window.addEventListener('resize', () => this.dispatchMobileWarning());
+		window.addEventListener('resize', this.dispatchMobileWarning);
 	}
 
 	dispatchMobileWarning() {
 		const { currentModal, setCurrentModal } = this.props;
-		if (window.innerWidth < 975) {
+		if (window.innerWidth < 1140) {
 			setCurrentModal('mobileWarning');
 		} else {
 			if (currentModal === 'mobileWarning') {
