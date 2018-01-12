@@ -9,6 +9,7 @@ import Glyph from '../Glyph';
 import styles from './confirmBet.less';
 import DemoQrImage from '../../../../img/demo-qr.png';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
+import { getMatchName } from '../../../../lib/utils';
 import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
@@ -48,7 +49,8 @@ class ModalConfirmBet extends Component {
 									'button-m',
 									`button-${betType}`,
 								])}
-								onClick={() => this.updateStep(2)}>
+								onClick={() => this.updateStep(2)}
+							>
 								Next
 							</Button>
 						</div>
@@ -61,12 +63,14 @@ class ModalConfirmBet extends Component {
 						<div className={styles.buttonContainer}>
 							<Button
 								className={classNames(['button-m', `button-${betType}`])}
-								onClick={() => this.updateStep(1)}>
+								onClick={() => this.updateStep(1)}
+							>
 								Back
 							</Button>
 							<Button
 								className={classNames(['button-m', 'button-white'])}
-								onClick={() => this.props.setCurrentModal(null)}>
+								onClick={() => this.props.setCurrentModal(null)}
+							>
 								Done
 							</Button>
 						</div>
@@ -151,7 +155,8 @@ class FormStepOne extends Component {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}>
+						}}
+					>
 						<div className={styles.highlight}>
 							<div className={styles.row}>
 								<div>
@@ -159,7 +164,8 @@ class FormStepOne extends Component {
 										className={classNames([
 											styles.bodyHeadingType,
 											confirmingBet.getIn(['type']),
-										])}>
+										])}
+									>
 										{confirmingBet.getIn(['type'])}
 									</span>
 									<h5 className={styles.bodyHeading}>
@@ -183,7 +189,7 @@ class FormStepOne extends Component {
 									<div className={styles.info}>
 										<span className={styles.truncate}>
 											{confirmingBet.get('competition_name')} |{' '}
-											{confirmingBet.get('name')}
+											{getMatchName(confirmingBet)}
 										</span>
 										<span>
 											{dateTime(
@@ -287,12 +293,14 @@ class FormStepTwo extends Component {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}>
+						}}
+					>
 						<div
 							className={classNames([
 								styles.formContainer,
 								styles.formContainerStepTwo,
-							])}>
+							])}
+						>
 							{showWarning && (
 								<Transition appear={true} in={true} timeout={0}>
 									{state => (
@@ -300,7 +308,8 @@ class FormStepTwo extends Component {
 											style={{
 												...fadeDefaultStyle,
 												...fadeTransitionStyles[state],
-											}}>
+											}}
+										>
 											<div className={styles.warning}>
 												<h6 className={styles.warningHeading}>
 													Sorry! You can't bet right now.

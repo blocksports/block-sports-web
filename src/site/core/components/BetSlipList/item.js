@@ -6,7 +6,7 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import { t } from 'i18next';
 import Glyph from '../Glyph';
-import { getParticipantName } from '../../../../lib/utils';
+import { getParticipantName, getMatchName } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
@@ -188,12 +188,13 @@ class BetSlipItem extends Component {
 									'button-m',
 									'button-square',
 								])}
-								onClick={this.handleRemoveClick}>
+								onClick={this.handleRemoveClick}
+							>
 								<Glyph size="14" icon="close" />
 							</Button>
 						</div>
 					</div>
-					<span className={styles.headerSub}>{match.get('name')}</span>
+					<span className={styles.headerSub}>{getMatchName(match)}</span>
 				</header>
 
 				<div className={styles.details}>
@@ -249,7 +250,8 @@ class BetSlipItem extends Component {
 								`button-${type}`,
 							])}
 							onClick={this.handleBetClick(match, outcome)}
-							isDisabled={this.isDisabled}>
+							isDisabled={this.isDisabled}
+						>
 							{t(`core:bets.bet-slip.button-${type}`)}
 						</Button>
 					</div>
