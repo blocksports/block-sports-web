@@ -4,7 +4,7 @@
 
 @spaceRunner: 0.3rem;
 @itemBg: @black-5;
-@runnerHoverBg: #2d2d30;
+@runnerHoverBg: #32343e;
 
 :local(.group) {
   padding: @site-panel-spacing;
@@ -64,11 +64,9 @@
   min-height: 38px;
   display: flex;
   align-items: center;
-
   &:not(:last-of-type) {
     border-bottom: 1px solid @border-2;
   }
-
   &:hover {
     background-color: @runnerHoverBg;
   }
@@ -142,5 +140,4 @@
   align-items: center;
   border-right: 1px solid @border-2;
   text-transform: uppercase;
-  text-align: center;
 }
