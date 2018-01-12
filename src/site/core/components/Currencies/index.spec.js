@@ -1,13 +1,10 @@
 import React from 'react';
-import Immutable from 'immutable';
-import { shallow, mount } from 'enzyme';
-
+import { mount } from 'enzyme';
 import Currencies from './';
 
-const minProps = {};
-
 describe('<Currencies />', () => {
-	it('Should', () => {
-		expect(true).toEqual(true);
+	it('Should render', () => {
+		const root = mount(<Currencies />);
+		expect(root.length).toBe(1);
 	});
 });

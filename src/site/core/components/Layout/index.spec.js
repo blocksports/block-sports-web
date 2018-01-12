@@ -1,11 +1,5 @@
-jest.mock('../../containers/Header', () => 'Header');
-jest.mock('../../containers/Navigation', () => 'Navigation');
-
 import React from 'react';
-import Immutable from 'immutable';
-
 import { mount } from 'enzyme';
-
 import Layout from './';
 
 describe('<Layout />', () => {

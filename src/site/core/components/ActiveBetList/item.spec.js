@@ -1,13 +1,10 @@
 import React from 'react';
-import Immutable from 'immutable';
-import { shallow, mount } from 'enzyme';
-
-import ActiveBetListItem from './';
-
-const minProps = {};
+import { mount } from 'enzyme';
+import ActiveBetListItem from './item';
 
 describe('<ActiveBetListItem />', () => {
-	it('Should', () => {
-		expect(true).toEqual(true);
+	it('Should render', () => {
+		const root = mount(<ActiveBetListItem />);
+		expect(root.length).toBe(1);
 	});
 });
