@@ -1,10 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import BetSlipListItem from './item';
+import Immutable from 'immutable';
+import { shallow, mount } from 'enzyme';
 
-describe('<BetSlipListItem />', () => {
-	it('Should render', () => {
-		const root = mount(<BetSlipListItem />);
-		expect(root.length).toBe(1);
+import BetSlipItem from './';
+
+const minProps = {};
+
+describe('<BetSlipItem />', () => {
+	it('Should', () => {
+		expect(true).toEqual(true);
 	});
 });

@@ -1,10 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import Immutable from 'immutable';
+import { shallow, mount } from 'enzyme';
+
 import BlockTimer from './';
 
+const minProps = {};
+
 describe('<BlockTimer />', () => {
-	it('Should render', () => {
-		const root = mount(<BlockTimer />);
-		expect(root.length).toBe(1);
+	it('Should', () => {
+		expect(true).toEqual(true);
 	});
 });

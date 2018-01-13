@@ -1,10 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import Immutable from 'immutable';
+import { shallow, mount } from 'enzyme';
+
 import Button from './';
 
+const minProps = {};
+
 describe('<Button />', () => {
-	it('Should render', () => {
-		const root = mount(<Button />);
-		expect(root.length).toBe(1);
+	it('Should', () => {
+		expect(true).toEqual(true);
 	});
 });
