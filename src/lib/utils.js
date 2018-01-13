@@ -73,5 +73,5 @@ export const getParticipantName = (item, outcome) => {
 };
 
 export const getMatchName = match => {
-	return match.get('name').replace(/([a-zA-Z])[_]([a-zA-Z])/, '$1 v $2');
+	return match.get('name').replace(/([a-zA-Z])[_]([a-zA-Z])/, '$1 vs $2');
 };
