@@ -61,7 +61,7 @@
 :local(.runnerRow) {
   flex: 0 0 100%;
   padding: @spaceRunner @spaceRunner @spaceRunner @space;
-  min-height: 43px;
+  min-height: 38px;
   display: flex;
   align-items: center;
   &:not(:last-of-type) {
@@ -133,11 +133,14 @@
 }
 
 :local(.suspended) {
-  width: 172px; // Need a better solution for this
+  width: 171px; // Need a better solution for this
+  flex: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-right: 1px solid @border-2;
+  padding: 0 @space-s;
   text-transform: uppercase;
+  text-align: center;
 }
