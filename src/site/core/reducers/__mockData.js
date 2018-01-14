@@ -135,6 +135,13 @@ export const mockNavigation = [
 		count: 27,
 		competitions: [],
 	},
+	{
+		id: 'tennis',
+		name: 'Tennis',
+		type: 'sport',
+		count: 20,
+		competitions: [],
+	},
 ];
 
 export const mockMarkets = [
