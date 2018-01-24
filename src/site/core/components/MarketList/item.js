@@ -83,7 +83,7 @@ class MarketListItem extends Component {
 						{t('core:markets.item.matched')}
 					</span>
 					<span className={styles.sidePool}>
-						{round(this.props.item.get('matched') * this.exchangeRate, 2)}
+						{this.printNumber(this.props.item.get('matched'))}
 					</span>
 					<span className={styles.sideCurrency}>
 						{t(`core:currency.${this.props.currency}`)}
@@ -108,6 +108,18 @@ class MarketListItem extends Component {
 
 	get showDraw() {
 		return false;
+	}
+
+	printNumber(number) {
+		number = number * this.exchangeRate;
+
+		if (this.props.currency == 'GAS') {
+			number = round(number, 1);
+		} else {
+			number = round(number, 0);
+		}
+
+		return number.toLocaleString();
 	}
 
 	// Filters bets based on the minimum available pre-matched
@@ -277,24 +289,13 @@ class MarketListItem extends Component {
 			) || Immutable.List();
 
 		let betArray = [];
-
+		
 		bets.forEach((bet, idx) => {
 			betArray.push(this.renderBetButton(outcome, bet, type, idx));
 		});
 
-		while (this.props.showDetail && betArray.length < 3) {
-			betArray.push(
-				<div className="bet-button bet-button-empty" key={Math.random()}>
-					<Button
-						className={classNames([
-							styles.oddsButton,
-							'button-bet',
-							'btn-empty',
-						])}
-						onClick={this.handleOddsClick(outcome, Immutable.Map(), type)}
-					/>
-				</div>
-			);
+		if (betArray.length < 1) {
+			return this.renderBlankButton(outcome, type);
 		}
 
 		if (type === 'back') betArray.reverse();
@@ -315,10 +316,25 @@ class MarketListItem extends Component {
 			>
 				<span className="odds">{bet.get('odds')}</span>
 				<span className="matched">
-					{round(bet.get('available') * this.exchangeRate, 2)}{' '}
+					{this.printNumber(bet.get('available'))}&nbsp;
 					{t(`core:currency.${this.props.currency}`)}
 				</span>
 			</Button>
+		);
+	}
+
+	renderBlankButton(outcome, type) {
+		const emptyBet = Immutable.fromJS({odds: 0, available: 0})
+		return (
+			<Button
+				className={classNames([
+					styles.oddsButton,
+					'button-bet',
+					`button-${type}`,
+				])}
+				onClick={this.handleOddsClick(outcome, emptyBet, type)}
+				key={`blank-${type}`}
+			/>				
 		);
 	}
 

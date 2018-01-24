@@ -3,8 +3,17 @@ import { fetchNavigation } from '../site/core/reducers/navigation';
 import { updateExchange } from '../site/core/reducers/exchange';
 import { updateBlockchainInfo } from '../site/core/reducers/blockchain';
 import { updatePrice } from '../site/core/reducers/currency';
+import { exists } from 'fs';
+import { isObject } from 'util';
 
 export function subToMarkets(dispatch, props) {
+	try {
+		pusher
+	} catch(err) {
+		console.log("No internet connection, cannot connect to pusher")
+		return		
+	}
+
 	const { params, location } = props;
 	const channelName = createMarketsChannel(params, location);
 
