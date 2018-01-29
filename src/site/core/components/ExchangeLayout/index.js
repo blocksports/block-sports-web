@@ -5,6 +5,7 @@ import Immutable from 'immutable';
 import { t } from 'i18next';
 import Bets from '../Bets';
 import Chat from '../Chat';
+import CardBanner from '../../containers/CardBanner';
 import Navigation from '../../containers/Navigation';
 import Markets from '../../containers/Markets';
 import MarketDetail from '../../containers/MarketDetail';
@@ -21,7 +22,9 @@ const ExchangeLayout = props => (
 			</div>
 			<div className={styles.main}>
 				<Scrollbars>
-					{/*<figure className={styles.mainMedia} />*/}
+					<div className={styles.mainMedia}>
+						<CardBanner/>
+					</div>
 					<div className={styles.mainMarket}>
 						{props.params.entity === 'market' && (
 							<MarketDetail params={props.params} />
