@@ -4,9 +4,10 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
 import ReactTooltip from 'react-tooltip';
-import { orderByDate } from '../../../../lib/utils';
+import { getParticipantName, getMatchName } from '../../../../lib/utils';
 import styles from './style.less';
 import SpinBox from '../SpinBox';
+import Status from '../Status';
 
 class ActiveBetListItem extends Component {
 	constructor(props) {
@@ -37,26 +38,22 @@ class ActiveBetListItem extends Component {
 
 	render() {
 		const { bet, currency } = this.props;
-		const status = bet.get('status');
 		const type = bet.get('type');
 		return (
 			<article className={classNames([styles.itemRoot, type])}>
 				<header className={styles.header}>
-					<div className={styles.headerTop}>
-						<div>
-							<span className={styles.headerTitle}>
-								{bet.get('runner_name')}
-							</span>
-							<span className={styles.headerSub}>{bet.get('name')}</span>
+					<div className={styles.headerInfo}>
+						<div className={styles.heading}>
+							<span>{bet.get('runner_name')}</span>
 						</div>
-						<div>
-							<div className={classNames(styles.status, status)}>
-								<span>{t(`core:bets.active.${status}`)}</span>
-							</div>
+						<div className={styles.headingSub}>
+							<span>{getMatchName(bet)}</span>
 						</div>
 					</div>
+					<div className={styles.headerStatus}>
+						<Status status={bet.get('status')} />
+					</div>
 				</header>
-
 				<div className={styles.details}>
 					<div className={styles.detailsItem}>
 						<div className={styles.detailsHeading}>
@@ -64,7 +61,6 @@ class ActiveBetListItem extends Component {
 						</div>
 						<span className={styles.detailsValue}>{this.state.odds}</span>
 					</div>
-
 					<div className={styles.detailsItem}>
 						<div className={styles.detailsHeading}>
 							<span>Stake</span>
@@ -72,7 +68,6 @@ class ActiveBetListItem extends Component {
 						</div>
 						<span className={styles.detailsValue}>{this.state.stake}</span>
 					</div>
-
 					{type === 'back' && (
 						<div className={styles.detailsItem}>
 							<div className={styles.detailsHeading}>
@@ -82,7 +77,6 @@ class ActiveBetListItem extends Component {
 							<span className={styles.detailsValue}>{this.state.profit}</span>
 						</div>
 					)}
-
 					{type === 'lay' && (
 						<div className={styles.detailsItem}>
 							<div className={styles.detailsHeading}>
@@ -94,7 +88,6 @@ class ActiveBetListItem extends Component {
 							</span>
 						</div>
 					)}
-
 					<div className={styles.detailsItem}>
 						<div className={styles.detailsHeading}>
 							<span>Matched</span>

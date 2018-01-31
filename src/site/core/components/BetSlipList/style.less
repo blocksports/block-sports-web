@@ -30,18 +30,21 @@
 :local(.headerTop) {
 }
 
-:local(.headerTitle) {
-  width: 205px;
+:local(.heading) {
+  width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-:local(.headerSub) {
-  display: block;
+:local(.headingSub) {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1rem;
   color: @gray-1;
   font-size: @font-size-s;
-  margin-top: 0.1rem;
 }
 
 :local(.removeButton) {
@@ -122,7 +125,7 @@
   padding: 0;
   color: @gray-1;
   height: auto;
-  
+
   &:hover,
   &:focus {
     color: @white-1;

@@ -22,55 +22,34 @@
 }
 
 :local(.header) {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: @space-s;
 }
 
-:local(.headerTop) {
-  display: flex;
-  justify-content: space-between;
+:local(.headerInfo) {
+  flex: 1;
+  padding-right: @space;
+  overflow: hidden;
 }
 
-:local(.headerTitle) {
-  width: 205px;
+:local(.headerStatus) {
+  flex: none;
+}
+
+:local(.heading) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-:local(.headerSub) {
-  display: block;
+:local(.headingSub) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1rem;
   color: @gray-1;
   font-size: @font-size-s;
-  margin-top: 0.1rem;
-}
-
-:local(.status) {
-  display: inline-flex;
-  align-items: center;
-  border-radius: @border-radius;
-  padding: 0 0.5rem;
-  height: 1rem;
-  background-color: @site-panel-bg;
-
-  span {
-    text-transform: uppercase;
-    height: @font-size-xs;
-    font-size: @font-size-xs;
-  }
-
-  &.pending span {
-    color: #eae16c;
-    background-color: fade(#eae16c, 8%);
-  }
-
-  &.active span {
-    background-color: fade(@primary, 8%);
-    color: @primary;
-  }
-
-  &.filled span {
-    color: @white-1;
-  }
 }
 
 :local(.details) {

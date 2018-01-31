@@ -36,13 +36,13 @@
     "header-time": "Starting Soon",
     "header-popular": "Popular",
     "item": {
-      "bet-for": "BET FOR",
-      "odds": "ODDS",
-      "bet": "BET",
-      "profit": "PROFIT",
-      "confirm": "CONFIRM BET",
-      "matched": "MATCHED",
-      "rules": "RULES"
+      "bet-for": "Bet for",
+      "odds": "Odds",
+      "bet": "Bet",
+      "profit": "Profit",
+      "confirm": "Confirm bet",
+      "matched": "Matched",
+      "rules": "Rules"
     }
   },
   "bets": {
@@ -50,26 +50,26 @@
     "active-tab": "Active Bets",
     "active": {
       "is-empty": "You have no active bets",
-      "runner": "RUNNER",
-      "odds": "ODDS",
-      "matched": "MATCHED",
-      "status": "STATUS",
-      "pending": "PENDING",
-      "active": "ACTIVE",
-      "filled": "FILLED",
+      "runner": "Runner",
+      "odds": "Odds",
+      "matched": "Matched",
+      "status": "Status",
+      "pending": "Pending",
+      "active": "Active",
+      "filled": "Filled",
       "pending-info":
         "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
     },
     "bet-slip": {
       "is-empty": "No bets selected",
-      "runner-back": "BET FOR",
-      "runner-lay": "BET AGAINST",
-      "odds": "ODDS",
-      "stake": "BET",
-      "profit-back": "PROFIT",
-      "profit-lay": "LIABILITY",
-      "button-back": "BACK",
-      "button-lay": "LAY",
+      "runner-back": "Bet for",
+      "runner-lay": "Bet against",
+      "odds": "Odds",
+      "stake": "Bet",
+      "profit-back": "Profit",
+      "profit-lay": "Liability",
+      "button-back": "Back",
+      "button-lay": "Lay",
       "remove-all": "Remove All"
     }
   },

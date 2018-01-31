@@ -171,32 +171,30 @@ class BetSlipItem extends Component {
 	render() {
 		const match = this.props.item.get('match');
 		const outcome = this.props.item.get('outcome');
-
 		const { type, currency } = this.props;
 		return (
 			<article className={classNames([styles.itemRoot, type])}>
 				<header className={styles.header}>
-					<div className={styles.headerTop}>
-						<span className={styles.headerTitle}>
-							{getParticipantName(match, outcome)}
-						</span>
-						<div>
-							<Button
-								className={classNames([
-									styles.removeButton,
-									'button-minimal',
-									'button-m',
-									'button-square',
-								])}
-								onClick={this.handleRemoveClick}
-							>
-								<Glyph size="14" icon="close" />
-							</Button>
-						</div>
+					<div className={styles.heading}>
+						<span>{getParticipantName(match, outcome)}</span>
 					</div>
-					<span className={styles.headerSub}>{getMatchName(match)}</span>
+					<div>
+						<Button
+							className={classNames([
+								styles.removeButton,
+								'button-minimal',
+								'button-m',
+								'button-square',
+							])}
+							onClick={this.handleRemoveClick}
+						>
+							<Glyph size="14" icon="close" />
+						</Button>
+					</div>
+					<div className={styles.headingSub}>
+						<span>{getMatchName(match)}</span>
+					</div>
 				</header>
-
 				<div className={styles.details}>
 					<div className={styles.detailsItem}>
 						<div className={styles.detailsHeading}>
