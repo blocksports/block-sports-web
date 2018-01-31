@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import Transition from 'react-transition-group/Transition';
-import Button from '../../components/Button';
+import Button from '../Button';
 import classNames from 'classnames';
 import { t } from 'i18next';
 import Glyph from '../Glyph';
 import dropdown from '../Dropdown';
+import NotificationItem from './item';
 import dropdownStyles from '../Dropdown/styles.less';
 import {
 	fadeDefaultStyle,
@@ -13,7 +16,7 @@ import {
 import styles from './styles.less';
 
 const Notifications = props => (
-	<div className={styles.notificationsRoot}>
+	<div className={styles.root}>
 		<Button
 			className={classNames([
 				styles.icon,
@@ -23,37 +26,40 @@ const Notifications = props => (
 			])}
 			onClick={() =>
 				props.showDropdown ? props.closeDropdown() : props.openDropdown()
-			}>
+			}
+		>
 			<Glyph icon="notifications" size="24" />
 		</Button>
 		<Transition in={props.showDropdown} timeout={0}>
 			{state => (
 				<div
-					className={classNames([
-						dropdownStyles.dropdown,
-						styles.notificationsDropdown,
-					])}
+					className={classNames([dropdownStyles.dropdown, styles.dropdown])}
 					style={{
 						...fadeDefaultStyle,
 						...fadeTransitionStyles[state],
-					}}>
+					}}
+				>
 					<div
 						className={classNames([
 							dropdownStyles.dropdownInner,
-							styles.notificationsDropdownInner,
-						])}>
-						<div className={dropdownStyles.dropdownWarning} />
-						<Glyph
-							size="40"
-							icon="notifications"
-							className={styles.iconLarge}
-						/>
-						<span>{t('core:header.notifications-disabled-message')}</span>
+							styles.dropdownInner,
+						])}
+					>
+						{props.notifications.map(notification => (
+							<NotificationItem
+								key={notification.get('id')}
+								notification={notification}
+							/>
+						))}
 					</div>
 				</div>
 			)}
 		</Transition>
 	</div>
 );
+
+Notifications.propTypes = {
+	notifications: PropTypes.instanceOf(Immutable.List).isRequired,
+};
 
 export default dropdown(Notifications);

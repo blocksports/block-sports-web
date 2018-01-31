@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import styles from './styles.less';
 import dropdown from '../Dropdown';
 import Glyph from '../Glyph';
+import Item from './item';
 import dropdownStyles from '../Dropdown/styles.less';
 import {
 	fadeDefaultStyle,
@@ -17,13 +18,9 @@ const fauxSettings = [
 	['Support', 'Feedback'],
 ];
 
-const onSettingsItemClick = e => {
-	e.preventDefault();
-};
-
 const Settings = props => {
 	return (
-		<div className={styles.settingsRoot}>
+		<div className={styles.root}>
 			<Button
 				className={classNames([
 					styles.icon,
@@ -33,38 +30,23 @@ const Settings = props => {
 				])}
 				onClick={() =>
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
-				}>
+				}
+			>
 				<Glyph icon="list" size="24" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
 				{state => (
 					<div
-						className={classNames([
-							dropdownStyles.dropdown,
-							styles.settingsDropdown,
-						])}
+						className={classNames([dropdownStyles.dropdown, styles.dropdown])}
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}>
+						}}
+					>
 						<div className={dropdownStyles.dropdownInner}>
 							{fauxSettings.map((settings, i) => (
-								<ul className={styles.settingsList} key={i}>
-									{settings.map((item, i) => (
-										<li className={styles.settingsItem} key={i}>
-											<a
-												href="#"
-												className={styles.settingsItemInner}
-												onClick={onSettingsItemClick}>
-												<Glyph
-													icon={item.replace(/ /g, '').toLowerCase()}
-													size="16"
-													className={styles.itemGlyph}
-												/>
-												<span className={styles.itemName}>{item}</span>
-											</a>
-										</li>
-									))}
+								<ul className={styles.list} key={i}>
+									{settings.map((item, i) => <Item item={item} key={i} />)}
 								</ul>
 							))}
 						</div>

@@ -1,0 +1,27 @@
+@import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
+
+:local(.root) {
+	display: inline-block;
+	padding: 0 0.5rem;
+	height: 1rem;
+	border-radius: @border-radius;
+	background-color: @site-panel-bg;
+}
+
+:local(.text) {
+	text-transform: uppercase;
+	font-size: @font-size-xs;
+}
+
+:local(.pending) {
+	color: #eae16c;
+}
+
+:local(.active) {
+	color: @primary;
+}
+
+:local(.filled) {
+	color: @white-1;
+}

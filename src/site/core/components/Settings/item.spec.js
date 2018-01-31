@@ -1,11 +1,11 @@
 import React from 'react';
 import Immutable from 'immutable';
 import { shallow, mount } from 'enzyme';
-import Notifications from './Notifications';
+import Item from './item';
 
 const minProps = {};
 
-describe('<Notifications />', () => {
+describe('<Item />', () => {
 	it('Should', () => {
 		expect(true).toEqual(true);
 	});

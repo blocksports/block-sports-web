@@ -10,8 +10,8 @@ import { fetchPrice } from '../../reducers/currency';
 import { fetchUser } from '../../reducers/user';
 import { fetchBlockchainInfo } from '../../reducers/blockchain';
 import Search from '../../components/Search';
-import Settings from '../../components/Header/Settings';
-import Notifications from '../../components/Header/Notifications';
+import Settings from '../../components/Settings';
+import Notifications from '../../components/Notifications';
 import styles from './style.less';
 import Logo from '../../../../img/logo-white.svg';
 
@@ -38,6 +38,7 @@ export class Header extends Component {
 			price,
 			exchangeCurrency,
 			balance,
+			notifications,
 		} = this.props;
 		return (
 			<header className={styles.root}>
@@ -58,8 +59,8 @@ export class Header extends Component {
 								</span>
 							</span>
 						</div>
+						<Notifications notifications={notifications} />
 						<Settings />
-						<Notifications />
 					</div>
 				</div>
 			</header>
@@ -91,6 +92,7 @@ const mapStateToProps = state => {
 		]),
 		exchangeRate: selectExchangeRate(state),
 		balance: state.getIn(['core', 'user', 'user', 'balance']),
+		notifications: state.getIn(['core', 'notifications', 'items']),
 	};
 };
 
