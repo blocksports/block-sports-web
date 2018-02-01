@@ -14,7 +14,8 @@
     "boxing": "Boxing",
     "table-tennis": "Table Tennis",
     "baseball": "Baseball",
-    "australian-football-league": "Australian Rules"
+    "australian-football-league": "Australian Rules",
+    "tennis": "Tennis"
   },
   "header": {
     "search-placeholder": "Search for Sports, Matches, Players",
