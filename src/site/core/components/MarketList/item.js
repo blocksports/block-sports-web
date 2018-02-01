@@ -269,7 +269,8 @@ class MarketListItem extends Component {
 					</div>
 					<div className={styles.betRowActionsConfirm}>
 						<Button
-							className="button-white button-s"
+							color="white"
+							size="small"
 							onClick={this.handleConfirmClick(runner)}
 							isDisabled={!this.state.stake}
 						>
@@ -306,11 +307,8 @@ class MarketListItem extends Component {
 	renderBetButton(outcome, bet, type, idx) {
 		return (
 			<Button
-				className={classNames([
-					styles.oddsButton,
-					'button-bet',
-					`button-${type}`,
-				])}
+				extras={['bet', type]}
+				className={styles.oddsButton}
 				onClick={this.handleOddsClick(outcome, bet, type)}
 				key={idx}
 			>
@@ -327,11 +325,8 @@ class MarketListItem extends Component {
 		const emptyBet = Immutable.fromJS({ odds: 0, available: 0 });
 		return (
 			<Button
-				className={classNames([
-					styles.oddsButton,
-					'button-bet',
-					`button-${type}`,
-				])}
+				extras={['bet', type]}
+				className={styles.oddsButton}
 				onClick={this.handleOddsClick(outcome, emptyBet, type)}
 				key={`blank-${type}`}
 			/>
@@ -347,7 +342,6 @@ class MarketListItem extends Component {
 			type: '',
 		});
 	}
-	'';
 
 	get contentSuspended() {
 		return (

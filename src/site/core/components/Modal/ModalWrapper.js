@@ -25,18 +25,17 @@ const ModalWrapper = props => {
 					style={{
 						...fadeDefaultStyle,
 						...fadeTransitionStyles[state],
-					}}>
+					}}
+				>
 					<article className={styles.content}>
 						<header>
 							{props.title && <h3 className={styles.heading}>{props.title}</h3>}
 							{props.allowClose && (
 								<Button
-									className={classNames([
-										styles.closeButton,
-										'button-square',
-										'button-minimal',
-									])}
-									onClick={() => props.setCurrentModal(null)}>
+									extras={['square', 'minimal']}
+									className={styles.closeButton}
+									onClick={() => props.setCurrentModal(null)}
+								>
 									<Glyph size="14" icon="close" />
 								</Button>
 							)}

@@ -12,20 +12,26 @@ class Button extends Component {
 	}
 
 	handleClick(event) {
-		if (this.props.isDisabled || !this.props.onClick) return;
-		this.props.onClick(event);
+		const { isDisabled, onClick } = this.props;
+		if (isDisabled || !onClick) return;
+		onClick(event);
 	}
 
 	render() {
+		const { size, color, extras, isDisabled, className, children } = this.props;
 		return (
 			<button
 				className={classNames([
-					'button',
-					this.props.className,
-					{ 'button-disabled': this.props.isDisabled },
+					styles.root,
+					size ? styles[`button-${size}`] : null,
+					color ? styles[`button-${color}`] : null,
+					extras ? [...extras.map(extra => styles[`button-${extra}`])] : null,
+					isDisabled ? styles.disabled : null,
+					className,
 				])}
-				onClick={this.handleClick}>
-				{this.props.children}
+				onClick={this.handleClick}
+			>
+				{children}
 			</button>
 		);
 	}
@@ -35,6 +41,9 @@ Button.propTypes = {
 	children: PropTypes.node,
 	onClick: PropTypes.func,
 	isDisabled: PropTypes.bool,
+	size: PropTypes.string,
+	color: PropTypes.string,
+	extras: PropTypes.array,
 	classNames: PropTypes.string,
 };
 

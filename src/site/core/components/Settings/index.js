@@ -2,11 +2,11 @@ import React from 'react';
 import Transition from 'react-transition-group/Transition';
 import classNames from 'classnames';
 import Button from '../../components/Button';
-import styles from './styles.less';
 import dropdown from '../Dropdown';
 import Glyph from '../Glyph';
 import Item from './item';
 import dropdownStyles from '../Dropdown/styles.less';
+import styles from './styles.less';
 import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
@@ -22,10 +22,9 @@ const Settings = props => {
 	return (
 		<div className={styles.root}>
 			<Button
+				extras={['minimal', 'square']}
 				className={classNames([
 					styles.icon,
-					'button-minimal',
-					'button-square',
 					props.showDropdown ? styles.iconActive : null,
 				])}
 				onClick={() =>

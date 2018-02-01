@@ -13,12 +13,10 @@ export const Tabs = props => (
 
 export const Tab = props => (
 	<Button
-		className={classNames([
-			'button-tab button-minimal',
-			props.className,
-			styles.tab,
-		])}
-		onClick={() => props.onClick()}>
+		extras={['tab', 'minimal']}
+		className={classNames([props.className, styles.tab])}
+		onClick={() => props.onClick()}
+	>
 		{props.children}
 	</Button>
 );

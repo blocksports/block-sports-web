@@ -180,12 +180,9 @@ class BetSlipItem extends Component {
 					</div>
 					<div>
 						<Button
-							className={classNames([
-								styles.removeButton,
-								'button-minimal',
-								'button-m',
-								'button-square',
-							])}
+							size="medium"
+							extras={['minimal', 'square']}
+							className={styles.removeButton}
 							onClick={this.handleRemoveClick}
 						>
 							<Glyph size="14" icon="close" />
@@ -242,11 +239,9 @@ class BetSlipItem extends Component {
 
 					<div className={styles.detailsBet}>
 						<Button
-							className={classNames([
-								styles.betButton,
-								'button-s',
-								`button-${type}`,
-							])}
+							size="small"
+							extras={[type]}
+							className={styles.betButton}
 							onClick={this.handleBetClick(match, outcome)}
 							isDisabled={this.isDisabled}
 						>

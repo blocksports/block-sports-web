@@ -44,11 +44,9 @@ class ModalConfirmBet extends Component {
 						<FormStepOne {...this.props} />
 						<div className={styles.buttonContainer}>
 							<Button
-								className={classNames([
-									styles.buttonNext,
-									'button-m',
-									`button-${betType}`,
-								])}
+								size="medium"
+								extras={[betType]}
+								className={styles.buttonNext}
 								onClick={() => this.updateStep(2)}
 							>
 								Next
@@ -62,13 +60,15 @@ class ModalConfirmBet extends Component {
 						<FormStepTwo {...this.props} />
 						<div className={styles.buttonContainer}>
 							<Button
-								className={classNames(['button-m', `button-${betType}`])}
+								size="medium"
+								extras={[betType]}
 								onClick={() => this.updateStep(1)}
 							>
 								Back
 							</Button>
 							<Button
-								className={classNames(['button-m', 'button-white'])}
+								size="medium"
+								color="white"
 								onClick={() => this.props.setCurrentModal(null)}
 							>
 								Done

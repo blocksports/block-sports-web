@@ -18,10 +18,9 @@ import styles from './styles.less';
 const Notifications = props => (
 	<div className={styles.root}>
 		<Button
+			extras={['minimal', 'square']}
 			className={classNames([
 				styles.icon,
-				'button-minimal',
-				'button-square',
 				props.showDropdown ? styles.iconActive : null,
 			])}
 			onClick={() =>

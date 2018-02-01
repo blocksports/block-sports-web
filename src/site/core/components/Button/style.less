@@ -4,7 +4,7 @@
 
 // Base
 
-.button {
+:local(.root) {
   font-family: @font-family;
   background: transparent;
   outline: none;
@@ -13,13 +13,12 @@
   display: inline-block;
   border: 1px solid @white-1;
   border-radius: 3px;
-  line-height: 1;
   padding: 0 1.25em;
   color: currentColor;
   font-size: @font-size;
   transition: all 0.3s;
 
-  &:not(.button-square) i {
+  &:not(:local(.button-square)) i {
     margin-right: 0.5rem;
     font-size: 1em;
   }
@@ -27,7 +26,7 @@
 
 // Tabs
 
-.button-tab {
+:local(.button-tab) {
   display: flex;
   align-items: center;
   font-size: @font-size-m;
@@ -47,49 +46,51 @@
 
 // Square
 
-.button-square {
+:local(.button-square) {
   padding: 0.25rem;
 }
 
 // Minimal
 
-.button-minimal {
+:local(.button-minimal) {
   border: 0;
+  &:hover,
+  &:focus {
+    background: none;
+  }
 }
 
 // Disabled
 
-.button-disabled {
+:local(.disabled) {
   cursor: not-allowed !important;
   opacity: 0.3;
 }
 
 // Active
 
-.button-active {
+:local(.button-active) {
   color: @primary;
   border-color: @primary;
 }
 
 // Button sizes
 
-.button-s {
+:local(.button-small) {
   letter-spacing: 0;
   font-size: @font-size-s;
-  height: 1.4rem;
   line-height: 1.4rem;
 }
 
-.button-m {
+:local(.button-medium) {
   letter-spacing: 0;
   font-size: @font-size-m;
-  height: 1.7rem;
   line-height: 1.7rem;
 }
 
 // Button colours
 
-.button-white {
+:local(.button-white) {
   border-color: @white-2;
   color: @white-2;
   &:focus,
@@ -99,7 +100,7 @@
   }
 }
 
-.button-primary {
+:local(.button-primary) {
   border-color: @primary;
   color: @primary;
   &:focus,
@@ -110,8 +111,7 @@
 }
 
 // Bet Buttons
-
-.button-bet {
+:local(.button-bet) {
   padding: 0.2rem 0.4rem 0.15rem;
   letter-spacing: 0;
   min-width: 80px;
@@ -130,7 +130,7 @@
   }
 }
 
-.button-back {
+:local(.button-back) {
   background: fade(@back, 5%);
   color: @back;
   border-color: @back;
@@ -141,7 +141,7 @@
   }
 }
 
-.button-lay {
+:local(.button-lay) {
   background: fade(@lay, 5%);
   color: @lay;
   border-color: @lay;

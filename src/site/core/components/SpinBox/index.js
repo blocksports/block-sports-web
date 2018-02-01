@@ -63,14 +63,8 @@ class SpinBox extends Component {
 					/>
 				</div>
 				<div className={styles.buttons}>
-					<Button
-						className={styles.increment}
-						onClick={() => this.increment()}
-					/>
-					<Button
-						className={styles.decrement}
-						onClick={() => this.decrement()}
-					/>
+					<Button className={styles.increment} onClick={this.increment} />
+					<Button className={styles.decrement} onClick={this.decrement} />
 				</div>
 			</div>
 		);

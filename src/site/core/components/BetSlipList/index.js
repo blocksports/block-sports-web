@@ -24,12 +24,11 @@ class BetSlipList extends Component {
 		return (
 			<div className={styles.removeAll}>
 				<Button
-					className={classNames([
-						styles.removeAllButton,
-						'button-minimal',
-						'button-m',
-					])}
-					onClick={this.props.onRemoveAllClick}>
+					size="medium"
+					extras={['minimal']}
+					className={styles.removeAllButton}
+					onClick={this.props.onRemoveAllClick}
+				>
 					{t('core:bets.bet-slip.remove-all')} <Glyph size="14" icon="close" />
 				</Button>
 			</div>

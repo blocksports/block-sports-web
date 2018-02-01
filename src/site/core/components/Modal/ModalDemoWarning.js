@@ -13,7 +13,8 @@ const ModalDemoWarning = props => (
 			<span className={styles.head}>{t('core:demo-modal.heading')}</span>
 			<p className={styles.body}>{t('core:demo-modal.message')}</p>
 			<Button
-				className="button-m"
+				size="medium"
+				color="white"
 				onClick={() => {
 					props.acceptDemoWarning();
 					props.setCurrentModal(null);

@@ -21,7 +21,7 @@ const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 	return (
 		<Link to={`#`} className={styles.item}>
 			<Glyph
-				size={120}
+				size="120"
 				className={styles.itemGlyph}
 				icon={getGlyphPath(sport)}
 			/>
