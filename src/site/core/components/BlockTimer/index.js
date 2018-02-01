@@ -76,10 +76,10 @@ class BlockTimer extends Component {
 				{this.props.isLoading ? (
 					<div className={classNames([styles.root, this.props.className])}>
 						<div className={styles.infoLoading}>
-							<SkeletonBlock size="large" />
+							<SkeletonBlock width="large" height="xsmall" />
 						</div>
 						<div className={styles.infoLoading}>
-							<SkeletonBlock size="large" />
+							<SkeletonBlock width="large" height="xsmall" />
 						</div>
 					</div>
 				) : (
@@ -90,7 +90,8 @@ class BlockTimer extends Component {
 								style={{
 									...fadeDefaultStyle,
 									...fadeTransitionStyles[state],
-								}}>
+								}}
+							>
 								<div className={styles.timeInfo}>
 									{t('core:footer.last-block')} {this.lastBlock}
 								</div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
-import { shuffle } from 'lodash';
 import classNames from 'classnames';
 import styles from './style.less';
 
@@ -61,7 +60,8 @@ class Chat extends Component {
 			<div
 				className={styles.root}
 				onMouseEnter={() => this.handleMouseEnter()}
-				onMouseLeave={() => this.handleMouseLeave()}>
+				onMouseLeave={() => this.handleMouseLeave()}
+			>
 				<span className={styles.heading}>Chat</span>
 				<div className={styles.body}>
 					{this.state.messages.map((item, index) => (

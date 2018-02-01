@@ -12,7 +12,7 @@ const NavListSkeleton = props => (
 
 const Item = props => (
 	<div className={styles.itemSkeleton}>
-		<SkeletonBlock size="large" />
+		<SkeletonBlock width="large" height="xsmall" />
 	</div>
 );
 

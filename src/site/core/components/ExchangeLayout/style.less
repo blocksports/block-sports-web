@@ -18,25 +18,18 @@
 :local(.main) {
   flex-grow: 1;
   margin: 0 @panel-gutter;
-  .makePanelLight();
-  padding: 0;
 }
 
 :local(.mainMarket) {
-}
-
-:local(.mainMedia) {
-  display: block;
-  padding-bottom: 25%;
-  border-radius: 5px;
-  margin: 0 0 @panel-gutter 0;
-  background-color: @gray-1;
+  .makePanelLight();
+  padding: 0;
 }
 
 :local(.right) {
   flex: 0 0 350px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 :local(.bets) {

@@ -23,7 +23,7 @@ const Item = ({ item }) => {
 };
 
 Item.propTypes = {
-	item: PropTypes.object.isRequired,
+	item: PropTypes.string.isRequired,
 };
 
 export default Item;

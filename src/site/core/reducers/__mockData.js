@@ -238,3 +238,25 @@ export const mockNotifications = [
 		date: '4 days ago',
 	},
 ];
+
+export const mockCards = [
+	{
+		sport: 'tennis',
+		name: 'Aus Open',
+		commence: 1523664000,
+		total_matched: 3945.34,
+	},
+	{
+		sport: 'american-football',
+		name: 'Superbowl',
+		commence: 1533396800,
+		total_matched: 2245.34,
+	},
+	{
+		sport: 'soccer',
+		name: 'FA Cup',
+		commence: 1530316800,
+		total_matched: 51453.42,
+	},
+];
+

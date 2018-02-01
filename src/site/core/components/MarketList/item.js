@@ -289,7 +289,7 @@ class MarketListItem extends Component {
 			) || Immutable.List();
 
 		let betArray = [];
-		
+
 		bets.forEach((bet, idx) => {
 			betArray.push(this.renderBetButton(outcome, bet, type, idx));
 		});
@@ -324,7 +324,7 @@ class MarketListItem extends Component {
 	}
 
 	renderBlankButton(outcome, type) {
-		const emptyBet = Immutable.fromJS({odds: 0, available: 0})
+		const emptyBet = Immutable.fromJS({ odds: 0, available: 0 });
 		return (
 			<Button
 				className={classNames([
@@ -334,7 +334,7 @@ class MarketListItem extends Component {
 				])}
 				onClick={this.handleOddsClick(outcome, emptyBet, type)}
 				key={`blank-${type}`}
-			/>				
+			/>
 		);
 	}
 

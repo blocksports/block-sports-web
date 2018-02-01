@@ -7,7 +7,11 @@ const MarketListSkeleton = props => (
 	<div>
 		{[...Array(2)].map((_, i) => (
 			<div className={styles.group} key={i}>
-				<SkeletonBlock size="xsmall" className={styles.groupHeadingSkeleton} />
+				<SkeletonBlock
+					width="xsmall"
+					height="xsmall"
+					className={styles.groupHeadingSkeleton}
+				/>
 				{[...Array(4)].map((_, i) => <Item key={i} />)}
 			</div>
 		))}
@@ -17,7 +21,7 @@ const MarketListSkeleton = props => (
 const Item = props => (
 	<div className={styles.itemRoot}>
 		<div className={styles.itemDate}>
-			<SkeletonBlock size="medium" />
+			<SkeletonBlock width="medium" height="xsmall" />
 		</div>
 		<div className={styles.main}>
 			{[...Array(3)].map((_, i) => {
@@ -25,7 +29,8 @@ const Item = props => (
 					<div className={styles.runnerRow} key={i}>
 						<div className={styles.marketRow}>
 							<SkeletonBlock
-								size="medium"
+								width="medium"
+								height="xsmall"
 								className={styles.marketRowSkeleton}
 							/>
 						</div>
@@ -34,7 +39,7 @@ const Item = props => (
 			})}
 		</div>
 		<div className={styles.side}>
-			<SkeletonBlock size="medium" />
+			<SkeletonBlock width="medium" height="xsmall" />
 		</div>
 	</div>
 );

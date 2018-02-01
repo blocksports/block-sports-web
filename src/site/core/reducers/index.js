@@ -8,17 +8,19 @@ import routerReducer from './router';
 import modalReducer from './modal';
 import blockchainReducer from './blockchain';
 import notificationsReducer from './notifications';
+import cardsReducer from './cards';
 
 const coreReducer = combineReducers({
-	user: userReducer,
 	bet: betReducer,
+	blockchain: blockchainReducer,
+	cards: cardsReducer,
 	currency: currencyReducer,
 	exchange: exchangeReducer,
-	navigation: navigationReducer,
-	router: routerReducer,
 	modal: modalReducer,
-	blockchain: blockchainReducer,
+	navigation: navigationReducer,
 	notifications: notificationsReducer,
+	router: routerReducer,
+	user: userReducer,
 });
 
 export default coreReducer;

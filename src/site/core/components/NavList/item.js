@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import Glyph from '../Glyph';
 import { Link, IndexLink } from 'react-router';
+import { getGlyphPath } from '../../../../lib/utils';
 import styles from './style.less';
 
 const NavListItem = ({ filter, category, item }) => {
@@ -21,10 +22,7 @@ const NavListItem = ({ filter, category, item }) => {
 						{!filter && (
 							<Glyph
 								size="14"
-								icon={item
-									.get('name')
-									.replace(/ /g, '')
-									.toLowerCase()}
+								icon={getGlyphPath(item.get('name'))}
 								className={styles.itemIcon}
 							/>
 						)}

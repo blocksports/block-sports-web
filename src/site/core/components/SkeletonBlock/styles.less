@@ -4,7 +4,6 @@
 :local(.root) {
   position: relative;
   overflow: hidden;
-  height: 4px;
   background-color: @gray-1;
   border-radius: @border-radius;
   &::after {
@@ -19,20 +18,40 @@
   }
 }
 
-:local(.xsmall) {
+/* Width */
+
+:local(.width-xsmall) {
   width: 15%;
 }
 
-:local(.small) {
+:local(.width-small) {
   width: 30%;
 }
 
-:local(.medium) {
+:local(.width-medium) {
   width: 50%;
 }
 
-:local(.large) {
+:local(.width-large) {
   width: 100%;
+}
+
+/* Height */
+
+:local(.height-xsmall) {
+  height: 4px;
+}
+
+:local(.height-small) {
+  height: 7px;
+}
+
+:local(.height-medium) {
+  height: 14px;
+}
+
+:local(.height-large) {
+  height: 20px;
 }
 
 @keyframes progress {

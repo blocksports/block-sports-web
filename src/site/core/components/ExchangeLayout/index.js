@@ -22,9 +22,7 @@ const ExchangeLayout = props => (
 			</div>
 			<div className={styles.main}>
 				<Scrollbars>
-					<div className={styles.mainMedia}>
-						<CardBanner/>
-					</div>
+					<CardBanner />
 					<div className={styles.mainMarket}>
 						{props.params.entity === 'market' && (
 							<MarketDetail params={props.params} />

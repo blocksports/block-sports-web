@@ -32,7 +32,7 @@ const Item = ({ notification }) => (
 );
 
 Item.propTypes = {
-	notification: PropTypes.instanceOf(Immutable.List).isRequired,
+	notification: PropTypes.instanceOf(Immutable.Map).isRequired,
 };
 
 export default Item;

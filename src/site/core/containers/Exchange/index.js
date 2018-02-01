@@ -9,8 +9,7 @@ import { fetchMarkets } from '../../reducers/exchange';
 import { selectMarketItems } from '../../selectors/exchange';
 import ExchangeLayout from '../../components/ExchangeLayout';
 import { subToMarkets, unsubFromMarkets } from '../../../../lib/pusher';
-import _ from 'lodash';
-
+import isEqual from 'lodash/isEqual';
 import styles from './style.less';
 
 class Exchange extends Component {
@@ -25,7 +24,6 @@ class Exchange extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.routeHasUpdated(nextProps)) {
-			console.log(nextProps.location.query);
 			this.props.fetchMarkets(nextProps.params, nextProps.location.query);
 			subToMarkets(this.props.dispatch, nextProps);
 			unsubFromMarkets(this.props);
@@ -45,8 +43,8 @@ class Exchange extends Component {
 
 	routeHasUpdated(nextProps) {
 		return (
-			!_.isEqual(this.props.params, nextProps.params) ||
-			!_.isEqual(this.props.location.query, nextProps.location.query)
+			!isEqual(this.props.params, nextProps.params) ||
+			!isEqual(this.props.location.query, nextProps.location.query)
 		);
 	}
 

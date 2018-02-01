@@ -12,7 +12,7 @@ import Glyph from '../../components/Glyph';
 import { Tabs, Tab } from '../../components/Tabs';
 import { addQuery } from '../../../../lib/router';
 import styles from './style.less';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 export class Markets extends Component {
 	constructor(props, context) {
@@ -28,7 +28,7 @@ export class Markets extends Component {
 	componentWillMount() {}
 
 	componentWillReceiveProps(nextProps) {
-		if (!_.isEqual(this.props.params, nextProps.params)) {
+		if (!isEqual(this.props.params, nextProps.params)) {
 			this.setState({ activeOrder: 'date' });
 		}
 	}
@@ -64,13 +64,15 @@ export class Markets extends Component {
 				<Tabs className={styles.tabs}>
 					<Tab
 						className={this.tabClass('date')}
-						onClick={this.handleTabClick('date')}>
+						onClick={this.handleTabClick('date')}
+					>
 						<Glyph size="16" icon="clock" />
 						{t('core:markets.header-time')}
 					</Tab>
 					<Tab
 						className={this.tabClass('popular')}
-						onClick={this.handleTabClick('popular')}>
+						onClick={this.handleTabClick('popular')}
+					>
 						<Glyph size="16" icon="star" />
 						{t('core:markets.header-popular')}
 					</Tab>

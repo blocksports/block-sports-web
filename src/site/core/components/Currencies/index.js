@@ -16,7 +16,7 @@ const Currencies = props => {
 			{props.isLoadingCurrency && (
 				<div className={styles.currencies}>
 					<div className={styles.currencyLoading}>
-						<SkeletonBlock size="large" />
+						<SkeletonBlock width="large" height="xsmall" />
 					</div>
 				</div>
 			)}
@@ -28,7 +28,8 @@ const Currencies = props => {
 							style={{
 								...fadeDefaultStyle,
 								...fadeTransitionStyles[state],
-							}}>
+							}}
+						>
 							<Currency {...props} currency="GAS" />
 						</div>
 					)}
