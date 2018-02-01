@@ -8,10 +8,7 @@ const removeAllFromBetSlip = createAction('REMOVE_ALL_FROM_BET_SLIP');
 
 const placeBetRequest = createAction('PLACE_BET_REQUEST');
 const placeBetConfirm = createAction('PLACE_BET_CONFIRM');
-const placeBetSuccess = createAction('PLACE_BET_SUCCESS', (data, resp) => [
-	data,
-	resp,
-]);
+const placeBetSuccess = createAction('PLACE_BET_SUCCESS');
 
 const fetchActiveBetsRequest = createAction('FETCH_ACTIVE_BETS_REQUEST');
 const fetchActiveBetsSuccess = createAction('FETCH_ACTIVE_BETS_SUCCESS');
@@ -74,12 +71,20 @@ export function removeAllBets() {
 export function placeBet(data, slipData) {
 	return dispatch => {
 		dispatch(placeBetRequest());
-		dispatch(placeBetConfirm(data));
+		dispatch(placeBetConfirm([data, slipData]));
 		dispatch(setCurrentModal('confirmBet'));
-		if (slipData) {
-			dispatch(removeBet(slipData));
-			dispatch(placeBetSuccess(data, {}));
-		}
+	};
+}
+
+export function confirmBet() {
+	return (dispatch, getState) => {
+		const currentState = getState();
+		dispatch(
+			placeBetSuccess(currentState.getIn(['core', 'bet', 'confirmingBet']))
+		);
+		dispatch(
+			removeBet(currentState.getIn(['core', 'bet', 'confirmingBetSlipData']))
+		);
 	};
 }
 
@@ -95,7 +100,6 @@ const initialState = Immutable.Map({
 	isBetting: false,
 	activeBets: Immutable.List(),
 	betSlip: Immutable.Map(),
-	placeBetConfirm: Immutable.Map(),
 });
 
 const betReducer = createReducer(
@@ -107,7 +111,7 @@ const betReducer = createReducer(
 			);
 		},
 		[removeFromBetSlip]: (state, data) => {
-			return state.deleteIn(['betSlip', data.type, data.id]);
+			return state.deleteIn(['betSlip', data.get('type'), data.get('id')]);
 		},
 		[removeAllFromBetSlip]: state => {
 			return state.set('betSlip', Immutable.Map());
@@ -117,15 +121,18 @@ const betReducer = createReducer(
 				isBetting: true,
 			});
 		},
-		[placeBetConfirm]: (state, data) => {
+		[placeBetConfirm]: (state, [data, slipData]) => {
 			return state.merge({
 				confirmingBet: Immutable.fromJS(data),
+				confirmingBetSlipData: slipData,
 			});
 		},
-		[placeBetSuccess]: (state, [data, resp]) => {
+		[placeBetSuccess]: (state, data) => {
 			return state.merge({
 				isBetting: false,
-				activeBets: state.get('activeBets').push(Immutable.fromJS(data)),
+				confirmingBet: null,
+				confirmingBetSlipData: null,
+				activeBets: state.get('activeBets').push(data),
 			});
 		},
 		[fetchActiveBetsRequest]: state => {

@@ -69,7 +69,10 @@ class ModalConfirmBet extends Component {
 							<Button
 								size="medium"
 								color="white"
-								onClick={() => this.props.setCurrentModal(null)}
+								onClick={() => {
+									this.props.confirmBet();
+									this.props.setCurrentModal(null);
+								}}
 							>
 								Done
 							</Button>
@@ -94,8 +97,9 @@ class ModalConfirmBet extends Component {
 }
 
 ModalConfirmBet.propTypes = {
-	setCurrentModal: PropTypes.func.isRequired,
+	confirmBet: PropTypes.func.isRequired,
 	confirmingBet: PropTypes.object.isRequired,
+	setCurrentModal: PropTypes.func.isRequired,
 };
 
 export default ModalConfirmBet;
@@ -106,12 +110,6 @@ class FormStepOne extends Component {
 		this.state = {
 			showOptions: false,
 		};
-	}
-
-	handleOptionsToggle() {
-		this.setState({
-			showOptions: !this.state.showOptions,
-		});
 	}
 
 	getStake(stake, priceUsd) {
@@ -268,7 +266,7 @@ class FormStepTwo extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		setTimeout(() => {
 			this.setState({
 				showWarning: true,

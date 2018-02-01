@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { setCurrentModal } from '../../reducers/modal';
 import { acceptDemoWarning } from '../../reducers/user';
+import { confirmBet } from '../../reducers/bet';
 import ModalConfirmBet from '../../components/Modal/ModalConfirmBet';
 import ModalMobileWarning from '../../components/Modal/ModalMobileWarning';
 import ModalDemoWarning from '../../components/Modal/ModalDemoWarning';
@@ -48,12 +49,14 @@ export class ModalConductor extends Component {
 			hasAcceptedDemoWarning,
 			price,
 			setCurrentModal,
+			confirmBet,
 		} = this.props;
 		switch (currentModal) {
 			case 'confirmBet':
 				return (
 					<ModalConfirmBet
 						setCurrentModal={setCurrentModal}
+						confirmBet={confirmBet}
 						confirmingBet={confirmingBet}
 						price={price}
 						activeCurrency={activeCurrency}
@@ -83,11 +86,14 @@ export class ModalConductor extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		setCurrentModal: (...args) => {
-			return dispatch(setCurrentModal(...args));
-		},
 		acceptDemoWarning: (...args) => {
 			return dispatch(acceptDemoWarning(...args));
+		},
+		confirmBet: (...args) => {
+			return dispatch(confirmBet(...args));
+		},
+		setCurrentModal: (...args) => {
+			return dispatch(setCurrentModal(...args));
 		},
 	};
 };
