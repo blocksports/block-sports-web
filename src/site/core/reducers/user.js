@@ -3,6 +3,7 @@ import { createAction, createReducer } from 'redux-act';
 
 const fetchUserRequest = createAction('FETCH_USER_REQUEST');
 const fetchUserSuccess = createAction('FETCH_USER_SUCCESS');
+export const acceptDemoWarning = createAction('ACCEPT_DEMO_WARNING');
 
 export function fetchUser() {
 	return dispatch => {
@@ -19,6 +20,7 @@ const initialState = Immutable.Map({
 	isLoading: false,
 	isLoggedIn: false,
 	user: Immutable.Map(),
+	hasAcceptedDemoWarning: false,
 });
 
 const userReducer = createReducer(
@@ -32,6 +34,11 @@ const userReducer = createReducer(
 			return state.merge({
 				isLoading: false,
 				user: Immutable.fromJS(resp),
+			});
+		},
+		[acceptDemoWarning]: (state, resp) => {
+			return state.merge({
+				hasAcceptedDemoWarning: true,
 			});
 		},
 	},

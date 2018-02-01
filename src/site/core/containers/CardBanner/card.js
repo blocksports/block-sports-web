@@ -20,27 +20,29 @@ const printNumber = (number, currency, exchangeRate) => {
 const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 	return (
 		<Link to={`#`} className={styles.item}>
-			<div className={styles.itemSport}>
-				<span>{t(`core:sport.${sport}`)}</span>
-			</div>
-			<h3 className={styles.itemHeading}>{name}</h3>
-			<div className={styles.itemInfo}>
-				<h5 className={styles.itemInfoHeading}>Starts</h5>
-				<p className={styles.itemInfoDetail}>
-					{moment.unix(commence).format('dddd, MMMM Do')}
-				</p>
-			</div>
-			<div className={styles.itemInfo}>
-				<h5 className={styles.itemInfoHeading}>{`${currency} matched`}</h5>
-				<p className={styles.itemInfoDetail}>
-					{printNumber(matched, currency, exchangeRate)}
-				</p>
-			</div>
 			<Glyph
 				size={120}
 				className={styles.itemGlyph}
 				icon={getGlyphPath(sport)}
 			/>
+			<div className={styles.itemInner}>
+				<div className={styles.itemSport}>
+					<span>{t(`core:sport.${sport}`)}</span>
+				</div>
+				<h3 className={styles.itemHeading}>{name}</h3>
+				<div className={styles.itemInfo}>
+					<h5 className={styles.itemInfoHeading}>Starts</h5>
+					<p className={styles.itemInfoDetail}>
+						{moment.unix(commence).format('dddd, MMMM Do')}
+					</p>
+				</div>
+				<div className={styles.itemInfo}>
+					<h5 className={styles.itemInfoHeading}>{`${currency} matched`}</h5>
+					<p className={styles.itemInfoDetail}>
+						{printNumber(matched, currency, exchangeRate)}
+					</p>
+				</div>
+			</div>
 		</Link>
 	);
 };

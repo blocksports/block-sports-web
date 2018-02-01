@@ -83,5 +83,11 @@
     "heading": "Sorry! Your screen is too small.",
     "message":
       "The Block Sports Exchange is not currently available for mobile devices. Upon full release, the Block Sports Exchange will be available for download on iOS and Android."
+  },
+  "demo-modal": {
+    "heading": "WARNING, this is a demo only!",
+    "message":
+      "Ut accumsan metus eros, nec feugiat sem tempus vel. Nullam scelerisque sollicitudin arcu sollicitudin tempor. Cras eu ante libero. Aenean sit amet neque mi.",
+    "button": "Continue"
   }
 }

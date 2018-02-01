@@ -18,7 +18,6 @@ class CardBanner extends Component {
   render() {
     const { currency, cards, isLoading } = this.props;
     const exchangeRate = currency === 'GAS' ? 1 : this.props.exchangeRate;
-
     if (isLoading) {
       return (
         <div className={styles.root}>
@@ -26,7 +25,6 @@ class CardBanner extends Component {
         </div>
       );
     }
-
     return (
       <div className={styles.root}>
         {cards.map((card, index) => (

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { setCurrentModal } from '../../reducers/modal';
+import { acceptDemoWarning } from '../../reducers/user';
 import ModalConfirmBet from '../../components/Modal/ModalConfirmBet';
 import ModalMobileWarning from '../../components/Modal/ModalMobileWarning';
+import ModalDemoWarning from '../../components/Modal/ModalDemoWarning';
 
 export class ModalConductor extends Component {
 	constructor(props) {
@@ -13,28 +15,39 @@ export class ModalConductor extends Component {
 	}
 
 	componentDidMount() {
+		this.dispatchDemoWarning();
 		this.dispatchMobileWarning();
 		window.addEventListener('resize', this.dispatchMobileWarning);
 	}
 
 	dispatchMobileWarning() {
-		const { currentModal, setCurrentModal } = this.props;
+		const {
+			currentModal,
+			hasAcceptedDemoWarning,
+			setCurrentModal,
+		} = this.props;
 		if (window.innerWidth < 1140) {
 			setCurrentModal('mobileWarning');
 		} else {
 			if (currentModal === 'mobileWarning') {
-				setCurrentModal(null);
+				setCurrentModal(hasAcceptedDemoWarning ? null : 'demoWarning');
 			}
 		}
 	}
 
+	dispatchDemoWarning() {
+		this.props.setCurrentModal('demoWarning');
+	}
+
 	render() {
 		const {
-			currentModal,
-			setCurrentModal,
-			confirmingBet,
-			price,
+			acceptDemoWarning,
 			activeCurrency,
+			confirmingBet,
+			currentModal,
+			hasAcceptedDemoWarning,
+			price,
+			setCurrentModal,
 		} = this.props;
 		switch (currentModal) {
 			case 'confirmBet':
@@ -44,6 +57,13 @@ export class ModalConductor extends Component {
 						confirmingBet={confirmingBet}
 						price={price}
 						activeCurrency={activeCurrency}
+					/>
+				);
+			case 'demoWarning':
+				return (
+					<ModalDemoWarning
+						setCurrentModal={setCurrentModal}
+						acceptDemoWarning={acceptDemoWarning}
 					/>
 				);
 			case 'mobileWarning':
@@ -66,15 +86,23 @@ const mapDispatchToProps = dispatch => {
 		setCurrentModal: (...args) => {
 			return dispatch(setCurrentModal(...args));
 		},
+		acceptDemoWarning: (...args) => {
+			return dispatch(acceptDemoWarning(...args));
+		},
 	};
 };
 
 const mapStateToProps = state => {
 	return {
-		currentModal: state.getIn(['core', 'modal', 'currentModal']),
-		confirmingBet: state.getIn(['core', 'bet', 'confirmingBet'], Immutable.Map),
-		price: state.getIn(['core', 'currency', 'price'], Immutable.Map),
 		activeCurrency: state.getIn(['core', 'currency', 'activeCurrency']),
+		confirmingBet: state.getIn(['core', 'bet', 'confirmingBet'], Immutable.Map),
+		currentModal: state.getIn(['core', 'modal', 'currentModal']),
+		hasAcceptedDemoWarning: state.getIn([
+			'core',
+			'user',
+			'hasAcceptedDemoWarning',
+		]),
+		price: state.getIn(['core', 'currency', 'price'], Immutable.Map),
 	};
 };
 

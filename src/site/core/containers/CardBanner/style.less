@@ -23,6 +23,10 @@
 	overflow: hidden;
 }
 
+:local(.itemInner) {
+	position: relative;
+}
+
 :local(.itemSport) {
 	display: inline-block;
 	padding: 0 0.5rem;
@@ -69,6 +73,7 @@
 	right: 0;
 	transform: translate(10%, 10%);
 	.transitionAll();
+	z-index: 0;
 }
 
 :local(.item):hover :local(.itemGlyph) {
