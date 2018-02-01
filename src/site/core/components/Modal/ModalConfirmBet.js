@@ -184,80 +184,73 @@ class FormStepOne extends Component {
 									</div>
 								</div>
 							</div>
-							{showOptions && (
-								<div>
-									<div className={styles.info}>
-										<span className={styles.truncate}>
-											{confirmingBet.get('competition_name')} |{' '}
-											{getMatchName(confirmingBet)}
-										</span>
-										<span>
-											{dateTime(
-												parseFloat(confirmingBet.get('commence')),
-												dateTypes.dayMonthYearTime
-											)}
+							<div>
+								<div className={styles.info}>
+									<span className={styles.truncate}>
+										{confirmingBet.get('competition_name')} |{' '}
+										{getMatchName(confirmingBet)}
+									</span>
+									<span>
+										{dateTime(
+											parseFloat(confirmingBet.get('commence')),
+											dateTypes.dayMonthYearTime
+										)}
+									</span>
+								</div>
+								<div className={styles.infoDetails}>
+									<div className={styles.infoDetailsItem}>
+										<div className={styles.infoDetailsHeading}>
+											<span>Odds</span>
+										</div>
+										<span className={styles.infoDetailsValue}>
+											{confirmingBet.getIn(['odds'])}
 										</span>
 									</div>
-									<div className={styles.infoDetails}>
-										<div className={styles.infoDetailsItem}>
-											<div className={styles.infoDetailsHeading}>
-												<span>Odds</span>
-											</div>
-											<span className={styles.infoDetailsValue}>
-												{confirmingBet.getIn(['odds'])}
+									<div className={styles.infoDetailsItem}>
+										<div className={styles.infoDetailsHeading}>
+											<span>Stake</span>
+											<span className={styles.infoDetailsCurrency}>
+												{activeCurrency}
 											</span>
 										</div>
+										<span className={styles.infoDetailsValue}>
+											{stake[activeCurrency]}
+										</span>
+									</div>
+									{betType === 'back' && (
 										<div className={styles.infoDetailsItem}>
 											<div className={styles.infoDetailsHeading}>
-												<span>Stake</span>
+												<span>Profit</span>
 												<span className={styles.infoDetailsCurrency}>
 													{activeCurrency}
 												</span>
 											</div>
 											<span className={styles.infoDetailsValue}>
-												{stake[activeCurrency]}
+												{this.getProfit(
+													parseFloat(confirmingBet.getIn(['odds'])),
+													stake[activeCurrency]
+												)}
 											</span>
 										</div>
-										{betType === 'back' && (
-											<div className={styles.infoDetailsItem}>
-												<div className={styles.infoDetailsHeading}>
-													<span>Profit</span>
-													<span className={styles.infoDetailsCurrency}>
-														{activeCurrency}
-													</span>
-												</div>
-												<span className={styles.infoDetailsValue}>
-													{this.getProfit(
-														parseFloat(confirmingBet.getIn(['odds'])),
-														stake[activeCurrency]
-													)}
+									)}
+									{betType === 'lay' && (
+										<div className={styles.infoDetailsItem}>
+											<div className={styles.infoDetailsHeading}>
+												<span>Liability</span>
+												<span className={styles.infoDetailsCurrency}>
+													{activeCurrency}
 												</span>
 											</div>
-										)}
-										{betType === 'lay' && (
-											<div className={styles.infoDetailsItem}>
-												<div className={styles.infoDetailsHeading}>
-													<span>Liability</span>
-													<span className={styles.infoDetailsCurrency}>
-														{activeCurrency}
-													</span>
-												</div>
-												<span className={styles.infoDetailsValue}>
-													{this.getLayLiability(
-														parseFloat(confirmingBet.getIn(['odds'])),
-														stake[activeCurrency]
-													)}
-												</span>
-											</div>
-										)}
-									</div>
+											<span className={styles.infoDetailsValue}>
+												{this.getLayLiability(
+													parseFloat(confirmingBet.getIn(['odds'])),
+													stake[activeCurrency]
+												)}
+											</span>
+										</div>
+									)}
 								</div>
-							)}
-						</div>
-						<div className={styles.infoToggle}>
-							<a onClick={() => this.handleOptionsToggle()}>
-								<Glyph size="20" icon={showOptions ? 'up' : 'down'} />
-							</a>
+							</div>
 						</div>
 					</div>
 				)}
@@ -333,11 +326,6 @@ class FormStepTwo extends Component {
 									</span>
 									to the contract below
 								</div>
-							</div>
-
-							<div className={styles.contractQrCode}>
-								<span>Qr code for mobile wallet</span>
-								<img src={DemoQrImage} alt="Fake QR code" />
 							</div>
 
 							<div className={styles.contractAddress}>
