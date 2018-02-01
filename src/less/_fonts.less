@@ -8,6 +8,13 @@
 }
 
 @font-face {
+  font-family: 'ProximaNovaSoft';
+  src: url('../fonts/proxima-nova-soft-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'ProximaNova';
   src: url('../fonts/proximanova-bold-webfont.woff') format('woff');
   font-weight: bold;
@@ -15,6 +22,7 @@
 }
 
 @font-family: 'ProximaNova', sans-serif;
+@font-family-soft: 'ProximaNovaSoft', @font-family;
 
 .defaultFont() {
   font-family: @font-family;
