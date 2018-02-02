@@ -22,6 +22,11 @@ const CardSkeleton = props => (
 			height="xsmall"
 		/>
 		<SkeletonBlock width="medium" height="xsmall" />
+		<SkeletonBlock
+			width="small"
+			height="xsmall"
+			className={styles.itemSkeletonBlockHeading}
+		/>
 	</div>
 );
 

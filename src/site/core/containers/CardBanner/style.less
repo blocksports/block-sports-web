@@ -4,7 +4,7 @@
 
 :local(.root) {
 	display: flex;
-	height: 13rem;
+	height: 14rem;
 	margin-bottom: @site-panel-spacing;
 }
 
@@ -30,14 +30,14 @@
 :local(.itemSport) {
 	display: inline-block;
 	padding: 0 0.5rem;
-	height: 1rem;
+	height: 1.2rem;
 	border-radius: @border-radius;
-	background-color: @black-3;
-	font-size: @font-size-xs;
+	background-color: @black-7;
+	font-size: @font-size-s;
 	line-height: 1;
 	span {
-		text-transform: uppercase;
-		line-height: 1rem;
+		line-height: 1.2rem;
+		color: @gray-1;
 	}
 }
 
@@ -46,15 +46,15 @@
 	font-family: @font-family-soft;
 	font-weight: 500;
 	font-size: 1.6rem;
-	margin: 0.1rem 0 0 0;
+	margin: 0;
 }
 
 :local(.itemInfo) {
-	margin-top: @space-m;
+	margin-top: @space-s;
 }
 
 :local(.itemInfoHeading) {
-	font-size: @font-size-s;
+	font-size: @font-size-xs;
 	text-transform: uppercase;
 	color: @gray-1;
 }
@@ -67,24 +67,31 @@
 	margin: 0 @site-panel-spacing;
 }
 
-:local(.itemGlyph) {
-	fill: #48494f;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	transform: translate(10%, 10%);
-	.transitionAll();
-	z-index: 0;
-}
+// :local(.itemGlyph) {
+// 	fill: #48494f;
+// 	position: absolute;
+// 	bottom: 0;
+// 	right: 0;
+// 	transform: translate(10%, 10%);
+// 	.transitionAll();
+// 	z-index: 0;
+// }
 
-:local(.item):hover :local(.itemGlyph) {
-	fill: @white-2;
+// :local(.item):hover :local(.itemGlyph) {
+// 	fill: @white-2;
+// }
+
+:local(.itemCta) {
+	margin-top: @space-m;
+	text-transform: uppercase;
 }
 
 :local(.itemSkeletonBlockHeading) {
-	margin-top: 1.2rem;
+	margin-top: 1.3rem;
 	margin-bottom: 0.4rem;
 	&:first-of-type {
 		margin-top: 0;
 	}
 }
+
+
