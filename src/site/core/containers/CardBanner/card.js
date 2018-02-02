@@ -11,6 +11,7 @@ import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../lib/animation';
+import DemoCardImage from '../../../../img/demo-card.png';
 import styles from './style.less';
 
 const printNumber = (number, currency, exchangeRate) => {
@@ -25,7 +26,10 @@ const printNumber = (number, currency, exchangeRate) => {
 
 const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 	return (
-		<div className={styles.item}>
+		<div
+			className={styles.item}
+			style={{ backgroundImage: `url('${DemoCardImage}')` }}
+		>
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
 					<div

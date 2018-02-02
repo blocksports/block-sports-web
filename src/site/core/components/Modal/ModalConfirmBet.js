@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import Button from '../Button';
 import Glyph from '../Glyph';
 import styles from './confirmBet.less';
-import DemoQrImage from '../../../../img/demo-qr.png';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import { getMatchName } from '../../../../lib/utils';
 import {
