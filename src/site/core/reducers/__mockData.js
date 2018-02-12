@@ -237,6 +237,15 @@ export const mockNotifications = [
 		type: 'back',
 		date: '4 days ago',
 	},
+	{
+		id: 246124,
+		runnerName: 'Australia',
+		name: 'Australia_New Zealand',
+		status: 'Pending',
+		outcome: 'is now',
+		type: 'lay',
+		date: '5 days ago',
+	},
 ];
 
 export const mockCards = [
@@ -259,4 +268,3 @@ export const mockCards = [
 		total_matched: 51453.42,
 	},
 ];
-

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import Scrollbars from '../Scrollbars';
 import Transition from 'react-transition-group/Transition';
 import Button from '../Button';
 import classNames from 'classnames';
