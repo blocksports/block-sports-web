@@ -79,3 +79,38 @@ export const getMatchName = match => {
 export const getGlyphPath = sport => {
 	return sport.replace(/[- ]/g, '').toLowerCase();
 };
+
+export const confirmBetPaymentMethods = ['NeoLink', 'Manual'].map(i => {
+	return {
+		value: i.toLowerCase(),
+		text: i,
+	};
+});
+
+export const confirmBetPaymentFields = [
+	{
+		label: 'Address',
+		type: 'String',
+		value: 'AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ1X',
+		showCopyClipboard: true,
+	},
+	{
+		label: 'Operation',
+		type: 'String',
+		value: 'placeBet',
+		showCopyClipboard: true,
+	},
+	{
+		label: 'Args',
+		type: 'ByteArray',
+		value:
+			'[ 86f7e437faa5a7fce15d1ddcb9eaeaea377667b8, 1, 150, back, 25000000 ]',
+		showCopyClipboard: true,
+	},
+	{
+		label: 'PublicKey',
+		type: 'String',
+		value: 'Enter your address',
+		showCopyClipboard: false,
+	},
+];

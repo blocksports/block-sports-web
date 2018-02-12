@@ -1,0 +1,132 @@
+@import '../../../../../less/_colours.less';
+@import '../../../../../less/_fonts.less';
+@import '../../../../../less/_utils.less';
+
+:local(.root) {
+	position: relative;
+	padding: 0 @space-l;
+	margin-bottom: @space-xl;
+	color: @white-2;
+}
+
+:local(.inner) {
+	padding: @space-l;
+	background-color: @black-5;
+	border-radius: @border-radius;
+}
+
+:local(.bodyHeading) {
+	margin: 0;
+}
+
+:local(.bodyHeadingType) {
+	display: block;
+	margin-bottom: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
+	&.back {
+		color: @back;
+	}
+	&.lay {
+		color: @lay;
+	}
+}
+
+:local(.row) {
+	display: flex;
+	justify-content: space-between;
+}
+
+:local(.stake) {
+}
+
+:local(.stakeItem) {
+	margin-bottom: @space-xs;
+	display: flex;
+	align-items: baseline;
+}
+
+:local(.stakeHeading) {
+	display: block;
+	margin-bottom: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	color: @gray-1;
+	text-transform: uppercase;
+	text-align: right;
+}
+
+:local(.stakeValue) {
+	text-align: right;
+	flex-grow: 1;
+	padding-right: @space-xs;
+}
+
+:local(.stakeCurrency) {
+	font-size: @font-size-xs;
+	line-height: 1;
+	color: @gray-1;
+}
+
+// Info
+
+:local(.info) {
+	border-top: 1px solid @border-1;
+	border-bottom: 1px solid @border-1;
+	padding: @space 0;
+	margin-top: @space;
+	p {
+		margin: 0;
+	}
+}
+
+:local(.infoCompName) {
+	.truncate();
+}
+
+:local(.infoMatchName) {
+	margin: 0.25rem 0;
+	.truncate();
+}
+
+:local(.infoDate) {
+	color: @gray-1;
+	.truncate();
+}
+
+:local(.infoDetails) {
+	display: flex;
+	margin-top: @space;
+}
+
+:local(.infoDetailsItem) {
+	min-width: 24%;
+	margin-right: @space;
+}
+
+:local(.infoDetailsHeading) {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: @space-xs;
+	color: @white-2;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+:local(.infoDetailsCurrency) {
+	line-height: 1;
+	color: @gray-1;
+}
+
+:local(.infoDetailsValue) {
+	display: block;
+	font-size: @font-size-s;
+	line-height: 1;
+	color: @white-1;
+	padding: 0.5em;
+	border-radius: @border-radius;
+	border: 1px solid @border-1;
+	background: lighten(@black-5, 3%);
+}

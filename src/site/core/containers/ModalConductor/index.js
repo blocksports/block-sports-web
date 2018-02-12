@@ -16,7 +16,7 @@ export class ModalConductor extends Component {
 	}
 
 	componentDidMount() {
-		this.dispatchDemoWarning();
+		// this.dispatchDemoWarning();
 		this.dispatchMobileWarning();
 		window.addEventListener('resize', this.dispatchMobileWarning);
 	}

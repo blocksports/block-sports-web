@@ -1,0 +1,87 @@
+@import '../../../../../../less/_colours.less';
+@import '../../../../../../less/_fonts.less';
+@import '../../../../../../less/_utils.less';
+
+:local(.root) {
+	padding: @space-l;
+	background-color: @black-5;
+	border-radius: @border-radius;
+}
+
+:local(.header) {
+	margin: 0;
+}
+
+:local(.amount) {
+	color: @primary;
+}
+
+:local(.field) {
+	display: flex;
+	align-items: flex-end;
+	margin: @space-l 0;
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+:local(.fieldActions) {
+	flex: 0 0 2.4rem;
+	position: relative;
+	text-align: right;
+}
+
+:local(.fieldMain) {
+	flex: 1;
+	overflow: hidden;
+}
+
+:local(.field):first-of-type {
+	border-top: 1px solid @border-1;
+	border-bottom: 1px solid @border-1;
+	padding: @space-l 0;
+}
+
+:local(.field) :local(.fieldLabel) {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: @space-xs;
+	color: @gray-1;
+	font-size: @font-size-s;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+:local(.fieldValue) {
+	display: block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0.5em;
+	border-radius: @border-radius;
+	border: 1px solid @border-1;
+	background: lighten(@black-5, 3%);
+}
+
+:local(.copied) {
+	background: @black-1;
+	padding: 0.5rem;
+	border-radius: @border-radius;
+	font-size: @font-size-s;
+	line-height: 1;
+	position: absolute;
+	bottom: 100%;
+	right: 0;
+	color: @primary;
+	text-transform: uppercase;
+}
+
+:local(.fieldActionsCopy) {
+	fill: @white-2;
+	.transitionAll();
+}
+
+:local(.fieldActionsCopied) {
+	fill: @primary;
+}
