@@ -3,65 +3,65 @@
 @import '../../../../less/_utils.less';
 
 :local(.root) {
-  height: @header-height;
-  display: flex;
-  margin-bottom: @panel-gutter;
+	height: @header-height;
+	display: flex;
+	margin-bottom: @panel-gutter;
 }
 
 :local(.logo) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: @header-height;
-  width: @header-height;
-  .makePanel();
-  padding: 0.7rem;
-  &:focus,
-  &:hover {
-    opacity: 0.6;
-  }
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: @header-height;
+	width: @header-height;
+	.makePanel();
+	padding: 0.7rem;
+	&:focus,
+	&:hover {
+		opacity: 0.6;
+	}
 }
 
 :local(.main) {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: space-between;
-  margin-left: @panel-gutter;
-  .makePanel();
+	display: flex;
+	align-content: center;
+	align-items: center;
+	flex-grow: 1;
+	justify-content: space-between;
+	margin-left: @panel-gutter;
+	.makePanel();
 }
 
 :local(.actions) {
-  display: flex;
-  align-content: center;
-  align-items: center;
+	display: flex;
+	align-content: center;
+	align-items: center;
 }
 
 :local(.balance) {
-  min-width: 5rem;
+	text-align: right;
 }
 
 :local(.balanceHeading) {
-  display: block;
-  margin-bottom: @space-xs;
-  font-size: @font-size-xs;
-  line-height: 1;
-  text-transform: uppercase;
-  color: @white-2;
+	display: block;
+	margin-bottom: @space-xs;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
+	color: @white-2;
 }
 
 :local(.balanceAmount) {
-  display: block;
-  font-size: @font-size-l;
-  color: @primary;
-  line-height: 1;
+	display: block;
+	font-size: @font-size-l;
+	color: @primary;
+	line-height: 1;
 }
 
 :local(.balanceAmountCurrency) {
-  font-size: @font-size-xs;
+	font-size: @font-size-xs;
 }
 
 :local(.newAccount) {
-  margin-left: @space-m;
+	margin-left: @space-m;
 }
