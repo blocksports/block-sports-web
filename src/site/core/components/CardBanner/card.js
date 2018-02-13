@@ -4,15 +4,15 @@ import Transition from 'react-transition-group/Transition';
 import moment from 'moment';
 import { Link } from 'react-router';
 import { t } from 'i18next';
-import Glyph from '../../components/Glyph';
-import Button from '../../components/Button';
+import Glyph from '../Glyph';
+import Button from '../Button';
 import { round, getGlyphPath } from '../../../../lib/utils';
 import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../lib/animation';
 import DemoCardImage from '../../../../img/demo-card.png';
-import styles from './style.less';
+import styles from './styles.less';
 
 const printNumber = (number, currency, exchangeRate) => {
 	number = number * exchangeRate;

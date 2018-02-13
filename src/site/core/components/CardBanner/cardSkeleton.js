@@ -1,6 +1,6 @@
 import React from 'react';
-import SkeletonBlock from '../../components/SkeletonBlock';
-import styles from './style.less';
+import SkeletonBlock from '../SkeletonBlock';
+import styles from './styles.less';
 
 const CardSkeleton = props => (
 	<div className={styles.item}>
