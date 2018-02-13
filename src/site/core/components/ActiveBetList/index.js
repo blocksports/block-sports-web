@@ -13,9 +13,9 @@ const ActiveBetList = props => {
 	items = items.sort(orderByDate('date_created', -1));
 	return (
 		<div className={classNames([styles.root, props.className])}>
-			{items.map(bet => (
+			{items.map((bet, i) => (
 				<ActiveBetListItem
-					key={bet.get('id')}
+					key={i}
 					bet={bet}
 					currency={props.currency}
 					exchangeRate={props.exchangeRate}
