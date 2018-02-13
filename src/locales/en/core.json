@@ -1,93 +1,93 @@
 {
-  "currency": {
-    "GAS": "GAS",
-    "USD": "USD",
-    "NEO": "NEO"
-  },
-  "sport": {
-    "soccer": "Soccer",
-    "american-football": "American Football",
-    "mixed-martial-arts": "Mixed Martial Arts",
-    "basketball": "Basketball",
-    "cricket": "Cricket",
-    "ice-hockey": "Ice Hockey",
-    "boxing": "Boxing",
-    "table-tennis": "Table Tennis",
-    "baseball": "Baseball",
-    "australian-football-league": "Australian Rules",
-    "tennis": "Tennis"
-  },
-  "header": {
-    "search-placeholder": "Search for Sports, Matches, Players",
-    "search-disabled-message": "Sorry! We're still working on search.",
-    "notifications-disabled-message":
-      "Sorry! We're still working on notifications.",
-    "balance": "Balance",
-    "new-account": "New Account"
-  },
-  "categories": {
-    "soccer": "Soccer",
-    "mma": "Mixed Martial Arts",
-    "cricket": "Cricket"
-  },
-  "navigation": {
-    "header-all": "All Markets"
-  },
-  "markets": {
-    "header-time": "Starting Soon",
-    "header-popular": "Popular",
-    "item": {
-      "bet-for": "Bet for",
-      "odds": "Odds",
-      "bet": "Bet",
-      "profit": "Profit",
-      "confirm": "Confirm bet",
-      "matched": "Matched",
-      "rules": "Rules"
-    }
-  },
-  "bets": {
-    "bet-slip-tab": "Bet Slip",
-    "active-tab": "Active Bets",
-    "active": {
-      "is-empty": "You have no active bets",
-      "runner": "Runner",
-      "odds": "Odds",
-      "matched": "Matched",
-      "status": "Status",
-      "pending": "Pending",
-      "active": "Active",
-      "filled": "Filled",
-      "pending-info":
-        "Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
-    },
-    "bet-slip": {
-      "is-empty": "No bets selected",
-      "runner-back": "Bet for",
-      "runner-lay": "Bet against",
-      "odds": "Odds",
-      "stake": "Bet",
-      "profit-back": "Profit",
-      "profit-lay": "Liability",
-      "button-back": "Back",
-      "button-lay": "Lay",
-      "remove-all": "Remove All"
-    }
-  },
-  "footer": {
-    "bet-view": "Bet View",
-    "last-block": "Last block",
-    "average-block": "Average block"
-  },
-  "mobile-modal": {
-    "heading": "Sorry! Your screen is too small.",
-    "message":
-      "The Block Sports Exchange is not currently available for mobile devices. Upon full release, the Block Sports Exchange will be available for download on iOS and Android."
-  },
-  "demo-modal": {
-    "heading": "WARNING, this is a demo only!",
-    "message":
-      "Ut accumsan metus eros, nec feugiat sem tempus vel. Nullam scelerisque sollicitudin arcu sollicitudin tempor. Cras eu ante libero. Aenean sit amet neque mi.",
-    "button": "Continue"
-  }
+	"currency": {
+		"GAS": "GAS",
+		"USD": "USD",
+		"NEO": "NEO"
+	},
+	"sport": {
+		"soccer": "Soccer",
+		"american-football": "American Football",
+		"mixed-martial-arts": "Mixed Martial Arts",
+		"basketball": "Basketball",
+		"cricket": "Cricket",
+		"ice-hockey": "Ice Hockey",
+		"boxing": "Boxing",
+		"table-tennis": "Table Tennis",
+		"baseball": "Baseball",
+		"australian-football-league": "Australian Rules",
+		"tennis": "Tennis"
+	},
+	"header": {
+		"search-placeholder": "Search",
+		"search-disabled-message": "Sorry! We're still working on search.",
+		"notifications-disabled-message":
+			"Sorry! We're still working on notifications.",
+		"balance": "Balance",
+		"new-account": "New Account"
+	},
+	"categories": {
+		"soccer": "Soccer",
+		"mma": "Mixed Martial Arts",
+		"cricket": "Cricket"
+	},
+	"navigation": {
+		"header-all": "All Markets"
+	},
+	"markets": {
+		"header-time": "Starting Soon",
+		"header-popular": "Popular",
+		"item": {
+			"bet-for": "Bet for",
+			"odds": "Odds",
+			"bet": "Bet",
+			"profit": "Profit",
+			"confirm": "Confirm bet",
+			"matched": "Matched",
+			"rules": "Rules"
+		}
+	},
+	"bets": {
+		"bet-slip-tab": "Bet Slip",
+		"active-tab": "Active Bets",
+		"active": {
+			"is-empty": "You have no active bets",
+			"runner": "Runner",
+			"odds": "Odds",
+			"matched": "Matched",
+			"status": "Status",
+			"pending": "Pending",
+			"active": "Active",
+			"filled": "Filled",
+			"pending-info":
+				"Your bet is pending confirmation on the blockchain. This typically takes around 60 seconds."
+		},
+		"bet-slip": {
+			"is-empty": "No bets selected",
+			"runner-back": "Bet for",
+			"runner-lay": "Bet against",
+			"odds": "Odds",
+			"stake": "Bet",
+			"profit-back": "Profit",
+			"profit-lay": "Liability",
+			"button-back": "Back",
+			"button-lay": "Lay",
+			"remove-all": "Remove All"
+		}
+	},
+	"footer": {
+		"bet-view": "Bet View",
+		"last-block": "Last block",
+		"average-block": "Average block"
+	},
+	"mobile-modal": {
+		"heading": "Sorry! Your screen is too small.",
+		"message":
+			"The Block Sports Exchange is not currently available for mobile devices. Upon full release, the Block Sports Exchange will be available for download on iOS and Android."
+	},
+	"demo-modal": {
+		"heading": "WARNING, this is a demo only!",
+		"message":
+			"Ut accumsan metus eros, nec feugiat sem tempus vel. Nullam scelerisque sollicitudin arcu sollicitudin tempor. Cras eu ante libero. Aenean sit amet neque mi.",
+		"button": "Continue"
+	}
 }

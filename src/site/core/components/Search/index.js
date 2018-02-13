@@ -14,7 +14,11 @@ import styles from './style.less';
 
 const Search = props => (
 	<div className={styles.root}>
-		<input className={styles.input} onFocus={() => props.openDropdown()} />
+		<input
+			className={styles.input}
+			placeholder={t('core:header.search-placeholder')}
+			onFocus={() => props.openDropdown()}
+		/>
 		<Button className={styles.button}>
 			<Glyph size="14" icon="search" className={styles.icon} />
 		</Button>
