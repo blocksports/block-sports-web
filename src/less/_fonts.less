@@ -1,73 +1,42 @@
 @import './_utils';
 
 @font-face {
-  font-family: 'ProximaNova';
-  src: url('../fonts/proximanova-regular-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
+	font-family: 'ProximaNovaSoft';
+	src: url('../fonts/proxima-nova-soft-medium-webfont.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'ProximaNovaSoft';
-  src: url('../fonts/proxima-nova-soft-medium-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
+	font-family: 'ProximaNova';
+	src: url('../fonts/proximanova-regular-webfont.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'ProximaNova';
-  src: url('../fonts/proximanova-bold-webfont.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
+	font-family: 'ProximaNova';
+	src: url('../fonts/proximanova-semibold-webfont.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('../fonts/proximanova-bold-webfont.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
 }
 
 @font-family: 'ProximaNova', sans-serif;
 @font-family-soft: 'ProximaNovaSoft', @font-family;
+@font-weight-regular: 500;
+@font-weight-semibold: 600;
+@font-weight-bold: bold;
 
 .defaultFont() {
-  font-family: @font-family;
-  font-weight: 500;
-  font-size: @font-size;
-  line-height: 1.3;
-}
-
-.headingL() {
-  font-size: @font-size-l;
-  line-height: 1;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: @gray-1;
-}
-
-.headingM() {
-  font-size: @font-size-m;
-  line-height: 1;
-  text-transform: uppercase;
-  color: @gray-1;
-}
-
-.headingS() {
-  font-size: @font-size-s;
-  line-height: 1;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: @gray-1;
-}
-
-.headingXS() {
-  font-size: @font-size-xs;
-  line-height: 1;
-  text-transform: uppercase;
-  color: @gray-1;
-}
-
-.multilineTruncate(@height, @line-height, @lines) {
-  display: -webkit-box;
-  height: @height;
-  line-height: @line-height;
-  -webkit-line-clamp: @lines;
-  overflow: hidden;
-  /* autoprefixer: off */
-  -webkit-box-orient: vertical;
-  /* autoprefixer: on */
+	font-family: @font-family;
+	font-weight: @font-weight-regular;
+	font-size: @font-size;
+	line-height: 1.3;
 }
