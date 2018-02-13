@@ -8,7 +8,7 @@ const SkeletonBlock = ({ width, height, className }) => (
 		className={classNames([
 			styles.root,
 			styles[`width-${width}`],
-			styles[`height-${height}`],
+			// styles[`height-${height}`],
 			className,
 		])}
 	/>
@@ -16,13 +16,13 @@ const SkeletonBlock = ({ width, height, className }) => (
 
 SkeletonBlock.propTypes = {
 	width: PropTypes.string.isRequired,
-	height: PropTypes.string.isRequired,
+	// height: PropTypes.string.isRequired,
 	className: PropTypes.string,
 };
 
 SkeletonBlock.defaultProps = {
 	width: 'medium',
-	height: 'large',
+	// height: 'large',
 };
 
 export default SkeletonBlock;
