@@ -30,7 +30,7 @@ const NavListItem = ({ filter, category, item }) => {
 					</div>
 					<div className={styles.itemRight}>
 						{filter && (
-							<span className={styles.itemCount}>{item.get('count')}</span>
+							<div className={styles.itemCount}>{item.get('count')}</div>
 						)}
 						<Glyph size="14" icon="right" />
 					</div>

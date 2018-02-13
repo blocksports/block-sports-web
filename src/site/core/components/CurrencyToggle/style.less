@@ -1,43 +1,45 @@
 @import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
-  display: flex;
-  border: 1px solid @site-panel-bg-light;
-  border-radius: @border-radius;
-  margin: 0 calc(@space * 2);
+	display: flex;
+	border: 1px solid @black-5;
+	border-radius: @border-radius;
+	margin: 0 @space * 2;
 }
 
 :local(.option) {
-  background: transparent;
-  outline: none;
-  -webkit-apperance: none;
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  color: @gray-1;
-  font-size: @font-size-s;
-  line-height: 1.4rem;
-  height: 1.4rem;
-  width: 3rem;
-  padding: 0;
-  .transitionAll();
+	background: transparent;
+	outline: none;
+	-webkit-apperance: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	color: @gray-1;
+	font-size: @font-size-s;
+	height: @footer-item-height;
+	width: @footer-item-height * 2;
+	padding: 0;
+	.transitionAll();
 
-  &:first-of-type {
-    border-radius: @border-radius 0 0 @border-radius;
-  }
+	&:first-of-type {
+		border-radius: @border-radius 0 0 @border-radius;
+	}
 
-  &:last-of-type {
-    border-radius: 0 @border-radius @border-radius 0;
-  }
+	&:last-of-type {
+		border-radius: 0 @border-radius @border-radius 0;
+	}
 }
 
 :local(.option):hover,
 :local(.option):focus {
-  color: @white-1;
+	color: @white-1;
 }
 
 :local(.option):local(.active) {
-  background: @site-panel-bg-light;
-  color: @primary;
+	background: @black-5;
+	color: @primary;
 }

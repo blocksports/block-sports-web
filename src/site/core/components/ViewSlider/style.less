@@ -1,9 +1,11 @@
 @import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
 @import '../../../../less/_fonts.less';
 
 :local(.root) {
 	display: flex;
 	align-items: center;
+	height: @footer-item-height;
 }
 
 :local(.sliderValue) {
@@ -14,7 +16,8 @@
 }
 
 :local(.currency) {
-	font-size: @font-size-xs;
+	font-size: 10px;
+	letter-spacing: 0.02em;
 }
 
 // Yucky but quicker than retheming :~(

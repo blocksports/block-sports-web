@@ -4,11 +4,22 @@
 
 :local(.currencies) {
 	display: flex;
+	align-items: center;
 }
 
 :local(.currency) {
 	display: flex;
 	align-items: baseline;
+	height: @footer-item-height;
+}
+
+:local(.currencyInner) {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 0.3rem;
+	background-color: @black-5;
+	border-radius: @border-radius;
 }
 
 :local(.currencyLoading) {
@@ -20,20 +31,22 @@
 
 :local(.currencyName) {
 	display: inline-block;
-	margin-right: @space-xs;
-	font-size: @font-size-xs;
+	margin-right: @space-s;
+	font-size: 10px;
+	letter-spacing: 0.02em;
 	line-height: 1;
 	text-transform: uppercase;
 	color: @white-2;
 }
 
 :local(.currencyAmount) {
-	line-height: 1;
-	background-color: @site-panel-bg-light;
-	padding: 0.3rem;
-	border-radius: @border-radius;
+	display: inline-flex;
+	align-items: baseline;
 }
 
 :local(.exchangeCurrency) {
-	font-size: @font-size-xs;
+	display: inline-block;
+	margin-left: @space-xs;
+	font-size: 10px;
+	letter-spacing: 0.02em;
 }

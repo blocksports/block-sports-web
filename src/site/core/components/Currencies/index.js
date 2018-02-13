@@ -44,12 +44,14 @@ const Currency = ({ currency, price, exchangeCurrency }) => (
 		<span className={styles.currencyName}>
 			{t(`core:currency.${currency}`)}
 		</span>
-		<span className={styles.currencyAmount}>
-			{price.getIn([currency, exchangeCurrency]).toFixed(2)}{' '}
-			<span className={styles.exchangeCurrency}>
-				{t(`core:currency.${exchangeCurrency}`)}
+		<div className={styles.currencyInner}>
+			<span className={styles.currencyAmount}>
+				{price.getIn([currency, exchangeCurrency]).toFixed(2)}{' '}
+				<span className={styles.exchangeCurrency}>
+					{t(`core:currency.${exchangeCurrency}`)}
+				</span>
 			</span>
-		</span>
+		</div>
 	</div>
 );
 

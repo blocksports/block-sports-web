@@ -32,7 +32,6 @@ class BlockTimer extends Component {
 		if (this.props.lastUpdated != nextProps.lastUpdated) {
 			const timeSince = this.calculateTimeSince(nextProps.lastUpdated);
 			const timeNow = moment.now() / 1000;
-
 			// Normalise time due to clocks being out of sync. Not super accurate but works better
 			this.setState({
 				secondsSinceUpdate: timeSince,
@@ -58,7 +57,6 @@ class BlockTimer extends Component {
 	tick() {
 		const secondsDiff = this.calculateTimeSince(this.props.lastUpdated);
 		const normalisedTime = this.state.normalisedTime;
-
 		this.setState({
 			secondsSinceUpdate: (secondsDiff - normalisedTime).toFixed(0),
 		});
