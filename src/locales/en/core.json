@@ -76,8 +76,8 @@
 	},
 	"footer": {
 		"bet-view": "Bet View",
-		"last-block": "Last block",
-		"average-block": "Average block"
+		"last-block": "Last",
+		"average-block": "Average"
 	},
 	"mobile-modal": {
 		"heading": "Sorry! Your screen is too small.",
