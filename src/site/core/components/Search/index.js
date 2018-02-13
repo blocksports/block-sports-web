@@ -17,9 +17,9 @@ const Search = props => (
 		<input
 			className={styles.input}
 			placeholder={t('core:header.search-placeholder')}
-			onFocus={() => props.openDropdown()}
+			onFocus={props.openDropdown}
 		/>
-		<Button className={styles.button}>
+		<Button onClick={props.openDropdown} className={styles.button}>
 			<Glyph size="14" icon="search" className={styles.icon} />
 		</Button>
 		<Transition in={props.showDropdown} timeout={0}>
