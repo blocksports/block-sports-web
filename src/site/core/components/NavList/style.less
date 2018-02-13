@@ -1,5 +1,6 @@
-@import "../../../../less/_colours.less";
-@import "../../../../less/_utils.less";
+@import '../../../../less/_colours.less';
+@import '../../../../less/_utils.less';
+@import '../../../../less/_fonts.less';
 
 :local(.root) {
 	width: 100%;
@@ -9,10 +10,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center;
-	margin-bottom: @space;
+	align-items: flex-end;
+	margin: calc(@space-xl - 0.8rem) 0 @space-xl 0;
 	color: @white-1;
 	padding: 0 @space-s;
+	font-weight: @font-weight-semibold;
 }
 
 :local(.headerIcon) {
@@ -57,7 +59,7 @@
 }
 
 :local(.itemInner) {
-	min-height: 1.8rem;
+	min-height: 2.1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -89,7 +91,9 @@
 }
 
 :local(.itemCount) {
-	display: inline-block;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	margin-right: @space-s;
 	font-size: 9px;
 	line-height: 1;
@@ -98,8 +102,6 @@
 	line-height: 1rem;
 	height: 1rem;
 	min-width: 1rem;
-	padding: 0 0.2rem;
-	text-align: center;
 	border-radius: @border-radius;
 	.transitionAll();
 }
