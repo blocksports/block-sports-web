@@ -312,11 +312,13 @@ class MarketListItem extends Component {
 				onClick={this.handleOddsClick(outcome, bet, type)}
 				key={idx}
 			>
-				<span className="odds">{bet.get('odds')}</span>
-				<span className="matched">
-					{this.printNumber(bet.get('available'))}&nbsp;
-					{t(`core:currency.${this.props.currency}`)}
-				</span>
+				<div>
+					<span className="odds">{bet.get('odds')}</span>
+					<span className="matched">
+						{this.printNumber(bet.get('available'))}&nbsp;
+						{t(`core:currency.${this.props.currency}`)}
+					</span>
+				</div>
 			</Button>
 		);
 	}

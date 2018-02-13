@@ -19,13 +19,12 @@ class BetSlipList extends Component {
 	componentWillReceiveProps(nextProps) {}
 
 	get removeAll() {
-		if (this.isEmpty('back') && this.isEmpty('lay')) return null;
-
+		if (!this.hasMoreThanOneBet()) return null;
 		return (
 			<div className={styles.removeAll}>
 				<Button
 					size="medium"
-					extras={['minimal']}
+					color={'black-5'}
 					className={styles.removeAllButton}
 					onClick={this.props.onRemoveAllClick}
 				>
@@ -35,8 +34,12 @@ class BetSlipList extends Component {
 		);
 	}
 
-	isEmpty(type) {
-		return this.props.items.get(type, Immutable.Map()).isEmpty();
+	hasMoreThanOneBet() {
+		return (
+			this.props.items.get('back', Immutable.Map()).count() +
+				this.props.items.get('lay', Immutable.Map()).count() >
+			1
+		);
 	}
 
 	renderBets(type) {
@@ -50,7 +53,7 @@ class BetSlipList extends Component {
 		let betSlipitems = items.get(type) || Immutable.Map();
 		betSlipitems = betSlipitems.toList();
 		return (
-			<TransitionGroup className={`bet-slip-${type}`}>
+			<TransitionGroup>
 				{betSlipitems.map((bet, index) => (
 					<Fade key={bet.getIn(['id'])}>
 						<BetSlipItem

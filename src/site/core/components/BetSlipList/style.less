@@ -3,139 +3,135 @@
 @import '../../../../less/_fonts.less';
 
 :local(.itemRoot) {
-  position: relative;
-  padding: @space-s;
-  border-left: @border-radius solid;
-  background-color: @black-5;
-  border-radius: @border-radius;
-  margin: @space-s 0;
+	position: relative;
+	padding: @space-s;
+	border-left: @border-radius solid;
+	background-color: @black-5;
+	border-radius: @border-radius;
+	margin: @space-s 0;
 
-  &:first-of-type {
-    margin-top: 0;
-  }
+	&:first-of-type {
+		margin-top: 0;
+	}
 
-  &.back {
-    border-left-color: @back;
-  }
+	&.back {
+		border-left-color: @back;
+	}
 
-  &.lay {
-    border-left-color: @lay;
-  }
+	&.lay {
+		border-left-color: @lay;
+	}
 }
 
 :local(.header) {
-  margin-bottom: @space-s;
+	margin-bottom: @space-s;
 }
 
 :local(.headerTop) {
 }
 
 :local(.heading) {
-  width: 90%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 :local(.headingSub) {
-  width: 90%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-top: 0.1rem;
-  color: @gray-1;
-  font-size: @font-size-s;
+	width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 0.1rem;
+	color: @gray-1;
+	font-size: @font-size-s;
 }
 
 :local(.removeButton) {
-  position: absolute;
-  top: @space-s;
-  right: @space-s;
-  padding: 0;
-  line-height: 1;
-  height: auto;
+	position: absolute;
+	top: @space-s;
+	right: @space-s;
+	padding: 0;
+	line-height: 1;
+	height: auto;
 
-  svg {
-    fill: @gray-1;
-    .transitionAll();
-  }
+	svg {
+		fill: @gray-1;
+		.transitionAll();
+	}
 
-  &:focus,
-  &:hover {
-    svg {
-      fill: @white-1;
-    }
-  }
+	&:focus,
+	&:hover {
+		svg {
+			fill: @white-1;
+		}
+	}
 }
 
 :local(.details) {
-  display: flex;
+	display: flex;
 }
 
 :local(.detailsItem) {
-  font-size: @font-size-s;
-  width: 25%;
-  margin-right: @space-s;
+	font-size: @font-size-s;
+	width: 25%;
+	margin-right: @space-s;
 }
 
 :local(.detailsHeading) {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: @space-xs;
-  padding-right: 12px;
-  color: @white-2;
-  font-size: @font-size-xs;
-  line-height: 1;
-  text-transform: uppercase;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: @space-xs;
+	padding-right: 12px;
+	color: @white-2;
+	font-size: @font-size-xs;
+	line-height: 1;
+	text-transform: uppercase;
 }
 
 :local(.detailsCurrency) {
-  color: @gray-1;
+	color: @gray-1;
 }
 
 :local(.detailsBet) {
-  flex-grow: 1;
-  margin-top: auto;
+	flex-grow: 1;
+	margin-top: auto;
 }
 
 :local(.input) {
-  font-family: @font-family;
-  font-size: @font-size-s;
-  line-height: 1;
-  width: 100%;
-  background-color: darken(@site-panel-bg-light, 4%);
-  color: @white-1;
-  padding: 0.5em;
-  border-radius: @border-radius;
-  &:focus {
-    outline: none;
-  }
+	font-family: @font-family;
+	font-size: @font-size-s;
+	line-height: 1;
+	width: 100%;
+	background-color: darken(@site-panel-bg-light, 4%);
+	color: @white-1;
+	padding: 0.5em;
+	border-radius: @border-radius;
+	&:focus {
+		outline: none;
+	}
 }
 
 :local(.removeAll) {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: @space;
-  margin-right: @space-s;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: @space;
 }
 
 :local(.removeAllButton) {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  color: @gray-1;
-  height: auto;
+	display: flex;
+	align-items: center;
+	padding: 0.1rem 0.6rem;
+	color: @gray-1;
 
-  &:hover,
-  &:focus {
-    color: @white-1;
-  }
+	&:hover,
+	&:focus {
+		color: @white-1;
+	}
 
-  svg {
-    position: relative;
-    top: -1px;
-    display: inline-block;
-    margin-left: @space-xs;
-    fill: currentColor;
-  }
+	svg {
+		display: inline-block;
+		margin-left: 0.35rem;
+		fill: currentColor;
+	}
 }
