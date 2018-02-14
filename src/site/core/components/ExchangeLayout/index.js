@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Scrollbars from '../Scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Immutable from 'immutable';
 import { t } from 'i18next';
 import Bets from '../Bets';
@@ -12,37 +12,49 @@ import MarketDetail from '../../containers/MarketDetail';
 import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
-const ExchangeLayout = props => (
-	<div>
-		<div className={styles.root}>
-			<div className={styles.left}>
-				<Scrollbars>
-					<Navigation sport={props.params.sport} />
-				</Scrollbars>
-			</div>
-			<div className={styles.main}>
-				<Scrollbars>
-					<CardBanner />
-					<div className={styles.mainMarket}>
-						{props.params.entity === 'market' && (
-							<MarketDetail params={props.params} />
-						)}
-						{props.params.entity !== 'market' && (
-							<Markets items={props.items} params={props.params} />
-						)}
+class ExchangeLayout extends Component {
+	componentWillUpdate() {
+		this.refs.scrollbarLeft.scrollTop(0);
+		this.refs.scrollbarMain.scrollTop(0);
+	}
+
+	render() {
+		return (
+			<div>
+				<div className={styles.root}>
+					<div className={styles.left}>
+						<Scrollbars ref="scrollbarLeft">
+							<Navigation sport={this.props.params.sport} />
+						</Scrollbars>
 					</div>
-				</Scrollbars>
-			</div>
-			<div className={styles.right}>
-				<Bets className={styles.bets} />
-				<div className={styles.chat}>
-					<Chat params={props.params} />
+					<div className={styles.main}>
+						<Scrollbars ref="scrollbarMain">
+							<CardBanner />
+							<div className={styles.mainMarket}>
+								{this.props.params.entity === 'market' && (
+									<MarketDetail params={this.props.params} />
+								)}
+								{this.props.params.entity !== 'market' && (
+									<Markets
+										items={this.props.items}
+										params={this.props.params}
+									/>
+								)}
+							</div>
+						</Scrollbars>
+					</div>
+					<div className={styles.right}>
+						<Bets className={styles.bets} />
+						<div className={styles.chat}>
+							<Chat params={this.props.params} />
+						</div>
+					</div>
 				</div>
+				<ExchangeFooter className={styles.footer} />
 			</div>
-		</div>
-		<ExchangeFooter className={styles.footer} />
-	</div>
-);
+		);
+	}
+}
 
 ExchangeLayout.propTypes = {
 	params: PropTypes.object,

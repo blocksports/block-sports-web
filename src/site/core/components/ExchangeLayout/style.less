@@ -4,52 +4,56 @@
 @panel-height: (@header-height + @footer-height) + (@panel-gutter * 4);
 
 :local(.root) {
-  display: flex;
-  width: 100%;
-  height: ~'calc(100vh - @{panel-height})';
+	display: flex;
+	width: 100%;
+	height: ~'calc(100vh - @{panel-height})';
 }
 
 :local(.left) {
-  flex: 0 0 220px;
-  .makePanel();
-  padding: 0;
+	flex: 0 0 220px;
+	.makePanel();
+	padding: 0;
+	overflow-y: scroll;
+	height: 100%;
 }
 
 :local(.main) {
-  flex-grow: 1;
-  margin: 0 @panel-gutter;
+	flex-grow: 1;
+	margin: 0 @panel-gutter;
+	border-radius: @border-radius;
+	overflow: hidden;
 }
 
 :local(.mainMarket) {
-  .makePanelLight();
-  padding: 0;
+	.makePanelLight();
+	padding: 0;
 }
 
 :local(.right) {
-  flex: 0 0 350px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+	flex: 0 0 350px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
 
 :local(.bets) {
-  height: 350px;
-  width: 100%;
-  .makePanelLight();
-  padding: 0;
+	height: 350px;
+	width: 100%;
+	.makePanelLight();
+	padding: 0;
 }
 
 :local(.chat) {
-  position: relative;
-  flex-grow: 1;
-  .makePanelLight();
-  padding: 0;
-  margin-top: @panel-gutter;
-  overflow: hidden;
-  display: flex;
+	position: relative;
+	flex-grow: 1;
+	.makePanelLight();
+	padding: 0;
+	margin-top: @panel-gutter;
+	overflow: hidden;
+	display: flex;
 }
 
 :local(.footer) {
-  margin-top: @panel-gutter;
-  .makePanel();
+	margin-top: @panel-gutter;
+	.makePanel();
 }

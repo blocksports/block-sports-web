@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import Scrollbars from '../Scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Transition from 'react-transition-group/Transition';
 import Button from '../Button';
 import classNames from 'classnames';
@@ -39,19 +39,21 @@ const Notifications = props => (
 						...fadeTransitionStyles[state],
 					}}
 				>
-					<div
-						className={classNames([
-							dropdownStyles.dropdownInner,
-							styles.dropdownInner,
-						])}
-					>
-						{props.notifications.map(notification => (
-							<NotificationItem
-								key={notification.get('id')}
-								notification={notification}
-							/>
-						))}
-					</div>
+					<Scrollbars>
+						<div
+							className={classNames([
+								dropdownStyles.dropdownInner,
+								styles.dropdownInner,
+							])}
+						>
+							{props.notifications.map(notification => (
+								<NotificationItem
+									key={notification.get('id')}
+									notification={notification}
+								/>
+							))}
+						</div>
+					</Scrollbars>
 				</div>
 			)}
 		</Transition>
