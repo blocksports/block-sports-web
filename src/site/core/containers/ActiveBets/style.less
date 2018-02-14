@@ -1,7 +1,14 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
 
+:local(.root) {
+	position: relative;
+}
+
 :local(.empty) {
-	padding-top: 3rem;
+	position: absolute;
+	top: 3rem;
+	left: 0;
+	right: 0;
 	text-align: center;
 }

@@ -27,7 +27,9 @@ export class BetSlip extends Component {
 		} = this.props;
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
-				{items.isEmpty() && (
+				{items.getIn(['back'], Immutable.Map()).size +
+					items.getIn(['lay'], Immutable.Map()).size <
+					1 && (
 					<div className={styles.empty}>{t('core:bets.bet-slip.is-empty')}</div>
 				)}
 				<BetSlipList

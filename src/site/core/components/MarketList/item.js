@@ -157,15 +157,15 @@ class MarketListItem extends Component {
 		return Math.round((odds * stake + 0.00001 - stake) * 1000) / 1000 || 0;
 	}
 
-	getBetID(outcome) {
-		return `${this.props.item.get('name')}-${outcome}`;
+	getBetID(outcome, type) {
+		return `${type}-${outcome}-${this.props.item.get('name')}-`;
 	}
 
 	handleOddsClick(outcome, bet, type) {
 		return event => {
 			if (this.props.onOddsClick) {
 				return this.props.onOddsClick({
-					id: this.getBetID(outcome),
+					id: this.getBetID(outcome, type),
 					bet: bet,
 					outcome: outcome,
 					match: this.props.item,
