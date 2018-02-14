@@ -4,10 +4,10 @@
 :local(.root) {
 	position: relative;
 	overflow: hidden;
-	background-color: @gray-1;
+	background-color: #40434e;
 	border-radius: @border-radius;
 	height: 8px;
-	opacity: 0.5;
+	opacity: 0.4;
 	&::after {
 		content: '';
 		position: absolute;
@@ -15,9 +15,8 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(90deg, @gray-1, lighten(@gray-1, 30%), @gray-1);
-
-		animation: progress 1.5s ease-in-out infinite;
+		background: linear-gradient(90deg, #40434e, lighten(#40434e, 20%), #40434e);
+		animation: progress 2000ms ease-in-out infinite;
 	}
 }
 
