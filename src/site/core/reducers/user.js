@@ -1,6 +1,8 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
 
+const demoLocalStorageKeyName = 'acceptedDemoWarning';
+const dempLocalStorageKeyValue = '1';
 const fetchUserRequest = createAction('FETCH_USER_REQUEST');
 const fetchUserSuccess = createAction('FETCH_USER_SUCCESS');
 export const acceptDemoWarning = createAction('ACCEPT_DEMO_WARNING');
@@ -20,7 +22,8 @@ const initialState = Immutable.Map({
 	isLoading: false,
 	isLoggedIn: false,
 	user: Immutable.Map(),
-	hasAcceptedDemoWarning: false,
+	hasAcceptedDemoWarning:
+		localStorage.getItem(demoLocalStorageKeyName) === dempLocalStorageKeyValue,
 });
 
 const userReducer = createReducer(
@@ -37,6 +40,7 @@ const userReducer = createReducer(
 			});
 		},
 		[acceptDemoWarning]: (state, resp) => {
+			localStorage.setItem(demoLocalStorageKeyName, dempLocalStorageKeyValue);
 			return state.merge({
 				hasAcceptedDemoWarning: true,
 			});

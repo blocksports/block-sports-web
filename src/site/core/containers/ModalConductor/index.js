@@ -16,7 +16,7 @@ export class ModalConductor extends Component {
 	}
 
 	componentDidMount() {
-		// this.dispatchDemoWarning();
+		this.dispatchDemoWarning();
 		this.dispatchMobileWarning();
 		window.addEventListener('resize', this.dispatchMobileWarning);
 	}
@@ -27,17 +27,19 @@ export class ModalConductor extends Component {
 			hasAcceptedDemoWarning,
 			setCurrentModal,
 		} = this.props;
-		if (window.innerWidth < 1140) {
-			setCurrentModal('mobileWarning');
-		} else {
-			if (currentModal === 'mobileWarning') {
-				setCurrentModal(hasAcceptedDemoWarning ? null : 'demoWarning');
+		if (hasAcceptedDemoWarning) {
+			if (window.innerWidth < 1140) {
+				setCurrentModal('mobileWarning');
+			} else {
+				setCurrentModal(null);
 			}
 		}
 	}
 
 	dispatchDemoWarning() {
-		this.props.setCurrentModal('demoWarning');
+		if (!this.props.hasAcceptedDemoWarning) {
+			this.props.setCurrentModal('demoWarning');
+		}
 	}
 
 	render() {
