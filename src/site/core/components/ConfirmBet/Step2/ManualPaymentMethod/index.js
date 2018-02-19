@@ -1,7 +1,8 @@
 import React from 'react';
+import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import Field from './field';
-import { confirmBetPaymentFields } from '../../../../../../lib/utils';
+import { createConfirmBetPaymentFields } from '../../../../../../lib/utils';
 import styles from './styles.less';
 
 const ManualPaymentMethod = props => (
@@ -10,12 +11,13 @@ const ManualPaymentMethod = props => (
 			Send <span className={styles.amount}>{props.stake}</span> GAS with the
 			parameters below
 		</p>
-		{confirmBetPaymentFields.map((field, i) => <Field key={i} {...field} />)}
+		{createConfirmBetPaymentFields(props.bet).map((field, i) => <Field key={i} {...field} />)}
 	</div>
 );
 
 ManualPaymentMethod.propTypes = {
 	stake: PropTypes.number.isRequired,
+	bet: PropTypes.instanceOf(Immutable.Map)
 };
 
 export default ManualPaymentMethod;

@@ -6,33 +6,32 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import { t } from 'i18next';
 import Glyph from '../Glyph';
-import { getParticipantName, getMatchName } from '../../../../lib/utils';
+import { getParticipantName, getMatchName, round } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
 
 const getBetLiability = ({ odds, stake, type }) => {
 	if (type === 'back') return stake;
-	return (odds * stake).toFixed(2);
+	return round((odds * stake - stake), 3);
 };
 
 const getTotalPool = ({ odds, stake, type }) => {
 	if (type === 'back') return (odds - 1) * stake;
-	return (stake * 1).toFixed(2);
+	return round((stake * 1), 2);
 };
 
 const calculateProfit = (odds, stake) => {
-	// const profit = Math.round(((odds * stake + 0.00001) - stake) * 1000) / 1000 || 0
 	const profit = (odds - 1) * stake;
-	return profit >= 0 ? profit.toFixed(2) : 0;
+	return profit >= 0 ? round(profit, 2) : 0;
 };
 
 const calculateStake = (odds, profit, type) => {
 	let stake;
 	if (type === 'back') {
-		stake = ((profit + profit / (odds - 1)) / odds).toFixed(2) || 0;
+		stake = round(((profit + profit / (odds - 1)) / odds), 2) || 0;
 	} else {
-		stake = (profit / odds).toFixed(2) || 0;
+		stake = round((profit / (odds - 1)), 2) || 0;
 	}
 	return !isNaN(stake) ? stake : 0;
 };
@@ -45,10 +44,15 @@ class BetSlipItem extends Component {
 	constructor(props, context) {
 		super(props, context);
 
+		let odds = props.item.getIn(['bet', 'odds']);
+		if (odds < 1.01) {
+			odds = 1.01
+		}
+
 		this.state = {
 			id: props.item.get('id'),
 			type: props.item.get('type'),
-			odds: props.item.getIn(['bet', 'odds']),
+			odds: odds,
 			stake: '0.00',
 			profit: '0.00',
 			liability: '0.00',
@@ -80,7 +84,9 @@ class BetSlipItem extends Component {
 					: 1 / nextProps.exchangeRate;
 
 			this.setState({
-				stake: (this.state.stake * multiplier).toFixed(2),
+				stake: round((this.state.stake * multiplier), 2),
+				liability: round((this.state.liability * multiplier), 2),
+				profit: round((this.state.profit * multiplier), 2)
 			});
 		}
 	}
@@ -94,10 +100,12 @@ class BetSlipItem extends Component {
 	}
 
 	handleOddsChange(odds) {
+		odds = parseFloat(odds)
+
 		if (odds < 1.01) odds = 1.01;
 
 		this.setState({
-			odds,
+			odds: round(odds, 2),
 			profit: calculateProfit(odds, this.state.stake),
 			liability: calculateProfit(odds, this.state.stake),
 		});
@@ -105,7 +113,7 @@ class BetSlipItem extends Component {
 
 	handleStakeChange(stake) {
 		this.setState({
-			stake,
+			stake: round(stake, 2),
 			profit: calculateProfit(parseFloat(this.state.odds), parseFloat(stake)),
 			liability: calculateLiability(
 				parseFloat(this.state.odds),
@@ -116,10 +124,10 @@ class BetSlipItem extends Component {
 
 	handleProfitChange(profit) {
 		this.setState({
-			profit,
+			profit: round(profit, 2),
 			stake: calculateStake(
-				parseFloat(this.state.odds),
-				parseFloat(profit),
+				parseFloat(this.state.odds), 
+				parseFloat(profit), 
 				'back'
 			),
 		});
@@ -127,7 +135,7 @@ class BetSlipItem extends Component {
 
 	handleLiabilityChange(liability) {
 		this.setState({
-			liability,
+			liability: round(liability, 2),
 			stake: calculateStake(
 				parseFloat(this.state.odds),
 				parseFloat(liability),
@@ -142,8 +150,8 @@ class BetSlipItem extends Component {
 				{
 					id: uuid(),
 					type: this.props.type,
-					odds: this.state.odds,
-					stake: this.state.stake,
+					odds: round(this.state.odds, 3),
+					stake: round(this.state.stake, 3),
 					status: 'pending',
 					date_created: moment().unix(),
 					...match.toObject(),
@@ -197,7 +205,11 @@ class BetSlipItem extends Component {
 						<div className={styles.detailsHeading}>
 							<span>Odds</span>
 						</div>
-						<SpinBox value={this.state.odds} onChange={this.handleOddsChange} />
+						<SpinBox 
+							value={this.state.odds} 
+							onChange={this.handleOddsChange} 
+							spinAmount={0.1} 
+						/>
 					</div>
 
 					<div className={styles.detailsItem}>
@@ -208,6 +220,7 @@ class BetSlipItem extends Component {
 						<SpinBox
 							value={this.state.stake}
 							onChange={this.handleStakeChange}
+							spinAmount={1}
 						/>
 					</div>
 
@@ -220,6 +233,7 @@ class BetSlipItem extends Component {
 							<SpinBox
 								value={this.state.profit}
 								onChange={this.handleProfitChange}
+								spinAmount={1}
 							/>
 						</div>
 					)}
@@ -233,6 +247,7 @@ class BetSlipItem extends Component {
 							<SpinBox
 								value={this.state.liability}
 								onChange={this.handleLiabilityChange}
+								spinAmount={1}
 							/>
 						</div>
 					)}

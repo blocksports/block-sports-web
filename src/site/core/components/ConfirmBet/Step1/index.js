@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { t } from 'i18next';
 import { Tab, Tabs } from '../../Tabs';
 import { dateTime, dateTypes } from '../../../../../lib/dateTime';
 import { getMatchName } from '../../../../../lib/utils';
@@ -12,19 +13,18 @@ import {
 import styles from './styles.less';
 
 class ConfirmBetStep1 extends Component {
-	getProfit(odds, stake) {
-		const profit = (odds - 1) * stake;
-		return profit >= 0 ? profit.toFixed(2) : 0;
-	}
 
-	getLayLiability(odds, stake) {
-		return (odds * stake).toFixed(2);
+	getBoxThreeContent(odds, stake) {
+		const backersProfit = (odds - 1) * stake;
+		return backersProfit >= 0 ? backersProfit.toFixed(2) : 0;
 	}
 
 	render() {
 		const { confirmingBet, price } = this.props;
 		const stake = confirmingBet.get('stake');
 		const betType = confirmingBet.get('type');
+		const liability = confirmingBet.get('liability');
+		console.log(confirmingBet)
 		return (
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
@@ -51,9 +51,11 @@ class ConfirmBetStep1 extends Component {
 									</h5>
 								</div>
 								<div className={styles.stake}>
-									<span className={styles.stakeHeading}>Your stake</span>
+									<span className={styles.stakeHeading}>
+									{t(`core:confirm-modal.step-one.header-stake-${betType}`)}
+									</span>
 									<div className={styles.stakeItem}>
-										<span className={styles.stakeValue}>{stake}</span>
+										<span className={styles.stakeValue}>{liability}</span>
 										<span className={styles.stakeCurrency}>GAS</span>
 									</div>
 								</div>
@@ -89,34 +91,18 @@ class ConfirmBetStep1 extends Component {
 										</div>
 										<span className={styles.infoDetailsValue}>{stake}</span>
 									</div>
-									{betType === 'back' && (
-										<div className={styles.infoDetailsItem}>
-											<div className={styles.infoDetailsHeading}>
-												<span>Profit</span>
-												<span className={styles.infoDetailsCurrency}>GAS</span>
-											</div>
-											<span className={styles.infoDetailsValue}>
-												{this.getProfit(
-													parseFloat(confirmingBet.getIn(['odds'])),
-													stake
-												)}
-											</span>
+									<div className={styles.infoDetailsItem}>
+										<div className={styles.infoDetailsHeading}>
+											<span>{t(`core:confirm-modal.step-one.box3-${betType}`)}</span>
+											<span className={styles.infoDetailsCurrency}>GAS</span>
 										</div>
-									)}
-									{betType === 'lay' && (
-										<div className={styles.infoDetailsItem}>
-											<div className={styles.infoDetailsHeading}>
-												<span>Liability</span>
-												<span className={styles.infoDetailsCurrency}>GAS</span>
-											</div>
-											<span className={styles.infoDetailsValue}>
-												{this.getLayLiability(
-													parseFloat(confirmingBet.getIn(['odds'])),
-													stake
-												)}
-											</span>
-										</div>
-									)}
+										<span className={styles.infoDetailsValue}>
+											{this.getBoxThreeContent(
+												parseFloat(confirmingBet.getIn(['odds'])),
+												stake
+											)}
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>

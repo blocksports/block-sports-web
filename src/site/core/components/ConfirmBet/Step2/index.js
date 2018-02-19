@@ -8,7 +8,7 @@ import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../../lib/animation';
-import { confirmBetPaymentMethods } from '../../../../../lib/utils';
+import { confirmBetPaymentMethods, createConfirmBetPaymentFields } from '../../../../../lib/utils';
 import styles from './styles.less';
 
 class ConfirmBetStep2 extends Component {
@@ -29,7 +29,8 @@ class ConfirmBetStep2 extends Component {
 	render() {
 		const { activePaymentMethod } = this.state;
 		const { confirmingBet } = this.props;
-		const stake = confirmingBet.get('stake');
+		const liability = confirmingBet.get('liability');
+		
 		return (
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
@@ -54,10 +55,10 @@ class ConfirmBetStep2 extends Component {
 								))}
 							</Tabs>
 							{activePaymentMethod === 'neolink' && (
-								<NeoLinkPaymentMethod stake={stake} />
+								<NeoLinkPaymentMethod stake={liability} />
 							)}
 							{activePaymentMethod === 'manual' && (
-								<ManualPaymentMethod stake={stake} />
+								<ManualPaymentMethod bet={confirmingBet} stake={liability} />
 							)}
 						</div>
 					</div>

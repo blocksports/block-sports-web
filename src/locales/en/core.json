@@ -89,5 +89,13 @@
 		"message":
 			"Ut accumsan metus eros, nec feugiat sem tempus vel. Nullam scelerisque sollicitudin arcu sollicitudin tempor. Cras eu ante libero. Aenean sit amet neque mi.",
 		"button": "Continue"
+	},
+	"confirm-modal": {
+		"step-one": {
+			"header-stake-back": "Your Stake",
+			"header-stake-lay": "Your Liability",
+			"box3-back": "Profit",
+			"box3-lay": "Liability"			
+		}
 	}
 }

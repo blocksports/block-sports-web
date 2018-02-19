@@ -19,6 +19,7 @@ class SpinBox extends Component {
 
 	componentWillUpdate(nextProps) {
 		if (this.state.inputValue !== nextProps.value) {
+			
 			this.setState({
 				inputValue: nextProps.value,
 			});
@@ -32,7 +33,9 @@ class SpinBox extends Component {
 	}
 
 	increment() {
-		const nextValue = parseFloat(this.state.inputValue) + 2;
+		const spinAmount = this.props.spinAmount;
+		const nextValue = parseFloat(this.state.inputValue) + spinAmount;
+		
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
 			this.setState({
@@ -42,11 +45,13 @@ class SpinBox extends Component {
 	}
 
 	decrement() {
-		const nextValue = parseFloat(this.state.inputValue) - 2;
+		const spinAmount = this.props.spinAmount;
+		const nextValue = parseFloat(this.state.inputValue) - spinAmount;
+
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
 			this.setState({
-				inputValue: parseFloat(this.state.inputValue) - 2,
+				inputValue: parseFloat(this.state.inputValue) - spinAmount,
 			});
 		}
 	}
@@ -75,6 +80,7 @@ SpinBox.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 	onChange: PropTypes.func.isRequired,
 	className: PropTypes.string,
+	spinAmount: PropTypes.number.isRequired
 };
 
 export default SpinBox;

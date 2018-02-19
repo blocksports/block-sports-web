@@ -6,7 +6,6 @@ import { t } from 'i18next';
 import ReactTooltip from 'react-tooltip';
 import { getParticipantName, getMatchName } from '../../../../lib/utils';
 import styles from './style.less';
-import SpinBox from '../SpinBox';
 import Status from '../Status';
 
 class ActiveBetListItem extends Component {
