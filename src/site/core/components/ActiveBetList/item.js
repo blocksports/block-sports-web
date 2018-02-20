@@ -38,7 +38,7 @@ class ActiveBetListItem extends Component {
 			odds,
 			stake,
 			profit: getProfit(odds, stake),
-			layLiability: getLayLiability(odds, stake),
+			layLiability: props.bet.get('liability'),
 			matched: 0,
 		};
 	}
