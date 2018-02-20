@@ -31,8 +31,7 @@ class ConfirmBetStep1 extends Component {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}
-					>
+						}}>
 						<div className={styles.inner}>
 							<div className={styles.row}>
 								<div>
@@ -40,8 +39,7 @@ class ConfirmBetStep1 extends Component {
 										className={classNames([
 											styles.bodyHeadingType,
 											confirmingBet.get('type'),
-										])}
-									>
+										])}>
 										{confirmingBet.get('type')}
 									</span>
 									<h5 className={styles.bodyHeading}>

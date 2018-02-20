@@ -18,8 +18,7 @@ const ModalDemoWarning = props => (
 				onClick={() => {
 					props.acceptDemoWarning();
 					props.setCurrentModal(null);
-				}}
-			>
+				}}>
 				{t('core:demo-modal.button')}
 			</Button>
 		</div>

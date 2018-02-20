@@ -272,8 +272,7 @@ class MarketListItem extends Component {
 							color="white"
 							size="small"
 							onClick={this.handleConfirmClick(runner)}
-							isDisabled={!this.state.stake}
-						>
+							isDisabled={!this.state.stake}>
 							{t('core:markets.item.confirm')}
 						</Button>
 					</div>
@@ -310,8 +309,7 @@ class MarketListItem extends Component {
 				extras={['bet', type]}
 				className={styles.oddsButton}
 				onClick={this.handleOddsClick(outcome, bet, type)}
-				key={idx}
-			>
+				key={idx}>
 				<div>
 					<span className="odds">{bet.get('odds')}</span>
 					<span className="matched">

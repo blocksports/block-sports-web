@@ -45,7 +45,7 @@ export const getMarketOrder = order => {
 export const round = (value, decimals) => {
 	// Assume e-x
 	const magnitude = 1 / Math.pow(10, -1 * decimals);
-	
+
 	return Math.round(value * magnitude + 0.00001) / magnitude || 0;
 };
 
@@ -92,27 +92,26 @@ export const confirmBetPaymentMethods = ['NeoLink', 'Manual'].map(i => {
 	};
 });
 
-export const createConfirmBetPaymentFields = (bet) => {
-	const matchID = sha1(bet.get('name'))
-	const odds = bet.get('odds')*100;
+export const createConfirmBetPaymentFields = bet => {
+	const matchID = sha1(bet.get('name'));
+	const odds = bet.get('odds') * 100;
 	const betType = bet.get('type');
-	const gasCost = round(bet.get('liability')*100000000, 0)
-	let outcome = bet.get('participants').findIndex((e) => {
+	const gasCost = round(bet.get('liability') * 100000000, 0);
+	let outcome = bet.get('participants').findIndex(e => {
 		return e == bet.get('runner_name');
 	});
 	if (outcome == -1) {
-		outcome = 2
+		outcome = 2;
 	}
 
-	outcome += 1 
-	const arr = [matchID, outcome, odds, betType, gasCost]
+	outcome += 1;
+	const arr = [matchID, outcome, odds, betType, gasCost];
 	const value = `[ ${arr.join(', ')} ]`;
-	
+
 	let fields = confirmBetPaymentFields;
 	fields[2].value = value;
 	return fields;
-
-}
+};
 
 const confirmBetPaymentFields = [
 	{

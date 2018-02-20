@@ -64,15 +64,13 @@ export class Markets extends Component {
 				<Tabs className={styles.tabs}>
 					<Tab
 						className={this.tabClass('date')}
-						onClick={this.handleTabClick('date')}
-					>
+						onClick={this.handleTabClick('date')}>
 						<Glyph size="16" icon="clock" />
 						<span>{t('core:markets.header-time')}</span>
 					</Tab>
 					<Tab
 						className={this.tabClass('popular')}
-						onClick={this.handleTabClick('popular')}
-					>
+						onClick={this.handleTabClick('popular')}>
 						<Glyph size="16" icon="star" />
 						<span>{t('core:markets.header-popular')}</span>
 					</Tab>

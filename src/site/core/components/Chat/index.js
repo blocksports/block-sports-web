@@ -60,8 +60,7 @@ class Chat extends Component {
 			<div
 				className={styles.root}
 				onMouseEnter={() => this.handleMouseEnter()}
-				onMouseLeave={() => this.handleMouseLeave()}
-			>
+				onMouseLeave={() => this.handleMouseLeave()}>
 				<span className={styles.heading}>Chat</span>
 				<div className={styles.body}>
 					{this.state.messages.map((item, index) => (

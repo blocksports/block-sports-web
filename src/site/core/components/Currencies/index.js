@@ -28,8 +28,7 @@ const Currencies = props => {
 							style={{
 								...fadeDefaultStyle,
 								...fadeTransitionStyles[state],
-							}}
-						>
+							}}>
 							<Currency {...props} currency="GAS" />
 						</div>
 					)}

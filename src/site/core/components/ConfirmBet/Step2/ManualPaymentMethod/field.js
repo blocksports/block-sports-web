@@ -68,8 +68,7 @@ class Field extends Component {
 										style={{
 											...fadeDefaultStyle,
 											...fadeTransitionStyles[state],
-										}}
-									>
+										}}>
 										<span className={styles.copied}>Copied</span>
 									</div>
 								)}

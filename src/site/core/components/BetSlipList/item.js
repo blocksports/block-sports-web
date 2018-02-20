@@ -171,8 +171,7 @@ class BetSlipItem extends Component {
 							size="medium"
 							extras={['minimal', 'square']}
 							className={styles.removeButton}
-							onClick={this.handleRemoveClick}
-						>
+							onClick={this.handleRemoveClick}>
 							<Glyph size="14" icon="close" />
 						</Button>
 					</div>
@@ -238,8 +237,7 @@ class BetSlipItem extends Component {
 							extras={[type]}
 							className={styles.betButton}
 							onClick={this.handleBetClick(match, outcome)}
-							isDisabled={this.isDisabled}
-						>
+							isDisabled={this.isDisabled}>
 							{t(`core:bets.bet-slip.button-${type}`)}
 						</Button>
 					</div>

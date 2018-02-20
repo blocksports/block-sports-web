@@ -19,7 +19,6 @@ class SpinBox extends Component {
 
 	componentWillUpdate(nextProps) {
 		if (this.state.inputValue !== nextProps.value) {
-			
 			this.setState({
 				inputValue: nextProps.value,
 			});
@@ -35,7 +34,7 @@ class SpinBox extends Component {
 	increment() {
 		const spinAmount = this.props.spinAmount;
 		const nextValue = parseFloat(this.state.inputValue) + spinAmount;
-		
+
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
 			this.setState({
@@ -80,7 +79,7 @@ SpinBox.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 	onChange: PropTypes.func.isRequired,
 	className: PropTypes.string,
-	spinAmount: PropTypes.number.isRequired
+	spinAmount: PropTypes.number.isRequired,
 };
 
 export default SpinBox;

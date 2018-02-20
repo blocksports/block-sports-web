@@ -46,14 +46,12 @@ class Bets extends Component {
 						<Tabs className={styles.tabs}>
 							<Tab
 								className={this.tabClass('bet-slip')}
-								onClick={this.handleTabClick('bet-slip')}
-							>
+								onClick={this.handleTabClick('bet-slip')}>
 								{t('core:bets.bet-slip-tab')}
 							</Tab>
 							<Tab
 								className={this.tabClass('active')}
-								onClick={this.handleTabClick('active')}
-							>
+								onClick={this.handleTabClick('active')}>
 								{t('core:bets.active-tab')}
 							</Tab>
 						</Tabs>

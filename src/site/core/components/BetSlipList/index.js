@@ -10,14 +10,6 @@ import Button from '../Button';
 import styles from './style.less';
 
 class BetSlipList extends Component {
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	componentWillMount() {}
-
-	componentWillReceiveProps(nextProps) {}
-
 	get removeAll() {
 		if (!this.hasMoreThanOneBet()) return null;
 		return (
@@ -26,8 +18,7 @@ class BetSlipList extends Component {
 					size="medium"
 					color={'black-5'}
 					className={styles.removeAllButton}
-					onClick={this.props.onRemoveAllClick}
-				>
+					onClick={this.props.onRemoveAllClick}>
 					{t('core:bets.bet-slip.remove-all')} <Glyph size="14" icon="close" />
 				</Button>
 			</div>

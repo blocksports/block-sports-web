@@ -39,8 +39,7 @@ class ModalConfirmBet extends Component {
 								size="medium"
 								color="primary"
 								className={styles.buttonNext}
-								onClick={() => this.updateStep(2)}
-							>
+								onClick={() => this.updateStep(2)}>
 								Next
 							</Button>
 						</div>
@@ -53,8 +52,7 @@ class ModalConfirmBet extends Component {
 							<Button
 								size="medium"
 								color="white"
-								onClick={() => this.updateStep(1)}
-							>
+								onClick={() => this.updateStep(1)}>
 								Back
 							</Button>
 							<Button
@@ -63,8 +61,7 @@ class ModalConfirmBet extends Component {
 								onClick={() => {
 									this.props.confirmBet();
 									this.props.setCurrentModal(null);
-								}}
-							>
+								}}>
 								Done
 							</Button>
 						</div>

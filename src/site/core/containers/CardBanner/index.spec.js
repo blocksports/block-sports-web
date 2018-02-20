@@ -5,12 +5,10 @@ import { createOptions } from '../../../../lib/testing';
 
 import { CardBanner } from './';
 
-const minProps = {
-
-};
+const minProps = {};
 
 describe('<CardBanner />', () => {
-  it('Should', () => {
-    expect(true).toEqual(true);
-  });
+	it('Should', () => {
+		expect(true).toEqual(true);
+	});
 });

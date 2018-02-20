@@ -8,7 +8,10 @@ import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../../lib/animation';
-import { confirmBetPaymentMethods, createConfirmBetPaymentFields } from '../../../../../lib/utils';
+import {
+	confirmBetPaymentMethods,
+	createConfirmBetPaymentFields,
+} from '../../../../../lib/utils';
 import styles from './styles.less';
 
 class ConfirmBetStep2 extends Component {
@@ -30,7 +33,7 @@ class ConfirmBetStep2 extends Component {
 		const { activePaymentMethod } = this.state;
 		const { confirmingBet } = this.props;
 		const liability = confirmingBet.get('liability');
-		
+
 		return (
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
@@ -38,8 +41,7 @@ class ConfirmBetStep2 extends Component {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}
-					>
+						}}>
 						<div className={styles.root}>
 							<Tabs className={styles.tabs}>
 								{confirmBetPaymentMethods.map((method, i) => (
@@ -48,8 +50,7 @@ class ConfirmBetStep2 extends Component {
 										onClick={() => this.handleTabClick(method.value)}
 										className={
 											activePaymentMethod === method.value ? 'active' : null
-										}
-									>
+										}>
 										{method.text}
 									</Tab>
 								))}

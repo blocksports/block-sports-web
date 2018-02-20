@@ -60,24 +60,21 @@ class ModalWrapper extends Component {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}
-					>
+						}}>
 						<Transition
 							appear={true}
 							in={this.state.appearInner}
 							timeout={{
 								enter: fadeDuration * 1.5,
 								exit: slideUpDuration,
-							}}
-						>
+							}}>
 							{innerState => (
 								<article
 									className={styles.content}
 									style={{
 										...slideUpDefaultStyle,
 										...slideUpTransitionStyles[innerState],
-									}}
-								>
+									}}>
 									<header>
 										{this.props.title && (
 											<h3 className={styles.heading}>{this.props.title}</h3>
@@ -86,8 +83,7 @@ class ModalWrapper extends Component {
 											<Button
 												extras={['square', 'minimal']}
 												className={styles.closeButton}
-												onClick={() => this.props.setCurrentModal(null)}
-											>
+												onClick={() => this.props.setCurrentModal(null)}>
 												<Glyph size="14" icon="close" />
 											</Button>
 										)}

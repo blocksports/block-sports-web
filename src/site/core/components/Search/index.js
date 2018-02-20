@@ -29,14 +29,12 @@ const Search = props => (
 					style={{
 						...fadeDefaultStyle,
 						...fadeTransitionStyles[state],
-					}}
-				>
+					}}>
 					<div
 						className={classNames([
 							dropdownStyles.dropdownInner,
 							styles.dropdownInner,
-						])}
-					>
+						])}>
 						<div className={dropdownStyles.dropdownWarning} />
 						<Glyph size="40" icon="search" className={styles.iconLarge} />
 						<span>{t('core:header.search-disabled-message')}</span>

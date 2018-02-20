@@ -30,10 +30,9 @@ class BlockTimer extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.lastUpdated != nextProps.lastUpdated) {
-
 			const secondsDiff = this.calculateTimeSince(nextProps.lastUpdated);
 			const timeNow = moment.now() / 1000;
-			const normalisedTime = (timeNow - nextProps.lastUpdated).toFixed(0)
+			const normalisedTime = (timeNow - nextProps.lastUpdated).toFixed(0);
 
 			// Normalise time due to clocks being out of sync. Not super accurate but works better
 			this.setState({
@@ -92,8 +91,7 @@ class BlockTimer extends Component {
 								style={{
 									...fadeDefaultStyle,
 									...fadeTransitionStyles[state],
-								}}
-							>
+								}}>
 								<div className={styles.timeInfo}>
 									{t('core:footer.last-block')} {this.lastBlock}
 								</div>

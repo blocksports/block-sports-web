@@ -28,8 +28,7 @@ const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 	return (
 		<div
 			className={styles.item}
-			style={{ backgroundImage: `url('${DemoCardImage}')` }}
-		>
+			style={{ backgroundImage: `url('${DemoCardImage}')` }}>
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
 					<div
@@ -37,8 +36,7 @@ const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}
-					>
+						}}>
 						<div className={styles.itemSport}>
 							<span>{t(`core:sport.${sport}`)}</span>
 						</div>
@@ -51,8 +49,7 @@ const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 						</div>
 						<div className={styles.itemInfo}>
 							<h5
-								className={styles.itemInfoHeading}
-							>{`${currency} matched`}</h5>
+								className={styles.itemInfoHeading}>{`${currency} matched`}</h5>
 							<p className={styles.itemInfoDetail}>
 								{printNumber(matched, currency, exchangeRate)}
 							</p>

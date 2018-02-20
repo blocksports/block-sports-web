@@ -8,10 +8,10 @@ import { isObject } from 'util';
 
 export function subToMarkets(dispatch, props) {
 	try {
-		pusher
-	} catch(err) {
-		console.log("No internet connection, cannot connect to pusher")
-		return		
+		pusher;
+	} catch (err) {
+		console.log('No internet connection, cannot connect to pusher');
+		return;
 	}
 
 	const { params, location } = props;

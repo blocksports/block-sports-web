@@ -26,8 +26,7 @@ const Notifications = props => (
 			])}
 			onClick={() =>
 				props.showDropdown ? props.closeDropdown() : props.openDropdown()
-			}
-		>
+			}>
 			<Glyph icon="notifications" size="24" />
 		</Button>
 		<Transition in={props.showDropdown} timeout={0}>
@@ -37,15 +36,13 @@ const Notifications = props => (
 					style={{
 						...fadeDefaultStyle,
 						...fadeTransitionStyles[state],
-					}}
-				>
+					}}>
 					<Scrollbars>
 						<div
 							className={classNames([
 								dropdownStyles.dropdownInner,
 								styles.dropdownInner,
-							])}
-						>
+							])}>
 							{props.notifications.map(notification => (
 								<NotificationItem
 									key={notification.get('id')}

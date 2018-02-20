@@ -29,8 +29,7 @@ const Settings = props => {
 				])}
 				onClick={() =>
 					props.showDropdown ? props.closeDropdown() : props.openDropdown()
-				}
-			>
+				}>
 				<Glyph icon="list" size="24" />
 			</Button>
 			<Transition in={props.showDropdown} timeout={0}>
@@ -40,8 +39,7 @@ const Settings = props => {
 						style={{
 							...fadeDefaultStyle,
 							...fadeTransitionStyles[state],
-						}}
-					>
+						}}>
 						<div className={dropdownStyles.dropdownInner}>
 							{fauxSettings.map((settings, i) => (
 								<ul className={styles.list} key={i}>

@@ -29,8 +29,7 @@ class Button extends Component {
 					isDisabled ? styles.disabled : null,
 					className,
 				])}
-				onClick={this.handleClick}
-			>
+				onClick={this.handleClick}>
 				{children}
 			</button>
 		);

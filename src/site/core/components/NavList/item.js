@@ -15,8 +15,7 @@ const NavListItem = ({ filter, category, item }) => {
 			<Link
 				to={link}
 				className={styles.item}
-				activeClassName={styles.itemActive}
-			>
+				activeClassName={styles.itemActive}>
 				<div className={styles.itemInner}>
 					<div className={styles.itemLeft}>
 						{!filter && (
