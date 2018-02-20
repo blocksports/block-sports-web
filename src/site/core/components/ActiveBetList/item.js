@@ -18,7 +18,7 @@ const getProfit = (odds, stake) => {
 };
 
 const getLayLiability = (odds, stake) => {
-	return (odds * stake).toFixed(2);
+	return ((odds - 1) * stake).toFixed(2);
 };
 
 class ActiveBetListItem extends Component {
@@ -38,7 +38,7 @@ class ActiveBetListItem extends Component {
 			odds,
 			stake,
 			profit: getProfit(odds, stake),
-			layLiability: props.bet.get('liability'),
+			layLiability: getLayLiability(odds, stake),
 			matched: 0,
 		};
 	}
