@@ -15,7 +15,7 @@ const ActiveBetList = props => {
 		<div className={classNames([styles.root, props.className])}>
 			{items.map((bet, i) => (
 				<ActiveBetListItem
-					key={i}
+					key={bet.get('id')}
 					bet={bet}
 					currency={props.currency}
 					exchangeRate={props.exchangeRate}

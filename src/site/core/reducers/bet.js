@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 import { createAction, createReducer } from 'redux-act';
 import { setCurrentModal } from './modal';
+import uuid from 'uuid/v4';
 
 const addToBetSlip = createAction('ADD_TO_BET_SLIP');
 const removeFromBetSlip = createAction('REMOVE_FROM_BET_SLIP');
@@ -88,7 +89,10 @@ const betReducer = createReducer(
 		},
 		[placeBetConfirm]: (state, [data, slipData]) => {
 			return state.merge({
-				confirmingBet: Immutable.fromJS(data),
+				confirmingBet: Immutable.fromJS({
+					...data,
+					id: uuid(),
+				}),
 				confirmingBetSlipData: slipData,
 			});
 		},

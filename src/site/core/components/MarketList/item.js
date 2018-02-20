@@ -165,14 +165,13 @@ class MarketListItem extends Component {
 		return event => {
 			if (this.props.onOddsClick) {
 				return this.props.onOddsClick({
-					id: this.getBetID(outcome, type),
 					bet: bet,
 					outcome: outcome,
 					match: this.props.item,
 					type: type,
+					id: uuid(),
 				});
 			}
-
 			this.setState({
 				activeOption: outcome,
 				odds: bet.get('odds'),
@@ -239,48 +238,6 @@ class MarketListItem extends Component {
 		);
 	}
 
-	renderBetRow(runner) {
-		if (this.state.activeOption !== runner.get('runner_id')) return null;
-		return (
-			<div className={styles.betRow}>
-				<span className={styles.betRowDetail}>
-					{t('core:markets.item.bet-for')}
-				</span>
-				<div className={styles.betRowActions}>
-					<div className={styles.betRowActionsOdds}>
-						<span>{t('core:markets.item.odds')}:</span>
-						<SpinBox
-							value={this.state.odds}
-							onChange={this.handleInputChange('odds')}
-						/>
-					</div>
-					<div className={styles.betRowActionsBet}>
-						<span>{t('core:markets.item.bet')}:</span>
-						<SpinBox
-							value={this.state.stake}
-							onChange={this.handleInputChange('stake')}
-						/>
-					</div>
-					<div className={styles.betRowActionsProfit}>
-						<span>{t('core:markets.item.profit')}:</span>
-						<span className={styles.betRowActionsProfitAmount}>
-							{this.getProfit(this.state.odds, this.state.stake)}
-						</span>
-					</div>
-					<div className={styles.betRowActionsConfirm}>
-						<Button
-							color="white"
-							size="small"
-							onClick={this.handleConfirmClick(runner)}
-							isDisabled={!this.state.stake}>
-							{t('core:markets.item.confirm')}
-						</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-
 	renderBetButtons(outcome, type) {
 		let bets =
 			this.getFilteredBets(
@@ -309,7 +266,8 @@ class MarketListItem extends Component {
 				extras={['bet', type]}
 				className={styles.oddsButton}
 				onClick={this.handleOddsClick(outcome, bet, type)}
-				key={idx}>
+				key={idx}
+			>
 				<div>
 					<span className="odds">{bet.get('odds')}</span>
 					<span className="matched">
