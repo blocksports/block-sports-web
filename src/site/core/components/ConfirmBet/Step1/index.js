@@ -13,18 +13,16 @@ import {
 import styles from './styles.less';
 
 class ConfirmBetStep1 extends Component {
-
 	getBoxThreeContent(odds, stake) {
 		const backersProfit = (odds - 1) * stake;
 		return backersProfit >= 0 ? backersProfit.toFixed(2) : 0;
 	}
 
 	render() {
-		const { confirmingBet, price } = this.props;
-		const stake = confirmingBet.get('stake');
+		const { confirmingBet } = this.props;
+		const stake = confirmingBet.get('stake').toFixed(2);
 		const betType = confirmingBet.get('type');
-		const liability = confirmingBet.get('liability');
-		console.log(confirmingBet)
+		const liability = confirmingBet.get('liability').toFixed(2);
 		return (
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
@@ -52,7 +50,7 @@ class ConfirmBetStep1 extends Component {
 								</div>
 								<div className={styles.stake}>
 									<span className={styles.stakeHeading}>
-									{t(`core:confirm-modal.step-one.header-stake-${betType}`)}
+										{t(`core:confirm-modal.step-one.header-stake-${betType}`)}
 									</span>
 									<div className={styles.stakeItem}>
 										<span className={styles.stakeValue}>{liability}</span>
@@ -93,7 +91,9 @@ class ConfirmBetStep1 extends Component {
 									</div>
 									<div className={styles.infoDetailsItem}>
 										<div className={styles.infoDetailsHeading}>
-											<span>{t(`core:confirm-modal.step-one.box3-${betType}`)}</span>
+											<span>
+												{t(`core:confirm-modal.step-one.box3-${betType}`)}
+											</span>
 											<span className={styles.infoDetailsCurrency}>GAS</span>
 										</div>
 										<span className={styles.infoDetailsValue}>
