@@ -3,36 +3,50 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
-import ReactTooltip from 'react-tooltip';
-import { getParticipantName, getMatchName } from '../../../../lib/utils';
+import { getMatchName, round } from '../../../../lib/utils';
 import styles from './style.less';
 import Status from '../Status';
+
+const getBetStake = (stake, exchangeRate, currency) => {
+	const multiplier = currency === 'GAS' ? 1 : 1 * exchangeRate;
+	return round(stake * multiplier, 3).toFixed(2);
+};
+
+const getProfit = (odds, stake) => {
+	const profit = (odds - 1) * stake;
+	return profit >= 0 ? profit.toFixed(2) : 0;
+};
+
+const getLayLiability = (odds, stake) => {
+	return (odds * stake).toFixed(2);
+};
 
 class ActiveBetListItem extends Component {
 	constructor(props) {
 		super(props);
+		this.state = this.getValues(props);
+	}
+
+	getValues(props) {
 		const odds = parseFloat(props.bet.get('odds'));
-		const stake = parseFloat(props.bet.get('stake'));
-		this.state = {
+		const stake = getBetStake(
+			parseFloat(props.bet.get('stake')),
+			props.exchangeRate,
+			props.currency
+		);
+		return {
 			odds,
 			stake,
-			profit: this.getProfit(odds, stake),
-			layLiability: this.getLayLiability(odds, stake),
+			profit: getProfit(odds, stake),
+			layLiability: getLayLiability(odds, stake),
 			matched: 0,
 		};
 	}
 
-	getProfit(odds, stake) {
-		const profit = (odds - 1) * stake;
-		return profit >= 0 ? profit.toFixed(2) : 0;
-	}
-
-	getLayLiability(odds, stake) {
-		return (odds * stake).toFixed(2);
-	}
-
-	get exchangeRate() {
-		return this.props.currency === 'GAS' ? 1 : this.props.exchangeRate;
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.currency !== this.props.currency) {
+			this.setState(this.getValues(nextProps));
+		}
 	}
 
 	render() {
