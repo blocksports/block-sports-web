@@ -6,39 +6,18 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import { t } from 'i18next';
 import Glyph from '../Glyph';
-import { getParticipantName, getMatchName, round } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
 import Button from '../Button';
 import styles from './style.less';
-
-const getBetLiability = ({ odds, stake, type }) => {
-	if (type === 'back') return stake;
-	return round((odds * stake - stake), 3);
-};
-
-const getTotalPool = ({ odds, stake, type }) => {
-	if (type === 'back') return (odds - 1) * stake;
-	return round((stake * 1), 2);
-};
-
-const calculateProfit = (odds, stake) => {
-	const profit = (odds - 1) * stake;
-	return profit >= 0 ? round(profit, 2) : 0;
-};
-
-const calculateStake = (odds, profit, type) => {
-	let stake;
-	if (type === 'back') {
-		stake = round(((profit + profit / (odds - 1)) / odds), 2) || 0;
-	} else {
-		stake = round((profit / (odds - 1)), 2) || 0;
-	}
-	return !isNaN(stake) ? stake : 0;
-};
-
-const calculateLiability = (odds, profit) => {
-	return (odds * profit - profit).toFixed(2) || 0;
-};
+import { getParticipantName, getMatchName, round } from '../../../../lib/utils';
+import {
+	getBetLiability,
+	getTotalPool,
+	calculateProfit,
+	calculateStake,
+	calculateLiability,
+	getBetStake,
+} from '../../../../lib/bets';
 
 class BetSlipItem extends Component {
 	constructor(props, context) {
@@ -46,7 +25,7 @@ class BetSlipItem extends Component {
 
 		let odds = props.item.getIn(['bet', 'odds']);
 		if (odds < 1.01) {
-			odds = 1.01
+			odds = 1.01;
 		}
 
 		this.state = {
@@ -84,9 +63,9 @@ class BetSlipItem extends Component {
 					: 1 / nextProps.exchangeRate;
 
 			this.setState({
-				stake: round((this.state.stake * multiplier), 2),
-				liability: round((this.state.liability * multiplier), 2),
-				profit: round((this.state.profit * multiplier), 2)
+				stake: round(this.state.stake * multiplier, 2),
+				liability: round(this.state.liability * multiplier, 2),
+				profit: round(this.state.profit * multiplier, 2),
 			});
 		}
 	}
@@ -100,7 +79,7 @@ class BetSlipItem extends Component {
 	}
 
 	handleOddsChange(odds) {
-		odds = parseFloat(odds)
+		odds = parseFloat(odds);
 
 		if (odds < 1.01) odds = 1.01;
 
@@ -126,8 +105,8 @@ class BetSlipItem extends Component {
 		this.setState({
 			profit: round(profit, 2),
 			stake: calculateStake(
-				parseFloat(this.state.odds), 
-				parseFloat(profit), 
+				parseFloat(this.state.odds),
+				parseFloat(profit),
 				'back'
 			),
 		});
@@ -146,19 +125,20 @@ class BetSlipItem extends Component {
 
 	handleBetClick(match, outcome) {
 		return () => {
+			const { stake, exchangeRate, currency } = this.props;
 			this.props.onBetClick(
 				{
 					id: uuid(),
 					type: this.props.type,
 					odds: round(this.state.odds, 3),
-					stake: round(this.state.stake, 3),
+					stake: getBetStake(this.state.stake, exchangeRate, currency),
 					status: 'pending',
 					date_created: moment().unix(),
 					...match.toObject(),
 					status: 'pending',
 					runner_name: getParticipantName(match, outcome),
 					pool_total: getTotalPool(this.state),
-					liability: getBetLiability(this.state),
+					liability: getBetLiability(this.state, exchangeRate, currency),
 					pool_filled: 0,
 				},
 				{
@@ -205,10 +185,10 @@ class BetSlipItem extends Component {
 						<div className={styles.detailsHeading}>
 							<span>Odds</span>
 						</div>
-						<SpinBox 
-							value={this.state.odds} 
-							onChange={this.handleOddsChange} 
-							spinAmount={0.1} 
+						<SpinBox
+							value={this.state.odds}
+							onChange={this.handleOddsChange}
+							spinAmount={0.1}
 						/>
 					</div>
 
