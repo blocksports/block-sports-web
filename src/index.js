@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-// import httpAdapter from 'axios/lib/adapters/http';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-// import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
-// import theme from './assets/react-toolbox/theme';
-// import themeSS from './assets/react-toolbox/theme.css';
+import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import theme from './assets/react-toolbox/theme';
+import themeSS from './assets/react-toolbox/theme.css';
 import configureStore from './site/store';
 import createRoutes from './site/routes';
 import registerServiceWorker from './lib/registerServiceWorker';
@@ -35,11 +34,11 @@ initLocale();
 
 ReactDOM.render(
 	<div>
-		{/* <ThemeProvider theme={theme}> */}
-		<Provider store={store}>
-			<Router history={history} routes={routes} />
-		</Provider>
-		{/* </ThemeProvider> */}
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<Router history={history} routes={routes} />
+			</Provider>
+		</ThemeProvider>
 	</div>,
 	document.getElementById('root')
 );

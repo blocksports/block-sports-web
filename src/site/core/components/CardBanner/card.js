@@ -25,6 +25,10 @@ const printNumber = (number, currency, exchangeRate) => {
 };
 
 const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
+	const onButtonClick = (id, sport) => {
+		return
+	}
+
 	return (
 		<div
 			className={styles.item}

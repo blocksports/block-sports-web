@@ -5,7 +5,6 @@ import { t } from 'i18next';
 import classNames from 'classnames';
 import uuid from 'uuid/v4';
 import moment from 'moment';
-import { browserHistory } from 'react-router';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
 import { round, getParticipantName } from '../../../../lib/utils';
 import SpinBox from '../SpinBox';
