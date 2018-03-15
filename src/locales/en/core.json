@@ -15,7 +15,10 @@
 		"table-tennis": "Table Tennis",
 		"baseball": "Baseball",
 		"australian-football-league": "Australian Rules",
-		"tennis": "Tennis"
+		"tennis": "Tennis",
+		"rugby-union": "Rugby Union",
+		"aussie-rules": "Aussie Rules",
+		"rugby-league": "Rugby League"
 	},
 	"header": {
 		"search-placeholder": "Search",
