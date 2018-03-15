@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Mirren King-Smith",
   "private": true,
-  "homepage": "http://localhost:5000",
+  "homepage": "https://app.b-test.net",
   "scripts": {
     "start": "webpack-dashboard -- node scripts/start.js",
     "build": "node scripts/build.js",

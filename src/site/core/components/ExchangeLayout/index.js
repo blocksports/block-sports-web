@@ -13,11 +13,6 @@ import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
 class ExchangeLayout extends Component {
-	componentWillUpdate() {
-		this.refs.scrollbarLeft.scrollTop(0);
-		this.refs.scrollbarMain.scrollTop(0);
-	}
-
 	render() {
 		return (
 			<div>

@@ -115,7 +115,7 @@ export const createConfirmBetPaymentFields = bet => {
 
 const confirmBetPaymentFields = [
 	{
-		label: 'Address',
+		label: 'Contract Address',
 		type: 'String',
 		value: 'AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ1X',
 		showCopyClipboard: true,
@@ -134,7 +134,7 @@ const confirmBetPaymentFields = [
 		showCopyClipboard: true,
 	},
 	{
-		label: 'PublicKey',
+		label: 'Wallet Address',
 		type: 'String',
 		value: 'Enter your address',
 		showCopyClipboard: false,
