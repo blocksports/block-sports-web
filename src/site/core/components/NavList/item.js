@@ -7,9 +7,19 @@ import { getGlyphPath } from '../../../../lib/utils';
 import styles from './style.less';
 
 const NavListItem = ({ filter, category, item }) => {
-	const link = filter
+	const competitions = item.get('competitions');
+	
+	let link = '';
+
+	if (competitions && competitions.size == 1) {
+		const competition = competitions.get(0);
+		link = `/exchange/${item.get('id')}/${competition.get('id')}`
+	} else {
+		link = filter
 		? `/exchange/${category.get('id')}/${item.get('id')}`
 		: `/exchange/${item.get('id')}`;
+	}
+
 	return (
 		<li>
 			<Link

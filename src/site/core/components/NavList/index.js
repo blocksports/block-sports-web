@@ -40,14 +40,20 @@ class NavList extends Component {
 		const category = this.category;
 		const items = category ? category.get('competitions') : this.props.items;
 		if (!items) return null;
-		return items.map((item, i) => (
-			<NavListItem
-				key={item.get('name')}
-				item={item}
-				category={category}
-				filter={this.props.filter}
-			/>
-		));
+		return items.map((item, i) => {
+			if (item.get('count') < 1) {
+				return null;
+			} else {
+				return (		
+					<NavListItem
+						key={item.get('name')}
+						item={item}
+						category={category}
+						filter={this.props.filter}
+					/>
+				);
+			}
+		});
 	}
 
 	render() {
