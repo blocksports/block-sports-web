@@ -16,6 +16,7 @@ class CardBanner extends Component {
 
 	render() {
 		const { currency, cards, isLoading } = this.props;
+
 		const exchangeRate = currency === 'GAS' ? 1 : this.props.exchangeRate;
 		if (isLoading) {
 			return (
@@ -35,6 +36,7 @@ class CardBanner extends Component {
 						name={card.get('name')}
 						commence={card.get('commence')}
 						matched={card.get('total_matched')}
+						id={card.get('id')}
 					/>
 				))}
 			</div>

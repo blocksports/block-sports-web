@@ -24,10 +24,9 @@ const printNumber = (number, currency, exchangeRate) => {
 	return number.toLocaleString();
 };
 
-const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
-	const onButtonClick = (id, sport) => {
-		return
-	}
+const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) => {
+	const appURL = process.env.APP_URL
+	const newPath = `${appURL}/exchange/${sport}/${id}`;
 
 	return (
 		<div
@@ -58,9 +57,11 @@ const Card = ({ sport, name, commence, matched, currency, exchangeRate }) => {
 								{printNumber(matched, currency, exchangeRate)}
 							</p>
 						</div>
-						<Button className={styles.itemCta} size="small" color="primary">
-							Bet now
-						</Button>
+						<Link to={newPath}>
+							<Button className={styles.itemCta} size="small" color="primary">
+								Bet now
+							</Button>
+						</Link>
 					</div>
 				)}
 			</Transition>

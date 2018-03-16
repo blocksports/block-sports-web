@@ -15,7 +15,7 @@ export function fetchCards(data) {
 		await sleep(1000);
 		axios({
 			method: 'get',
-			url: '/v1/header?competitions=uefa-europa-league,nba,super-rugby',
+			url: '/v1/header?competitions=fifa-wc-2018,nba,super-rugby',
 		})
 			.then(resp => {
 				dispatch(fetchCardsSuccess(resp));
