@@ -8,7 +8,7 @@ import styles from './styles.less';
 const ManualPaymentMethod = props => (
 	<div className={styles.root}>
 		<p className={styles.header}>
-			Send <span className={styles.amount}>{props.stake}</span> GAS with the
+			Approve a <span className={styles.amount}>{props.stake}</span> GAS transaction with the
 			parameters below
 		</p>
 		{createConfirmBetPaymentFields(props.bet).map((field, i) => (
