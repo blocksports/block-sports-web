@@ -10,7 +10,7 @@ import MarketList from '../../components/MarketList';
 import MarketListSkeleton from '../../components/MarketList/MarketListSkeleton';
 import Glyph from '../../components/Glyph';
 import { Tabs, Tab } from '../../components/Tabs';
-import { addQuery } from '../../../../lib/router';
+import { addQuery, getQueries } from '../../../../lib/router';
 import styles from './style.less';
 import isEqual from 'lodash/isEqual';
 
@@ -18,8 +18,11 @@ export class Markets extends Component {
 	constructor(props, context) {
 		super(props, context);
 
+		const queries = getQueries()
+		const activeOrder = queries.order ? queries.order : 'date';
+
 		this.state = {
-			activeOrder: 'date',
+			activeOrder
 		};
 
 		this.handleTabClick = this.handleTabClick.bind(this);
@@ -27,9 +30,14 @@ export class Markets extends Component {
 
 	componentWillMount() {}
 
-	componentWillReceiveProps(nextProps) {
-		if (!isEqual(this.props.params, nextProps.params)) {
-			this.setState({ activeOrder: 'date' });
+	componentWillReceiveProps() {
+		const queries = getQueries()
+		const activeOrder = queries.order ? queries.order : 'date';
+
+		if (activeOrder != this.state.activeOrder) {
+			this.setState({
+				activeOrder
+			});
 		}
 	}
 
@@ -38,7 +46,9 @@ export class Markets extends Component {
 	}
 
 	tabClass(tab) {
-		return classNames([tab == this.state.activeOrder ? 'active' : null]);
+		const test = classNames([tab == this.state.activeOrder ? 'active' : null]);
+		console.log(tab, test)
+		return test
 	}
 
 	handleTabClick(tab) {

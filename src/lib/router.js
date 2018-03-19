@@ -17,3 +17,8 @@ export const removeQuery = (...queryNames) => {
 	queryNames.forEach(q => delete location.query[q]);
 	browserHistory.push(location);
 };
+
+export const getQueries = () => {
+	const location = Object.assign({}, browserHistory.getCurrentLocation());
+	return location.query;
+};
