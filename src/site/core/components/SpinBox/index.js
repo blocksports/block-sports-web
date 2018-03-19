@@ -6,6 +6,12 @@ import { t } from 'i18next';
 import styles from './style.less';
 import Button from '../Button';
 
+function stripDots( str ) {
+    return str.replace( /^([^.]*\.)(.*)$/, function ( a, b, c ) { 
+        return b + c.replace( /\./g, '' );
+    });
+}
+
 class SpinBox extends Component {
 	constructor(props) {
 		super(props);
@@ -26,9 +32,22 @@ class SpinBox extends Component {
 	}
 
 	handleInputChange(e) {
-		if (/^[0-9.]*$/.test(e.target.value)) {
-			this.props.onChange(e.target.value);
+		let value = e.target.value
+		if (/^[0-9.]*$/.test(value)) {
+			// Strip extra decimal points and ensure 2 decimal places
+			value = stripDots(value)
+			const dotIndex = value.indexOf('.')
+			const decimalConst = this.props.decimals + 1
+			if (dotIndex > 0 && dotIndex < value.length - decimalConst) {
+				value = value.substring(0, dotIndex + decimalConst)
+			}
+
+			this.props.onChange(value);
 		}
+	}
+
+	handleOnClick(e) {
+		e.target.select();
 	}
 
 	increment() {
@@ -64,6 +83,7 @@ class SpinBox extends Component {
 						value={this.state.inputValue}
 						placeholder={this.props.placeholder}
 						onChange={e => this.handleInputChange(e)}
+						onClick={e => this.handleOnClick(e)}
 					/>
 				</div>
 				<div className={styles.buttons}>
@@ -80,6 +100,7 @@ SpinBox.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	className: PropTypes.string,
 	spinAmount: PropTypes.number.isRequired,
+	decimals: PropTypes.number.isRequired,
 };
 
 export default SpinBox;

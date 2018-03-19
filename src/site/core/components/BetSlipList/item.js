@@ -79,47 +79,62 @@ class BetSlipItem extends Component {
 	}
 
 	handleOddsChange(odds) {
-		odds = parseFloat(odds);
 
-		if (odds < 1.01) odds = 1.01;
+		const odds_i = parseFloat(odds);
+		const stake_i = parseFloat(this.state.stake);
+		const profit_i = calculateProfit(odds_i, stake_i);
+
+		if (odds_i < 1.00) odds = '1.01';
+
+		const profit = profit_i.toString();
+		const liability = profit;
 
 		this.setState({
-			odds: round(odds, 2),
-			profit: calculateProfit(odds, this.state.stake),
-			liability: calculateProfit(odds, this.state.stake),
+			odds,
+			profit,
+			liability
 		});
 	}
 
 	handleStakeChange(stake) {
+		const stake_i = parseFloat(stake);
+		const odds_i = parseFloat(this.state.odds);
+		const profit_i = calculateProfit(odds_i, stake_i);
+		const liability_i = calculateLiability(odds_i, stake_i);
+
+		const profit = profit_i.toString();
+		const liability = liability_i.toString();
+
 		this.setState({
-			stake: round(stake, 2),
-			profit: calculateProfit(parseFloat(this.state.odds), parseFloat(stake)),
-			liability: calculateLiability(
-				parseFloat(this.state.odds),
-				parseFloat(stake)
-			),
+			stake,
+			profit,
+			liability
 		});
 	}
 
 	handleProfitChange(profit) {
+		const profit_i = parseFloat(profit);
+		const odds_i = parseFloat(this.state.odds);
+		const stake_i = calculateStake(odds_i, profit_i, 'back');
+
+		const stake = stake_i.toString()
+
 		this.setState({
-			profit: round(profit, 2),
-			stake: calculateStake(
-				parseFloat(this.state.odds),
-				parseFloat(profit),
-				'back'
-			),
+			profit,
+			stake
 		});
 	}
 
 	handleLiabilityChange(liability) {
+		const liability_i = parseFloat(liability);
+		const odds_i = parseFloat(this.state.odds);
+		const stake_i = calculateStake(odds_i, liability_i, 'lay');
+
+		const stake = stake_i.toString()
+
 		this.setState({
-			liability: round(liability, 2),
-			stake: calculateStake(
-				parseFloat(this.state.odds),
-				parseFloat(liability),
-				'lay'
-			),
+			liability,
+			stake
 		});
 	}
 
@@ -188,6 +203,7 @@ class BetSlipItem extends Component {
 							value={this.state.odds}
 							onChange={this.handleOddsChange}
 							spinAmount={0.1}
+							decimals={2}
 						/>
 					</div>
 
@@ -200,6 +216,7 @@ class BetSlipItem extends Component {
 							value={this.state.stake}
 							onChange={this.handleStakeChange}
 							spinAmount={1}
+							decimals={2}
 						/>
 					</div>
 
@@ -213,6 +230,7 @@ class BetSlipItem extends Component {
 								value={this.state.profit}
 								onChange={this.handleProfitChange}
 								spinAmount={1}
+								decimals={2}
 							/>
 						</div>
 					)}
@@ -227,6 +245,7 @@ class BetSlipItem extends Component {
 								value={this.state.liability}
 								onChange={this.handleLiabilityChange}
 								spinAmount={1}
+								decimals={2}
 							/>
 						</div>
 					)}
