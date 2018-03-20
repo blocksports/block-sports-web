@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
-import ReactTooltip from 'react-tooltip';
 import { orderByDate } from '../../../../lib/utils';
 import styles from './style.less';
 import ActiveBetListItem from './item';

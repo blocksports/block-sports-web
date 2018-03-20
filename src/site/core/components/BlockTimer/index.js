@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import moment from 'moment';
@@ -92,12 +93,14 @@ class BlockTimer extends Component {
 									...fadeDefaultStyle,
 									...fadeTransitionStyles[state],
 								}}>
-								<div className={styles.timeInfo}>
+								<div className={styles.timeInfo} data-tip data-for="timer-last">
 									{t('core:footer.last-block')} {this.lastBlock}
 								</div>
-								<div className={styles.timeInfo}>
+								<div className={styles.timeInfo} data-tip data-for="timer-average">
 									{t('core:footer.average-block')} {this.averageBlock}
 								</div>
+								<ReactTooltip place="right" type="light" effect="solid" id="timer-last" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-last')}</span></ReactTooltip>
+								<ReactTooltip place="right" type="light" effect="solid" id="timer-average" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-average')}</span></ReactTooltip>
 							</div>
 						)}
 					</Transition>

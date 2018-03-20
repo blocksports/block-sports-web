@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { t } from 'i18next';
+import ReactTooltip from 'react-tooltip';
 import Currencies from '../../components/Currencies';
 import ViewSlider from '../../components/ViewSlider';
 import CurrencyToggle from '../../components/CurrencyToggle';
@@ -49,9 +50,10 @@ export class ExchangeFooter extends Component {
 						/>
 					</div>
 					<div className={styles.betView}>
-						<span className={styles.betViewText}>
+						<span className={styles.betViewText} data-tip data-for="view-slider">
 							{t('core:footer.bet-view')}
-						</span>
+						</span>				
+						<ReactTooltip place="right" type="light" effect="solid" id="view-slider" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.view-slider')}</span></ReactTooltip>
 						<ViewSlider
 							currency={this.props.activeCurrency}
 							exchangeCurrency={this.props.activeExchangeCurrency}

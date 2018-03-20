@@ -100,5 +100,13 @@
 			"box3-back": "Profit",
 			"box3-lay": "Liability"			
 		}
+	},
+	"tooltips": {
+		"footer": {
+			"timer-last": "Time since last block",
+			"timer-average": "Average block time",
+			"gas-currency": "Current price of NeoGas (GAS)",
+			"view-slider": "Only show available bets above this amount"
+		}
 	}
 }

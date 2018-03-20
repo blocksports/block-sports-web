@@ -1,6 +1,7 @@
 import React from 'react';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 import { t } from 'i18next';
 import classNames from 'classnames';
 import styles from './styles.less';
@@ -43,7 +44,7 @@ const Currency = ({ currency, price, exchangeCurrency }) => (
 		<span className={styles.currencyName}>
 			{t(`core:currency.${currency}`)}
 		</span>
-		<div className={styles.currencyInner}>
+		<div className={styles.currencyInner} data-tip data-for="gas-currency">
 			<span className={styles.currencyAmount}>
 				{price.getIn([currency, exchangeCurrency]).toFixed(2)}{' '}
 				<span className={styles.exchangeCurrency}>
@@ -51,6 +52,7 @@ const Currency = ({ currency, price, exchangeCurrency }) => (
 				</span>
 			</span>
 		</div>
+		<ReactTooltip place="right" type="light" effect="solid" id="gas-currency" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.gas-currency')}</span></ReactTooltip>
 	</div>
 );
 
