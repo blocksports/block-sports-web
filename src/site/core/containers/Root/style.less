@@ -1,5 +1,6 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_fonts.less';
+@import '../../../../less/_overrides.less';
 
 *,
 *:before,
@@ -80,4 +81,7 @@ img {
 
 :local(.root) {
 	padding: @panel-gutter;
+
+	.overrides();
 }
+

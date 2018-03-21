@@ -6,6 +6,7 @@ import ModalConductor from '../ModalConductor';
 import Layout from '../../components/Layout';
 // import { fetchUser } from '../../reducers/user';
 import styles from './style.less';
+import overrides from '../../../../less/_overrides.less';
 
 export const Root = ({ hasAcceptedDemoWarning, children }) => (
 	<div className={styles.root}>

@@ -52,7 +52,7 @@ const Currency = ({ currency, price, exchangeCurrency }) => (
 				</span>
 			</span>
 		</div>
-		<ReactTooltip place="right" type="light" effect="solid" id="gas-currency" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.gas-currency')}</span></ReactTooltip>
+		<ReactTooltip place="right" effect="solid" id="gas-currency" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.gas-currency')}</span></ReactTooltip>
 	</div>
 );
 

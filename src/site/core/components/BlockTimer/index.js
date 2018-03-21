@@ -99,8 +99,8 @@ class BlockTimer extends Component {
 								<div className={styles.timeInfo} data-tip data-for="timer-average">
 									{t('core:footer.average-block')} {this.averageBlock}
 								</div>
-								<ReactTooltip place="right" type="light" effect="solid" id="timer-last" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-last')}</span></ReactTooltip>
-								<ReactTooltip place="right" type="light" effect="solid" id="timer-average" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-average')}</span></ReactTooltip>
+								<ReactTooltip place="right" effect="solid" id="timer-last" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-last')}</span></ReactTooltip>
+								<ReactTooltip place="right" effect="solid" id="timer-average" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.timer-average')}</span></ReactTooltip>
 							</div>
 						)}
 					</Transition>

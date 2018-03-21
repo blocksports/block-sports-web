@@ -1,0 +1,35 @@
+@import '_colours.less';
+@import '_utils.less';
+
+.overrides {
+
+    /*
+        React Tooltip
+    */
+    .__react_component_tooltip {
+        padding: 0.5rem;
+        border-radius: @border-radius;
+        font-size: @font-size-s;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .__react_component_tooltip.type-dark {
+        background: @black-1;
+        color: @primary;
+    }
+
+    .__react_component_tooltip.place-right:after {
+        display: none;
+    }
+    .__react_component_tooltip.place-left:after {
+        display: none;
+    }
+    .__react_component_tooltip.place-top:after {
+        display: none;
+    }
+    .__react_component_tooltip.place-bottom:after {
+        display: none;
+    }
+
+}

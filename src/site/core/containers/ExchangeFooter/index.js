@@ -53,12 +53,13 @@ export class ExchangeFooter extends Component {
 						<span className={styles.betViewText} data-tip data-for="view-slider">
 							{t('core:footer.bet-view')}
 						</span>				
-						<ReactTooltip place="right" type="light" effect="solid" id="view-slider" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.view-slider')}</span></ReactTooltip>
+						<ReactTooltip place="right" effect="solid" id="view-slider" delayShow={1000} delayHide={200}><span>{t('core:tooltips.footer.view-slider')}</span></ReactTooltip>
 						<ViewSlider
 							currency={this.props.activeCurrency}
 							exchangeCurrency={this.props.activeExchangeCurrency}
 							exchangeRate={this.props.exchangeRate}
 							onChange={this.props.updateMinimumBet}
+							defaultPosition={2}
 						/>
 					</div>
 				</div>
