@@ -88,6 +88,7 @@
     "jest": "^20.0.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
+    "obfuscator-loader": "^1.1.2",
     "plop": "^1.9.0",
     "react-test-renderer": "^16.0.0",
     "react-toolbox-themr": "^1.0.2",
@@ -97,7 +98,8 @@
     "webpack": "2.6.1",
     "webpack-dashboard": "^1.0.0",
     "webpack-dev-server": "2.5.0",
-    "webpack-manifest-plugin": "1.1.0"
+    "webpack-manifest-plugin": "1.1.0",
+    "webpack-obfuscator": "^0.15.0"
   },
   "peerDependencies": {
     "less": "^2.7.2"

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ModalConductor from '../ModalConductor';
 import Layout from '../../components/Layout';
-// import { fetchUser } from '../../reducers/user';
 import styles from './style.less';
 import overrides from '../../../../less/_overrides.less';
 
@@ -16,14 +15,11 @@ export const Root = ({ hasAcceptedDemoWarning, children }) => (
 );
 
 Root.propTypes = {
-	// user: PropTypes.instanceOf(Immutable.Map).isRequired,
-	// fetchUser: PropTypes.func.isRequired,
 	hasAcceptedDemoWarning: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
 	return {
-		// user: state.getIn(['core', 'user'], Immutable.Map()),
 		hasAcceptedDemoWarning: state.getIn(
 			['core', 'user', 'hasAcceptedDemoWarning'],
 			Immutable.Map()
@@ -33,9 +29,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		// fetchUser: (...args) => {
-		// 	return dispatch(fetchUser(...args));
-		// },
 	};
 };
 

@@ -12,6 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const JavaScriptObfuscator = require('webpack-obfuscator');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -25,6 +26,10 @@ const shouldUseRelativeAssetPaths = publicPath === './';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+
+var obfuscator = new JavaScriptObfuscator({
+  rotateUnicodeArray: true
+}, [])
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -165,8 +170,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
-        options: {
-          
+        options: {      
           compact: true,
         },
       },
@@ -349,6 +353,9 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new JavaScriptObfuscator({
+        rotateUnicodeArray: true
+    }, [])
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

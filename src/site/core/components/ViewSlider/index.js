@@ -56,7 +56,7 @@ class ViewSlider extends Component {
 
 	getValue(index, props) {
 		const arrayElement = sliderArrays[props.exchangeCurrency][index];
-		console.log(index, props)
+
 		return props.currency !== props.exchangeCurrency
 			? this.currencyConversion(arrayElement)
 			: arrayElement;

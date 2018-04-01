@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Transition from 'react-transition-group/Transition';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -12,7 +13,12 @@ import BlockTimer from '../../components/BlockTimer';
 import { selectExchangeRate } from '../../selectors/currency';
 import { updateCurrency } from '../../reducers/currency';
 import { updateMinimumBet } from '../../reducers/exchange';
+import SkeletonLoader from '../../components/SkeletonLoader';
 import styles from './style.less';
+import {
+	fadeDefaultStyle,
+	fadeTransitionStyles,
+} from '../../../../lib/animation';
 
 export class ExchangeFooter extends Component {
 	constructor(props, context) {
@@ -35,13 +41,19 @@ export class ExchangeFooter extends Component {
 						isLoading={this.props.isBlockInfoLoading}
 					/>
 				</div>
-				<div className={styles.right}>
+				<SkeletonLoader
+					className={styles.right}
+					loadingClassName={styles.loading}
+					isLoading={this.props.isLoadingCurrency}
+					width="large"
+					height="xsmall"
+					>
 					<Currencies
-						isLoadingCurrency={this.props.isLoadingCurrency}
-						currency={this.props.currency}
-						price={this.props.price}
-						exchangeCurrency={this.props.exchangeCurrency}
-					/>
+							isLoadingCurrency={this.props.isLoadingCurrency}
+							currency={this.props.currency}
+							price={this.props.price}
+							exchangeCurrency={this.props.exchangeCurrency}
+						/>
 					<div className={styles.currency}>
 						<CurrencyToggle
 							currency={this.props.activeCurrency}
@@ -62,7 +74,7 @@ export class ExchangeFooter extends Component {
 							defaultPosition={2}
 						/>
 					</div>
-				</div>
+				</SkeletonLoader>
 			</footer>
 		);
 	}

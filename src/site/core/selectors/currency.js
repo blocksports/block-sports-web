@@ -13,7 +13,6 @@ export const selectExchangeRate = createImmutableSelector(
 	getPrices,
 	getActiveExchangeCurrency,
 	(prices, exchangeCurrency) => {
-		console.log(prices, exchangeCurrency)
 		return prices.getIn(['GAS', exchangeCurrency], 1);
 	}
 );

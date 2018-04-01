@@ -7,12 +7,14 @@ const fetchUserRequest = createAction('FETCH_USER_REQUEST');
 const fetchUserSuccess = createAction('FETCH_USER_SUCCESS');
 export const acceptDemoWarning = createAction('ACCEPT_DEMO_WARNING');
 
+export const validateUser = createAction('VALIDATE_USER');
+
 export function fetchUser() {
 	return dispatch => {
 		dispatch(fetchUserRequest());
 		dispatch(
 			fetchUserSuccess({
-				balance: 28.81,
+				balance: 50.00,
 			})
 		);
 	};
@@ -45,6 +47,11 @@ const userReducer = createReducer(
 				hasAcceptedDemoWarning: true,
 			});
 		},
+		[validateUser]: (state, resp) => {
+			return state.merge({
+				isLoggedIn: true
+			})
+		}
 	},
 	initialState
 );
