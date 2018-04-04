@@ -6,7 +6,7 @@ import { t } from 'i18next';
 import sha1 from 'js-sha1';
 import { browserHistory } from 'react-router';
 import { getQueries, removeQuery } from '../../../../lib/router';
-import { validateUser } from '../../reducers/user';
+import { loginUser } from '../../reducers/user';
 import styles from './style.less';
 
 function sleep(ms) {
@@ -17,11 +17,8 @@ export class Login extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const queries = getQueries()
-    const password = queries.p ? queries.p : '';
-
     this.state = {
-      password,
+      password: '',
       showError: false
     };
 
@@ -29,28 +26,11 @@ export class Login extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount() {
-    if (this.validPassword) {
-      this.props.validateUser();
-      sleep(500);
-      browserHistory.push('exchange');
-    } else {
-      removeQuery('p');
-      this.setState({
-        password: ''
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-  }
-
   get validPassword() {
-    const test = process.env.APP_SHA_KEY;
+    const hash = process.env.APP_SHA_KEY;
     const pass = sha1(this.state.password);
 
-    return test == pass;
+    return hash == pass;
   }
 
   onChange(e) {
@@ -63,7 +43,7 @@ export class Login extends Component {
     e.preventDefault();
 
     if (this.validPassword) {
-      this.props.validateUser();
+      this.props.loginUser(this.state.password);
       sleep(500);
       browserHistory.push('exchange');
     } else {
@@ -92,7 +72,7 @@ export class Login extends Component {
         </div>
         <div className="utility-page-wrap">
             <div className="utility-page-content-copy w-password-page w-form">
-                <form className="utility-page-form w-password-page" onSubmit={this.handleSubmit}>
+                <form className="utility-page-form w-password-page" method="post" onSubmit={this.handleSubmit}>
                     <img src="https://uploads-ssl.webflow.com/5a4bbb35b668780001b01cbf/5a55c15429f1720001df7d13_bsx-protected.svg" width="103" className="image-13"/>
                     <h2 className="heading-6">Protected page</h2>
                     <div className="div-block-34">
@@ -120,8 +100,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    validateUser: (...args) => {
-			return dispatch(validateUser(...args));
+    loginUser: (...args) => {
+			return dispatch(loginUser(...args));
 		},
   };
 }

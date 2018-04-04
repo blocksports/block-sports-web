@@ -89,8 +89,10 @@
 	},
 	"demo-modal": {
 		"heading": "This is a Demo Exchange",
-		"message":
-			"Ut accumsan metus eros, nec feugiat sem tempus vel. Nullam scelerisque sollicitudin arcu sollicitudin tempor. Cras eu ante libero. Aenean sit amet neque mi.",
+		"message_1": "Do not transfer any NEO or GAS from your wallet on this demo",
+		"message_2": "Some functionality is still in development and is currently restricted",
+		"message_3": "Displayed features are not considered final and may be changed upon full release",
+		"message_4": "All feedback and bug reports are welcome, email us at support@blocksports.com",
 		"button": "Continue"
 	},
 	"confirm-modal": {

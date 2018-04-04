@@ -11,7 +11,13 @@ const ModalDemoWarning = props => (
 		<div className={styles.root}>
 			<Glyph size="40" icon="feedback" className={styles.icon} />
 			<span className={styles.head}>{t('core:demo-modal.heading')}</span>
-			<p className={styles.body}>{t('core:demo-modal.message')}</p>
+			<ul>
+			<li className={styles.body}>• {t('core:demo-modal.message_1')}</li>
+			<li className={styles.body}>• {t('core:demo-modal.message_2')}</li>
+			<li className={styles.body}>• {t('core:demo-modal.message_3')}</li>
+			<li className={styles.body}>• {t('core:demo-modal.message_4')}</li>
+			</ul>
+
 			<Button
 				size="medium"
 				color="white"
