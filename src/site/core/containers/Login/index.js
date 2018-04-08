@@ -47,6 +47,7 @@ export class Login extends Component {
       sleep(500);
       browserHistory.push('exchange');
     } else {
+      sleep(500);
       this.setState({
         password: '',
         showError: true

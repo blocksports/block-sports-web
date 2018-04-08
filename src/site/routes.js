@@ -55,7 +55,16 @@ const createRoutes = store => {
 						callback(null, require('./core/containers/Login').default);
 					});
 				},
+			},
+			{
+				path: '*',
+				getComponent(nextState, callback) {
+					require.ensure([], require => {
+						callback(null, require('./core/components/404').default);
+					});
+				},				
 			}
+
 		],
 	};
 };

@@ -55,7 +55,6 @@ const userReducer = createReducer(
 			});
 		},
 		[validateUser]: (state, resp) => {
-			console.log(resp)
 			localStorage.setItem('p', resp);
 			return state.merge({
 				isLoggedIn: true

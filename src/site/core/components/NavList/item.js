@@ -8,7 +8,7 @@ import styles from './style.less';
 
 const NavListItem = ({ filter, category, item }) => {
 	const competitions = item.get('competitions');
-	
+	console.log(item.get('name'))
 	let link = '';
 
 	if (competitions && competitions.size == 1) {
