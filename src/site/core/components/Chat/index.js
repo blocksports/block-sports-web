@@ -57,24 +57,32 @@ class Chat extends Component {
 
 	render() {
 		return (
-			<div
-				className={styles.root}
-				onMouseEnter={() => this.handleMouseEnter()}
-				onMouseLeave={() => this.handleMouseLeave()}>
+			<div className={styles.root}
+>
 				<span className={styles.heading}>Chat</span>
-				<div className={styles.body}>
+				<div className={styles.body}
+					>
 					{this.state.messages.map((item, index) => (
 						<ChatMessage message={item} key={index} />
 					))}
 				</div>
-				<form className={styles.form}>
-					<textarea
-						className={styles.input}
-						rows="2"
-						placeholder="Type a message..."
-					/>
-				</form>
-				{this.state.showWarning && <DisabledMessage />}
+				<div 			
+					onMouseEnter={() => this.handleMouseEnter()}
+					onMouseLeave={() => this.handleMouseLeave()}>	
+						{
+							!this.state.showWarning && 	
+							<form className={styles.form}>
+								<textarea
+									className={styles.input}
+									rows="2"
+									placeholder="Type a message..."
+									disabled
+								/>
+							</form>
+							
+						}
+						{ this.state.showWarning && <DisabledMessage/> }			
+				</div>
 			</div>
 		);
 	}
@@ -88,8 +96,10 @@ const ChatMessage = ({ message }) => (
 );
 
 const DisabledMessage = () => (
-	<div className={styles.disabledMessage}>
-		<span>Chat is currently disabled</span>
+	<div className={styles.disabledWrapper}>
+		<div>
+			<span>Chat is currently disabled</span>
+		</div>
 	</div>
 );
 

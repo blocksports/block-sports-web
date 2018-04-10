@@ -14,8 +14,6 @@ const ModalDemoWarning = props => (
 			<ul>
 			<li className={styles.body}>• {t('core:demo-modal.message_1')}</li>
 			<li className={styles.body}>• {t('core:demo-modal.message_2')}</li>
-			<li className={styles.body}>• {t('core:demo-modal.message_3')}</li>
-			<li className={styles.body}>• {t('core:demo-modal.message_4')}</li>
 			</ul>
 
 			<Button
