@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { t } from 'i18next';
@@ -7,40 +8,49 @@ import styles from './style.less';
 
 const demoMessages = [
 	{
-		username: 'User1242',
-		message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		username: 'Block Sports Bot',
+		message: 'Welcome to the Block Sports Exchange! Please visit our <a href="https://www.blocksports.com" target="_blank" >website</a> for more information.',
 	},
 	{
-		username: 'User151342',
-		message: 'Duis mattis risus odio, sed finibus libero tincidunt a.',
+		username: 'Block Sports Bot',
+		message: 'Just a reminder that this is a demo exchange only, <b>do not</b> transfer any funds.'
 	},
 	{
-		username: 'User4345',
-		message: 'Etiam et eros mauris. Nullam rutrum ornare dolor.',
+		username: 'Block Sports Bot',
+		message: 'Keep up to date on news and announcements by joining our <a href="https//t.me/blocksports" target="_blank">Telegram</a> or following us on <a href="https://twitter.com/block_sports" target="_blank" >Twitter</a>.',
 	},
 	{
-		username: 'User1131',
-		message: 'Phasellus finibus magna quam, vitae efficitur metus rutrum nec.',
+		username: 'Block Sports Bot',
+		message: 'Also keep an eye out for our upcoming AMA on the <a href="https://www.reddit.com/r/neo" target="_blank" >NEO subreddit</a>.',
 	},
 	{
-		username: 'User9504',
+		username: 'Block Sports Bot',
 		message:
-			'Nullam nec sem et turpis fringilla euismod a et velit. Praesent quis aliquam diam.',
-	},
-	{
-		username: 'User43',
-		message:
-			'Nulla congue, felis nec iaculis consequat, mi metus imperdiet tortor, eu tincidunt est dolor ac ex.',
+			'Any questions or issues? Let us know at <a href="mailto:support@blocksports.com" target="_blank" >support@blocksports.com</a>.',
 	},
 ];
+
+const createMarkup = (message) => {
+	return {__html: message};
+};
+
+var timer;
+
 
 class Chat extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showWarning: false,
-			messages: demoMessages,
+			messages: [demoMessages[0]],
+			messageIndex: 0
 		};
+
+		this.updateChat = this.updateChat.bind(this);
+	}
+
+	componentDidMount() {
+		timer = setInterval(this.updateChat, 25000);
 	}
 
 	handleMouseEnter() {
@@ -55,6 +65,21 @@ class Chat extends Component {
 		});
 	}
 
+	updateChat() {
+		var messages = this.state.messages;
+		const messageIndex = this.state.messageIndex + 1;
+		messages.push(demoMessages[messageIndex]);
+
+		this.setState({
+			messages,
+			messageIndex
+		});
+
+		if (messageIndex + 1 >= demoMessages.length) {
+			clearTimeout(timer);
+		}
+	}
+
 	render() {
 		return (
 			<div className={styles.root}
@@ -62,9 +87,13 @@ class Chat extends Component {
 				<span className={styles.heading}>Chat</span>
 				<div className={styles.body}
 					>
-					{this.state.messages.map((item, index) => (
-						<ChatMessage message={item} key={index} />
-					))}
+					<TransitionGroup>
+						{this.state.messages.map((item, index) => (
+							<Fade key={index}>
+								<ChatMessage message={item} key={index} />
+							</Fade>
+						))}
+					</TransitionGroup>
 				</div>
 				<div 			
 					onMouseEnter={() => this.handleMouseEnter()}
@@ -88,11 +117,22 @@ class Chat extends Component {
 	}
 }
 
-const ChatMessage = ({ message }) => (
+/*
+	REMOVE DANGEROUSLYSETINNERHTML AFTER DEMO
+*/
+const ChatMessage = ({ message }) => {
+	return (
 	<div className={styles.chatMessage}>
-		<span className={styles.chatMessageUsername}>{message.username}</span>
-		<span className={styles.chatMessageMessage}>: {message.message}</span>
+		<span className={styles.chatMessageUsername}><b>{message.username}</b></span>
+		<span className={styles.chatMessageMessage}>: <span dangerouslySetInnerHTML={createMarkup(message.message)}/></span>
 	</div>
+	)
+};
+
+const Fade = ({ children, ...props }) => (
+	<CSSTransition {...props} timeout={300} classNames="fade">
+		{children}
+	</CSSTransition>
 );
 
 const DisabledMessage = () => (
