@@ -13,9 +13,21 @@ export const addQuery = query => {
  * @param {...String} queryNames
  */
 export const removeQuery = (...queryNames) => {
-	const location = Object.assign({}, browserHistory.getCurrentLocation());
-	queryNames.forEach(q => delete location.query[q]);
-	browserHistory.push(location);
+	var location = Object.assign({}, browserHistory.getCurrentLocation());
+	var hasChanged = false;
+
+	queryNames.forEach(q => {
+		if (location.query[q]) {
+			delete location.query[q];
+			hasChanged = true;
+		} 
+
+		return
+	});
+	
+	if (hasChanged) {
+		browserHistory.push(location);
+	}
 };
 
 export const getQueries = () => {
