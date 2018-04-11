@@ -50,7 +50,7 @@ class Chat extends Component {
 	}
 
 	componentDidMount() {
-		timer = setInterval(this.updateChat, 25000);
+		timer = setInterval(this.updateChat, 20000);
 	}
 
 	handleMouseEnter() {
