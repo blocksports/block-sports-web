@@ -19,10 +19,11 @@ const createRoutes = store => {
 			if (hash != pass) {
 				replace('login');
 			} else {
-				removeQuery('p');
 				store.dispatch(loginUser(password));
 			}
-		}
+		} 
+
+		removeQuery('p');
 
 		cb();
 	};
