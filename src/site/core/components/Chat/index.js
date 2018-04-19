@@ -13,7 +13,7 @@ const demoMessages = [
 	},
 	{
 		username: 'Block Sports Bot',
-		message: 'Just a reminder that this is a demo exchange only, <b>do not</b> transfer any funds.'
+		message: 'Just a reminder that this is a demo exchange only - <b>do not</b> transfer any funds.'
 	},
 	{
 		username: 'Block Sports Bot',
