@@ -8,18 +8,31 @@
 }
 
 :local(.icon) {
-	fill: @gray-1;
+	fill: @white-2;
 }
 
 :local(.head) {
 	display: block;
 	margin: @space 0;
-	color: @error;
+	font-size: @font-size-xl;
+	color: @primary;
 }
 
 :local(.body) {
-	font-size: @font-size-m;
-	margin: 0;
-	width: 85%;
-	margin: 0 auto @space auto;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+
+	:local(.content) {
+		margin: 15px;
+
+		:local(.message) {
+			font-size: @font-size-s;
+		}
+	}
+}
+
+:local(.button) {
+	font-weight: 700;
+	font-size: @font-size-s;
 }

@@ -88,11 +88,9 @@
 			"The Block Sports Exchange is not currently available for mobile devices. Upon full release, the Block Sports Exchange will be available for download on iOS and Android."
 	},
 	"demo-modal": {
-		"heading": "This is a Demo Exchange",
-		"message_1": "Do not transfer any NEO or GAS from your wallet on this demo",
-		"message_2": "Some functionality is still in development and is currently restricted",
-		"message_3": "Displayed features are not considered final and may be changed upon full release",
-		"message_4": "All feedback and bug reports are welcome, email us at support@blocksports.com",
+		"heading": "This is a demo exchange",
+		"message_1": "Do not transfer any cryptocurrency",
+		"message_2": "Some features are still in development",
 		"button": "Continue"
 	},
 	"confirm-modal": {

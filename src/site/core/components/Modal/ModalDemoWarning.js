@@ -9,21 +9,26 @@ import styles from './demoWarning.less';
 const ModalDemoWarning = props => (
 	<ModalWrapper {...props} allowClose={false}>
 		<div className={styles.root}>
-			<Glyph size="40" icon="feedback" className={styles.icon} />
-			<span className={styles.head}>{t('core:demo-modal.heading')}</span>
-			<ul>
-			<li className={styles.body}>• {t('core:demo-modal.message_1')}</li>
-			<li className={styles.body}>• {t('core:demo-modal.message_2')}</li>
-			</ul>
-
+			<span className={styles.head}><b>{t('core:demo-modal.heading')}</b></span>
+			<div className={styles.body}>
+				<div className={styles.content}>
+					<Glyph size="30" icon="bitcoin" className={styles.icon} />
+					<div className={styles.message}>{t('core:demo-modal.message_1')}</div>
+				</div>
+				<div className={styles.content}>
+					<Glyph size="30" icon="bsx-indev" className={styles.icon} />
+					<div className={styles.message}>{t('core:demo-modal.message_2')}</div>
+				</div>
+			</div>
 			<Button
 				size="medium"
 				color="white"
+				className={styles.button}
 				onClick={() => {
 					props.acceptDemoWarning();
 					props.setCurrentModal(null);
 				}}>
-				{t('core:demo-modal.button')}
+				{t('core:demo-modal.button').toUpperCase()}
 			</Button>
 		</div>
 	</ModalWrapper>
