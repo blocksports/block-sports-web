@@ -70,7 +70,7 @@ class ModalWrapper extends Component {
 							}}>
 							{innerState => (
 								<article
-									className={styles.content}
+									className={classNames([styles.content, this.props.className])}
 									style={{
 										...slideUpDefaultStyle,
 										...slideUpTransitionStyles[innerState],
@@ -104,6 +104,7 @@ class ModalWrapper extends Component {
 ModalWrapper.propTypes = {
 	title: PropTypes.string,
 	children: PropTypes.node,
+	className: PropTypes.string
 };
 
 ModalWrapper.defaultProps = {

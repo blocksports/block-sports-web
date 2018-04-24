@@ -9,6 +9,8 @@ import ModalConfirmBet from '../../components/Modal/ModalConfirmBet';
 import ModalMobileWarning from '../../components/Modal/ModalMobileWarning';
 import ModalDemoWarning from '../../components/Modal/ModalDemoWarning';
 
+import demoWarningStyles from '../../components/Modal/demoWarning.less';
+
 export class ModalConductor extends Component {
 	constructor(props) {
 		super(props);
@@ -69,6 +71,7 @@ export class ModalConductor extends Component {
 					<ModalDemoWarning
 						setCurrentModal={setCurrentModal}
 						acceptDemoWarning={acceptDemoWarning}
+						className={demoWarningStyles.demoWarning}
 					/>
 				);
 			case 'mobileWarning':

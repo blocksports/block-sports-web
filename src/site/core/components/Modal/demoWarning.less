@@ -2,19 +2,26 @@
 @import '../../../../less/_fonts.less';
 @import '../../../../less/_utils.less';
 
+:local(.demoWarning) {
+	max-width: 580px !important;
+}
+
 :local(.root) {
-	padding: @space-xl @space;
+	padding: @space-xxl @space;
 	text-align: center;
 }
 
 :local(.icon) {
 	fill: @white-2;
+	margin-bottom: 10px;
 }
 
 :local(.head) {
 	display: block;
-	margin: @space 0;
-	font-size: @font-size-xl;
+	font-family: @font-family-soft;
+	margin-bottom: @space;
+	font-weight: 500;
+	font-size: @font-size-xxl;
 	color: @primary;
 }
 
@@ -24,15 +31,14 @@
 	margin-bottom: 15px;
 
 	:local(.content) {
-		margin: 15px;
+		margin: 26px;
 
 		:local(.message) {
-			font-size: @font-size-s;
+			font-size: @font-size-m;
 		}
 	}
 }
 
 :local(.button) {
-	font-weight: 700;
-	font-size: @font-size-s;
+	font-size: @font-size-m;
 }

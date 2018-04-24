@@ -9,14 +9,14 @@ import styles from './demoWarning.less';
 const ModalDemoWarning = props => (
 	<ModalWrapper {...props} allowClose={false}>
 		<div className={styles.root}>
-			<span className={styles.head}><b>{t('core:demo-modal.heading')}</b></span>
+			<span className={styles.head}>{t('core:demo-modal.heading')}</span>
 			<div className={styles.body}>
 				<div className={styles.content}>
-					<Glyph size="30" icon="bitcoin" className={styles.icon} />
+					<Glyph size="33" icon="bsx-nocrypto" className={styles.icon} />
 					<div className={styles.message}>{t('core:demo-modal.message_1')}</div>
 				</div>
 				<div className={styles.content}>
-					<Glyph size="30" icon="bsx-indev" className={styles.icon} />
+					<Glyph size="33" icon="bsx-indev" className={styles.icon} />
 					<div className={styles.message}>{t('core:demo-modal.message_2')}</div>
 				</div>
 			</div>
