@@ -22,15 +22,9 @@ const updateExchangeMatches = createAction(
 	(data, resp) => [data, resp]
 );
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export function fetchMarkets(params, query) {
 	return async dispatch => {
 		dispatch(fetchMarketsRequest());
-
-		await sleep(1000);
 
 		axios({
 			method: 'get',

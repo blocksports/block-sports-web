@@ -5,14 +5,10 @@ import { mockCards } from './__mockData';
 const fetchCardsRequest = createAction('FETCH_CARDS_REQUEST');
 const fetchCardsSuccess = createAction('FETCH_CARDS_SUCCESS');
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export function fetchCards(data) {
 	return async dispatch => {
 		dispatch(fetchCardsRequest());
-		await sleep(1000);
+
 		axios({
 			method: 'get',
 			url: '/v1/header?competitions=english-premier-league,nba,mlb',

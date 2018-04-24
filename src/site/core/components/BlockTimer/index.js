@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import moment from 'moment';
+import AccurateTimer from 'accurate-timer-js';
 import { t } from 'i18next';
 import SkeletonBlock from '../SkeletonBlock';
 import styles from './style.less';
@@ -26,7 +27,8 @@ class BlockTimer extends Component {
 	}
 
 	componentDidMount() {
-		let timer = setInterval(this.tick, 1000);
+		let timer = new AccurateTimer(this.tick, 1000);
+		timer.start();
 	}
 
 	componentWillReceiveProps(nextProps) {

@@ -8,15 +8,9 @@ const fetchBlockchainSuccess = createAction('FETCH_BLOCKCHAIN_SUCCESS');
 
 const updateBlockchain = createAction('UPDATE_BLOCKCHAIN_INFO');
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export function fetchBlockchainInfo() {
 	return async dispatch => {
 		dispatch(fetchBlockchainRequest());
-
-		await sleep(1000);
 
 		axios({
 			method: 'get',

@@ -13,15 +13,9 @@ const updatePriceData = createAction('UPDATE_PRICE_DATA');
 
 const updateActiveCurrency = createAction('UPDATE_CURRENCY');
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export function fetchPrice(data) {
 	return async dispatch => {
 		dispatch(fetchPriceRequest());
-
-		await sleep(1000);
 
 		axios({
 			method: 'get',

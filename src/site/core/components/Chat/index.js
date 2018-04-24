@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Scrollbars } from 'react-custom-scrollbars';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import AccurateTimer from 'accurate-timer-js';
 import { t } from 'i18next';
 import classNames from 'classnames';
 import styles from './style.less';
@@ -10,10 +12,6 @@ const demoMessages = [
 	{
 		username: 'Block Sports Bot',
 		message: 'Welcome to the Block Sports Exchange! Please visit our <a href="https://www.blocksports.com" target="_blank" >website</a> for more information.',
-	},
-	{
-		username: 'Block Sports Bot',
-		message: 'Just a reminder that this is a demo exchange only - <b>do not</b> transfer any funds.'
 	},
 	{
 		username: 'Block Sports Bot',
@@ -36,7 +34,6 @@ const createMarkup = (message) => {
 
 var timer;
 
-
 class Chat extends Component {
 	constructor(props) {
 		super(props);
@@ -50,7 +47,14 @@ class Chat extends Component {
 	}
 
 	componentDidMount() {
-		timer = setInterval(this.updateChat, 20000);
+		timer = new AccurateTimer(this.updateChat, 15000);
+		timer.start();
+	}
+
+	componentDidUpdate(_, prevState) {
+		if (prevState.messageIndex != this.state.messageIndex) {
+			this.scrollToBottom();
+		}
 	}
 
 	handleMouseEnter() {
@@ -65,6 +69,10 @@ class Chat extends Component {
 		});
 	}
 
+	scrollToBottom = () => {
+		this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+	  }
+
 	updateChat() {
 		var messages = this.state.messages;
 		const messageIndex = this.state.messageIndex + 1;
@@ -76,7 +84,7 @@ class Chat extends Component {
 		});
 
 		if (messageIndex + 1 >= demoMessages.length) {
-			clearTimeout(timer);
+			timer.stop();
 		}
 	}
 
@@ -85,16 +93,21 @@ class Chat extends Component {
 			<div className={styles.root}
 >
 				<span className={styles.heading}>Chat</span>
-				<div className={styles.body}
-					>
-					<TransitionGroup>
-						{this.state.messages.map((item, index) => (
-							<Fade key={index}>
-								<ChatMessage message={item} key={index} />
-							</Fade>
-						))}
-					</TransitionGroup>
-				</div>
+					<div className={styles.body}
+						>
+						<Scrollbars ref="chatScrollbar">
+							<TransitionGroup>
+								{this.state.messages.map((item, index) => (
+									<Fade key={index}>
+										<ChatMessage message={item} key={index} />
+									</Fade>
+								))}
+								<div style={{ float:"left", clear: "both" }}
+									ref={(el) => { this.messagesEnd = el; }}>
+								</div>
+							</TransitionGroup>
+						</Scrollbars>
+					</div>
 				<div 			
 					onMouseEnter={() => this.handleMouseEnter()}
 					onMouseLeave={() => this.handleMouseLeave()}>	

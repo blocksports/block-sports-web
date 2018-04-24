@@ -15,6 +15,7 @@
     "glyphs": "npm run optimiseGlyphs && svg-sprite-generate -d src/glyphs -o public/glyphs/glyphs.svg"
   },
   "dependencies": {
+    "accurate-timer-js": "^0.1.1",
     "autoprefixer": "7.1.1",
     "axios": "^0.16.2",
     "babel-runtime": "6.23.0",
