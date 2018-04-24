@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import Glyph from '../Glyph';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink, browserHistory } from 'react-router';
 import { getGlyphPath } from '../../../../lib/utils';
 import styles from './style.less';
 
@@ -14,7 +14,7 @@ const NavListItem = ({ filter, category, item }) => {
 		const competition = competitions.get(0);
 		link = `/exchange/${item.get('id')}/${competition.get('id')}`
 	} else {
-		link = filter
+		link = category && filter
 		? `/exchange/${category.get('id')}/${item.get('id')}`
 		: `/exchange/${item.get('id')}`;
 	}
@@ -27,7 +27,7 @@ const NavListItem = ({ filter, category, item }) => {
 				activeClassName={styles.itemActive}>
 				<div className={styles.itemInner}>
 					<div className={styles.itemLeft}>
-						{!filter && (
+						{(!category || !filter) && (
 							<Glyph
 								size="14"
 								icon={getGlyphPath(item.get('name'))}
@@ -37,7 +37,7 @@ const NavListItem = ({ filter, category, item }) => {
 						<span className={styles.itemName}>{item.get('name')}</span>
 					</div>
 					<div className={styles.itemRight}>
-						{filter && (
+						{(category && filter) && (
 							<div className={styles.itemCount}>{item.get('count')}</div>
 						)}
 						<Glyph size="14" icon="right" />
