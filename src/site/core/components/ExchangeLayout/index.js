@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Immutable from 'immutable';
+import isEqual from 'lodash.isequal';
 import { t } from 'i18next';
 import Bets from '../Bets';
 import Chat from '../Chat';
@@ -13,6 +14,12 @@ import ExchangeFooter from '../../containers/ExchangeFooter';
 import styles from './style.less';
 
 class ExchangeLayout extends Component {
+	componentDidUpdate(prevProps) {
+		if (!isEqual(prevProps.params, this.props.params)) {
+			this.scrollbarMain.scrollToTop();
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -23,7 +30,7 @@ class ExchangeLayout extends Component {
 						</Scrollbars>
 					</div>
 					<div className={styles.main}>
-						<Scrollbars ref="scrollbarMain">
+						<Scrollbars ref={(el) => { this.scrollbarMain = el; }}>
 							<CardBanner />
 							<div className={styles.mainMarket}>
 								{this.props.params.entity === 'market' && (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import { round } from '../../../../lib/utils';
 import styles from './style.less';
 import Button from '../Button';
 
@@ -46,13 +47,24 @@ class SpinBox extends Component {
 		}
 	}
 
+	handleKeyDown(e) {
+		if (e.keyCode == 38) {
+			e.preventDefault();
+			this.increment();
+		}  else if (e.keyCode == 40) {
+			e.preventDefault();
+			this.decrement();
+		}
+	}
+
 	handleOnClick(e) {
 		e.target.select();
 	}
 
 	increment() {
 		const spinAmount = this.props.spinAmount;
-		const nextValue = parseFloat(this.state.inputValue) + spinAmount;
+		let nextValue = parseFloat(this.state.inputValue) + spinAmount;	
+		nextValue = round(nextValue, this.props.decimals);
 
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
@@ -64,7 +76,8 @@ class SpinBox extends Component {
 
 	decrement() {
 		const spinAmount = this.props.spinAmount;
-		const nextValue = parseFloat(this.state.inputValue) - spinAmount;
+		let nextValue = parseFloat(this.state.inputValue) - spinAmount;
+		nextValue = round(nextValue, this.props.decimals);
 
 		if (nextValue >= 0) {
 			this.props.onChange(nextValue);
@@ -84,6 +97,8 @@ class SpinBox extends Component {
 						placeholder={this.props.placeholder}
 						onChange={e => this.handleInputChange(e)}
 						onClick={e => this.handleOnClick(e)}
+						onKeyDown={e => this.handleKeyDown(e)}
+						tabIndex={this.props.tabIndex}
 					/>
 				</div>
 				<div className={styles.buttons}>

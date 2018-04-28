@@ -43,6 +43,7 @@ class BetSlipItem extends Component {
 		this.handleStakeChange = this.handleStakeChange.bind(this);
 		this.handleProfitChange = this.handleProfitChange.bind(this);
 		this.handleLiabilityChange = this.handleLiabilityChange.bind(this);
+		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
 
 	componentWillMount() {}
@@ -79,7 +80,7 @@ class BetSlipItem extends Component {
 	}
 
 	handleOddsChange(odds) {
-
+		
 		const odds_i = parseFloat(odds);
 		const stake_i = parseFloat(this.state.stake);
 		const profit_i = calculateProfit(odds_i, stake_i);
@@ -139,29 +140,36 @@ class BetSlipItem extends Component {
 	}
 
 	handleBetClick(match, outcome) {
-		return () => {
-			const { stake, exchangeRate, currency } = this.props;
-			this.props.onBetClick(
-				{
-					id: uuid(),
-					type: this.props.type,
-					odds: round(this.state.odds, 3),
-					stake: getBetStake(this.state.stake, exchangeRate, currency),
-					status: 'pending',
-					date_created: moment().unix(),
-					...match.toObject(),
-					status: 'pending',
-					runner_name: getParticipantName(match, outcome),
-					pool_total: getTotalPool(this.state),
-					liability: getBetLiability(this.state, exchangeRate, currency),
-					pool_filled: 0,
-				},
-				{
-					id: this.state.id,
-					type: this.state.type,
-				}
-			);
-		};
+		const { stake, exchangeRate, currency } = this.props;
+		this.props.onBetClick(
+			{
+				id: uuid(),
+				type: this.props.type,
+				odds: round(this.state.odds, 3),
+				stake: getBetStake(this.state.stake, exchangeRate, currency),
+				status: 'pending',
+				date_created: moment().unix(),
+				...match.toObject(),
+				status: 'pending',
+				runner_name: getParticipantName(match, outcome),
+				pool_total: getTotalPool(this.state),
+				liability: getBetLiability(this.state, exchangeRate, currency),
+				pool_filled: 0,
+			},
+			{
+				id: this.state.id,
+				type: this.state.type,
+			}
+		);
+	}
+
+	handleKeyDown(e) {
+		if (e.keyCode == 13 && !this.isDisabled) {
+			const match = this.props.item.get('match');
+			const outcome = this.props.item.get('outcome');
+
+			this.handleBetClick(match, outcome);
+		}
 	}
 
 	handleRemoveClick() {
@@ -175,8 +183,9 @@ class BetSlipItem extends Component {
 		const match = this.props.item.get('match');
 		const outcome = this.props.item.get('outcome');
 		const { type, currency } = this.props;
+
 		return (
-			<article className={classNames([styles.itemRoot, type])}>
+			<article className={classNames([styles.itemRoot, type])} onKeyDown={e => this.handleKeyDown(e)}>
 				<header className={styles.header}>
 					<div className={styles.heading}>
 						<span>{getParticipantName(match, outcome)}</span>
@@ -204,6 +213,7 @@ class BetSlipItem extends Component {
 							onChange={this.handleOddsChange}
 							spinAmount={0.1}
 							decimals={2}
+							tabIndex={4*this.props.index + 1}
 						/>
 					</div>
 
@@ -217,6 +227,7 @@ class BetSlipItem extends Component {
 							onChange={this.handleStakeChange}
 							spinAmount={1}
 							decimals={2}
+							tabIndex={4*this.props.index + 2}
 						/>
 					</div>
 
@@ -231,6 +242,7 @@ class BetSlipItem extends Component {
 								onChange={this.handleProfitChange}
 								spinAmount={1}
 								decimals={2}
+								tabIndex={4*this.props.index + 3}
 							/>
 						</div>
 					)}
@@ -246,6 +258,7 @@ class BetSlipItem extends Component {
 								onChange={this.handleLiabilityChange}
 								spinAmount={1}
 								decimals={2}
+								tabIndex={4*this.props.index + 4}
 							/>
 						</div>
 					)}
@@ -255,7 +268,7 @@ class BetSlipItem extends Component {
 							size="small"
 							extras={[type]}
 							className={styles.betButton}
-							onClick={this.handleBetClick(match, outcome)}
+							onClick={() => this.handleBetClick(match, outcome)}
 							isDisabled={this.isDisabled}>
 							{t(`core:bets.bet-slip.button-${type}`)}
 						</Button>
@@ -272,6 +285,7 @@ BetSlipItem.propTypes = {
 	exchangeRate: PropTypes.number.isRequired,
 	currency: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
+	index: PropTypes.number.isRequired,
 };
 
 export default BetSlipItem;

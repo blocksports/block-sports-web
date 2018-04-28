@@ -72,12 +72,12 @@ const betReducer = createReducer(
 	{
 		[addToBetSlip]: (state, data) => {
 			return state.setIn(
-				['betSlip', data.type, data.id],
+				['betSlip', data.id],
 				Immutable.fromJS(data)
 			);
 		},
 		[removeFromBetSlip]: (state, data) => {
-			return state.deleteIn(['betSlip', data.type, data.id]);
+			return state.deleteIn(['betSlip', data.id]);
 		},
 		[removeAllFromBetSlip]: state => {
 			return state.set('betSlip', Immutable.Map());

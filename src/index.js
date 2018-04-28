@@ -10,7 +10,7 @@ import theme from './assets/react-toolbox/theme';
 import themeSS from './assets/react-toolbox/theme.css';
 import configureStore from './site/store';
 import createRoutes from './site/routes';
-import registerServiceWorker from './lib/registerServiceWorker';
+import { register, unregister } from './lib/registerServiceWorker';
 import { initLocale } from './lib/i18n';
 
 function syncHistory(history, store) {
@@ -31,6 +31,7 @@ let routes = createRoutes(store);
 axios.defaults.baseURL = process.env.APP_API_URL;
 
 initLocale();
+unregister();
 
 ReactDOM.render(
 	<div>
@@ -43,4 +44,4 @@ ReactDOM.render(
 	document.getElementById('root')
 );
 
-registerServiceWorker();
+// register();

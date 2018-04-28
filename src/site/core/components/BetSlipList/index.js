@@ -33,7 +33,7 @@ class BetSlipList extends Component {
 		);
 	}
 
-	renderBets(type) {
+	renderBets() {
 		const {
 			items,
 			exchangeRate,
@@ -41,19 +41,21 @@ class BetSlipList extends Component {
 			onBetClick,
 			onRemoveClick,
 		} = this.props;
-		let betSlipitems = items.get(type) || Immutable.Map();
+		let betSlipitems = items || Immutable.Map();
 		betSlipitems = betSlipitems.toList();
+
 		return (
 			<TransitionGroup>
 				{betSlipitems.map((bet, index) => (
-					<Fade key={bet.getIn(['id'])}>
+					<Fade key={bet.get('id')}>
 						<BetSlipItem
 							item={bet}
-							type={type}
+							type={bet.get('type')}
 							exchangeRate={exchangeRate}
 							currency={currency}
 							onBetClick={onBetClick}
 							onRemoveClick={onRemoveClick}
+							index={index}
 						/>
 					</Fade>
 				))}
@@ -64,8 +66,7 @@ class BetSlipList extends Component {
 	render() {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
-				{this.renderBets('back')}
-				{this.renderBets('lay')}
+				{this.renderBets()}
 				{this.removeAll}
 			</div>
 		);

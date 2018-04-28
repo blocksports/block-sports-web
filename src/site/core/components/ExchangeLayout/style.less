@@ -40,6 +40,10 @@
 	width: 100%;
 	.makePanelLight();
 	padding: 0;
+
+	@media (max-height: 675px) {
+		flex-grow: 1;
+	}
 }
 
 :local(.chat) {
@@ -50,6 +54,10 @@
 	margin-top: @panel-gutter;
 	overflow: hidden;
 	display: flex;
+
+	@media (max-height: 675px) {
+		display: none;
+	}
 }
 
 :local(.footer) {
