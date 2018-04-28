@@ -10,6 +10,12 @@ import Button from '../Button';
 import styles from './style.less';
 
 class BetSlipList extends Component {
+	componentDidUpdate(prevProps) {
+		if (this.props.items.size > prevProps.items.size) {
+			this.scrollToBottom();
+		}
+	}
+
 	get removeAll() {
 		if (!this.hasMoreThanOneBet()) return null;
 		return (
@@ -26,11 +32,11 @@ class BetSlipList extends Component {
 	}
 
 	hasMoreThanOneBet() {
-		return (
-			this.props.items.get('back', Immutable.Map()).count() +
-				this.props.items.get('lay', Immutable.Map()).count() >
-			1
-		);
+		return this.props.items.size > 1;
+	}
+
+	scrollToBottom = () => {
+		this.betListEnd.scrollIntoView({ behavior: "smooth" });
 	}
 
 	renderBets() {
@@ -41,7 +47,7 @@ class BetSlipList extends Component {
 			onBetClick,
 			onRemoveClick,
 		} = this.props;
-		let betSlipitems = items || Immutable.Map();
+		let betSlipitems = items;
 		betSlipitems = betSlipitems.toList();
 
 		return (
@@ -67,6 +73,9 @@ class BetSlipList extends Component {
 		return (
 			<div className={classNames([styles.root, this.props.className])}>
 				{this.renderBets()}
+				<div style={{ float:"left", clear: "both" }}
+					ref={(el) => { this.betListEnd = el; }}>
+				</div>
 				{this.removeAll}
 			</div>
 		);

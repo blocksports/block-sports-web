@@ -71,7 +71,7 @@ class Chat extends Component {
 
 	scrollToBottom = () => {
 		this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-	  }
+	}
 
 	updateChat() {
 		var messages = this.state.messages;
