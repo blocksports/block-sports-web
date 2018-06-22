@@ -1,5 +1,6 @@
 @import '../../../../less/_colours.less';
 @import '../../../../less/_utils.less';
+@import '../../../../less/_fonts.less';
 
 :local(.root) {
 	display: flex;
@@ -31,6 +32,14 @@
 	border-radius: 3px;
 	border: 1px solid #2d2e36;
 	height: 91%;
+	display: flex;
+
+	>div {
+		>div {
+			display: flex;
+			flex-direction: column;
+		}
+	}
 }
 
 :local(.form) {
@@ -52,7 +61,10 @@
 
 :local(.chatMessage) {
 	font-size: @font-size-m;
-	margin: @space-xs 0;
+	margin: 0.375rem 0;
+	background-color: @modal-bg-light;
+	border-radius: @border-radius;
+	padding: @space-s;
 }
 
 :local(.chatMessageUsername) {
@@ -90,4 +102,25 @@
 
 :local(.input) {
 	resize: none;
+}
+
+:local(.spaceFill) {
+	flex-grow: 1;
+}
+
+:local(.chat) {
+	flex: 1 1 90%; 
+	display: flex; 
+	flex-direction: column;
+}
+
+:local(.username) {
+	font-weight: @font-weight-bold;
+	// color: @primary;
+}
+
+:local(.time) {
+	margin-left: @space-s;
+	color: @gray-1;
+	font-size: @font-size-s;
 }

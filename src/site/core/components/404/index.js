@@ -7,6 +7,9 @@ import { t } from 'i18next';
 
 import styles from './style.less';
 
+let timerA;
+let timerB;
+
 class ErrorPage extends Component {
   constructor(props, context) {
     super(props, context);
@@ -21,8 +24,8 @@ class ErrorPage extends Component {
   }
 
   componentWillMount() {
-    let timerA = setInterval(this.countdown, 1000);
-    let timerB = setInterval(this.blink, 650);
+    timerA = setInterval(this.countdown, 1000);
+    timerB = setInterval(this.blink, 650);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,6 +48,8 @@ class ErrorPage extends Component {
 
     if (count < 0) {
       browserHistory.push('/');
+      clearInterval(timerA);
+      clearInterval(timerB);
     } else {
       this.setState({
         countdown: count

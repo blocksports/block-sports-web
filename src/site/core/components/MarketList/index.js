@@ -31,10 +31,10 @@ class MarketList extends Component {
 					<h5 className={styles.groupHeading}>
 						{dateTime(item[0].get('commence'), dateTypes.dayMonthDate)}
 					</h5>
-					{item.map((markerListItem, index) => (
+					{item.map((marketListItem, index) => (
 						<MarketListItem
 							key={index}
-							item={markerListItem}
+							item={marketListItem}
 							onConfirmBet={this.props.onConfirmBet}
 							currency={this.props.currency}
 							exchangeRate={this.props.exchangeRate}
@@ -65,10 +65,10 @@ class MarketList extends Component {
 					<h5 className={styles.groupHeading}>
 						{t(`core:sport.${item[0].get('sport')}`)}
 					</h5>
-					{item.map((markerListItem, index) => (
+					{item.map((marketListItem, index) => (
 						<MarketListItem
 							key={index}
-							item={markerListItem}
+							item={marketListItem}
 							onConfirmBet={this.props.onConfirmBet}
 							currency={this.props.currency}
 							exchangeRate={this.props.exchangeRate}

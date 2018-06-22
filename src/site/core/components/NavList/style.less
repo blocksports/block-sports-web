@@ -6,23 +6,66 @@
 	width: 100%;
 }
 
+:local(.headerContainer) {
+	display: flex;
+	margin: 0 -@space-s;
+}
+
 :local(.header) {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	align-items: flex-end;
-	margin: 0.4rem 0 1.2rem 0;
-	color: @white-1;
-	padding: 0 @space-s;
+	justify-content: center;
+	margin: 0.4rem 0;
+	color: @gray-1;
+	padding: @space-s @space-l;
 	font-weight: @font-weight-semibold;
+
+	&:last-child {
+		margin-left: @space-xs;
+	}
+
+	span {
+		max-width: 110px;
+		white-space: nowrap;
+
+		div {
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
 }
 
 :local(.headerIcon) {
 	position: relative;
-	top: -1px;
+	top: 2px;
 	display: inline-block;
 	fill: currentColor;
-	margin: 0 @space-xs;
+	margin-left: -@space-s;
+}
+
+:local(.headerSportIcon) {
+	position: relative;
+	top: -1px;
+	display: inline-block;
+	margin-right: 0.35rem;
+	fill: currentColor;
+}
+
+:local(.headerHome) {
+	padding: @space-s @space-m @space-s @space-l;
+
+	.transitionAll();
+	&:focus,
+	&:hover {
+		color: @white-1;
+		background-color: @modal-bg-light;
+		border-radius: @border-radius;
+	}
+}
+
+:local(.headerAll) {
+	margin-left: @space-xs;
 }
 
 :local(.nav) {
@@ -44,6 +87,17 @@
 
 	svg {
 		fill: currentColor;
+	}
+}
+
+:local(.headerActive) {
+	color: @primary;
+	background-color: @modal-bg-light;
+	border-radius: @border-radius;
+
+	&:focus,
+	&:hover {
+		color: @primary;
 	}
 }
 
@@ -96,7 +150,7 @@
 	align-items: center;
 	border: 1px solid @white-1;
 	height: 20px;
-	min-width: 20px;
+	min-width: 27.5px;
 	padding: 0 0.3rem;
 	border-radius: @border-radius;
 	margin-right: @space-s;

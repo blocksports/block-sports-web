@@ -11,7 +11,9 @@ import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../lib/animation';
-import DemoCardImage from '../../../../img/demo-card.png';
+import SoccerImage from '../../../../img/bsxcard-soccer-green.png';
+import BaseballImage from '../../../../img/bsxcard-baseball-green.png';
+import BasketballImage from '../../../../img/bsxcard-basketball-green.png';
 import styles from './styles.less';
 
 const printNumber = (number, currency, exchangeRate) => {
@@ -28,10 +30,26 @@ const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) =>
 	const appURL = process.env.APP_URL
 	const newPath = `${appURL}/exchange/${sport}/${id}`;
 
+	let Image;
+
+	switch(sport) {
+		case 'soccer': 
+			Image = SoccerImage;
+			break;
+		case 'baseball':
+			Image = BaseballImage;
+			break;
+		case 'basketball':
+			Image = BasketballImage;
+			break;
+		default:
+			Image = SoccerImage;
+	}
+
 	return (
 		<div
 			className={styles.item}
-			style={{ backgroundImage: `url('${DemoCardImage}')` }}>
+			style={{ backgroundImage: `url('${Image}')` }}>
 			<Transition appear={true} in={true} timeout={0}>
 				{state => (
 					<div

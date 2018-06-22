@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Glyph from '../Glyph';
 import { Link, IndexLink } from 'react-router';
 import { categoryFilters } from '../../../../lib/constants';
+import { getGlyphPath } from '../../../../lib/utils';
 import NavListItem from './item';
 import {
 	fadeDefaultStyle,
@@ -21,17 +22,33 @@ class NavList extends Component {
 
 	get header() {
 		if (!this.props.filter) {
-			return <div className={styles.header}>All Markets</div>;
+			return (
+				<div className={styles.headerContainer}>
+					<div className={classNames([styles.header, styles.headerActive, styles.headerHome])}>
+						<Glyph size="22" icon="home" className={styles.headerIcon}/><span className={styles.headerAll}>{t('core:navigation.header-all')}</span>
+					</div>
+				</div>
+			);
 		}
 		const category = this.category;
 		const name = category ? category.get('name') : '';
 		return (
-			<div className={styles.header}>
-				<span className={styles.headerLink}>
-					<Link to="/exchange">{t('core:navigation.header-all')}</Link>
-				</span>
-				<Glyph size="14" icon="right" className={styles.headerIcon} />
-				<span className={styles.headerCategory}>{name}</span>
+			<div className={styles.headerContainer}>
+				<Link to="/exchange">
+					<div className={classNames([styles.header, styles.headerHome])}>
+						<Glyph size="22" icon="home" className={styles.headerIcon}/>
+					</div>
+				</Link>
+					<div className={classNames([styles.header, styles.headerActive])}>
+						<Glyph
+								size="14"
+								icon={getGlyphPath(name)}
+								className={styles.headerSportIcon}
+						/>
+						<span
+							><div>{name}</div>
+						</span>
+					</div>
 			</div>
 		);
 	}
