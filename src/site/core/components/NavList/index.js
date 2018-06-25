@@ -21,34 +21,32 @@ class NavList extends Component {
 	}
 
 	get header() {
-		if (!this.props.filter) {
-			return (
-				<div className={styles.headerContainer}>
-					<div className={classNames([styles.header, styles.headerActive, styles.headerHome])}>
-						<Glyph size="22" icon="home" className={styles.headerIcon}/><span className={styles.headerAll}>{t('core:navigation.header-all')}</span>
+		const category = this.category;
+
+		const name = category ? category.get('name') : '';
+		const id = category ? category.get('id') : '';
+
+		return (
+			<div>
+				<div className={this.activeHeader(!this.props.filter)}>
+					<div className={classNames([styles.header, styles.homeActive, styles.headerHome])}>
+						<Glyph size="14" icon="home" className={styles.headerIcon}/><span className={styles.headerAll}>{t('core:navigation.header-all')}</span>
 					</div>
 				</div>
-			);
-		}
-		const category = this.category;
-		const name = category ? category.get('name') : '';
-		return (
-			<div className={styles.headerContainer}>
-				<Link to="/exchange">
-					<div className={classNames([styles.header, styles.headerHome])}>
-						<Glyph size="22" icon="home" className={styles.headerIcon}/>
-					</div>
-				</Link>
-					<div className={classNames([styles.header, styles.headerActive])}>
-						<Glyph
-								size="14"
-								icon={getGlyphPath(name)}
-								className={styles.headerSportIcon}
-						/>
-						<span
-							><div>{name}</div>
-						</span>
-					</div>
+				<div className={this.activeHeader(this.props.filter)}>
+					<Link to="/exchange">
+						<div className={classNames([styles.header, styles.headerHome])}>
+							<Glyph size="14" icon="home" className={styles.headerIcon}/>
+						</div>
+					</Link>
+					<Link to={`/exchange/${id}`} activeClassName={styles.headerActive}>
+						<div className={styles.header}>
+							<span>
+								<div>{name}</div>
+							</span>
+						</div>
+					</Link>
+				</div>
 			</div>
 		);
 	}
@@ -71,6 +69,10 @@ class NavList extends Component {
 				);
 			}
 		});
+	}
+
+	activeHeader(isActive) {
+		return isActive ? styles.headerContainer : styles.isNotActive;
 	}
 
 	render() {
