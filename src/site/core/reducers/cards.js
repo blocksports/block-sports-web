@@ -11,7 +11,7 @@ export function fetchCards(data) {
 
 		axios({
 			method: 'get',
-			url: '/v1/header?competitions=english-premier-league,nba,mlb',
+			url: '/v1/header?competitions=2018-world-cup,england-premier-league,mlb',
 		})
 			.then(resp => {
 				dispatch(fetchCardsSuccess(resp));
