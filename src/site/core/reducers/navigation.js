@@ -1,7 +1,6 @@
 import Immutable from 'immutable';
 import axios from 'axios';
 import { createAction, createReducer } from 'redux-act';
-import { getNestedMarketsArray } from '../../../lib/utils';
 
 import { mockNavigation } from './__mockData';
 

@@ -55,8 +55,20 @@ class BlockTimer extends Component {
 
 	get lastBlock() {
 		return (
-			<div className={styles.timeBlock}>{this.state.secondsSinceUpdate}</div>
+			<div className={styles.timeBlock} style={this.blockStyle}> {this.state.secondsSinceUpdate}</div>
 		);
+	}
+
+	get blockStyle() {
+		let magnitude = Math.log10(this.state.secondsSinceUpdate);
+		magnitude = Math.floor(magnitude);
+
+		const width = 20 + 5*magnitude;
+
+		return {
+			minWidth: width
+		};
+
 	}
 
 	tick() {
@@ -73,6 +85,7 @@ class BlockTimer extends Component {
 		const diff = timeNow - updatedAt;
 		return diff.toFixed(0);
 	}
+
 
 	render() {
 		return (

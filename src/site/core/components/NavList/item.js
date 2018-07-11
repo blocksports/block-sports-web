@@ -6,7 +6,7 @@ import { Link, IndexLink, browserHistory } from 'react-router';
 import { getGlyphPath } from '../../../../lib/utils';
 import styles from './style.less';
 
-const NavListItem = ({ filter, category, item }) => {
+const NavListItem = ({ filter, category, item, isEmpty }) => {
 	const competitions = item.get('competitions');
 	let link = '';
 
@@ -19,12 +19,9 @@ const NavListItem = ({ filter, category, item }) => {
 		: `/exchange/${item.get('id')}`;
 	}
 
-	return (
-		<li>
-			<Link
-				to={link}
-				className={styles.item}
-				activeClassName={styles.itemActive}>
+	if (isEmpty) {
+		return (
+			<li className={styles.itemEmpty}>
 				<div className={styles.itemInner}>
 					<div className={styles.itemLeft}>
 						{(!category || !filter) && (
@@ -40,18 +37,48 @@ const NavListItem = ({ filter, category, item }) => {
 						{(category && filter) && (
 							<div className={styles.itemCount}>{item.get('count')}</div>
 						)}
-						<Glyph size="14" icon="right" />
 					</div>
 				</div>
-			</Link>
-		</li>
-	);
+			</li>
+		);
+	} else {
+		return (
+			<li>
+				<Link
+					to={link}
+					className={styles.item}
+					activeClassName={styles.itemActive}>
+					<div className={styles.itemInner}>
+						<div className={styles.itemLeft}>
+							{(!category || !filter) && (
+								<Glyph
+									size="14"
+									icon={getGlyphPath(item.get('name'))}
+									className={styles.itemIcon}
+								/>
+							)}
+							<span className={styles.itemName}>{item.get('name')}</span>
+						</div>
+						<div className={styles.itemRight}>
+							{(category && filter) && (
+								<div className={styles.itemCount}>{item.get('count')}</div>
+							)}
+							<Glyph size="14" icon="right" />
+						</div>
+					</div>
+				</Link>
+			</li>
+		);
+	}
+
+
 };
 
 NavListItem.propTypes = {
 	item: PropTypes.instanceOf(Immutable.Map).isRequired,
 	category: PropTypes.instanceOf(Immutable.Map),
 	filter: PropTypes.string,
+	isEmpty: PropTypes.bool,
 };
 
 export default NavListItem;

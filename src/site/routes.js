@@ -32,7 +32,6 @@ const createRoutes = store => {
 		childRoutes: [
 			{
 				path: '/',
-				onEnter: requireLogin,
 				getComponent(nextState, callback) {
 					require.ensure([], require => {
 						callback(null, require('./core/containers/Root').default);

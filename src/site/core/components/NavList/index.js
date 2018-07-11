@@ -55,9 +55,20 @@ class NavList extends Component {
 		const category = this.category;
 		const items = category ? category.get('competitions') : this.props.items;
 		if (!items) return null;
-		return items.map((item, i) => {
+
+		// Place sports/leagues without matches last
+		let secondItems = [];
+		let firstItems = items.map((item, i) => {
 			if (item.get('count') < 1) {
-				return null;
+				secondItems.push(					
+					<NavListItem
+						key={item.get('name')}
+						item={item}
+						category={category}
+						filter={this.props.filter}
+						isEmpty={true}
+					/>
+				);
 			} else {
 				return (		
 					<NavListItem
@@ -65,10 +76,13 @@ class NavList extends Component {
 						item={item}
 						category={category}
 						filter={this.props.filter}
+						isEmpty={false}
 					/>
 				);
 			}
 		});
+
+		return firstItems.concat(secondItems);
 	}
 
 	activeHeader(isActive) {

@@ -11,10 +11,12 @@ import {
 	fadeDefaultStyle,
 	fadeTransitionStyles,
 } from '../../../../lib/animation';
+import styles from './styles.less';
+
 import SoccerImage from '../../../../img/bsxcard-soccer-green.png';
 import BaseballImage from '../../../../img/bsxcard-baseball-green.png';
 import BasketballImage from '../../../../img/bsxcard-basketball-green.png';
-import styles from './styles.less';
+import WorldCupImage from '../../../../img/bsxcard-worldcup1-green.png';
 
 const printNumber = (number, currency, exchangeRate) => {
 	number = number * exchangeRate;
@@ -34,7 +36,12 @@ const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) =>
 
 	switch(sport) {
 		case 'soccer': 
-			Image = SoccerImage;
+			if (id == "2018-world-cup") {
+				Image = WorldCupImage
+			} else {
+				Image = SoccerImage;
+			}
+			
 			break;
 		case 'baseball':
 			Image = BaseballImage;
