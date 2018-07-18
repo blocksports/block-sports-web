@@ -11,7 +11,7 @@ export function fetchCards(data) {
 
 		axios({
 			method: 'get',
-			url: '/v1/header?competitions=uefa-champions-league,english-premier-league,atp-basstad',
+			url: '/v1/header?competitions=uefa-champions-league,english-premier-league,atp-bastad',
 		})
 			.then(resp => {
 				dispatch(fetchCardsSuccess(resp));
@@ -44,8 +44,11 @@ const cardsReducer = createReducer(
 				} else if (b.id == "" && a.id != "") {
 					return -1;
 				} else {
-					count++;
-					return 0;
+					if (a.id == "" && b.id == "") {
+						count++;
+					}
+					
+					return 0;	
 				}
 			});
 

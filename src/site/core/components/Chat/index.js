@@ -21,7 +21,7 @@ const demoMessages = [
 		username: 'Admin',
 		userID: '123456789',
 		time: undefined,		
-		message: 'You can keep up to date on news and announcements by joining our <a href="https://www.t.me/blocksports" target="_blank">Telegram</a> or following us on <a href="https://twitter.com/block_sports" target="_blank" >Twitter</a>.',
+		message: 'You can keep up to date on news and announcements by joining our <a href="https://www.t.me/blocksports" target="_blank">Telegram</a> or following us on <a href="https://twitter.com/BlockSportsEx" target="_blank" >Twitter</a>.',
 	},
 	{
 		username: 'Admin',
