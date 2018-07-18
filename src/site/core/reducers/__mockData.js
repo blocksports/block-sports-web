@@ -484,21 +484,41 @@ export const mockNotifications = [
 
 export const mockCards = [
 	{
+		id: '2018-world-cup',
 		sport: 'soccer',
 		name: '2018 World Cup',
 		commence: 1530316800,
 		total_matched: 51453.42,
 	},
 	{
+		id: 'mlb',
 		sport: 'baseball',
 		name: 'MLB',
 		commence: 1523664000,
 		total_matched: 3945.34,
 	},
 	{
+		id: 'nba',
 		sport: 'basketball',
 		name: 'NBA',
 		commence: 1533396800,
 		total_matched: 2245.34,
 	},
 ];
+
+export const mockEmptyCards = [
+	{
+		id: '',
+		sport: '',
+		name: '',
+		commence: 0,
+		total_matched: 0,
+	},
+	{
+		id: '',
+		sport: '',
+		name: '',
+		commence: 0,
+		total_matched: 0,
+	}
+]

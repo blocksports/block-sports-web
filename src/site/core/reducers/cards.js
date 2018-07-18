@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import axios from 'axios';
 import { createAction, createReducer } from 'redux-act';
-import { mockCards } from './__mockData';
+import { mockCards, mockEmptyCards } from './__mockData';
 const fetchCardsRequest = createAction('FETCH_CARDS_REQUEST');
 const fetchCardsSuccess = createAction('FETCH_CARDS_SUCCESS');
 
@@ -11,7 +11,7 @@ export function fetchCards(data) {
 
 		axios({
 			method: 'get',
-			url: '/v1/header?competitions=2018-world-cup,england-premier-league,mlb',
+			url: '/v1/header?competitions=uefa-champions-league,english-premier-league,atp-basstad',
 		})
 			.then(resp => {
 				dispatch(fetchCardsSuccess(resp));
@@ -35,9 +35,28 @@ const cardsReducer = createReducer(
 			});
 		},
 		[fetchCardsSuccess]: (state, resp) => {
+			let count = 0;
+
+			// Sort cards so returned items with data are prioritised on the LHS
+			let items = resp.data.sort((a, b) => {
+				if (a.id == "" && b.id != "") {
+					return 1;
+				} else if (b.id == "" && a.id != "") {
+					return -1;
+				} else {
+					count++;
+					return 0;
+				}
+			});
+
+			// If all cards don't work only load two placeholder cards
+			if (count > 1) {
+				items = mockEmptyCards;
+			}
+
 			return state.merge({
 				isLoading: false,
-				items: Immutable.fromJS(resp.data),
+				items: items,
 			});
 		},
 	},

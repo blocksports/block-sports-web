@@ -28,6 +28,7 @@
 
 :local(.itemInner) {
 	position: relative;
+	height: inherit;
 }
 
 :local(.itemSport) {
@@ -73,6 +74,8 @@
 
 :local(.itemCta) {
 	text-transform: uppercase;
+	position: absolute;
+	bottom: 0;
 }
 
 :local(.itemSkeletonBlockHeading) {
@@ -81,4 +84,14 @@
 	&:first-of-type {
 		margin-top: 0;
 	}
+}
+
+:local(.emptyInfoA) {
+	margin-top: 5.5rem;
+	font-size: @font-size-l;
+}
+
+:local(.emptyInfoB) {
+	margin: @space-xs 0 @space-l 0;
+	font-size: @font-size-s;
 }

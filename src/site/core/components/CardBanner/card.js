@@ -17,6 +17,7 @@ import SoccerImage from '../../../../img/bsxcard-soccer-green.png';
 import BaseballImage from '../../../../img/bsxcard-baseball-green.png';
 import BasketballImage from '../../../../img/bsxcard-basketball-green.png';
 import WorldCupImage from '../../../../img/bsxcard-worldcup1-green.png';
+import TennisImage from '../../../../img/bsxcard-tennis-green.png';
 
 const printNumber = (number, currency, exchangeRate) => {
 	number = number * exchangeRate;
@@ -36,7 +37,7 @@ const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) =>
 
 	switch(sport) {
 		case 'soccer': 
-			if (id == "2018-world-cup") {
+			if (id == "uefa-champions-league") {
 				Image = WorldCupImage
 			} else {
 				Image = SoccerImage;
@@ -48,6 +49,9 @@ const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) =>
 			break;
 		case 'basketball':
 			Image = BasketballImage;
+			break;
+		case 'tennis':
+			Image = TennisImage;
 			break;
 		default:
 			Image = SoccerImage;
