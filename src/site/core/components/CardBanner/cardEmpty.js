@@ -51,11 +51,11 @@ const Card = ({ cardID }) => {
 						<div className={styles.emptyInfoB}>
                             {t(`core:cards.empty.info-b-${id}`)}
 						</div>
-						<a href={urlPath} target={"_blank"}>
+						<Link to={urlPath}>
 							<Button className={styles.itemCta} size="small" color="primary">
 								{t(`core:cards.empty.button-${id}`)}
 							</Button>
-						</a>
+						</Link>
 					</div>
 				)}
 			</Transition>
