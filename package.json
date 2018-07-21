@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Mirren King-Smith",
   "private": true,
-  "homepage": "https://app.b-test.net",
+  "homepage": "https://app.blocksports.com",
   "scripts": {
     "start": "webpack-dashboard -- node scripts/start.js",
     "build": "node scripts/build.js",
@@ -52,6 +52,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-dev-utils": "^3.0.2",
+    "react-device-detect": "^1.5.8",
     "react-dom": "^16.0.0",
     "react-error-overlay": "^1.0.9",
     "react-redux": "^5.0.5",

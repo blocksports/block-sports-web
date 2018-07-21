@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import { isMobile } from 'react-device-detect';
 import { setCurrentModal } from '../../reducers/modal';
 import { acceptDemoWarning } from '../../reducers/user';
 import { confirmBet } from '../../reducers/bet';
@@ -30,7 +30,7 @@ export class ModalConductor extends Component {
 			setCurrentModal,
 		} = this.props;
 		if (hasAcceptedDemoWarning) {
-			if (window.innerWidth < 1140) {
+			if (window.innerWidth < 1140 || isMobile) {
 				setCurrentModal('mobileWarning');
 			} else {
 				setCurrentModal(null);
@@ -50,7 +50,6 @@ export class ModalConductor extends Component {
 			activeCurrency,
 			confirmingBet,
 			currentModal,
-			hasAcceptedDemoWarning,
 			price,
 			setCurrentModal,
 			confirmBet,

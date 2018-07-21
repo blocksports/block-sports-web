@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { Scrollbars } from 'react-custom-scrollbars';
-import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 import AccurateTimer from 'accurate-timer-js';
 import moment from 'moment';
 import { dateTime, dateTypes } from '../../../../lib/dateTime';
-import { t } from 'i18next';
-import classNames from 'classnames';
 import styles from './style.less';
 
 const demoMessages = [
