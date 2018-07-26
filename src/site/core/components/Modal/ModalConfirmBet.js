@@ -29,6 +29,7 @@ class ModalConfirmBet extends Component {
 		const { currentStep, previousStep, totalSteps } = this.state;
 		const { confirmingBet } = this.props;
 		const betType = confirmingBet.getIn(['type']);
+
 		return (
 			<ModalWrapper {...this.props} title="Confirm your bet">
 				{currentStep == 1 && (

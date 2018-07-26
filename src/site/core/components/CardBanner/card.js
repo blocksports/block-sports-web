@@ -18,6 +18,7 @@ import BaseballImage from '../../../../img/bsxcard-baseball-green.png';
 import BasketballImage from '../../../../img/bsxcard-basketball-green.png';
 import WorldCupImage from '../../../../img/bsxcard-worldcup1-green.png';
 import TennisImage from '../../../../img/bsxcard-tennis-green.png';
+import FootballImage from '../../../../img/bsxcard-nfl-green.png';
 
 const printNumber = (number, currency, exchangeRate) => {
 	number = number * exchangeRate;
@@ -52,6 +53,9 @@ const Card = ({ id, sport, name, commence, matched, currency, exchangeRate }) =>
 			break;
 		case 'tennis':
 			Image = TennisImage;
+			break;
+		case 'american-football':
+			Image = FootballImage;
 			break;
 		default:
 			Image = SoccerImage;

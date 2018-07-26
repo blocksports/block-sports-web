@@ -111,12 +111,12 @@
 	},
 	"cards": {
 		"empty": {
-			"info-a-1": "How does it work?",
-			"info-a-2": "Join the discussion",
-			"info-b-1": "Read our technical white paper",
-			"info-b-2": "Subscribe to our Telegram",
-			"button-1": "View",
-			"button-2": "Join"
+			"info-a-2": "How does it work?",
+			"info-a-1": "Join the discussion",
+			"info-b-2": "Read our technical white paper",
+			"info-b-1": "Subscribe to our Telegram",
+			"button-2": "View",
+			"button-1": "Join"
 		}
 	}
 }

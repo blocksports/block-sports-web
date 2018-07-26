@@ -11,7 +11,7 @@ export function fetchCards(data) {
 
 		axios({
 			method: 'get',
-			url: '/v1/header?competitions=uefa-champions-league,english-premier-league,atp-bastad',
+			url: '/v1/header?competitions=uefa-champions-league,nfl-2018,english-premier-league',
 		})
 			.then(resp => {
 				dispatch(fetchCardsSuccess(resp));

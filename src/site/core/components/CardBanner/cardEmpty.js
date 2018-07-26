@@ -19,18 +19,18 @@ const Card = ({ cardID }) => {
 	let Image;
 
 	switch(id) {
-        case 1: 
-            Image = WhitepaperImage;
-            urlPath = 'http://files.blocksports.com/Block_Sports_White_Paper_v1.pdf';
+		case 1: 
+			Image = TelegramImage;
+			urlPath = 'https://t.me/blocksports';
 			break;
 		case 2:
-            Image = TelegramImage;
-            urlPath = 'https://t.me/blocksports';
+			Image = WhitepaperImage;
+			urlPath = 'http://files.blocksports.com/Block_Sports_White_Paper_v1.pdf';
 			break;
         default:
-            id = 1;
-            Image = WhitepaperImage;
-            urlPath = 'http://files.blocksports.com/Block_Sports_White_Paper_v1.pdf';
+			Image = TelegramImage;
+			urlPath = 'https://t.me/blocksports';
+			break;
 	}
 
 	return (
